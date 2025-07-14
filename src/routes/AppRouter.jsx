@@ -11,7 +11,6 @@ const AppRouter = () => {
         <Route path="/" element={<CommingSoon />} />
         <Route path="*" element={<Navigate to="/comming-soon" />} />
 
-        {/* ...repeat for all pages */}
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
