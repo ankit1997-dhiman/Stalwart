@@ -7,9 +7,9 @@ const CommingSoon = () => {
       <div className="container mx-auto">
         <div className="flex flex-col items-stretch justify-between h-screen pb-6">
           <div className="md:flex justify-between  items-stretch pt-6">
-            <div className="md:block flex justify-between pb-4 md:pb-0">
+            <div className="md:block flex justify-between pb-10 md:pb-0">
               <img src="/assets/logo.png" className="w-5 md:w-full " />
-              <p className="text-white text-xs md:hidden block font-moderat">
+              <p className="text-white text-[12px] md:hidden block font-moderat">
                 SIGN UP TO OUR NEWSLETTER FOR UPDATES:
               </p>
             </div>
@@ -115,12 +115,12 @@ const CommingSoon = () => {
               </div>
               <div className="w-1/3 hidden md:flex gap-5 justify-end">
                 <p className="mb-3">
-                  <Link className="text-white font-moderat text-xs font-medium border-white border px-6 py-2">
+                  <Link className="text-white font-moderat text-xs font-medium border-white border px-6 py-2 hover:bg-white hover:text-black">
                     Instagram
                   </Link>
                 </p>
                 <p>
-                  <Link className="text-white font-moderat text-xs font-medium  border-white border px-6 py-2">
+                  <Link className="text-white font-moderat text-xs font-medium  border-white border px-6 py-2 hover:bg-white hover:text-black">
                     Facebook
                   </Link>
                 </p>
