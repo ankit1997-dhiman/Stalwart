@@ -1,16 +1,15 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { About } from "../pages/About";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import CommingSoon from "../pages/CommingSoon";
-import { Home } from "../pages/Home";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       {/* <Header /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/comming-soon" element={<CommingSoon />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="/" element={<CommingSoon />} />
+        <Route path="*" element={<Navigate to="/comming-soon" />} />
 
         {/* ...repeat for all pages */}
         {/* <Route path="*" element={<NotFound />} /> */}
