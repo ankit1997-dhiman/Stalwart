@@ -8,7 +8,7 @@ const CommingSoon = () => {
         <div className="flex flex-col items-stretch justify-between h-screen pb-6">
           <div className="md:flex justify-between  items-stretch pt-6">
             <div className="md:block flex justify-between pb-4 md:pb-0">
-              <img src="/assets/logo.png" className="w-5 " />
+              <img src="/assets/logo.png" className="w-5 md:w-full " />
               <p className="text-white text-xs md:hidden block font-moderat">
                 SIGN UP TO OUR NEWSLETTER FOR UPDATES:
               </p>
@@ -92,16 +92,16 @@ const CommingSoon = () => {
                 Design by Studio Corelands
               </p>
             </div>
-            <div className="md:flex justify-between hidden">
+            <div className="md:flex justify-between hidden items-end">
               <div className="w-1/3">
-                <p className="text-white font-moderat text-xs font-medium">
+                <p className="text-white font-moderat text-xs font-medium mb-1">
                   STALWART 2025
                 </p>
                 <p className="text-white font-moderat text-xs font-medium">
                   Design by Studio Corelands
                 </p>
               </div>
-              <div className="w-1/3">
+              <div className="w-1/3 text-center">
                 <p>
                   <Link className="text-white font-moderat text-xs font-medium">
                     Call Us
@@ -113,7 +113,7 @@ const CommingSoon = () => {
                   </Link>
                 </p>
               </div>
-              <div className="w-1/3 hidden md:block">
+              <div className="w-1/3 hidden md:flex gap-5 justify-end">
                 <p className="mb-3">
                   <Link className="text-white font-moderat text-xs font-medium border-white border px-6 py-2">
                     Instagram
