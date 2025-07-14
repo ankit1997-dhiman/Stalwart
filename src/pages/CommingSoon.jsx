@@ -20,15 +20,13 @@ const CommingSoon = () => {
                   // onFinish={onFinish}
                   autoComplete="on"
                 >
-                  <div className="flex gap-6 items-end">
+                  <div className="flex gap-6 items-end justify-end">
                     <p className="text-white text-xs md:block hidden font-moderat">
                       SIGN UP TO OUR NEWSLETTER FOR UPDATES:
                     </p>
                     <Form.Item
                       name="name"
-                      rules={[
-                        { required: true, message: "Please enter your name" },
-                      ]}
+                      rules={[{ required: true, message: "" }]}
                     >
                       <Input
                         placeholder="Full Name"
@@ -39,8 +37,8 @@ const CommingSoon = () => {
                     <Form.Item
                       name="email"
                       rules={[
-                        { required: true, message: "Please enter your email" },
-                        { type: "email", message: "Enter a valid email" },
+                        { required: true, message: "" },
+                        { type: "email", message: "" },
                       ]}
                     >
                       <Input
