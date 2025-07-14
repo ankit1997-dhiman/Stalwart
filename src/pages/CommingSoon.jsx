@@ -32,7 +32,7 @@ const CommingSoon = () => {
                     >
                       <Input
                         placeholder="Full Name"
-                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs sm:w-24 w-full "
+                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs sm:w-24 w-[275px] "
                       />
                     </Form.Item>
 
@@ -46,7 +46,7 @@ const CommingSoon = () => {
                       <Input
                         placeholder="Email"
                         autoComplete="email"
-                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs sm:w-24 w-full"
+                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs sm:w-24 w-[130px]"
                       />
                     </Form.Item>
 
@@ -74,7 +74,7 @@ const CommingSoon = () => {
               </a>
             </div>
             <div className="md:hidden flex gap-2 justify-between  mb-4">
-              <p className="text-white font-moderat text-xs font-medium w-1/3">
+              <p className="text-white font-monument text-xs font-normal w-1/3">
                 STALWART <br></br>2025
               </p>
 
@@ -89,12 +89,12 @@ const CommingSoon = () => {
               </p>
 
               <p className="text-white font-moderat text-xs font-medium w-1/3">
-                Design by Studio Corelands
+                Design by <br></br>Studio Corelands
               </p>
             </div>
             <div className="md:flex justify-between hidden items-end">
               <div className="w-1/3">
-                <p className="text-white font-moderat text-xs font-medium mb-1">
+                <p className="text-white font-monument text-xs font-normal mb-1">
                   STALWART 2025
                 </p>
                 <p className="text-white font-moderat text-xs font-medium">
