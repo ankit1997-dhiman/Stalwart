@@ -52,7 +52,7 @@ const CommingSoon = () => {
 
                     <Form.Item>
                       <Button
-                        className="border border-white px-4 md:px-9 py-1 text-white text-sm font-moderat font-normalhover:bg-white hover:text-black"
+                        className="border border-white px-4 md:px-9 py-1 text-white text-sm font-moderat font-normal hover:bg-white hover:text-black"
                         htmlType="submit"
                       >
                         Subscribe
@@ -74,7 +74,7 @@ const CommingSoon = () => {
               </a>
             </div>
             <div className="md:hidden flex gap-2 justify-between  mb-4">
-              <p className="text-white font-monument text-xs font-normal w-1/3">
+              <p className="text-white font-monument text-[10px] font-normal w-1/3">
                 STALWART <br></br>2025
               </p>
 
