@@ -32,7 +32,7 @@ const CommingSoon = () => {
                     >
                       <Input
                         placeholder="Full Name"
-                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs sm:w-24 w-[275px] "
+                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs w-24 md:w-[275px] "
                       />
                     </Form.Item>
 
@@ -46,7 +46,7 @@ const CommingSoon = () => {
                       <Input
                         placeholder="Email"
                         autoComplete="email"
-                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs sm:w-24 w-[130px]"
+                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs w-24 md:w-[130px]"
                       />
                     </Form.Item>
 
