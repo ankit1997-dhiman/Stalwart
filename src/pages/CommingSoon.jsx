@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const CommingSoon = () => {
   return (
-    <div className="bg-[url('/assets/coming.png')] bg-cover bg-center h-screen w-full relative px-4">
+    <div className="bg-[url('/assets/coming-soon.png')] md:bg-[url('/assets/coming.png')] bg-cover bg-center h-screen w-full relative px-7.5 md:px-15">
       <div className="container mx-auto">
         <div className="flex flex-col items-stretch justify-between h-screen pb-6">
           <div className="md:flex justify-between  items-stretch pt-6">
-            <div className="md:block flex justify-between pb-10 md:pb-0">
-              <img src="/assets/logo.png" className="w-5 md:w-full " />
+            <div className="md:block flex justify-between pb-18 md:pb-0">
+              <img src="/assets/logo.png" className="w-10 md:w-full " />
               <p className="text-white text-[12px] md:hidden block font-moderat">
                 SIGN UP TO OUR NEWSLETTER FOR UPDATES:
               </p>
@@ -52,7 +52,7 @@ const CommingSoon = () => {
 
                     <Form.Item>
                       <Button
-                        className="border border-white px-4 md:px-9 py-1 text-white text-sm font-moderat font-normal"
+                        className="border border-white px-4 md:px-9 py-1 text-white text-sm font-moderat font-normalhover:bg-white hover:text-black"
                         htmlType="submit"
                       >
                         Subscribe
@@ -65,11 +65,11 @@ const CommingSoon = () => {
           </div>
           <div>
             <div className="md:hidden flex gap-2 justify-between mb-8">
-              <a className="text-white font-moderat text-xs font-medium border-white border px-6 py-2 w-full text-center ">
+              <a className="text-white font-moderat text-[10px] md:text-xs font-medium border-white border px-6 py-2 w-full text-center ">
                 Instagram
               </a>
 
-              <a className="text-white font-moderat text-xs font-medium  border-white border px-6 py-2 w-full text-center ">
+              <a className="text-white font-moderat text-[10px] text-xs font-medium  border-white border px-6 py-2 w-full text-center ">
                 Facebook
               </a>
             </div>
