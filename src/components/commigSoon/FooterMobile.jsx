@@ -5,7 +5,7 @@ const FooterMobile = ({ socials, contactLinks }) => (
         <a
           key={name}
           href={url}
-          className="text-white font-moderat text-[10px] md:text-xs font-medium border border-white px-6 py-2 w-full text-center"
+          className="text-white font-moderat text-[10px] md:text-xs font-medium border border-white px-6 py-2 w-full text-center transition-colors duration-900 hover:bg-white hover:text-black"
         >
           {name}
         </a>

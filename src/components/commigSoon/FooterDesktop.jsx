@@ -29,7 +29,7 @@ const FooterDesktop = ({ socials, contactLinks }) => (
         <p key={name}>
           <Link
             to={url}
-            className="text-white font-moderat text-xs font-medium border border-white px-6 py-2 hover:bg-white hover:text-black"
+            className="text-white font-moderat text-xs font-medium border border-white px-6 py-2 transition-colors duration-1300 hover:bg-white hover:text-black"
           >
             {name}
           </Link>

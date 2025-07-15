@@ -47,7 +47,7 @@ const CommingSoon = () => {
                 <Link
                   key={label}
                   to={url}
-                  className="w-full text-white text-center font-moderat text-[10px] md:text-xs font-medium border border-white px-6 py-2 hover:bg-white hover:text-black"
+                  className="w-full text-white text-center font-moderat text-[10px] md:text-xs font-medium border border-white px-6 py-2 transition-colors duration-1300 hover:bg-white hover:text-black"
                 >
                   {label}
                 </Link>
