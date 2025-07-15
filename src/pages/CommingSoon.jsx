@@ -1,131 +1,177 @@
 import { Button, Form, Input } from "antd";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const socials = [
+  { name: "Instagram", url: "#" },
+  { name: "Facebook", url: "#" },
+];
+
+const contactLinks = [
+  { label: "Call Us", url: "#" },
+  { label: "Email Us", url: "#" },
+];
+
 const CommingSoon = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial size
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  console.log(windowSize, 99);
+
   return (
     <div className="bg-[url('/assets/coming-soon.png')] md:bg-[url('/assets/coming.png')] bg-cover bg-center h-screen w-full relative px-7.5 md:px-15">
-      <div className="container mx-auto">
-        <div className="flex flex-col items-stretch justify-between h-screen pb-6">
-          <div className="md:flex justify-between  items-stretch pt-6">
-            <div className="md:block flex justify-between pb-18 md:pb-0">
-              <img src="/assets/logo.png" className="w-10 md:w-full " />
-              <p className="text-white text-[12px] md:hidden block font-moderat">
+      <div className="container mx-auto h-full flex flex-col justify-between py-6">
+        {/* Header */}
+        <header className="lg:flex justify-items-stretch justify-between pt-6">
+          <div className="lg:block flex justify-between pb-18 lg:pb-0">
+            <img
+              src={`${
+                windowSize.width > "425"
+                  ? "/assets/logo.png"
+                  : "/assets/mobile-logo.png"
+              }`}
+              alt="Logo"
+            />
+            <p className="text-white text-xs lg:hidden font-moderat text-right mt-2">
+              SIGN UP TO OUR NEWSLETTER FOR UPDATES:
+            </p>
+          </div>
+
+          <Form name="newsletter" autoComplete="on">
+            <div className="flex flex-row  gap-6 items-end">
+              <p className="text-white text-xs lg:block hidden font-moderat lg:basis-full pl-5">
                 SIGN UP TO OUR NEWSLETTER FOR UPDATES:
               </p>
-            </div>
-            <div>
-              <div className="flex md:gap-6">
-                <Form
-                  name="basic"
-                  // onFinish={onFinish}
-                  autoComplete="on"
+
+              <Form.Item
+                className="basis-1/3"
+                name="name"
+                rules={[{ required: true, message: "" }]}
+              >
+                <Input
+                  placeholder="Full Name"
+                  className="text-white bg-transparent border-b border-white outline-none text-sm placeholder:text-xs w-full lg:w-[275px] basis-1/3 lg:basis-full"
+                />
+              </Form.Item>
+
+              <Form.Item
+                className="basis-1/3"
+                name="email"
+                rules={[
+                  { required: true, message: "" },
+                  { type: "email", message: "" },
+                ]}
+              >
+                <Input
+                  placeholder="Email"
+                  autoComplete="email"
+                  className="text-white bg-transparent border-b border-white outline-none text-sm placeholder:text-xs w-full lg:w-[130px] basis-1/3 lg:basis-full"
+                />
+              </Form.Item>
+
+              <Form.Item className="basis-1/3">
+                <Button
+                  className="w-full border border-white px-4 md:px-9 py-1 text-white text-sm font-moderat hover:bg-white hover:text-black basis-1/3 lg:basis-full "
+                  htmlType="submit"
                 >
-                  <div className="flex gap-6 items-end justify-end">
-                    <p className="text-white text-xs md:block hidden font-moderat">
-                      SIGN UP TO OUR NEWSLETTER FOR UPDATES:
-                    </p>
-                    <Form.Item
-                      name="name"
-                      rules={[{ required: true, message: "" }]}
-                    >
-                      <Input
-                        placeholder="Full Name"
-                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs w-24 md:w-[275px] "
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name="email"
-                      rules={[
-                        { required: true, message: "" },
-                        { type: "email", message: "" },
-                      ]}
-                    >
-                      <Input
-                        placeholder="Email"
-                        autoComplete="email"
-                        className="text-white bg-transparent border-b-1 border-white outline-0 text-sm placeholder:text-xs w-24 md:w-[130px]"
-                      />
-                    </Form.Item>
-
-                    <Form.Item>
-                      <Button
-                        className="border border-white px-4 md:px-9 py-1 text-white text-sm font-moderat font-normal hover:bg-white hover:text-black"
-                        htmlType="submit"
-                      >
-                        Subscribe
-                      </Button>
-                    </Form.Item>
-                  </div>
-                </Form>
-              </div>
+                  Subscribe
+                </Button>
+              </Form.Item>
             </div>
-          </div>
-          <div>
-            <div className="md:hidden flex gap-2 justify-between mb-8">
-              <a className="text-white font-moderat text-[10px] md:text-xs font-medium border-white border px-6 py-2 w-full text-center ">
-                Instagram
+          </Form>
+        </header>
+
+        {/* Footer - Mobile */}
+        <footer className="lg:hidden">
+          <div className="flex gap-2 justify-between mb-8">
+            {socials.map((item) => (
+              <a
+                key={item.name}
+                href={item.url}
+                className="text-white font-moderat text-[10px] md:text-xs font-medium border border-white px-6 py-2 w-full text-center"
+              >
+                {item.name}
               </a>
-
-              <a className="text-white font-moderat text-[10px] text-xs font-medium  border-white border px-6 py-2 w-full text-center ">
-                Facebook
-              </a>
-            </div>
-            <div className="md:hidden flex gap-2 justify-between  mb-4">
-              <p className="text-white font-monument text-[10px] font-normal w-1/3">
-                STALWART <br></br>2025
-              </p>
-
-              <p className="flex flex-col w-1/3">
-                <Link className="text-white font-moderat text-xs font-medium">
-                  Call Us
-                </Link>
-
-                <Link className="text-white font-moderat text-xs font-medium">
-                  Email Us
-                </Link>
-              </p>
-
-              <p className="text-white font-moderat text-xs font-medium w-1/3">
-                Design by <br></br>Studio Corelands
-              </p>
-            </div>
-            <div className="md:flex justify-between hidden items-end">
-              <div className="w-1/3">
-                <p className="text-white font-monument text-xs font-normal mb-1">
-                  STALWART 2025
-                </p>
-                <p className="text-white font-moderat text-xs font-medium">
-                  Design by Studio Corelands
-                </p>
-              </div>
-              <div className="w-1/3 text-center">
-                <p>
-                  <Link className="text-white font-moderat text-xs font-medium">
-                    Call Us
-                  </Link>
-                </p>
-                <p>
-                  <Link className="text-white font-moderat text-xs font-medium">
-                    Email Us
-                  </Link>
-                </p>
-              </div>
-              <div className="w-1/3 hidden md:flex gap-5 justify-end">
-                <p className="mb-3">
-                  <Link className="text-white font-moderat text-xs font-medium border-white border px-6 py-2 hover:bg-white hover:text-black">
-                    Instagram
-                  </Link>
-                </p>
-                <p>
-                  <Link className="text-white font-moderat text-xs font-medium  border-white border px-6 py-2 hover:bg-white hover:text-black">
-                    Facebook
-                  </Link>
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
+
+          <div className="flex justify-between items-cneter mb-4">
+            <p className="text-white font-monument text-[10px] font-normal w-1/3">
+              STALWART <br /> 2025
+            </p>
+
+            <div className="flex flex-col w-1/3">
+              {contactLinks.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.url}
+                  className="text-white font-moderat text-xs font-medium"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            <p className="text-white font-moderat text-xs font-medium w-1/3 text-left">
+              Design by <br /> Studio Corelands
+            </p>
+          </div>
+        </footer>
+
+        {/* Footer - Desktop */}
+        <footer className="hidden lg:flex justify-between items-end">
+          <div className="w-1/3">
+            <p className="text-white font-monument text-xs font-normal mb-1">
+              STALWART 2025
+            </p>
+            <p className="text-white font-moderat text-xs font-medium">
+              Design by Studio Corelands
+            </p>
+          </div>
+
+          <div className="w-1/3 text-center">
+            {contactLinks.map((item) => (
+              <p key={item.label}>
+                <Link
+                  to={item.url}
+                  className="text-white font-moderat text-xs font-medium"
+                >
+                  {item.label}
+                </Link>
+              </p>
+            ))}
+          </div>
+
+          <div className="w-1/3 hidden md:flex gap-5 justify-end">
+            {socials.map((item) => (
+              <p key={item.name}>
+                <Link
+                  to={item.url}
+                  className="text-white font-moderat text-xs font-medium border border-white px-6 py-2 hover:bg-white hover:text-black"
+                >
+                  {item.name}
+                </Link>
+              </p>
+            ))}
+          </div>
+        </footer>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 @import "tailwindcss";
 @font-face {
     font-family: Monument;
-    src: url("../src/assets/fonts/MonumentExtended-Regular.otf");
+    src: url("../src/assets/fonts/PPMonumentExtended-Regular.otf");
 }
 @font-face {
     font-family: Moderat;
