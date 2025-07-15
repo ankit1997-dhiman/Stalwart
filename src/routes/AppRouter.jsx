@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import CommingSoon from "../pages/CommingSoon";
+import CommingSoon from "../pages/CommingSoon.jsx";
 
 const AppRouter = () => {
   return (
