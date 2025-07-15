@@ -33,7 +33,6 @@ const CommingSoon = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  console.log(windowSize, 99);
 
   return (
     <div className="bg-[url('/assets/coming-soon.png')] md:bg-[url('/assets/coming.png')] bg-cover bg-center h-screen w-full relative px-7.5 md:px-15">
@@ -48,6 +47,11 @@ const CommingSoon = () => {
                   : "/assets/mobile-logo.png"
               }`}
               alt="Logo"
+              className={`${
+                windowSize.width > "425"
+                  ? "h-[25px] w-[45px]"
+                  : "h-[17px] w-[30px]"
+              }`}
             />
             <p className="text-white text-xs lg:hidden font-moderat text-right mt-2">
               SIGN UP TO OUR NEWSLETTER FOR UPDATES:
