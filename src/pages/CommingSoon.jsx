@@ -5,13 +5,13 @@ import FooterMobile from "../components/commigSoon/FooterMobile.jsx";
 import LogoWithText from "../components/commigSoon/LogoWithText.jsx";
 
 const socials = [
-  { name: "Instagram", url: "#" },
-  { name: "Facebook", url: "#" },
+  { name: "Instagram", url: "https://www.facebook.com/StalwartRE" },
+  { name: "Facebook", url: "https://www.facebook.com/StalwartRE" },
 ];
 
 const contactLinks = [
-  { label: "Call Us", url: "#" },
-  { label: "Email Us", url: "#" },
+  { label: "Call Us", url: "tel:+61 414 000 044" },
+  { label: "Email Us", url: "info@stalwartrealestate.com.au" },
 ];
 
 const CommingSoon = () => {
