@@ -14,12 +14,13 @@ const FooterDesktop = ({ socials, contactLinks }) => (
     <div className="w-1/3 text-center">
       {contactLinks.map(({ label, url }) => (
         <p key={label}>
-          <Link
-            to={url}
+          <a
+            href={url}
             className="text-white font-moderat text-xs font-medium"
+            target="_blank"
           >
             {label}
-          </Link>
+          </a>
         </p>
       ))}
     </div>
