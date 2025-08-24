@@ -1,6 +1,7 @@
 import React from "react";
 import CareerForm from "./components/CareerForm";
 import Footer from "@/components/footer/Footer";
+import bgImage from "../../assets/images/bg-image.png";
 
 const Careers = () => {
   return (
@@ -8,7 +9,7 @@ const Careers = () => {
       <section
         className="h-screen flex items-center justify-center bg-cover bg-center px-12.5 md:px-0"
         style={{
-          backgroundImage: "url('/src/assets/images/bg-image.png')",
+          backgroundImage: `url(${bgImage})`, // use imported image
         }}
       >
         <div className="container">
@@ -22,7 +23,7 @@ const Careers = () => {
       </section>
 
       <CareerForm />
-      <Footer/>
+      <Footer />
     </>
   );
 };
