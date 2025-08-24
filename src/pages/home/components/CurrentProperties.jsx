@@ -1,29 +1,30 @@
 import React from "react";
+import image from "../../../assets/images/tab-image.png";
 
 const properties = [
   {
     id: 1,
-    image: "https://source.unsplash.com/random/800x600?house1",
+    image: image,
     address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
   },
   {
     id: 2,
-    image: "https://source.unsplash.com/random/800x600?house2",
+    image: image,
     address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
   },
   {
     id: 3,
-    image: "https://source.unsplash.com/random/800x600?house3",
+    image: image,
     address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
   },
   {
     id: 4,
-    image: "https://source.unsplash.com/random/800x600?house4",
+    image: image,
     address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
   },
 ];
 
-const Section6 = () => {
+const CurrentProperties = () => {
   return (
     <section className="container py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
       {/* Left Section */}
@@ -65,4 +66,4 @@ const Section6 = () => {
   );
 };
 
-export default Section6;
+export default CurrentProperties;

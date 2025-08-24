@@ -1,5 +1,6 @@
 import { Form, Input, Select, Button } from "antd";
 import { FaSearch } from "react-icons/fa";
+import bgImage from "../../../assets/images/bg-image.png";
 
 const { Option } = Select;
 
@@ -11,13 +12,12 @@ export const Section1 = () => {
   };
 
   const statusOptions = ["BUY", "SELL", "LEASE"];
-  const selectWidth = "260px"; // same width for all selects
 
   return (
     <section
       className="h-screen flex items-end justify-center bg-cover bg-center"
       style={{
-        backgroundImage: "url('/src/assets/images/bg-image.png')",
+        backgroundImage: `url(${bgImage})`,
       }}
     >
       <div className="w-[999px]">
@@ -43,10 +43,7 @@ export const Section1 = () => {
           <div className="flex items-stretch justify-between gap-7.5 pb-4 w-full">
             {/* Status Select */}
             <Form.Item name="status" label={false} className="!mb-0">
-              <Select
-                className="!w-[180px] !bg-black !text-white !h-[50px] !rounded-none"
-                
-              >
+              <Select className="!w-[180px] !bg-black !text-white !h-[50px] !rounded-none">
                 {statusOptions.map((opt) => (
                   <Option
                     key={opt}
@@ -61,10 +58,13 @@ export const Section1 = () => {
 
             {/* Name Input with Search Button */}
             <div className="w-full flex bg-white">
-              <Form.Item name="name" label={false} className="!mb-0 !w-full !rounded-xl">
+              <Form.Item
+                name="name"
+                label={false}
+                className="!mb-0 !w-full !rounded-xl"
+              >
                 <Input
                   placeholder="Search..."
-                  
                   className="!h-[50px] !border-none !rounded-xl !outline-0"
                 />
               </Form.Item>
@@ -73,7 +73,6 @@ export const Section1 = () => {
                 className="!h-[50px] ml-2 flex items-center justify-center bg-white !border-none"
               >
                 <FaSearch className="mr-2" />
-               
               </Button>
             </div>
           </div>
@@ -93,7 +92,6 @@ export const Section1 = () => {
                     className={`!bg-[#4F4C45] !text-white !h-[50px] ${
                       idx === 0 ? "!w-[180px]" : "!w-full"
                     }`}
-                    
                   >
                     {statusOptions.map((opt) => (
                       <Option
