@@ -4,7 +4,7 @@ import image from "../../../assets/images/about-us.png";
 const OurPhilosophyAbout = () => {
   return (
     <div>
-      <section className="container py-32 bg-white px-12.5">
+      <section className="container py-32 bg-white px-12.5 md:px-0">
         <div className="grid md:grid-cols-2  items-stretch justify-between ">
           {/* Left Content */}
           <div className="flex flex-col justify-between">
