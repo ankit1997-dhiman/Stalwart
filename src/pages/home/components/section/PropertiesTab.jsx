@@ -1,6 +1,7 @@
 import React from "react";
 import { Tabs } from "antd";
 import { Tab1 } from "./components/Tab1.jsx";
+import image from "@/assets/images/black-logo.png";
 
 const items = [
   {
@@ -25,14 +26,16 @@ const items = [
   },
 ];
 
-const Section5 = () => {
+const PropertiesTab = () => {
   return (
-    <section className="container py-30">
-      <p className="text-center text-black font-normal text-[32px] py-16  ">REPLACE SUBHEADING</p>
+    <section className="container py-30  md:px-0">
+      <img src={image} className="h-2.5 w-5 mx-auto" />
+      <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-7 md:py-16  ">
+        REPLACE SUBHEADING
+      </p>
       <Tabs defaultActiveKey="1" centered items={items} tabBarGutter={100} />
-
     </section>
   );
 };
 
-export default Section5;
+export default PropertiesTab;

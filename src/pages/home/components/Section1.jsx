@@ -15,15 +15,18 @@ export const Section1 = () => {
 
   return (
     <section
-      className="h-screen flex items-end justify-center bg-cover bg-center"
+      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 md:px-0"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}
     >
       <div className="w-[999px]">
-        <h4 className="uppercase text-white text-xl font-monument font-normal leading-10 text-center pb-20">
+        <h4 className="uppercase text-white text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
           PORTA AD DOMUN
         </h4>
+        <p className="block md:hidden text-white text-center text-[11px] pb-30 font-monument font-light uppercase">
+          7 Jul 2025 | 11:13:35 AM
+        </p>
 
         <Form
           form={form}
@@ -40,15 +43,19 @@ export const Section1 = () => {
           }}
         >
           {/* Top Row */}
-          <div className="flex items-stretch justify-between gap-7.5 pb-4 w-full">
+          <div className="flex flex-col md:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
             {/* Status Select */}
-            <Form.Item name="status" label={false} className="!mb-0">
-              <Select className="!w-[180px] !bg-black !text-white !h-[50px] !rounded-none">
+            <Form.Item
+              name="status"
+              label={false}
+              className="!mb-0 !rounded-none"
+            >
+              <Select className="w-full md:!w-[180px] !bg-black !text-white !h-[50px] !rounded-none">
                 {statusOptions.map((opt) => (
                   <Option
                     key={opt}
                     value={opt}
-                    className="!bg-[#4F4C45] !text-white"
+                    className="!bg-[#4F4C45] !text-white !rounded-none"
                   >
                     {opt}
                   </Option>
@@ -57,7 +64,7 @@ export const Section1 = () => {
             </Form.Item>
 
             {/* Name Input with Search Button */}
-            <div className="w-full flex bg-white">
+            <div className="w-full flex  bg-white">
               <Form.Item
                 name="name"
                 label={false}
@@ -65,7 +72,7 @@ export const Section1 = () => {
               >
                 <Input
                   placeholder="Search..."
-                  className="!h-[50px] !border-none !rounded-xl !outline-0"
+                  className="!h-[50px] !border-none !rounded-none !outline-0"
                 />
               </Form.Item>
               <Button
@@ -78,7 +85,7 @@ export const Section1 = () => {
           </div>
 
           {/* Bottom Row: Multiple Status Selects */}
-          <div className="flex items-stretch justify-between gap-7.5 pb-4 w-full">
+          <div className="hidden md:flex items-stretch justify-between gap-7.5 pb-4 w-full">
             {Array(5)
               .fill(0)
               .map((_, idx) => (
@@ -108,7 +115,7 @@ export const Section1 = () => {
           </div>
         </Form>
 
-        <p className="text-white text-center text-[11px] pt-20 pb-40 font-monument font-light uppercase">
+        <p className="hidden md:block text-white text-center text-[11px] pt-20 pb-40 font-monument font-light uppercase">
           7 Jul 2025 | 11:13:35 AM
         </p>
       </div>

@@ -26,12 +26,14 @@ const properties = [
 
 const CurrentProperties = () => {
   return (
-    <section className="container py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <section className="container py-12 grid grid-cols-1 lg:grid-cols-4 gap-8 px-12.5 md:px-0">
       {/* Left Section */}
       <div className="lg:col-span-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-xl font-bold mb-2">OUR CURRENT PROPERTIES</h2>
-          <p className="text-gray-600 text-sm">
+          <h2 className="text-base md:text-xl font-medium mb-7 md:mb-2">
+            OUR CURRENT PROPERTIES
+          </h2>
+          <p className="text-black text-xs md:text-sm">
             We specialise in Real Estate for Brisbane, Gold Coast, Logan,
             Ipswich, Redland City and Toowoomba.
           </p>
@@ -49,14 +51,14 @@ const CurrentProperties = () => {
         {properties.map((property) => (
           <div
             key={property.id}
-            className="border border-gray-300 rounded overflow-hidden shadow-sm"
+            className="border border-gray-300 rounded overflow-hidden"
           >
             <img
               src={property.image}
               alt={property.address}
               className="w-full h-48 object-cover"
             />
-            <div className="p-5 border-t text-sm font-medium text-gray-800">
+            <div className="p-5 border-t text-xs font-medium text-gray-800">
               {property.address}
             </div>
           </div>
