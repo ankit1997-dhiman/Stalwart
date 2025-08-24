@@ -1,11 +1,12 @@
 import React from "react";
 import image from "../../../assets/images/about-us.png";
+import bgImage from "../../../assets/images/about-us.png"; // import background
 
 const OurPhilosophyAbout = () => {
   return (
     <div>
       <section className="container py-32 bg-white px-12.5 md:px-0">
-        <div className="grid md:grid-cols-2  items-stretch justify-between ">
+        <div className="grid md:grid-cols-2  gap-30 items-stretch justify-between">
           {/* Left Content */}
           <div className="flex flex-col justify-between">
             <div>
@@ -24,7 +25,7 @@ const OurPhilosophyAbout = () => {
                 className="w-full h-auto object-cover py-12.5"
               />
             </div>
-            <div>
+            <div className="md:pt-32.5">
               <p className="text-gray-700 mb-6">
                 At Stalwart Real Estate, we help clients maximise the value of
                 their property assets with minimal stress, delivering
@@ -53,12 +54,17 @@ const OurPhilosophyAbout = () => {
           </div>
 
           {/* Right Image */}
-          <div className="hidden md:block">
-            <img
+          <div
+            className="hidden md:block bg-no-repeat bg-cover w-full"
+            style={{
+              backgroundImage: `url(${bgImage})`, // use imported image
+            }}
+          >
+            {/* <img
               src={image}
               alt="Scenic Property"
               className="w-full h-auto object-cover rounded pl-60"
-            />
+            /> */}
           </div>
         </div>
       </section>
