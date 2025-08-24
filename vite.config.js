@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [tailwindcss(),react(),tsconfigPaths()],
    resolve: {
     alias: {
-      '@': path.resolve(__dirname, '/'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 })
