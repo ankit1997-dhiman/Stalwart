@@ -14,7 +14,7 @@ const contactLinks = [
   { label: "Email Us", url: "mailto:info@stalwartrealestate.com.au" },
 ];
 
-const CommingSoon = () => {
+export const ComingSoon = () => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -47,7 +47,7 @@ const CommingSoon = () => {
                 <Link
                   key={label}
                   to={url}
-                  className="w-full text-white text-left font-moderat text-[10px] md:text-xs font-medium border border-white px-6 py-2 transition-colors duration-1300 hover:bg-white hover:text-black"
+                  className="w-full text-white text-center font-moderat text-[10px] md:text-xs font-medium border border-white px-6 py-2 transition-colors duration-1300 hover:bg-white hover:text-black"
                 >
                   {label}
                 </Link>
@@ -63,5 +63,3 @@ const CommingSoon = () => {
     </div>
   );
 };
-
-export default CommingSoon;

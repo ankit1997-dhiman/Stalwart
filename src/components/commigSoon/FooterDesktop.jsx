@@ -7,7 +7,7 @@ const FooterDesktop = ({ socials, contactLinks }) => (
         STALWART 2025
       </p>
       <p className="text-white font-moderat text-xs font-medium">
-        Design by Studio Corelands
+        <a href="https://corelands.com.au/">Design by Studio Corelands</a>
       </p>
     </div>
 

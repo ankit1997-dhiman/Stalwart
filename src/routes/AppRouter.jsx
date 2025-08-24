@@ -1,20 +1,28 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import CommingSoon from "../pages/CommingSoon.jsx";
+import { About } from "@/pages/about/About.jsx";
+import Careers from "@/pages/carrer/Careers";
+import { ComingSoon } from "@/pages/CommingSoon.jsx";
+import { Home } from "@/pages/home/Home.jsx";
+import { NotFound } from "@/pages/NotFound.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const AppRouter = () => {
+const IS_MAINTENANCE = false; // Toggle this flag
+
+export default function AppRouter() {
+  // Show only the maintenance page
   return (
     <BrowserRouter>
-      {/* <Header /> */}
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/" element={<CommingSoon />} />
-        <Route path="*" element={<Navigate to="/comming-soon" />} />
-
-        {/* <Route path="*" element={<NotFound />} /> */}
+        {IS_MAINTENANCE ? (
+          <Route path="/" element={<ComingSoon />} />
+        ) : (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="*" element={<NotFound />} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );
-};
-
-export default AppRouter;
+}

@@ -18,7 +18,9 @@ const FooterMobile = ({ socials, contactLinks }) => (
       </p>
 
       <p className="text-white font-moderat text-xs font-medium  text-left">
-        Design by <br /> Studio Corelands
+        <a href="https://corelands.com.au/">
+          Design by <br /> Studio Corelands
+        </a>
       </p>
     </div>
   </footer>

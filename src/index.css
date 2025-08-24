@@ -1,31 +1,61 @@
-
 @import "tailwindcss";
+@import "tw-animate-css";
 @font-face {
-    font-family: Monument;
-    src: url("../src/assets/fonts/PPMonumentExtended-Regular.otf");
+  font-family: Monument;
+  src: url("../src/assets/fonts/PPMonumentExtended-Regular.otf");
 }
 @font-face {
-    font-family: Moderat;
-    src: url("../src/assets/fonts/Moderat-Medium.woff");
+  font-family: Moderat;
+  src: url("../src/assets/fonts/Moderat-Medium.woff");
 }
-@theme{
-    --font-monument: Monument, "sans-serif";
-    --font-moderat: Moderat, "sans-serif";
+@theme {
+  --font-monument: Monument, "sans-serif";
+  --font-moderat: Moderat, "sans-serif";
 }
-.border-radius-custom .ant-select-selector{
- border-radius:0px !important;
+.border-radius-custom .ant-select-selector {
+  border-radius: 0px !important;
   background: #000 !important;
   border: 0px !important;
   font-size: 12px !important;
   line-height: 22px;
 }
-.container{
- max-width: 1340px;
- margin: 0 auto;
+.container {
+  max-width: 1340px;
+  margin: 0 auto;
 }
 @media only screen and (min-width: 1600px) {
-  .container{
-        max-width: 1800px;
-        margin: 0 auto;
-    }
+  .container {
+    max-width: 1700px;
+    margin: 0 auto;
+  }
+}
+.ant-select-selector {
+  background-color: #4f4c45 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.ant-select-dropdown {
+  background-color: transparent !important;
+  padding: 0px !important;
+}
+.ant-select-arrow {
+  color: white !important;
+}
+.ant-carousel .slick-slide {
+  padding: 0px 20px 0px 0px !important; /* left-right gap */
+}
+
+.ant-carousel .slick-list {
+  padding: 0px 0px 0px -20px !important; /* compensate outer spacing */
+}
+
+@media only screen and (max-width: 768px) {
+  .ant-carousel .slick-slide {
+    padding: 0px 20px 0px 0px !important; /* left-right gap */
+  }
+
+  .ant-carousel .slick-list {
+    margin: 0px 0px 0px -20px; /* compensate outer spacing */
+  }
 }
