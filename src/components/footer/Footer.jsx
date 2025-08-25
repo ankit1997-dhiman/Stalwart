@@ -112,7 +112,7 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 pt-12">
-          <div className="flex gap-18">
+          <div className="flex flex-col md:flex-row md:gap-18">
             <img src={logo} alt="Logo" className="h-6" />
 
             <ul>
