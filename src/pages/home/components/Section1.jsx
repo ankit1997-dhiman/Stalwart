@@ -16,16 +16,16 @@ export const Section1 = () => {
 
   // Bottom row options (can be different for each select)
   const bottomStatusOptions = [
-    ["Option 1A", "Option 1B", "Option 1C"],
-    ["Option 2A", "Option 2B", "Option 2C"],
-    ["Option 3A", "Option 3B", "Option 3C"],
-    ["Option 4A", "Option 4B", "Option 4C"],
-    ["Option 5A", "Option 5B", "Option 5C"],
+    ["MIN. PRICE", "Option 1B", "Option 1C"],
+    ["MAX. PRICE", "Option 2B", "Option 2C"],
+    ["BED", "1+", "2+", "3+", "4+", "5+", "6+"],
+    ["BATH", "1+", "2+", "3+", "4+", "5+", "6+"],
+    ["CAR", "1+", "2+", "3+", "4+", "5+", "6+"],
   ];
 
   return (
     <section
-      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 md:px-0"
+      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 md:px-0 border-radius-custom"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="w-[999px]">
@@ -44,28 +44,24 @@ export const Section1 = () => {
           initialValues={{
             name: "",
             status: "BUY",
-            status0: "Option 1A",
-            status1: "Option 2A",
-            status2: "Option 3A",
-            status3: "Option 4A",
-            status4: "Option 5A",
+            status0: "MIN. PRICE",
+            status1: "MAX. PRICE",
+            status2: "BED",
+            status3: "BATH",
+            status4: "CAR",
           }}
         >
           {/* Top Row */}
           <div className="flex flex-col md:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
-            <Form.Item
-              name="status"
-              label={false}
-              className="!mb-0 !rounded-none"
-            >
-              <Select className="w-full md:!w-[180px] !bg-black !text-white !h-[50px] !rounded-none">
+            <Form.Item name="status" label={false} className="!mb-0">
+              <Select className="w-full md:!w-[180px] !bg-black !text-white !h-[50px]">
                 {topStatusOptions.map((opt) => (
                   <Option
                     key={opt}
                     value={opt}
-                    className="!bg-[#4F4C45] !text-white !rounded-none"
+                    className="!bg-[#4F4C45] !text-white !rounded-none font-monument"
                   >
-                    {opt}
+                    <div className="font-monument text-[10px]">{opt}</div>
                   </Option>
                 ))}
               </Select>
@@ -111,7 +107,7 @@ export const Section1 = () => {
                       value={opt}
                       className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
                     >
-                      {opt}
+                      <div className="font-monument text-[10px]">{opt}</div>
                     </Option>
                   ))}
                 </Select>

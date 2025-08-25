@@ -46,13 +46,22 @@ export default function CareerForm() {
             <Form.Item name="roles" className="!rounded-none !border-black">
               <Checkbox.Group className=" !rounded-none !border-black">
                 <div className="flex flex-wrap gap-6">
-                  <Checkbox value="Sales Agent" className="font-bold  !rounded-none !border-black">
+                  <Checkbox
+                    value="Sales Agent"
+                    className="font-bold  !rounded-none !border-black"
+                  >
                     Sales Agent
                   </Checkbox>
-                  <Checkbox value="Property Manager" className="font-bold !rounded-none !border-black">
+                  <Checkbox
+                    value="Property Manager"
+                    className="font-bold !rounded-none !border-black"
+                  >
                     Property Manager
                   </Checkbox>
-                  <Checkbox value="Admin/Office Support" className="font-bold !rounded-none !border-black">
+                  <Checkbox
+                    value="Admin/Office Support"
+                    className="font-bold !rounded-none !border-black"
+                  >
                     Admin/Office Support
                   </Checkbox>
                   <Checkbox
@@ -61,7 +70,10 @@ export default function CareerForm() {
                   >
                     Marketing & Communications
                   </Checkbox>
-                  <Checkbox value="Other" className="font-bold !rounded-none !border-black">
+                  <Checkbox
+                    value="Other"
+                    className="font-bold !rounded-none !border-black"
+                  >
                     Other
                   </Checkbox>
                 </div>
@@ -77,7 +89,10 @@ export default function CareerForm() {
               className="font-bold"
               rules={[{ required: true, message: "Please enter your name" }]}
             >
-              <Input placeholder="Full Name" className="!py-2.5 !outline-none !border-black !border !rounded-none"/>
+              <Input
+                placeholder="Full Name"
+                className="!py-2.5 !outline-none !border-black !border !rounded-none"
+              />
             </Form.Item>
 
             <Form.Item
@@ -89,7 +104,10 @@ export default function CareerForm() {
                 { type: "email", message: "Please enter a valid email" },
               ]}
             >
-              <Input placeholder="Email" className="!py-2.5 !outline-none !border-black !border !rounded-none"/>
+              <Input
+                placeholder="Email"
+                className="!py-2.5 !outline-none !border-black !border !rounded-none"
+              />
             </Form.Item>
           </div>
 
@@ -103,7 +121,10 @@ export default function CareerForm() {
                 { required: true, message: "Please enter your phone number" },
               ]}
             >
-              <Input placeholder="Number" className="!py-2.5 !outline-none !border-black !border !rounded-none"/>
+              <Input
+                placeholder="Number"
+                className="!py-2.5 !outline-none !border-black !border !rounded-none"
+              />
             </Form.Item>
 
             <Form.Item
@@ -114,7 +135,10 @@ export default function CareerForm() {
                 { required: true, message: "Please enter your location" },
               ]}
             >
-              <Input placeholder="Search For Your Location" className="!py-2.5 !outline-none !border-black !border !rounded-none"/>
+              <Input
+                placeholder="Search For Your Location"
+                className="!py-2.5 !outline-none !border-black !border !rounded-none"
+              />
             </Form.Item>
           </div>
 
@@ -124,14 +148,25 @@ export default function CareerForm() {
               name="resume"
               label="Upload Resume / CV"
               className="font-bold !py-2.5"
+              valuePropName="fileList" // tell Form to use fileList as the value
+              getValueFromEvent={(e) => e.fileList} // extract fileList from Upload event
+              // rules={[{ required: true, message: "Please upload a file!" }]}
             >
-              <Upload beforeUpload={() => false} >
-                <Button icon={<UploadOutlined />} className="!py-2.5 !outline-none !border-black !border">Upload File</Button>
+              <Upload beforeUpload={() => false}>
+                <Button
+                  icon={<UploadOutlined />}
+                  className="!py-2.5 !outline-none !border-black !border"
+                >
+                  Upload File
+                </Button>
               </Upload>
             </Form.Item>
 
             <Form.Item name="linkedin" label="LinkedIn" className="font-bold">
-              <Input placeholder="http://" className="!py-2.5 !outline-none !border-black !border !rounded-none" />
+              <Input
+                placeholder="http://"
+                className="!py-2.5 !outline-none !border-black !border !rounded-none"
+              />
             </Form.Item>
 
             <Form.Item
@@ -144,7 +179,10 @@ export default function CareerForm() {
                 </>
               }
             >
-              <Input placeholder="Enter Number" className="!py-2.5 !outline-none !border-black !border !rounded-none"/>
+              <Input
+                placeholder="Enter Number"
+                className="!py-2.5 !outline-none !border-black !border !rounded-none"
+              />
             </Form.Item>
           </div>
 
@@ -155,7 +193,11 @@ export default function CareerForm() {
             rules={[{ required: true, message: "Please enter your message" }]}
             className="font-bold"
           >
-            <Input.TextArea placeholder="Message" rows={5}  className="!py-2.5 !outline-none !border-black !border !rounded-none"/>
+            <Input.TextArea
+              placeholder="Message"
+              rows={5}
+              className="!py-2.5 !outline-none !border-black !border !rounded-none"
+            />
           </Form.Item>
 
           {/* Submit Button */}

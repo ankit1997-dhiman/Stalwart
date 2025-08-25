@@ -17,7 +17,7 @@ export default function Navbar() {
     { name: "SELL" },
     { name: "LEASE" },
     { name: "ABOUT", link: URLS.ABOUT },
-    { name: "CONTACT" },
+    { name: "CONTACT", link: URLS.CONTACT_US },
     { name: "T" },
   ];
 
@@ -61,9 +61,11 @@ export default function Navbar() {
           <div className="py-4 text-white">
             <ul className="space-y-6 py-6.5 text-xs font-normal">
               {mainMenu.map((item, idx) => (
-                <li key={idx} className="font-monument">
+                <li key={idx} className="font-monument text-white">
                   {item.link ? (
-                    <Link to={item.link}>{item.name}</Link>
+                    <Link to={item.link} className="!text-white">
+                      {item.name}
+                    </Link>
                   ) : (
                     item.name
                   )}

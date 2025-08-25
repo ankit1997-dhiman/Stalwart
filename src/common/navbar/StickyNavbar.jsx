@@ -9,7 +9,7 @@ export const StickyNavbar = () => {
     { name: "SELL" },
     { name: "LEASE" },
     { name: "ABOUT", link: URLS.ABOUT },
-    { name: "CONTACT" },
+    { name: "CONTACT", link: URLS.CONTACT_US },
     { name: "T" },
   ];
 

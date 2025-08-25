@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+/* @import "tw-animate-css"; */
+
 @font-face {
   font-family: Monument;
   src: url("../src/assets/fonts/PPMonumentExtended-Regular.otf");
@@ -8,13 +9,13 @@
   font-family: Moderat;
   src: url("../src/assets/fonts/Moderat-Medium.woff");
 }
+
 @theme {
   --font-monument: Monument, "sans-serif";
   --font-moderat: Moderat, "sans-serif";
 }
 .border-radius-custom .ant-select-selector {
   border-radius: 0px !important;
-  background: #000 !important;
   border: 0px !important;
   font-size: 12px !important;
   line-height: 22px;

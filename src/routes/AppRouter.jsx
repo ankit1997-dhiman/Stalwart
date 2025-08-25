@@ -3,6 +3,7 @@ import { URLS } from "@/constants/Urls";
 import { About } from "@/pages/about/About.jsx";
 import Careers from "@/pages/carrer/Careers";
 import { ComingSoon } from "@/pages/CommingSoon.jsx";
+import Contact from "@/pages/contact/Contact";
 import { Home } from "@/pages/home/Home.jsx";
 import { NotFound } from "@/pages/NotFound.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -23,6 +24,7 @@ export default function AppRouter() {
               <Route path={URLS.HOME} element={<Home />} />
               <Route path={URLS.ABOUT} element={<About />} />
               <Route path={URLS.CAREERS} element={<Careers />} />
+              <Route path={URLS.CONTACT_US} element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Route>
 

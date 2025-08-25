@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       fontFamily: {
         monument: ['Monument', 'sans-serif'],
+        moderat: ["Moderat", "sans-serif"],
       },
       screens: {
         xs: '30rem',   // 480px
