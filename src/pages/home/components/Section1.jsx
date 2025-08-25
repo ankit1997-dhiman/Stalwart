@@ -1,6 +1,6 @@
 import { Form, Input, Select, Button } from "antd";
 import { FaSearch } from "react-icons/fa";
-import bgImage from "../../../assets/images/bg-image.png";
+import bgImage from "../../../assets/images/home-hero.png";
 
 const { Option } = Select;
 

@@ -5,7 +5,7 @@ import mobileImage from "../../../assets/images/mobile-philosophy.png";
 const OurPhilosophy = () => {
   return (
     <section className="bg-white py-20 md:py-32 px-12.5 md:px-0">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         {/* <MyIcon className="w-6 h-6 text-blue-500" /> */}
         <BiLogOut className="w-6 h-6 text-black  block" />
         <p className="text-xs md:text-base text-black mt-15">OUR PHILOSOPHY</p>

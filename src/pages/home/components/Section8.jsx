@@ -1,6 +1,6 @@
 import React from "react";
-import FeaturedSection from "./section/components/FeaturedSection.jsx";
-import JournalGrid from "./section/components/JournalGrid.jsx";
+import FeaturedSection from "./propertiesTab/components/FeaturedSection.jsx";
+import JournalGrid from "./propertiesTab/components/JournalGrid.jsx";
 
 const Section8 = () => {
   return (

@@ -2,7 +2,7 @@ import { Section1 } from "./components/Section1.jsx";
 import OurPhilosophy from "./components/OurPhilosophy.jsx";
 import RequestAnAppraisal from "./components/RequestAnAppraisal.jsx";
 import { Section4 } from "./components/Section4.jsx";
-import PropertiesTab from "./components/section/PropertiesTab.jsx";
+import PropertiesTab from "./components/propertiesTab/PropertiesTab.jsx";
 import OurStory from "./components/OurStory.jsx";
 import Section8 from "./components/Section8.jsx";
 import InstagramPosts from "./components/InstagramPosts.jsx";
