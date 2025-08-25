@@ -1,38 +1,45 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Drawer } from "antd";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoMdClose } from "react-icons/io";
 import whiteLogo from "@/assets/images/white-logo.png";
 import { URLS } from "@/constants/Urls";
-import { Link } from "react-router-dom";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { Drawer } from "antd";
-import { IoMdClose } from "react-icons/io";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
-  };
+  const showDrawer = () => setOpen(true);
+  const onClose = () => setOpen(false);
+
+  const mainMenu = [
+    { name: "BUY" },
+    { name: "SELL" },
+    { name: "LEASE" },
+    { name: "ABOUT", link: URLS.ABOUT },
+    { name: "CONTACT" },
+    { name: "T" },
+  ];
+
+  const footerMenu = [
+    { name: "Instagram" },
+    { name: "Facebook" },
+    { name: "LinkedIn" },
+  ];
 
   return (
     <>
+      {/* Navbar */}
       <div className="container flex justify-between items-center py-14">
-        <div>
-          <Link to={URLS.HOME}>
-            <img src={whiteLogo} alt="logo" className="w-[143px]" />
-          </Link>
-        </div>
-        <div>
-          <RxHamburgerMenu
-            className="text-white text-xl"
-            onClick={showDrawer}
-          />
-        </div>
+        <Link to={URLS.HOME}>
+          <img src={whiteLogo} alt="logo" className="w-[143px]" />
+        </Link>
+        <RxHamburgerMenu className="text-white text-xl" onClick={showDrawer} />
       </div>
+
+      {/* Drawer */}
       <Drawer
-        closable={false} // remove default close button
+        closable={false}
         placement="left"
         onClose={onClose}
         open={open}
@@ -50,29 +57,30 @@ export default function Navbar() {
         }
       >
         <div className="flex flex-col h-full justify-between px-6">
-          {/* Main content */}
+          {/* Main Menu */}
           <div className="py-4 text-white">
             <ul className="space-y-6 py-6.5 text-xs font-normal">
-              <li>BUY</li>
-              <li>SELL</li>
-              <li>LEASE</li>
-              <li>
-                <Link to={URLS.ABOUT}>ABOUT</Link>
-              </li>
-              <li>CONTACT</li>
-              <li>T</li>
+              {mainMenu.map((item, idx) => (
+                <li key={idx} className="font-monument">
+                  {item.link ? (
+                    <Link to={item.link}>{item.name}</Link>
+                  ) : (
+                    item.name
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Footer */}
+          {/* Footer Menu */}
           <div className="flex flex-col">
-            <ul className="space-y-6 py-6.5 text-xs font-normal text-white">
+            <ul className="space-y-6 py-6.5 text-xs font-normal font-monument  text-white">
               <li>SOCIAL MEDIA</li>
             </ul>
-            <ul className="flex justify-between space-x-6 py-6.5 text-xs font-normal text-white">
-              <li>Instagram</li>
-              <li>Facebook</li>
-              <li>LinkedIn</li>
+            <ul className="flex justify-between space-x-6 py-6.5 text-xs font-normal text-white font-moderat">
+              {footerMenu.map((item, idx) => (
+                <li key={idx}>{item.name}</li>
+              ))}
             </ul>
           </div>
         </div>

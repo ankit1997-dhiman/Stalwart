@@ -20,7 +20,6 @@ export const Home = () => {
       <OurStory />
       <Section8 />
       <InstagramPosts />
-      <Footer />
     </>
   );
 };

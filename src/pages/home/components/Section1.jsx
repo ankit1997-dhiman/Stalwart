@@ -11,19 +11,28 @@ export const Section1 = () => {
     console.log("Form Data:", values);
   };
 
-  const statusOptions = ["BUY", "SELL", "LEASE"];
+  // Top row options
+  const topStatusOptions = ["BUY", "SELL", "LEASE"];
+
+  // Bottom row options (can be different for each select)
+  const bottomStatusOptions = [
+    ["Option 1A", "Option 1B", "Option 1C"],
+    ["Option 2A", "Option 2B", "Option 2C"],
+    ["Option 3A", "Option 3B", "Option 3C"],
+    ["Option 4A", "Option 4B", "Option 4C"],
+    ["Option 5A", "Option 5B", "Option 5C"],
+  ];
 
   return (
     <section
       className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 md:px-0"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-      }}
+      style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="w-[999px]">
         <h4 className="uppercase text-white text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
           PORTA AD DOMUN
         </h4>
+
         <p className="block md:hidden text-white text-center text-[11px] pb-30 font-monument font-light uppercase">
           7 Jul 2025 | 11:13:35 AM
         </p>
@@ -35,23 +44,22 @@ export const Section1 = () => {
           initialValues={{
             name: "",
             status: "BUY",
-            status0: "BUY",
-            status1: "BUY",
-            status2: "BUY",
-            status3: "BUY",
-            status4: "BUY",
+            status0: "Option 1A",
+            status1: "Option 2A",
+            status2: "Option 3A",
+            status3: "Option 4A",
+            status4: "Option 5A",
           }}
         >
           {/* Top Row */}
           <div className="flex flex-col md:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
-            {/* Status Select */}
             <Form.Item
               name="status"
               label={false}
               className="!mb-0 !rounded-none"
             >
               <Select className="w-full md:!w-[180px] !bg-black !text-white !h-[50px] !rounded-none">
-                {statusOptions.map((opt) => (
+                {topStatusOptions.map((opt) => (
                   <Option
                     key={opt}
                     value={opt}
@@ -63,8 +71,7 @@ export const Section1 = () => {
               </Select>
             </Form.Item>
 
-            {/* Name Input with Search Button */}
-            <div className="w-full flex  bg-white">
+            <div className="w-full flex bg-white">
               <Form.Item
                 name="name"
                 label={false}
@@ -84,34 +91,32 @@ export const Section1 = () => {
             </div>
           </div>
 
-          {/* Bottom Row: Multiple Status Selects */}
+          {/* Bottom Row */}
           <div className="hidden md:flex items-stretch justify-between gap-7.5 pb-4 w-full">
-            {Array(5)
-              .fill(0)
-              .map((_, idx) => (
-                <Form.Item
-                  key={idx}
-                  name={`status${idx}`}
-                  label={false}
-                  className="!mb-0 !w-full !h-[50px]"
+            {bottomStatusOptions.map((options, idx) => (
+              <Form.Item
+                key={idx}
+                name={`status${idx}`}
+                label={false}
+                className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
+              >
+                <Select
+                  className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument ${
+                    idx === 0 ? "!w-[180px]" : "!w-full"
+                  }`}
                 >
-                  <Select
-                    className={`!bg-[#4F4C45] !text-white !h-[50px] ${
-                      idx === 0 ? "!w-[180px]" : "!w-full"
-                    }`}
-                  >
-                    {statusOptions.map((opt) => (
-                      <Option
-                        key={opt}
-                        value={opt}
-                        className="!bg-[#4F4C45] !text-white !w-full !rounded-none"
-                      >
-                        {opt}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              ))}
+                  {options.map((opt) => (
+                    <Option
+                      key={opt}
+                      value={opt}
+                      className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
+                    >
+                      {opt}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            ))}
           </div>
         </Form>
 
