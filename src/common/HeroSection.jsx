@@ -4,7 +4,7 @@ import logo from "@/assets/images/Stalwart_Logo.png";
 const HeroSection = ({ title, bgImage }) => {
   return (
     <section
-      className="h-screen flex items-center justify-center bg-cover bg-center bg-fixed px-12.5 md:px-0"
+      className="h-screen flex items-center justify-center bg-cover bg-center bg-fixed px-12.5 xl:px-0"
       style={{
         backgroundImage: `url(${bgImage})`, // use imported image
       }}

@@ -35,7 +35,7 @@ const properties = [
 
 const CurrentProperties = () => {
   return (
-    <section className="container pb-30 grid grid-cols-1 lg:grid-cols-4 gap-8 px-12.5 md:px-0">
+    <section className="container pb-30 grid grid-cols-1 lg:grid-cols-4 gap-8 px-12.5 xl:px-0">
       {/* Left Section */}
       <div className="lg:col-span-1 flex flex-col justify-between">
         <div>

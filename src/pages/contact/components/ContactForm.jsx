@@ -9,16 +9,16 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="px-12.5 md:px-0">
+    <section className="px-12.5 xl:px-0">
       <div className="container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center pt-16 md:pt-30 pb-3 md:pb-16">
-          <div className="md:w-3/5 w-full">
-            <h4 className="text-black text-xs md:text-4xl font-moderat font-medium uppercase tracking-wide mb-5 ">
+        <div className="flex flex-col xl:flex-row justify-between items-start md:items-center pt-16 md:pt-30 pb-3 md:pb-16">
+          <div className="xl:w-3/5 w-full">
+            <p className="text-black text-xs md:text-4xl font-moderat-medium uppercase tracking-wide mb-5 ">
               HOW CAN WE HELP?
-            </h4>
+            </p>
           </div>
-          <p className="text-black text-xs md:text-sm md:w-2/5 w-full">
+          <p className="text-black text-xs md:text-sm xl:w-2/5 w-full font-moderat-regular">
             Whether you're looking to chat to a member of our team, enquire
             about working with us, or looking for an update on the market, we're
             here to help.
@@ -35,7 +35,7 @@ export default function ContactForm() {
           className="!my-16 !md:my-0"
         >
           {/* Type of Role */}
-          <div className="py-18 hidden md:block">
+          <div className="py-18 hidden xl:block">
             <Form.Item
               name="roles"
               className="!rounded-none !border-black w-full"
@@ -81,11 +81,15 @@ export default function ContactForm() {
           </div>
 
           {/* Name and Email */}
-          <div className="flex md:flex-row flex-col items-stretch justify-between gap-7 ">
-            <div className="w-full md:w-1/2">
+          <div className="flex xl:flex-row flex-col items-stretch justify-between gap-7">
+            <div className="w-full xl:w-1/2 !space-y-6">
               <Form.Item
                 name="fullName"
-                label={<div className="!text-base font-moderat">Full Name</div>}
+                label={
+                  <div className="!text-base !font-moderat-bold ">
+                    Full Name
+                  </div>
+                }
                 className="font-bold"
                 rules={[{ message: "Please enter your name" }]}
               >
@@ -97,7 +101,7 @@ export default function ContactForm() {
               <Form.Item
                 name="fullName"
                 label={
-                  <div className="!text-base font-moderat font-bold">
+                  <div className="!text-base !font-moderat-bold ">
                     Contact Number
                   </div>
                 }
@@ -117,7 +121,9 @@ export default function ContactForm() {
               <Form.Item
                 name="fullName"
                 label={
-                  <div className="!text-base !font-moderat">Contact Email</div>
+                  <div className="!text-base !font-moderat-bold">
+                    Contact Email
+                  </div>
                 }
                 className="font-bold"
                 rules={[
@@ -134,10 +140,14 @@ export default function ContactForm() {
                 />
               </Form.Item>
             </div>
-            <div className="w-full md:w-1/2">
+            <div className="w-full xl:w-1/2">
               <Form.Item
                 name="email"
-                label="Your Message"
+                label={
+                  <div className="!text-base !font-moderat-bold">
+                    Your Message
+                  </div>
+                }
                 className="font-bold !h-full"
                 rules={[
                   { required: true, message: "Please enter your email" },
@@ -158,7 +168,7 @@ export default function ContactForm() {
             <Button
               htmlType="submit"
               type="default"
-              className="!border !border-black !px-10 !py-4 !hover:bg-black !hover:text-white transition !rounded-none "
+              className="!border !border-black !px-10 !py-4 !hover:bg-black !hover:text-white transition !rounded-none mt-4"
             >
               Submit Inquiry
             </Button>

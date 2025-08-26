@@ -13,16 +13,16 @@ const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];
 
 const InstagramPosts = () => {
   return (
-    <div className="bg-[#F4F2F0] px-12.5 md:px-0">
+    <div className="bg-[#F4F2F0] px-12.5 xl:px-0">
       <div className="container">
         <div className="pt-16 pb-12">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+          <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
             <h2 className="text-2xl font-light uppercase">
               Keep Up With Us On Instagram
             </h2>
 
             {/* Mobile Carousel */}
-            <div className="block md:hidden py-4 md:py-18">
+            <div className="block xl:hidden py-4 md:py-18">
               <Carousel
                 slidesToShow={5}
                 autoplay
@@ -49,7 +49,7 @@ const InstagramPosts = () => {
             </div>
 
             {/* Form */}
-            <div className="md:w-1/2">
+            <div className="xl:w-1/2">
               <p className="pb-7.5">
                 Subscribe to get the latest insider tips, market updates and
                 access to the hottest deals as they come on the market.
@@ -77,7 +77,7 @@ const InstagramPosts = () => {
         </div>
 
         {/* Desktop Carousel */}
-        <div className="hidden md:block py-4 md:py-18">
+        <div className="hidden xl:block py-4 md:py-18">
           <Carousel
             slidesToShow={5}
             autoplay

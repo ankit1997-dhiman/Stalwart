@@ -25,15 +25,15 @@ export const Section1 = () => {
 
   return (
     <section
-      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 md:px-0 border-radius-custom"
+      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 border-radius-custom"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="w-[999px]">
-        <h4 className="uppercase text-white text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
+        <h4 className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
           PORTA AD DOMUN
         </h4>
 
-        <p className="block md:hidden text-white text-center text-[11px] pb-30 font-monument font-light uppercase">
+        <p className="block md:hidden text-white text-center text-[10px] pb-30 font-monument font-light uppercase">
           7 Jul 2025 | 11:13:35 AM
         </p>
 
@@ -52,9 +52,9 @@ export const Section1 = () => {
           }}
         >
           {/* Top Row */}
-          <div className="flex flex-col md:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
+          <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
             <Form.Item name="status" label={false} className="!mb-0">
-              <Select className="w-full md:!w-[180px] !bg-black !text-white !h-[50px]">
+              <Select className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px]">
                 {topStatusOptions.map((opt) => (
                   <Option
                     key={opt}
@@ -88,7 +88,7 @@ export const Section1 = () => {
           </div>
 
           {/* Bottom Row */}
-          <div className="hidden md:flex items-stretch justify-between gap-7.5 pb-4 w-full">
+          <div className="hidden xl:flex items-stretch justify-between gap-7.5 pb-4 w-full">
             {bottomStatusOptions.map((options, idx) => (
               <Form.Item
                 key={idx}

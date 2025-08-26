@@ -4,9 +4,9 @@ import { CgArrowLongRight } from "react-icons/cg";
 
 const RequestAnAppraisal = () => {
   return (
-    <section className="bg-[#4F4C45] pt-[90px] pb-[72px] md:px-0 px-12.5">
-      <div className="container mx-auto flex md:flex-row flex-col justify-between items-center gap-7">
-        <div className="w-full md:w-1/3">
+    <section className="bg-[#4F4C45] pt-[90px] pb-[72px] xl:px-0 px-12.5">
+      <div className="container mx-auto flex lg:flex-row flex-col justify-between items-center gap-7">
+        <div className="w-full xl:w-1/3">
           <h4 className="text-white text-xl md:text-4xl">
             Request An Appraisal
           </h4>
@@ -22,7 +22,7 @@ const RequestAnAppraisal = () => {
             className="border-none bg-none text-white"
           />
         </div>
-        <div className="w-full md:w-1/2">
+        <div className="w-full xl:w-1/2">
           <img
             src={image}
             alt="Section 3 Image"

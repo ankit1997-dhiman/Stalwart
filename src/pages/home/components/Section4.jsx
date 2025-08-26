@@ -10,12 +10,12 @@ export const Section4 = () => {
   return (
     <section className="w-full flex items-stretch justify-between gap-4 h-[400px] md:h-[1080px] md:my-9">
       <div
-        className="md:hidden block flex-1  bg-cover bg-center transition-all duration-700"
+        className="xl:hidden block flex-1  bg-cover bg-center transition-all duration-700"
         style={{ backgroundImage: `url(${mobileImage1})` }}
       ></div>
       {/* Left Image */}
       <div
-        className="md:block hidden w-[30%] relative group overflow-hidden h-full bg-cover bg-center transition-opacity duration-700"
+        className="xl:block hidden w-[30%] relative group overflow-hidden h-full bg-cover bg-center transition-opacity duration-700"
         style={{ backgroundImage: `url(${image1})` }}
       >
         <div
@@ -25,7 +25,7 @@ export const Section4 = () => {
       </div>
 
       {/* Right Side */}
-      <div className=" md:flex hidden w-[70%]  flex-col gap-y-4 h-full">
+      <div className=" xl:flex hidden w-[70%]  flex-col gap-y-4 h-full">
         {/* Top Right */}
         <div
           className="flex-1 relative group overflow-hidden bg-cover bg-center transition-all duration-700"

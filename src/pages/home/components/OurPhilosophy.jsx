@@ -4,22 +4,24 @@ import mobileImage from "../../../assets/images/mobile-philosophy.png";
 
 const OurPhilosophy = () => {
   return (
-    <section className="bg-white py-20 md:py-32 px-12.5 md:px-0">
+    <section className="bg-white py-20 md:py-32 px-12.5 xl:px-0">
       <div className="container mx-auto">
         {/* <MyIcon className="w-6 h-6 text-blue-500" /> */}
         <BiLogOut className="w-6 h-6 text-black  block" />
-        <p className="text-xs md:text-base text-black mt-15">OUR PHILOSOPHY</p>
-        <h4 className="text-base md:text-[32px] uppercase text-black mt-5 leading-7">
+        <p className="text-xs md:text-base text-black mt-15 font-moderat-medium">
+          OUR PHILOSOPHY
+        </p>
+        <h4 className="text-base md:text-[32px] uppercase text-black mt-5 leading-6 sm:leading-10 w-full xl:w-2/3 font-moderat-medium font-medium">
           Attention to detail combined with the finest craftsmanship and
           quality. 
         </h4>
         <div
-          className="bg-cover h-[189px] my-12.5 bg-no-repeat bg-center md:hidden"
+          className="bg-cover h-[189px] my-12.5 bg-no-repeat bg-center sm:hidden"
           style={{ backgroundImage: `url(${mobileImage})` }}
         ></div>
 
         <div
-          className="hidden md:block bg-cover h-[338px] my-18 bg-no-repeat bg-center"
+          className="hidden sm:block bg-cover h-[338px] my-18 bg-no-repeat bg-center"
           style={{ backgroundImage: `url(${image})` }}
         ></div>
 
@@ -31,7 +33,9 @@ const OurPhilosophy = () => {
               results through expert negotiation and thoughtful, strategic
               marketing. 
             </p>
-            <p className="mt-5">LEARN MORE ABOUT US</p>
+            <p className="mt-5 font-moderat-medium md:text-base md:font-medium">
+              LEARN MORE ABOUT US
+            </p>
           </div>
         </div>
       </div>

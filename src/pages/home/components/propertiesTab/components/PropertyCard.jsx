@@ -11,16 +11,18 @@ const PropertyCard = ({ image, title, subtitle, buttonText, onClick }) => {
 
         {/* Content */}
 
-        <div className="flex md:flex-row flex-col items-start justify-center mt-5 md:mt-2  px-12.5 md:px-0">
-          <div className="w-full md:w-4/5">
-            <h2 className="text-base md:text-2xl font-medium ">{title}</h2>
-            <p className="w-full md:w-3/5 text-black text-xs font-normal py-9 md:pt-10">
+        <div className="flex xl:flex-row flex-col items-start justify-center mt-5 md:mt-2  px-12.5 xl:px-0">
+          <div className="w-full xl:w-4/5">
+            <h2 className="text-base md:text-2xl font-medium font-moderat-medium">
+              {title}
+            </h2>
+            <p className="w-full xl:w-3/5 text-black text-xs font-normal py-9 sm:py-6 xl:pt-10 font-moderat">
               {subtitle}
             </p>
           </div>
           <button
             onClick={onClick}
-            className="w-[262px] bg-white text-black px-4 py-3 md:py-8.5 rounded md:ml-2 border border-black"
+            className="w-[262px] bg-white text-black px-4 py-3 xl:py-8.5 rounded-none xl:ml-2 border border-black"
           >
             {buttonText}
           </button>

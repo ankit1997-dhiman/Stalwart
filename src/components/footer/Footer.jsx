@@ -40,9 +40,9 @@ export default function Footer() {
             form={form}
             onFinish={onFinish}
             layout="vertical"
-            className="grid grid-cols-1 gap-4"
+            className="grid grid-cols-1 gap-2 md:gap-x-4"
           >
-            <div className="flex justify-between gap-4">
+            <div className="flex flex-col md:flex-row justify-between gap-4">
               <Form.Item
                 name="firstName"
                 rules={[
@@ -84,7 +84,7 @@ export default function Footer() {
               />
             </Form.Item>
 
-            <div className="flex gap-20">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-20">
               <Form.Item
                 name="phone"
                 rules={[
@@ -111,11 +111,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 pt-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-xs text-gray-300 pt-12 w-full">
           <div className="flex flex-col md:flex-row gao-3 md:gap-18">
             <img src={logo} alt="Logo" className="h-6" />
 
-            <ul>
+            <ul className="py-6">
               {contactInfo.map((item, i) => (
                 <li key={i} className="font-moderat text-sm text-white/60">
                   {item.text}
@@ -123,7 +123,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            <ul>
+            <ul className="pb-6">
               {legalLinks.map((link, i) => (
                 <li key={i} className="font-moderat text-sm text-white/60">
                   {link}
@@ -136,7 +136,7 @@ export default function Footer() {
         </div>
 
         {/* Acknowledgement */}
-        <div className="flex justify-between items-center pt-7">
+        <div className="flex md:flex-row flex-col justify-between item-start md:items-center pt-7">
           <p className="font-moderat text-sm text-white/60">
             We respectfully acknowledge the Traditional Owners of the land on
             which we work and learn, and pay respect to the First Nations

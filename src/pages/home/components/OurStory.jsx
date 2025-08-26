@@ -26,7 +26,9 @@ const Section7 = () => {
         </h2>
 
         {/* Subtitle */}
-        <p className="text-sm mt-1 uppercase tracking-widest">Our Story</p>
+        <p className="text-xs font-normal mt-1 uppercase tracking-widest font-monument">
+          Our Story
+        </p>
       </div>
     </section>
   );

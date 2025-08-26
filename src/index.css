@@ -9,10 +9,30 @@
   font-family: Moderat;
   src: url("../src/assets/fonts/Moderat-Medium.woff");
 }
+@font-face {
+  font-family: Moderat-Extended;
+  src: url("../src/assets/fonts/Moderat-Extended-Medium.woff");
+}
+@font-face {
+  font-family: Moderat-Regular;
+  src: url("../src/assets/fonts/Moderat-Regular.woff");
+}
+@font-face {
+  font-family: Moderat-Bold;
+  src: url("../src/assets/fonts/Moderat-Bold.woff");
+}
+@font-face {
+  font-family: Moderat-Light;
+  src: url("../src/assets/fonts/Moderat-Light.woff");
+}
 
 @theme {
   --font-monument: Monument, "sans-serif";
   --font-moderat: Moderat, "sans-serif";
+  --font-moderat-medium: Moderat-Extended, "sans-serif";
+  --font-moderat-regular: Moderat-Regular, "sans-serif";
+  --font-moderat-bold: Moderat-Bold, "sans-serif";
+  --font-moderat-light: Moderat-Light, "sans-serif";
 }
 .border-radius-custom .ant-select-selector {
   border-radius: 0px !important;

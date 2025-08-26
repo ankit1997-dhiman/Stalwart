@@ -25,8 +25,8 @@ const cards = [
 
 const JournalGrid = () => {
   return (
-    <div className="md:py-7 py-6">
-      <div className="flex md:flex-row flex-col gap-6 overflow-x-auto">
+    <div className="xl:py-7 py-6">
+      <div className="flex xl:flex-row flex-col gap-6 overflow-x-auto">
         {cards.map((card, idx) => (
           <JournalCard key={idx} {...card} />
         ))}

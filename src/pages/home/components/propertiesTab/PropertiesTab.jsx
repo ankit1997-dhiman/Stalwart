@@ -28,9 +28,9 @@ const items = [
 
 const PropertiesTab = () => {
   return (
-    <section className="container py-30  md:px-0">
+    <section className="container py-30  xl:px-0">
       <img src={image} className="h-2.5 w-5 mx-auto" />
-      <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-7 md:py-16  ">
+      <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-7 md:py-16 font-monument">
         REPLACE SUBHEADING
       </p>
       <Tabs defaultActiveKey="1" centered items={items} tabBarGutter={100} />

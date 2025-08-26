@@ -5,35 +5,35 @@ import bgImage from "../../../assets/images/about-us.png"; // import background
 const OurPhilosophyAbout = () => {
   return (
     <div>
-      <section className="container py-32 bg-white px-12.5 md:px-0">
-        <div className="grid md:grid-cols-2  gap-30 items-stretch justify-between">
+      <section className="container py-32 bg-white px-12.5 xl:px-0">
+        <div className="grid xl:grid-cols-2  gap-30 items-stretch justify-between">
           {/* Left Content */}
           <div className="flex flex-col justify-between">
             <div>
-              <p className="text-xs uppercase tracking-widest text-black md:mb-5 mb-5.5 font-moderat">
+              <p className="text-xs uppercase tracking-widest text-black md:mb-5 mb-5.5 font-moderat-medium">
                 Our Philosophy
               </p>
-              <h2 className="text-base md:text-4xl font-medium uppercase font-moderat">
+              <h2 className="text-base md:text-2xl xl:text-4xl font-medium uppercase font-moderat-medium">
                 Attention to Detail Paired with the Finest Craftsmanship and
                 Quality.
               </h2>
             </div>
-            <div className="block md:hidden">
+            <div className="block xl:hidden">
               <img
                 src={image}
                 alt="Scenic Property"
                 className="w-full h-auto object-cover py-12.5"
               />
             </div>
-            <div className="md:pt-32.5">
-              <p className="text-gray-700 mb-6">
+            <div className="xl:pt-32.5">
+              <p className="text-gray-700 mb-6 font-moderat-regular">
                 At Stalwart Real Estate, we help clients maximise the value of
                 their property assets with minimal stress, delivering
                 exceptional results through expert negotiation and thoughtful,
                 strategic marketing.
               </p>
 
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-4 font-moderat-regular">
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu
@@ -42,7 +42,7 @@ const OurPhilosophyAbout = () => {
                 laborum.
               </p>
 
-              <p className="text-gray-600">
+              <p className="text-gray-600 font-moderat-regular">
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu
@@ -55,7 +55,7 @@ const OurPhilosophyAbout = () => {
 
           {/* Right Image */}
           <div
-            className="hidden md:block bg-no-repeat bg-cover w-full"
+            className="hidden xl:block bg-no-repeat bg-cover w-full"
             style={{
               backgroundImage: `url(${bgImage})`, // use imported image
             }}
