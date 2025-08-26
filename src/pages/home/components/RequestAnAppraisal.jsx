@@ -10,7 +10,7 @@ const RequestAnAppraisal = () => {
           <h4 className="text-white text-xl md:text-4xl">
             Request An Appraisal
           </h4>
-          <p className="text-white my-8 text-xs md:text-base">
+          <p className="text-white my-8 text-xs md:text-base font-moderat-medium">
             Discover the true value of your property with a no-obligation, free
             appraisal. Our experienced agents provide accurate, data-driven
             assessments to help you make informed decisions about selling.

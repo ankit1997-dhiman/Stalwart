@@ -39,7 +39,7 @@ const CurrentProperties = () => {
       {/* Left Section */}
       <div className="lg:col-span-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-base md:text-xl font-medium mb-7 md:mb-2">
+          <h2 className="text-base md:text-xl font-medium mb-7 md:mb-2 font-moderat-medium">
             OUR CURRENT PROPERTIES
           </h2>
           <p className="text-black text-xs md:text-sm">
