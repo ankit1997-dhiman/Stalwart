@@ -6,7 +6,6 @@ import PropertiesTab from "./components/propertiesTab/PropertiesTab.jsx";
 import OurStory from "./components/OurStory.jsx";
 import Section8 from "./components/Section8.jsx";
 import InstagramPosts from "./components/InstagramPosts.jsx";
-import Footer from "@/components/footer/Footer.jsx";
 import CurrentProperties from "./components/CurrentProperties.jsx";
 export const Home = () => {
   return (

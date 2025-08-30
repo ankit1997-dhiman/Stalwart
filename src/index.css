@@ -34,7 +34,7 @@
   --font-moderat-bold: Moderat-Bold, "sans-serif";
   --font-moderat-light: Moderat-Light, "sans-serif";
 }
-.border-radius-custom .ant-select-selector {
+.custom-field .ant-select-selector {
   border-radius: 0px !important;
   border: 0px !important;
   font-size: 12px !important;
@@ -50,7 +50,7 @@
     margin: 0 auto;
   }
 }
-.ant-select-selector {
+.custom-field .ant-select-selector {
   background-color: #4f4c45 !important;
   color: white !important;
   border: none !important;
@@ -69,6 +69,9 @@
 
 .ant-carousel .slick-list {
   padding: 0px 0px 0px -20px !important; /* compensate outer spacing */
+}
+.custom-select-field .ant-select-selector {
+  border: none !important;
 }
 
 @media only screen and (max-width: 768px) {

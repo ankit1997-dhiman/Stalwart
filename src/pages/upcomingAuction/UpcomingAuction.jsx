@@ -1,33 +1,21 @@
-import { Form, Input, Select, Button } from "antd";
-import { FaSearch } from "react-icons/fa";
-import bgImage from "../../../assets/images/home-hero.png";
-import { bottomStatusOptions, topStatusOptions } from "@/constants/constants";
+import React from "react";
 
-const { Option } = Select;
-
-export const Section1 = () => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log("Form Data:", values);
-  };
-
+export default function UpcomingAuction() {
   return (
-    <section
-      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 custom-field"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      <div className="w-[999px]">
-        <h4 className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
-          PORTA AD DOMUN
-        </h4>
-
-        <p className="block md:hidden text-white text-center text-[10px] pb-30 font-monument font-light uppercase">
-          7 Jul 2025 | 11:13:35 AM
-        </p>
+    <div className="container">
+      <div className="w-[999px] mx-auto ">
+        <div className="md:pb-20 ">
+          <h4 className="uppercase text-black text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 pt-50 custom-select-field">
+            PORTA AD DOMUN
+          </h4>
+          <p className="font-moderat-bold text-base text-center">
+            Buy{" "}
+            <span className="font-normal font-moderat-regular">| Auctions</span>
+          </p>
+        </div>
 
         <Form
-          form={form}
+          form={filterForm}
           onFinish={onFinish}
           layout="vertical"
           initialValues={{
@@ -42,13 +30,13 @@ export const Section1 = () => {
         >
           {/* Top Row */}
           <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
-            <Form.Item name="status" label={false} className="!mb-0">
-              <Select className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px]">
+            <Form.Item name="status" label={false} className="!mb-0 ">
+              <Select className="w-full xl:!w-[180px] border-black border !rounded-none !text-black !h-[50px] !bg-white">
                 {topStatusOptions.map((opt) => (
                   <Option
                     key={opt}
                     value={opt}
-                    className="!bg-[#4F4C45] !text-white !rounded-none font-monument"
+                    className=" !text-black !rounded-none font-monument"
                   >
                     <div className="font-monument text-[10px]">{opt}</div>
                   </Option>
@@ -56,7 +44,7 @@ export const Section1 = () => {
               </Select>
             </Form.Item>
 
-            <div className="w-full flex bg-white">
+            <div className="w-full flex bg-white border-black border">
               <Form.Item
                 name="name"
                 label={false}
@@ -83,10 +71,10 @@ export const Section1 = () => {
                 key={idx}
                 name={`status${idx}`}
                 label={false}
-                className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
+                className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument !outline-0"
               >
                 <Select
-                  className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument ${
+                  className={`!text-black !h-[50px] text-[10px] font-normal font-monument !border-0 !outline-none !rounded-none !bg-white ${
                     idx === 0 ? "!w-[180px]" : "!w-full"
                   }`}
                 >
@@ -94,7 +82,7 @@ export const Section1 = () => {
                     <Option
                       key={opt}
                       value={opt}
-                      className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
+                      className=" !text-black !w-full !rounded-none font-monument text-[10px] font-normal bg-white"
                     >
                       <div className="font-monument text-[10px]">{opt}</div>
                     </Option>
@@ -104,11 +92,9 @@ export const Section1 = () => {
             ))}
           </div>
         </Form>
-
-        <p className="hidden md:block text-white text-center text-[11px] pt-20 pb-40 font-monument font-light uppercase">
-          7 Jul 2025 | 11:13:35 AM
-        </p>
       </div>
-    </section>
+
+      {/* <FilteredProperties /> */}
+    </div>
   );
-};
+}

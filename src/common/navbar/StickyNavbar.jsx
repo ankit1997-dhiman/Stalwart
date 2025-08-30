@@ -2,17 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { URLS } from "@/constants/Urls.js";
 import logoBlack from "@/assets/images/black-logo.png";
+import { menuItems } from "@/constants/menuLinks";
 
 export const StickyNavbar = () => {
-  const menuItems = [
-    { name: "BUY" },
-    { name: "SELL" },
-    { name: "LEASE" },
-    { name: "ABOUT", link: URLS.ABOUT },
-    { name: "CONTACT", link: URLS.CONTACT_US },
-    { name: "T" },
-  ];
-
   return (
     <div className="container flex justify-between items-center">
       <div>

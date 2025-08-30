@@ -5,21 +5,13 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import whiteLogo from "@/assets/images/white-logo.png";
 import { URLS } from "@/constants/Urls";
+import { menuItems } from "@/constants/menuLinks";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => setOpen(true);
   const onClose = () => setOpen(false);
-
-  const mainMenu = [
-    { name: "BUY" },
-    { name: "SELL" },
-    { name: "LEASE" },
-    { name: "ABOUT", link: URLS.ABOUT },
-    { name: "CONTACT", link: URLS.CONTACT_US },
-    { name: "T" },
-  ];
 
   const footerMenu = [
     { name: "Instagram" },
@@ -60,7 +52,7 @@ export default function Navbar() {
           {/* Main Menu */}
           <div className="py-4 text-white">
             <ul className="space-y-6 py-6.5 text-xs font-normal">
-              {mainMenu.map((item, idx) => (
+              {menuItems.map((item, idx) => (
                 <li key={idx} className="font-monument text-white">
                   {item.link ? (
                     <Link to={item.link} className="!text-white">
