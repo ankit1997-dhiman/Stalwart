@@ -1,12 +1,18 @@
 import { Button } from "antd";
 import React from "react";
 
-export default function Property({ property }) {
+export function Property({ property, soldTag, leaseTag }) {
   return (
     <div
       key={property.id}
       className="relative border border-gray-300 rounded overflow-hidden group h-[417px]"
     >
+      {soldTag || leaseTag ? (
+        <div className="bg-[#4F4C45] text-xs px-18 py-4 text-white font-moderat-bold uppercase absolute left-6 top-6 z-10">
+          {soldTag ? "Sold" : "Lease"}
+        </div>
+      ) : null}
+
       {/* Background image layer */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"

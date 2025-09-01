@@ -1,9 +1,7 @@
-import Property from "@/common/properties/Property";
-import { properties } from "@/constants/constants";
 import { Form, Select } from "antd";
 import React from "react";
 
-function FilteredProperties() {
+export const FilteredProperties = () => {
   const [filterForm] = Form.useForm();
   const onFinish = (values) => {
     console.log("Form Data:", values);
@@ -12,10 +10,10 @@ function FilteredProperties() {
   const filterOptions = ["Day", "Week", "month"];
 
   return (
-    <div className="contianer">
-      <div className="flex justify-between items-center mt-20 pb-4">
+    <div className="contianer my-10 xl:my-20">
+      <div className="flex justify-between items-center pb-4 gap-5 flex-wrap">
         <p className="text-sm font-moderat-regular">8 of 8 Results</p>
-        <div>
+        <div className="">
           <Form
             form={filterForm}
             onFinish={onFinish}
@@ -27,8 +25,7 @@ function FilteredProperties() {
             <Form.Item
               name="filter"
               label={false}
-              className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument !outline-0"
-              p
+              className="!mb-0 !w-full xl:!h-[50px] text-[10px] font-normal font-monument !outline-0"
             >
               <Select
                 onChange={() => {
@@ -51,15 +48,6 @@ function FilteredProperties() {
         </div>
       </div>
       <hr className="text-black "></hr>
-      <div className="my-28">
-        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {properties.map((property, idx) => (
-            <Property property={property} key={idx} />
-          ))}
-        </div>
-      </div>
     </div>
   );
-}
-
-export default FilteredProperties;
+};

@@ -3,7 +3,7 @@ import CareerForm from "./components/CareerForm";
 import bgImage from "@/assets/images/career-bg.png";
 import HeroSection from "@/common/HeroSection";
 
-const Careers = () => {
+export const Careers = () => {
   return (
     <>
       <HeroSection title={"Careers"} bgImage={bgImage} />
@@ -11,5 +11,3 @@ const Careers = () => {
     </>
   );
 };
-
-export default Careers;

@@ -11,7 +11,7 @@ const PropertyCard = ({ image, title, subtitle, buttonText, onClick }) => {
 
         {/* Content */}
 
-        <div className="flex xl:flex-row flex-col items-start justify-center mt-5 md:mt-2  px-12.5 xl:px-0">
+        <div className="flex xl:flex-row flex-col items-start justify-between mt-5 md:mt-2  px-12.5 xl:px-0 w-full">
           <div className="w-full xl:w-4/5">
             <h2 className="text-base md:text-2xl font-medium font-moderat-medium">
               {title}

@@ -1,8 +1,9 @@
 import React from "react";
-import Property from "@/common/properties/Property";
+// import Property from "@/common/properties/Property";
 import { properties } from "@/constants/constants";
+import { Property } from "@/common/properties/Property";
 
-const CurrentProperties = () => {
+export const CurrentProperties = () => {
   return (
     <section className="container pb-30 grid grid-cols-1 lg:grid-cols-4 gap-8 px-12.5 xl:px-0">
       {/* Left Section */}
@@ -26,12 +27,10 @@ const CurrentProperties = () => {
 
       {/* Right Grid */}
       <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {properties.map((property) => (
-          <Property property={property} />
+        {properties.map((property, idx) => (
+          <Property property={property} key={idx} />
         ))}
       </div>
     </section>
   );
 };
-
-export default CurrentProperties;

@@ -4,7 +4,8 @@ export const URLS ={
     CAREERS:"/careers",
     ABOUT:"/about",
     BUY:"/buy",
-    SELL:"/sell",
+    SOLD_PROPERTIES:"/sold-properties",
+    LEASE_PROPERTIES:"/leased-properties",
     LEASE:"/lease",
     UPCOMINGAUCTIONS:"/upcoming-auction"
 }

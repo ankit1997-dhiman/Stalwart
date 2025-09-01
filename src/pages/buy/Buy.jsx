@@ -1,10 +1,16 @@
 import { Button, Form, Input, Select } from "antd";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
-import FilteredProperties from "./components/FilteredProperties";
-import { bottomStatusOptions, topStatusOptions } from "@/constants/constants";
+import {
+  bottomStatusOptions,
+  properties,
+  topStatusOptions,
+} from "@/constants/constants";
+import { FilteredProperties } from "./components/FilteredProperties";
+import { Property } from "@/common/properties/Property";
+import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 
-export default function Buy() {
+export function Buy() {
   const [filterForm] = Form.useForm();
 
   const onFinish = (values) => {
@@ -12,17 +18,14 @@ export default function Buy() {
   };
 
   return (
-    <div className="container">
-      <div className="w-[999px] mx-auto ">
-        <div className="md:pb-20 ">
-          <h4 className="uppercase text-black text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 pt-50 custom-select-field">
-            PORTA AD DOMUN
-          </h4>
-          <p className="font-moderat-bold text-base text-center">
-            Buy{" "}
-            <span className="font-normal font-moderat-regular">| Auctions</span>
-          </p>
-        </div>
+    <div className="container xl:px-0 px-12.5">
+      <div className="w-full xl:w-[999px] mx-auto ">
+        <WithSectionLayout
+          title="PORTA AD DOMUN"
+          leftText="Buy"
+          midText="|"
+          rightText="Auctions"
+        />
 
         <Form
           form={filterForm}
@@ -39,17 +42,17 @@ export default function Buy() {
           }}
         >
           {/* Top Row */}
-          <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
+          <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-0 md:pb-4 w-full">
             <Form.Item name="status" label={false} className="!mb-0 ">
               <Select className="w-full xl:!w-[180px] border-black border !rounded-none !text-black !h-[50px] !bg-white">
                 {topStatusOptions.map((opt) => (
-                  <Option
+                  <Select.Option
                     key={opt}
                     value={opt}
                     className=" !text-black !rounded-none font-monument"
                   >
                     <div className="font-monument text-[10px]">{opt}</div>
-                  </Option>
+                  </Select.Option>
                 ))}
               </Select>
             </Form.Item>
@@ -89,13 +92,13 @@ export default function Buy() {
                   }`}
                 >
                   {options.map((opt) => (
-                    <Option
+                    <Select.Option
                       key={opt}
                       value={opt}
                       className=" !text-black !w-full !rounded-none font-monument text-[10px] font-normal bg-white"
                     >
                       <div className="font-monument text-[10px]">{opt}</div>
-                    </Option>
+                    </Select.Option>
                   ))}
                 </Select>
               </Form.Item>
@@ -105,6 +108,13 @@ export default function Buy() {
       </div>
 
       <FilteredProperties />
+      <div className="my-12 xl:my-28">
+        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {properties.map((property, idx) => (
+            <Property property={property} key={idx} leaseTag={false} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
