@@ -25,6 +25,10 @@
   font-family: Moderat-Light;
   src: url("../src/assets/fonts/Moderat-Light.woff");
 }
+@font-face {
+  font-family: Miller-Light;
+  src: url("../src/assets/fonts/miller-banner-light.otf");
+}
 
 @theme {
   --font-monument: Monument, "sans-serif";
@@ -33,6 +37,7 @@
   --font-moderat-regular: Moderat-Regular, "sans-serif";
   --font-moderat-bold: Moderat-Bold, "sans-serif";
   --font-moderat-light: Moderat-Light, "sans-serif";
+  --font-miller-light: Miller-Light, "sans-serif";
 }
 .custom-field .ant-select-selector {
   border-radius: 0px !important;
@@ -85,4 +90,8 @@
   .ant-tabs-nav-list {
     padding: 0px 50px;
   }
+}
+
+.ant-modal-content {
+  padding: 0px !important;
 }

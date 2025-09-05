@@ -10,7 +10,7 @@ export const FilteredProperties = () => {
   const filterOptions = ["Day", "Week", "month"];
 
   return (
-    <div className="contianer my-10 xl:my-20">
+    <div className="contianer mt-10 xl:mt-20 border-b-2">
       <div className="flex justify-between items-center pb-4 gap-5 flex-wrap">
         <p className="text-sm font-moderat-regular">8 of 8 Results</p>
         <div className="">
@@ -47,7 +47,6 @@ export const FilteredProperties = () => {
           </Form>
         </div>
       </div>
-      <hr className="text-black "></hr>
     </div>
   );
 };

@@ -1,6 +1,10 @@
-import React from "react";
+import { Grid, Modal } from "antd";
+import TeamPopup from "./TeamPopup";
+import React, { useState } from "react";
 import image from "../../../assets/images/Team.png";
 import { CgArrowLongRight } from "react-icons/cg";
+const { useBreakpoint } = Grid;
+
 const teamMembers = [
   { id: 1, name: "John Doe", image: "/images/member1.jpg" },
   { id: 2, name: "Jane Smith", image: "/images/member2.jpg" },
@@ -11,6 +15,30 @@ const teamMembers = [
 ];
 
 export default function MeetOurTeam() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const screens = useBreakpoint();
+  console.log(screens.sm, 99);
+  let modalWidth = 1200;
+
+  // responsive widths
+  if (screens.xs) modalWidth = 300;
+  if (screens.sm) modalWidth = 400;
+  if (screens.md) modalWidth = 600;
+  if (screens.lg) modalWidth = 900;
+  if (screens.xl) modalWidth = 1200;
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <section className="bg-[#706C62] py-30 px-12.5 xl:px-0">
       <div className="container flex flex-col xl:flex-row gap-12 items-start">
@@ -36,7 +64,11 @@ export default function MeetOurTeam() {
         {/* Right Section - Team Grid */}
         <div className="xl:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
           {teamMembers.map((member) => (
-            <div key={member.id} className="relative overflow-hidden">
+            <div
+              key={member.id}
+              className="relative overflow-hidden"
+              onClick={showModal}
+            >
               <img
                 src={image}
                 alt={member.name}
@@ -49,6 +81,18 @@ export default function MeetOurTeam() {
           ))}
         </div>
       </div>
+      <Modal
+        className="p-0 "
+        // title="Basic Modal"
+        // closable={{ "aria-label": "Custom Close Button" }}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={false}
+        width={modalWidth}
+      >
+        <TeamPopup />
+      </Modal>
     </section>
   );
 }

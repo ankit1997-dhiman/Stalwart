@@ -2,7 +2,7 @@ import React from "react";
 
 export const WithSectionLayout = ({ title, leftText, rightText, midText }) => {
   return (
-    <div className="my-14 ">
+    <div className="my-14 xl:pt-50 ">
       {title && (
         <h4 className="uppercase text-black text-sm md:text-xl font-monument font-normal leading-10 text-center  custom-select-field">
           {title}

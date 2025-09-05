@@ -115,7 +115,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row gao-3 md:gap-18">
             <img src={logo} alt="Logo" className="h-6" />
 
-            <ul className="py-6">
+            <ul className="py-6 xl:py-0">
               {contactInfo.map((item, i) => (
                 <li key={i} className="font-moderat text-sm text-white/60">
                   {item.text}

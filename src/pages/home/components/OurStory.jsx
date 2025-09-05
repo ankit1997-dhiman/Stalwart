@@ -21,7 +21,7 @@ const Section7 = () => {
         </div>
 
         {/* Title */}
-        <h2 className="text-2xl font-serif tracking-wide pt-10">
+        <h2 className="text-2xl tracking-wide pt-10 font-miller-light">
           Nostra Fabula
         </h2>
 

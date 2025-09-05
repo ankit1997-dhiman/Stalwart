@@ -7,7 +7,7 @@ const RequestAnAppraisal = () => {
     <section className="bg-[#4F4C45] pt-[90px] pb-[72px] xl:px-0 px-12.5">
       <div className="container mx-auto flex lg:flex-row flex-col justify-between items-center gap-7">
         <div className="w-full xl:w-1/3">
-          <h4 className="text-white text-xl md:text-4xl">
+          <h4 className="text-white text-xl md:text-4xl font-miller-light">
             Request An Appraisal
           </h4>
           <p className="text-white my-8 text-xs md:text-base font-moderat-medium">

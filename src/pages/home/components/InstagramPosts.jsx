@@ -17,7 +17,7 @@ const InstagramPosts = () => {
       <div className="container">
         <div className="pt-16 pb-12">
           <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
-            <h2 className="text-2xl font-light uppercase">
+            <h2 className="text-[40px] font-light font-miller-light">
               Keep Up With Us On Instagram
             </h2>
 

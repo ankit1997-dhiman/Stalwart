@@ -10,6 +10,8 @@ import { Lease } from "@/pages/lease/Lease";
 import { LeasedProperties } from "@/pages/lease/LeasedProperties";
 import { NotFound } from "@/pages/NotFound.jsx";
 import { SoldProperties } from "@/pages/soldProperties/SoldProperties";
+import UpcomingAuction from "@/pages/upcomingAuction/UpcomingAuction";
+import UpcomingInspections from "@/pages/upcomingInspection/UpcomingInspections";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const IS_MAINTENANCE = false; // Toggle this flag
@@ -30,6 +32,14 @@ export default function AppRouter() {
               <Route path={URLS.CONTACT_US} element={<Contact />} />
               <Route path={URLS.BUY} element={<Buy />} />
               <Route path={URLS.SOLD_PROPERTIES} element={<SoldProperties />} />
+              <Route
+                path={URLS.UPCOMING_AUCTIONS}
+                element={<UpcomingAuction />}
+              />
+              <Route
+                path={URLS.UPCOMING_INSPECTIONS}
+                element={<UpcomingInspections />}
+              />
               <Route
                 path={URLS.LEASE_PROPERTIES}
                 element={<LeasedProperties />}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { URLS } from "@/constants/Urls.js";
 import logoBlack from "@/assets/images/black-logo.png";
 import { menuItems } from "@/constants/menuLinks";
+import TranslateLogo from "@/assets/icons/translate.svg";
 
 export const StickyNavbar = () => {
   return (
@@ -13,7 +14,7 @@ export const StickyNavbar = () => {
         </Link>
       </div>
       <div>
-        <ul className="flex gap-x-20 py-6.5">
+        <ul className="flex items-center gap-x-20 py-6.5">
           {menuItems.map((item, index) => (
             <li key={index} className="text-xs font-monument hover:underline">
               {item.link ? (
@@ -25,6 +26,13 @@ export const StickyNavbar = () => {
               )}
             </li>
           ))}
+          <li className="text-xs font-monument hover:underline">
+            <img
+              src={TranslateLogo}
+              alt="Translate"
+              className="w-6 h-6 cursor-pointer"
+            />
+          </li>
         </ul>
       </div>
     </div>

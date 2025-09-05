@@ -6,11 +6,11 @@ import {
 } from "@/constants/constants";
 import { Button, Form, Input, Select } from "antd";
 import React from "react";
-import { FaSearch } from "react-icons/fa";
 import { FilteredProperties } from "../buy/components/FilteredProperties";
-import AuctionCard from "./components/AuctionCard";
+import AuctionCard from "../upcomingAuction/components/AuctionCard";
+import { FaSearch } from "react-icons/fa";
 
-export default function UpcomingAuction() {
+export default function UpcomingInspections() {
   const [upcomingAuctionForm] = Form.useForm();
 
   const onFinish = (values) => {
@@ -115,6 +115,7 @@ export default function UpcomingAuction() {
             price={item.price}
             hoverAddress={item.hoverAddress}
             address={item.address}
+            inspection={true}
           />
         );
       })}

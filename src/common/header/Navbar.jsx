@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Drawer } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import whiteLogo from "@/assets/images/white-logo.png";
+import blackLogo from "@/assets/images/header-black-logo.png";
 import { URLS } from "@/constants/Urls";
-import { menuItems } from "@/constants/menuLinks";
+import { menuItems, nav1Paths } from "@/constants/menuLinks";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+
+  const location = useLocation();
+  const { pathname } = location;
+  console.log(pathname, 99);
+
+  // Define the paths where Nav1 should be shown
+
+  const showNav1 = nav1Paths.includes(pathname);
 
   const showDrawer = () => setOpen(true);
   const onClose = () => setOpen(false);
@@ -19,14 +28,24 @@ export default function Navbar() {
     { name: "LinkedIn" },
   ];
 
+  // useEffect(() => {}, [url]);
+
   return (
     <>
       {/* Navbar */}
       <div className="container flex justify-between items-center py-14">
         <Link to={URLS.HOME}>
-          <img src={whiteLogo} alt="logo" className="w-[143px]" />
+          <img
+            src={showNav1 ? blackLogo : whiteLogo}
+            alt="logo"
+            className="w-[143px]"
+          />
         </Link>
-        <RxHamburgerMenu className="text-white text-xl" onClick={showDrawer} />
+
+        <RxHamburgerMenu
+          className={`${showNav1 ? "text-black " : "text-white "}  text-xl`}
+          onClick={showDrawer}
+        />
       </div>
 
       {/* Drawer */}

@@ -7,5 +7,6 @@ export const URLS ={
     SOLD_PROPERTIES:"/sold-properties",
     LEASE_PROPERTIES:"/leased-properties",
     LEASE:"/lease",
-    UPCOMINGAUCTIONS:"/upcoming-auction"
+    UPCOMING_AUCTIONS:"/upcoming-auction",
+    UPCOMING_INSPECTIONS:"/upcoming-inspection"
 }

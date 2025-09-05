@@ -6,22 +6,24 @@ import image from "@/assets/images/black-logo.png";
 const items = [
   {
     key: "1",
-    label: "FEATURED",
+    label: (
+      <p className="font-moderat-medium font-medium text-base">FEATURED</p>
+    ),
     children: <Tab1></Tab1>,
   },
   {
     key: "2",
-    label: "BUY",
+    label: <p className="font-moderat-medium font-medium text-base">BUY</p>,
     children: "Content of Tab Pane 2",
   },
   {
     key: "3",
-    label: "SELL",
+    label: <p className="font-moderat-medium font-medium text-base">SELL</p>,
     children: "Content of Tab Pane 3",
   },
   {
     key: "4",
-    label: "LEASE",
+    label: <p className="font-moderat-medium font-medium text-base">LEASE</p>,
     children: "Content of Tab Pane 3",
   },
 ];
