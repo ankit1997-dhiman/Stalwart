@@ -1,4 +1,5 @@
 import AppLayout from "@/common/layout/AppLayout";
+import { PageWrapper } from "@/common/pageWrapper/PageWrapper";
 import { URLS } from "@/constants/Urls";
 import { About } from "@/pages/about/About.jsx";
 import { Buy } from "@/pages/buy/Buy";
@@ -20,38 +21,43 @@ export default function AppRouter() {
   // Show only the maintenance page
   return (
     <BrowserRouter>
-      <Routes>
-        {IS_MAINTENANCE ? (
-          <Route path="/" element={<ComingSoon />} />
-        ) : (
-          <>
-            <Route element={<AppLayout />}>
-              <Route path={URLS.HOME} element={<Home />} />
-              <Route path={URLS.ABOUT} element={<About />} />
-              <Route path={URLS.CAREERS} element={<Careers />} />
-              <Route path={URLS.CONTACT_US} element={<Contact />} />
-              <Route path={URLS.BUY} element={<Buy />} />
-              <Route path={URLS.SOLD_PROPERTIES} element={<SoldProperties />} />
-              <Route
-                path={URLS.UPCOMING_AUCTIONS}
-                element={<UpcomingAuction />}
-              />
-              <Route
-                path={URLS.UPCOMING_INSPECTIONS}
-                element={<UpcomingInspections />}
-              />
-              <Route
-                path={URLS.LEASE_PROPERTIES}
-                element={<LeasedProperties />}
-              />
-              <Route path={URLS.LEASE} element={<Lease />} />
-              {/* <Route path={URLS.BUY} element={<UpcomingAuction />} /> */}
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </>
-        )}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <PageWrapper>
+        <Routes>
+          {IS_MAINTENANCE ? (
+            <Route path="/" element={<ComingSoon />} />
+          ) : (
+            <>
+              <Route element={<AppLayout />}>
+                <Route path={URLS.HOME} element={<Home />} />
+                <Route path={URLS.ABOUT} element={<About />} />
+                <Route path={URLS.CAREERS} element={<Careers />} />
+                <Route path={URLS.CONTACT_US} element={<Contact />} />
+                <Route path={URLS.BUY} element={<Buy />} />
+                <Route
+                  path={URLS.SOLD_PROPERTIES}
+                  element={<SoldProperties />}
+                />
+                <Route
+                  path={URLS.UPCOMING_AUCTIONS}
+                  element={<UpcomingAuction />}
+                />
+                <Route
+                  path={URLS.UPCOMING_INSPECTIONS}
+                  element={<UpcomingInspections />}
+                />
+                <Route
+                  path={URLS.LEASE_PROPERTIES}
+                  element={<LeasedProperties />}
+                />
+                <Route path={URLS.LEASE} element={<Lease />} />
+
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </>
+          )}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PageWrapper>
     </BrowserRouter>
   );
 }
