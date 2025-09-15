@@ -7,9 +7,11 @@ import OurStory from "./components/OurStory.jsx";
 import Section8 from "./components/Section8.jsx";
 import InstagramPosts from "./components/InstagramPosts.jsx";
 import { CurrentProperties } from "./components/CurrentProperties";
+import AddressAutocomplete from "./components/AddressAutocomplete.jsx";
 export const Home = () => {
   return (
     <>
+      {/* <AddressAutocomplete /> */}
       <Section1 />
       <OurPhilosophy />
       <RequestAnAppraisal />

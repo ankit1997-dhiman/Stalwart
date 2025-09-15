@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <div className="container flex justify-between items-center py-14">
+      <div className="container flex justify-between items-center py-14 ">
         <Link to={URLS.HOME}>
           <img
             src={showNav1 ? blackLogo : whiteLogo}
@@ -58,7 +58,7 @@ export default function Navbar() {
         title={
           <div className="flex justify-between items-center px-6 py-10">
             <Link to={URLS.HOME}>
-              <img src={whiteLogo} alt="logo" className="w-[143px]" />
+              <img src={whiteLogo} alt="logo" className="" />
             </Link>
             <IoMdClose
               onClick={onClose}

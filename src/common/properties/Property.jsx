@@ -26,7 +26,7 @@ export function Property({ property, soldTag, leaseTag }) {
 
       {/* Hover content */}
       <div className="absolute bottom-0 left-0 w-full p-5 text-xs font-medium text-gray-800 bg-white/60 backdrop-blur-sm transform translate-y-full opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start gap-6">
           <div>
             <div className="font-moderat text-xs font-bold">
               {property.address}
@@ -36,7 +36,7 @@ export function Property({ property, soldTag, leaseTag }) {
             </div>
           </div>
           <div>
-            <Button className="!bg-transparent !text-black !border !border-black !px-8 !py-6 !rounded-none">
+            <Button className="!bg-transparent !text-black !border !border-black !px-8 !py-5 !rounded-none">
               Learn More
             </Button>
           </div>

@@ -22,7 +22,7 @@ const Header = () => {
     };
   }, []);
   return (
-    <div className="px-12.5 xl:px-0">
+    <div className="px-12.5 xl:px-0 ">
       {isSticky ? (
         <div
           className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-white xl:block hidden`}
@@ -30,7 +30,7 @@ const Header = () => {
           <StickyNavbar />
         </div>
       ) : (
-        <div className="bg-transparent -mb-36">
+        <div className="bg-transparent -mb-36 !z-50">
           {/* Normal Header */}
           <Navbar />
         </div>

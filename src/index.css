@@ -78,6 +78,9 @@
 .custom-select-field .ant-select-selector {
   border: none !important;
 }
+.ant-collapse-header {
+  padding-left: 0px !important;
+}
 
 @media only screen and (max-width: 768px) {
   .ant-carousel .slick-slide {

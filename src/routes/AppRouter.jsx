@@ -10,7 +10,9 @@ import { Home } from "@/pages/home/Home.jsx";
 import { Lease } from "@/pages/lease/Lease";
 import { LeasedProperties } from "@/pages/lease/LeasedProperties";
 import { NotFound } from "@/pages/NotFound.jsx";
+import SellWithStalwart from "@/pages/sellWithStalwart/SellWithStalwart";
 import { SoldProperties } from "@/pages/soldProperties/SoldProperties";
+import SwitchWithStalwart from "@/pages/switchToStalwart/SwitchToStalwart";
 import UpcomingAuction from "@/pages/upcomingAuction/UpcomingAuction";
 import UpcomingInspections from "@/pages/upcomingInspection/UpcomingInspections";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -34,6 +36,10 @@ export default function AppRouter() {
                 <Route path={URLS.CONTACT_US} element={<Contact />} />
                 <Route path={URLS.BUY} element={<Buy />} />
                 <Route
+                  path={URLS.SWITCH_WITH_STALWART}
+                  element={<SwitchWithStalwart />}
+                />
+                <Route
                   path={URLS.SOLD_PROPERTIES}
                   element={<SoldProperties />}
                 />
@@ -50,6 +56,10 @@ export default function AppRouter() {
                   element={<LeasedProperties />}
                 />
                 <Route path={URLS.LEASE} element={<Lease />} />
+                <Route
+                  path={URLS.SELL_WITH_STALWART}
+                  element={<SellWithStalwart />}
+                />
 
                 <Route path="*" element={<NotFound />} />
               </Route>

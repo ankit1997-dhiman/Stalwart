@@ -1,7 +1,9 @@
-import { Form, Input, Select, Button } from "antd";
+import { Form, Select, Button } from "antd";
 import { FaSearch } from "react-icons/fa";
 import bgImage from "../../../assets/images/home-hero.png";
 import { bottomStatusOptions, topStatusOptions } from "@/constants/constants";
+import { useEffect, useRef, useState } from "react";
+import AddressAutocomplete from "./AddressAutocomplete";
 
 const { Option } = Select;
 
@@ -56,17 +58,12 @@ export const Section1 = () => {
               </Select>
             </Form.Item>
 
-            <div className="w-full flex bg-white">
-              <Form.Item
-                name="name"
-                label={false}
-                className="!mb-0 !w-full !rounded-xl"
-              >
-                <Input
-                  placeholder="Search..."
-                  className="!h-[50px] !border-none !rounded-none !outline-0"
-                />
+            {/* Search Box */}
+            <div className="w-full flex bg-white relative">
+              <Form.Item name="address" label={false} className="!mb-0 !w-full">
+                <AddressAutocomplete />
               </Form.Item>
+
               <Button
                 htmlType="submit"
                 className="!h-[50px] ml-2 flex items-center justify-center bg-white !border-none"

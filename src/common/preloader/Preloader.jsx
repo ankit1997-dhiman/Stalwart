@@ -7,13 +7,13 @@ export const Preloader = () => {
       {/* Loader Animation */}
       {/* <div className="w-12 h-12 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div> [animation-duration:5s] animate-pulse animate-spin animate-bounce */}
 
-      <img
+      {/* <img
         src={Logo}
         alt="Logo"
         className="animate-ping [animation-duration:5s] "
-      />
+      /> */}
 
-      {/* <div className="w-12 h-12 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div> */}
+      <div className="w-12 h-12 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
     </div>
   );
 };
