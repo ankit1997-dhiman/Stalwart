@@ -18,7 +18,7 @@ export default function MeetOurTeam() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const screens = useBreakpoint();
-  console.log(screens.sm, 99);
+
   let modalWidth = 1200;
 
   // responsive widths

@@ -1,4 +1,5 @@
 // src/utils/graphqlRequest.js
+import { message } from "antd";
 import api from "./api";
 
 /**
@@ -9,9 +10,10 @@ import api from "./api";
 export const graphqlRequest = async (query, variables = {}) => {
   try {
     const response = await api.post("", { query, variables });
+    // console.log(response, query, variables, "sdfasdf");
     return response.data; // contains { data, errors }
   } catch (error) {
-    console.error("GraphQL Error:", error.response?.data || error.message);
+    message.error("GraphQL Error:", error.response?.data || error.message);
     throw error;
   }
 };

@@ -1,17 +1,117 @@
-import { Form, Select, Button } from "antd";
+import { Form, Select, Button, message } from "antd";
 import { FaSearch } from "react-icons/fa";
 import bgImage from "../../../assets/images/home-hero.png";
-import { bottomStatusOptions, topStatusOptions } from "@/constants/constants";
-import { useEffect, useRef, useState } from "react";
+import { bedrooms, topStatusOptions } from "@/constants/constants";
+import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
+import { graphqlRequest } from "@/utils/graphqlRequest";
 
 const { Option } = Select;
 
 export const Section1 = () => {
   const [form] = Form.useForm();
+  const [data, setData] = useState([]);
 
-  const onFinish = (values) => {
-    console.log("Form Data:", values);
+  const onFinish = async (values) => {
+    console.log("Form values:", values); // Debug: check field names
+
+    const filters = [];
+
+    // Mapping of form keys to API filter types and strategies
+    const fieldMap = {
+      bedrooms: { type: "BEDROOM", strategy: "IS_GREATER_THAN" },
+      bathrooms: { type: "BATHROOM", strategy: "IS_GREATER_THAN" },
+      carspaces: { type: "CAR_SPACE", strategy: "IS_GREATER_THAN" },
+      // Add more mappings here if needed
+    };
+
+    // Loop through fieldMap dynamically
+    Object.keys(fieldMap).forEach((key) => {
+      const value = values[key];
+
+      // Only add filter if value exists and is numeric
+      if (value !== undefined && value !== null && value !== "") {
+        const strValue = String(value).trim();
+        filters.push({
+          type: fieldMap[key].type,
+          strategy: fieldMap[key].strategy,
+          value: strValue,
+          displayValue: null,
+        });
+      }
+    });
+
+    // Add address filter separately if present
+    if (values.address?.trim()) {
+      filters.push({
+        type: "ADDRESS",
+        strategy: "CONTAINS",
+        value: values.address.trim(),
+        displayValue: null,
+      });
+    }
+
+    // Skip creating filterSet if no filters exist
+    if (filters.length === 0) {
+      console.log("No filters to apply, skipping filterSet.");
+      return;
+    }
+
+    // Create a single filterGroup with all filters
+    const filterSet = {
+      // operand: "AND",
+      filterGroups: [
+        {
+          operand: "AND",
+          filters,
+        },
+      ],
+    };
+
+    const variables = {
+      first: 10, // number of results to fetch
+      filterSet,
+    };
+
+    console.log("Variables payload:", JSON.stringify(variables, null, 2));
+
+    const query = `
+    query GetFilteredProperties($first: Int, $filterSet: FilterSetAttributes) {
+      properties(first: $first, filterSet: $filterSet) {
+        totalCount
+        nodes {
+          id
+          address {
+            street
+            postcode
+          }
+          listingDetails {
+            ... on ResidentialSale {
+              bedrooms
+              bathrooms
+            }
+            ... on ResidentialRental {
+              bedrooms
+              bathrooms
+            }
+          }
+          price
+          status
+        }
+      }
+    }
+  `;
+
+    try {
+      const res = await graphqlRequest(query, variables);
+      if (res?.properties?.nodes) {
+        console.log("Filtered Properties:", res.properties.nodes);
+        message.success("Properties fetched successfully!");
+      }
+    } catch (error) {
+      console.error("GraphQL error:", error);
+      message.error("Failed to fetch properties. Check console for details.");
+    }
   };
 
   return (
@@ -24,20 +124,15 @@ export const Section1 = () => {
           PORTA AD DOMUN
         </h4>
 
-        <p className="block md:hidden text-white text-center text-[10px] pb-30 font-monument font-light uppercase">
-          7 Jul 2025 | 11:13:35 AM
-        </p>
-
         <Form
           form={form}
           onFinish={onFinish}
           layout="vertical"
           initialValues={{
-            name: "",
             status: "BUY",
             status0: "MIN. PRICE",
             status1: "MAX. PRICE",
-            status2: "BED",
+            bedrooms: "BED",
             status3: "BATH",
             status4: "CAR",
           }}
@@ -75,30 +170,48 @@ export const Section1 = () => {
 
           {/* Bottom Row */}
           <div className="hidden xl:flex items-stretch justify-between gap-7.5 pb-4 w-full">
-            {bottomStatusOptions.map((options, idx) => (
-              <Form.Item
-                key={idx}
-                name={`status${idx}`}
-                label={false}
-                className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
+            <Form.Item
+              name={"bedrooms"}
+              label={false}
+              className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
+            >
+              <Select
+                className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full`}
               >
-                <Select
-                  className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument ${
-                    idx === 0 ? "!w-[180px]" : "!w-full"
-                  }`}
-                >
-                  {options.map((opt, idx) => (
+                {bedrooms.map((item, idx) => {
+                  console.log(item);
+                  return (
                     <Select.Option
-                      key={idx}
-                      value={opt}
+                      value={item}
                       className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
                     >
-                      <div className="font-monument text-[10px]">{opt}</div>
+                      <div className="font-monument text-[10px]">{item} +</div>
                     </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            ))}
+                  );
+                })}
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name={"bathrooms"}
+              label={false}
+              className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
+            >
+              <Select
+                className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full`}
+              >
+                {bedrooms.map((item, idx) => {
+                  console.log(item);
+                  return (
+                    <Select.Option
+                      value={item}
+                      className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
+                    >
+                      <div className="font-monument text-[10px]">{item} +</div>
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
           </div>
         </Form>
 

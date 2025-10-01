@@ -1,5 +1,9 @@
 @import "tailwindcss";
-/* @import "tw-animate-css"; */
+
+/* Optional: smooth button transitions */
+button {
+  @apply transition-colors duration-200;
+}
 
 @font-face {
   font-family: Monument;

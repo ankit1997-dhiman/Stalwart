@@ -1,14 +1,16 @@
 import { BiLogOut } from "react-icons/bi";
 import image from "../../../assets/images/section-2-image.png";
 import mobileImage from "../../../assets/images/mobile-philosophy.png";
+import blackLogo from "@/assets/images/black-logo.png";
 
 const OurPhilosophy = () => {
   return (
     <section className="bg-white py-20 md:py-32 px-12.5 xl:px-0">
       <div className="container mx-auto">
         {/* <MyIcon className="w-6 h-6 text-blue-500" /> */}
-        <BiLogOut className="w-6 h-6 text-black  block" />
-        <p className="text-xs md:text-base text-black mt-15 font-moderat-medium">
+        <img src={blackLogo} className="w-6 h-3 mb-15" />
+        {/* <BiLogOut className="w-6 h-6 text-black  block" /> */}
+        <p className="text-xs md:text-base text-black mt-15 ont-moderat-medium">
           OUR PHILOSOPHY
         </p>
         <h4 className="text-base md:text-[32px] uppercase text-black mt-5 leading-6 sm:leading-10 w-full xl:w-2/3 font-moderat-medium font-medium">

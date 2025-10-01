@@ -1,11 +1,21 @@
-import { Button } from "antd";
+import { Button, Empty } from "antd";
 import React from "react";
-
-export function Property({ property, soldTag, leaseTag }) {
+import DummyImage from "@/assets/images/dummy-image.jpg";
+export function Property({
+  id,
+  address,
+  soldTag,
+  leaseTag,
+  price,
+  bathrooms,
+  carportSpaces,
+  image,
+  bed,
+}) {
   return (
     <div
-      key={property.id}
-      className="relative border border-gray-300 rounded overflow-hidden group h-[417px]"
+      key={id}
+      className="relative border border-gray-300 rounded overflow-hidden group h-[420px] object-contain"
     >
       {soldTag || leaseTag ? (
         <div className="bg-[#4F4C45] text-xs px-18 py-4 text-white font-moderat-bold uppercase absolute left-6 top-6 z-10">
@@ -15,24 +25,28 @@ export function Property({ property, soldTag, leaseTag }) {
 
       {/* Background image layer */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-        style={{ backgroundImage: `url(${property.image})` }}
+        className="absolute inset-0 bg-cover bg-no-repeat bg-center transition-transform duration-500 group-hover:scale-110"
+        style={{
+          backgroundImage: `url(${image ? image : DummyImage})`,
+        }}
       ></div>
 
       {/* Overlay content sits on top */}
-      <div className="absolute bottom-0 left-0 w-full p-5 border-t text-xs font-medium text-gray-800 transition-opacity duration-300 group-hover:opacity-0 bg-white/80">
-        {property.address}
+      <div className="absolute bottom-0 left-0 w-full p-5 border-t text-xs font-medium text-gray-800 transition-opacity duration-300 group-hover:opacity-0 bg-white">
+        {address ? address : null}
       </div>
 
       {/* Hover content */}
-      <div className="absolute bottom-0 left-0 w-full p-5 text-xs font-medium text-gray-800 bg-white/60 backdrop-blur-sm transform translate-y-full opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="absolute bottom-0 left-0 w-full p-5 text-xs font-medium text-gray-800 bg-white/80 backdrop-blur-sm transform translate-y-full opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
         <div className="flex justify-between items-start gap-6">
           <div>
             <div className="font-moderat text-xs font-bold">
-              {property.address}
+              {address ? address : null}
             </div>
             <div className="font-moderat text-[10px] font-medium pt-2">
-              {property.hoverAddress}
+              {`${bed ? bed : 0} BED | ${bathrooms ? bathrooms : 0} BATH | ${
+                carportSpaces ? carportSpaces : 0
+              } CAR `}
             </div>
           </div>
           <div>
@@ -41,7 +55,9 @@ export function Property({ property, soldTag, leaseTag }) {
             </Button>
           </div>
         </div>
-        <div className="py-3">{property.price}</div>
+        <div className="py-3">
+          {price ? `$ ${price.toLocaleString("en-AU")}` : null}
+        </div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export const StickyNavbar = () => {
     <div className="container flex justify-between items-center">
       <div>
         <Link to={URLS.HOME}>
-          <img src={logoBlack} alt="logo" className="w-5 h-2.5" />
+          <img src={logoBlack} alt="logo" className="w-6 h-3" />
         </Link>
       </div>
       <div>

@@ -5,7 +5,7 @@ const PropertyCard = ({ image, title, subtitle, buttonText, onClick }) => {
     <>
       <div className="mx-auto rounded overflow-hidden pt-16.5">
         {/* Image */}
-        <div className="w-full h-full overflow-hidden md:pb-18">
+        <div className="w-full h-[900px]  overflow-hidden md:pb-18">
           <img src={image} alt={title} className="w-full h-full object-cover" />
         </div>
 

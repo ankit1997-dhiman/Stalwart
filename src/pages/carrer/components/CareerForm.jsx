@@ -5,9 +5,7 @@ import { UploadOutlined } from "@ant-design/icons";
 export default function CareerForm() {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Form Submitted:", values);
-  };
+  const onFinish = (values) => {};
 
   return (
     <section className="py-12 px-12.5 xl:px-0">

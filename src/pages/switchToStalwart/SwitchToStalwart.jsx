@@ -13,9 +13,7 @@ const SwitchWithStalwart = () => {
     setCurrent(current - 1);
   };
 
-  const onFinish = (values) => {
-    console.log("Form Values:", values);
-  };
+  const onFinish = (values) => {};
 
   return (
     <div className="relative">

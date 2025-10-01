@@ -13,9 +13,7 @@ import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 export function LeasedProperties() {
   const [leasedFilterForm] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Form Data:", values);
-  };
+  const onFinish = (values) => {};
   return (
     <div className="container">
       <div className="w-full xl:w-[999px] mx-auto ">

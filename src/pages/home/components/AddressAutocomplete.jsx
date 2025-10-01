@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { Input, message } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 
 /**
@@ -10,11 +10,10 @@ function useGoogleMaps(apiKey) {
 
   useEffect(() => {
     if (!apiKey) {
-      console.error("Google Maps API key missing");
+      message.warning("Google Maps API key missing");
       return;
     }
 
-    // If script already loaded
     if (window.google && window.google.maps && window.google.maps.places) {
       setLoaded(true);
       return;
@@ -22,7 +21,6 @@ function useGoogleMaps(apiKey) {
 
     const id = "google-maps-script";
     if (document.getElementById(id)) {
-      // script exists but google object might not be ready yet; wait a little
       const check = setInterval(() => {
         if (window.google && window.google.maps && window.google.maps.places) {
           clearInterval(check);
@@ -39,13 +37,9 @@ function useGoogleMaps(apiKey) {
     script.defer = true;
     script.onload = () => setLoaded(true);
     script.onerror = (e) => {
-      console.error("Failed to load Google Maps script", e);
+      message.error("Failed to load Google Maps script", e);
     };
     document.head.appendChild(script);
-
-    return () => {
-      // do not remove script on unmount (allowed), but cleanup could be done if desired
-    };
   }, [apiKey]);
 
   return loaded;
@@ -53,14 +47,10 @@ function useGoogleMaps(apiKey) {
 
 /**
  * AddressAutocomplete component
- * Props:
- *  - apiKey: string (required)
- *  - onSelect: function({ placeId, displayName, lat, lng, address }) optional
- *  - country: two-letter country code (default "au")
  */
 export default function AddressAutocomplete({
   value,
-  onChange, // ✅ destructured
+  onChange,
   apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   onSelect,
   country = "au",
@@ -70,10 +60,12 @@ export default function AddressAutocomplete({
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [finalized, setFinalized] = useState(false); // ✅ prevent dropdown after selection
 
   const debounceRef = useRef(null);
   const mountedRef = useRef(true);
   const placesServiceRef = useRef(null);
+  const suppressFetchRef = useRef(false);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -82,10 +74,8 @@ export default function AddressAutocomplete({
     };
   }, []);
 
-  // create or reuse PlacesService
   function getPlacesService() {
     if (!placesServiceRef.current) {
-      // hidden div is fine because PlacesService requires an HTML node
       placesServiceRef.current = new window.google.maps.places.PlacesService(
         document.createElement("div")
       );
@@ -96,6 +86,16 @@ export default function AddressAutocomplete({
   // fetch suggestions with debouncing
   useEffect(() => {
     if (!loaded) return;
+
+    // 🚫 don’t fetch if finalized (after selection)
+    if (finalized) return;
+
+    // 🚫 skip once after selecting
+    if (suppressFetchRef.current) {
+      suppressFetchRef.current = false;
+      return;
+    }
+
     if (!input.trim()) {
       setSuggestions([]);
       setLoading(false);
@@ -107,14 +107,12 @@ export default function AddressAutocomplete({
     const value = input;
 
     debounceRef.current = setTimeout(() => {
-      // cancel if component unmounted
       if (!mountedRef.current) return;
 
       const ac = new window.google.maps.places.AutocompleteService();
       ac.getPlacePredictions(
         {
           input: value,
-          // you can use types: ["address"] or ["geocode"] depending on behavior you want
           types: ["geocode"],
           componentRestrictions: { country },
         },
@@ -124,9 +122,7 @@ export default function AddressAutocomplete({
             status === window.google.maps.places.PlacesServiceStatus.OK &&
             Array.isArray(predictions)
           ) {
-            // Limit number of predictions to avoid many getDetails calls
             const limited = predictions.slice(0, 6);
-
             const ps = getPlacesService();
 
             Promise.all(
@@ -136,16 +132,13 @@ export default function AddressAutocomplete({
                     ps.getDetails(
                       {
                         placeId: prediction.place_id,
-                        // request only geometry + formatted_address to save usage
                         fields: ["geometry", "formatted_address", "name"],
                       },
                       (place, status2) => {
                         if (
                           status2 ===
                             window.google.maps.places.PlacesServiceStatus.OK &&
-                          place &&
-                          place.geometry &&
-                          place.geometry.location
+                          place?.geometry?.location
                         ) {
                           resolve({
                             displayName: prediction.description,
@@ -156,7 +149,6 @@ export default function AddressAutocomplete({
                               place.formatted_address || prediction.description,
                           });
                         } else {
-                          // in case of error, still resolve null so Promise.all completes
                           resolve(null);
                         }
                       }
@@ -171,19 +163,18 @@ export default function AddressAutocomplete({
               setLoading(false);
             });
           } else {
-            // ZERO_RESULTS or error
             setSuggestions([]);
             setActiveIndex(-1);
             setLoading(false);
           }
         }
       );
-    }, 300); // debounce 300ms
+    }, 300);
 
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [input, loaded, country]);
+  }, [input, loaded, country, finalized]);
 
   // keyboard navigation
   const onKeyDown = (e) => {
@@ -205,17 +196,13 @@ export default function AddressAutocomplete({
 
   function handleSelect(suggestion) {
     const formatted = suggestion.displayName || suggestion.address || "";
+    suppressFetchRef.current = true;
+    setFinalized(true); // ✅ lock dropdown
     setInput(formatted);
     setSuggestions([]);
 
-    if (onChange) {
-      // send plain string instead of object
-      onChange(formatted);
-    }
-
-    if (onSelect) {
-      onSelect(suggestion); // optional external callback
-    }
+    if (onChange) onChange(formatted);
+    if (onSelect) onSelect(suggestion);
   }
 
   useEffect(() => {
@@ -226,31 +213,26 @@ export default function AddressAutocomplete({
 
   return (
     <div style={{ position: "relative" }}>
-      {/* <Form.Item name="address" label={false} className="!mb-0 !w-full"></Form.Item> */}
       <Input
         value={input}
         onChange={(e) => {
           setInput(e.target.value);
-
-          // also update form with plain string
-          if (onChange) {
-            onChange(e.target.value);
-          }
+          setSuggestions([]); // clear old list
+          setFinalized(false); // ✅ user typed → unlock dropdown
+          if (onChange) onChange(e.target.value);
         }}
         onKeyDown={onKeyDown}
         placeholder="Start typing an address..."
         className="!border-none !h-[50px] !font-moderat-medium !text-sm !outline-white !w-full"
-        id="input"
       />
 
-      {/* suggestions dropdown */}
-      {loading && (
+      {loading && !finalized && (
         <div style={{ position: "absolute", top: "100%", left: 0, padding: 8 }}>
           loading...
         </div>
       )}
 
-      {suggestions.length > 0 && (
+      {suggestions.length > 0 && !finalized && (
         <ul
           id="address-suggestions"
           role="listbox"
@@ -277,7 +259,6 @@ export default function AddressAutocomplete({
               role="option"
               aria-selected={idx === activeIndex}
               onMouseDown={(e) => {
-                // use onMouseDown to avoid input blur before click
                 e.preventDefault();
                 handleSelect(s);
               }}

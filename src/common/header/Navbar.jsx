@@ -13,7 +13,6 @@ export default function Navbar() {
 
   const location = useLocation();
   const { pathname } = location;
-  console.log(pathname, 99);
 
   // Define the paths where Nav1 should be shown
 
@@ -33,7 +32,11 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <div className="container flex justify-between items-center py-14 ">
+      <div
+        className={`${
+          showNav1 ? "" : ""
+        } container flex justify-between items-center py-14 `}
+      >
         <Link to={URLS.HOME}>
           <img
             src={showNav1 ? blackLogo : whiteLogo}
@@ -56,9 +59,9 @@ export default function Navbar() {
         open={open}
         className="!bg-[#4F4C45] !p-0"
         title={
-          <div className="flex justify-between items-center px-6 py-10">
+          <div className="flex justify-between gap-10 items-center px-6 py-10">
             <Link to={URLS.HOME}>
-              <img src={whiteLogo} alt="logo" className="" />
+              <img src={whiteLogo} alt="logo" className="w-[143px]" />
             </Link>
             <IoMdClose
               onClick={onClose}

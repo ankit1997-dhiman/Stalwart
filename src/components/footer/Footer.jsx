@@ -8,9 +8,7 @@ import { contactInfo, footerLinks, legalLinks } from "@/constants/footerLinks";
 export default function Footer() {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Form Values:", values);
-  };
+  const onFinish = (values) => {};
 
   // Config for top links
 
@@ -132,7 +130,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <p className="text-2xl">— The Fortis Immo</p>
+          <p className="text-2xl font-miller-light">— The Fortis Immo</p>
         </div>
 
         {/* Acknowledgement */}

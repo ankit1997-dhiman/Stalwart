@@ -13,9 +13,7 @@ import { FaSearch } from "react-icons/fa";
 export default function UpcomingInspections() {
   const [upcomingAuctionForm] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Form Data:", values);
-  };
+  const onFinish = (values) => {};
   return (
     <div className="container">
       <div className="w-full xl:w-[999px] mx-auto ">

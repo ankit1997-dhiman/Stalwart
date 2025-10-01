@@ -13,9 +13,7 @@ import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 export function SoldProperties() {
   const [soldFilterForm] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Form Data:", values);
-  };
+  const onFinish = (values) => {};
 
   return (
     <div className="container">

@@ -3,9 +3,7 @@ import React from "react";
 
 export const FilteredProperties = () => {
   const [filterForm] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Form Data:", values);
-  };
+  const onFinish = (values) => {};
 
   const filterOptions = ["Day", "Week", "month"];
 

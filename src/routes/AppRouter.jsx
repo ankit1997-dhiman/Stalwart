@@ -1,5 +1,6 @@
 import AppLayout from "@/common/layout/AppLayout";
 import { PageWrapper } from "@/common/pageWrapper/PageWrapper";
+import ScrollToTop from "@/components/scroll/ScrollToTop";
 import { URLS } from "@/constants/Urls";
 import { About } from "@/pages/about/About.jsx";
 import { Buy } from "@/pages/buy/Buy";
@@ -23,6 +24,7 @@ export default function AppRouter() {
   // Show only the maintenance page
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <PageWrapper>
         <Routes>
           {IS_MAINTENANCE ? (

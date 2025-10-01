@@ -1,6 +1,7 @@
 import image from "@/assets/images/ImageContainer.png";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon.jsx";
 import { CgArrowLongRight } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const RequestAnAppraisal = () => {
   return (
@@ -10,17 +11,20 @@ const RequestAnAppraisal = () => {
           <h4 className="text-white text-xl md:text-4xl font-miller-light">
             Request An Appraisal
           </h4>
-          <p className="text-white my-8 text-xs md:text-base font-moderat-medium">
+          <p className="text-white my-8 text-xs md:text-base font-moderat-medium xl:pb-7.5">
             Discover the true value of your property with a no-obligation, free
             appraisal. Our experienced agents provide accurate, data-driven
             assessments to help you make informed decisions about selling.
           </p>
-          <ButtonWithIcon
-            text="Next Step"
-            icon={CgArrowLongRight}
-            iconPosition="right"
-            className="border-none bg-none text-white"
-          />
+
+          <Link to="#">
+            <ButtonWithIcon
+              text="REQUEST NOW"
+              icon={CgArrowLongRight}
+              iconPosition="right"
+              className="border-none bg-none !text-white font-bold font-moderat"
+            />
+          </Link>
         </div>
         <div className="w-full xl:w-1/2">
           <img

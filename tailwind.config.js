@@ -1,16 +1,9 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: true, // ✅ ensures Tailwind utilities take precedence
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      fontFamily: {
-        monument: ['Monument', 'sans-serif'],
-        moderat: ["Moderat", "sans-serif"],
-      },
-      screens: {
-        xs: '30rem',   // 480px
-        lg: '80rem',   // 1280px
-        xl: '120rem',  // 1920px
-      },
-    },
+    extend: {},
   },
-}
+  plugins: [],
+};

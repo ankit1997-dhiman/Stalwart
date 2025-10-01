@@ -10,9 +10,7 @@ import { CurrentProperties } from "../home/components/CurrentProperties";
 export default function SellWithStalwart() {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
+  const onFinish = (values) => {};
 
   const items = [
     {
@@ -47,9 +45,7 @@ export default function SellWithStalwart() {
     },
   ];
 
-  const onChange = (key) => {
-    console.log(key);
-  };
+  const onChange = (key) => {};
 
   return (
     <div>

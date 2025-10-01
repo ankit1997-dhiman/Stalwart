@@ -1,5 +1,5 @@
-import { Button, Form, Input, Select } from "antd";
-import React from "react";
+import { Button, Form, Input, message, Select } from "antd";
+import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import {
   bottomStatusOptions,
@@ -9,13 +9,95 @@ import {
 import { FilteredProperties } from "./components/FilteredProperties";
 import { Property } from "@/common/properties/Property";
 import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
+import { graphqlRequest } from "@/utils/graphqlRequest.js";
+import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
+import dummyImage from "@/assets/images/dummy-image.jpg";
 
 export function Buy() {
+  const [data, setData] = useState([]);
   const [filterForm] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log("Form Data:", values);
+    console.log("Filters applied:", values);
+    // you can use values to refetch with specific filters
   };
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const query = `
+        query GetSaleProperties($first: Int, $status: [PropertyStatusEnum!]) {
+          properties(
+            first: $first
+            status: $status
+            orderBy: CREATED_AT_DESC
+          ) {
+            totalCount
+            nodes {
+              id
+              price
+              formattedAddress
+              status
+              saleOrLease
+              advertisedPrice
+              latitude
+              longitude
+              description
+              featured
+              createdAt
+              updatedAt
+
+              listingDetails {
+                ... on ResidentialSale {
+                  bedrooms
+                  bathrooms
+                  carportSpaces
+                  garageSpaces
+                  openCarSpaces
+                }
+                ... on ResidentialRental {
+                  bedrooms
+                  bathrooms
+                  carportSpaces
+                  garageSpaces
+                  openCarSpaces
+                }
+              }
+
+              vendors {
+                contact {
+                  firstName
+                  lastName
+                }
+              }
+
+              images {
+                url
+              }
+            }
+          }
+        }
+      `;
+
+      try {
+        // ✅ pass array instead of string
+        const variables = {
+          // first: 10,
+          status: ["DRAFT", "UNDER_OFFER", "ACTIVE"],
+        };
+
+        const res = await graphqlRequest(query, variables);
+
+        if (res?.data?.properties?.nodes) {
+          setData(res.data.properties.nodes);
+        }
+      } catch (error) {
+        console.error(error);
+        message.error("Failed to fetch properties");
+      }
+    };
+
+    fetchProperties();
+  }, []);
 
   return (
     <div className="container xl:px-0 px-12.5">
@@ -49,7 +131,7 @@ export function Buy() {
                   <Select.Option
                     key={opt}
                     value={opt}
-                    className=" !text-black !rounded-none font-monument"
+                    className="!text-black !rounded-none font-monument !bg-white"
                   >
                     <div className="font-monument text-[10px]">{opt}</div>
                   </Select.Option>
@@ -108,12 +190,27 @@ export function Buy() {
       </div>
 
       <FilteredProperties />
+
       <div className="my-12 xl:my-28">
-        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {properties.map((property, idx) => (
-            <Property property={property} key={idx} leaseTag={false} />
-          ))}
-        </div>
+        {Array.isArray(data) && data.length > 0 ? (
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {data.map((property, idx) => (
+              <Property
+                key={property.id || idx}
+                address={property?.formattedAddress}
+                image={property?.images?.[0]?.url}
+                price={property?.price}
+                bed={property?.listingDetails?.bedrooms ?? 0}
+                bathrooms={property?.listingDetails?.bathrooms ?? 0}
+                carportSpaces={property?.listingDetails?.carportSpaces ?? 0}
+                property={property}
+                leaseTag={false}
+              />
+            ))}
+          </div>
+        ) : (
+          <PropertiesNotFound />
+        )}
       </div>
     </div>
   );

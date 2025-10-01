@@ -24,8 +24,10 @@ const InstagramPosts = () => {
             {/* Mobile Carousel */}
             <div className="block xl:hidden py-4 md:py-18">
               <Carousel
-                slidesToShow={5}
+                // slidesToShow={5}
                 autoplay
+                arrows={true}
+                draggable={true}
                 dots={true}
                 responsive={[
                   {

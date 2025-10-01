@@ -1,11 +1,31 @@
-import { Button, Checkbox, Form, Input } from "antd";
-import React from "react";
+import { Button, Checkbox, Form, Input, message, Spin } from "antd";
+import React, { useState } from "react";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function ContactForm() {
   const [contactForm] = Form.useForm();
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {
-    console.log("Form Submitted:", values);
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:3001/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setLoading(false);
+        message.success("Your inquiry has been sent");
+        contactForm.resetFields();
+      } else {
+        message.error("Failed to send inquiry ❌");
+      }
+    } catch (error) {
+      message.error("Something went wrong ❌");
+    }
   };
 
   return (
@@ -34,7 +54,7 @@ export default function ContactForm() {
           onFinish={onFinish}
           className="!my-16 !md:my-0"
         >
-          {/* Type of Role */}
+          {/* Type of Inquiry */}
           <div className="py-18 hidden xl:block">
             <Form.Item
               name="roles"
@@ -43,38 +63,11 @@ export default function ContactForm() {
               <Checkbox.Group className="!rounded-none !border-black ">
                 <div className=" md:flex-row flex-col flex justify-between items-center md:gap-34 w-full">
                   <div className="font-bold font-moderat">Type Of Inquiry</div>
-                  <Checkbox
-                    value="Sales Agent"
-                    className="font-bold !rounded-none !border-black "
-                  >
-                    <span className="!text-base font-moderat font-bold pl-6">
-                      General
-                    </span>
-                  </Checkbox>
-                  <Checkbox
-                    value="Property Manager"
-                    className="font-bold !rounded-none !border-black !text-base !font-moderat"
-                  >
-                    <span className="!text-base !font-moderat pl-6">Buy</span>
-                  </Checkbox>
-                  <Checkbox
-                    value="Admin/Office Support"
-                    className="font-bold !rounded-none !border-black !text-base !font-moderat"
-                  >
-                    <span className="!text-base !font-moderat pl-6">Sell</span>
-                  </Checkbox>
-                  <Checkbox
-                    value="Marketing & Communications"
-                    className="font-bold !rounded-none !border-black !text-base !font-moderat"
-                  >
-                    <span className="!text-base font-moderat pl-6">Lease</span>
-                  </Checkbox>
-                  <Checkbox
-                    value="Other"
-                    className="font-bold !rounded-none !border-black !text-base !font-moderat"
-                  >
-                    <span className="!text-base !font-moderat pl-6">Other</span>
-                  </Checkbox>
+                  <Checkbox value="General">General</Checkbox>
+                  <Checkbox value="Buy">Buy</Checkbox>
+                  <Checkbox value="Sell">Sell</Checkbox>
+                  <Checkbox value="Lease">Lease</Checkbox>
+                  <Checkbox value="Other">Other</Checkbox>
                 </div>
               </Checkbox.Group>
             </Form.Item>
@@ -83,33 +76,38 @@ export default function ContactForm() {
           {/* Name and Email */}
           <div className="flex xl:flex-row flex-col items-stretch justify-between gap-7">
             <div className="w-full xl:w-1/2 !space-y-6">
+              {/* Full Name */}
               <Form.Item
-                name="fullName"
+                name="name"
                 label={
-                  <div className="!text-base !font-moderat-bold ">
-                    Full Name
-                  </div>
+                  <div className="!text-base !font-moderat-bold">Full Name</div>
                 }
-                className="font-bold"
-                rules={[{ message: "Please enter your name" }]}
+                rules={[
+                  { required: true, message: "Please enter your full name" },
+                ]}
               >
                 <Input
                   placeholder="Full Name"
                   className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
                 />
               </Form.Item>
+
+              {/* Contact Number */}
               <Form.Item
-                name="fullName"
+                name="contact"
                 label={
-                  <div className="!text-base !font-moderat-bold ">
+                  <div className="!text-base !font-moderat-bold">
                     Contact Number
                   </div>
                 }
-                className="font-bold"
                 rules={[
                   {
-                    message: "Please enter your name",
-                    type: "number",
+                    required: true,
+                    message: "Please enter your contact number",
+                  },
+                  {
+                    pattern: /^[0-9]{7,15}$/,
+                    message: "Please enter a valid phone number",
                   },
                 ]}
               >
@@ -118,45 +116,43 @@ export default function ContactForm() {
                   className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
                 />
               </Form.Item>
+
+              {/* Contact Email */}
               <Form.Item
-                name="fullName"
+                name="email"
                 label={
                   <div className="!text-base !font-moderat-bold">
                     Contact Email
                   </div>
                 }
-                className="font-bold"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter your name",
-                    type: "email",
-                  },
-                ]}
-              >
-                <Input
-                  placeholder="Contact Number"
-                  className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
-                />
-              </Form.Item>
-            </div>
-            <div className="w-full xl:w-1/2">
-              <Form.Item
-                name="email"
-                label={
-                  <div className="!text-base !font-moderat-bold">
-                    Your Message
-                  </div>
-                }
-                className="font-bold !h-full"
                 rules={[
                   { required: true, message: "Please enter your email" },
                   { type: "email", message: "Please enter a valid email" },
                 ]}
               >
+                <Input
+                  placeholder="Email"
+                  className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
+                />
+              </Form.Item>
+            </div>
+
+            {/* Message */}
+            <div className="w-full xl:w-1/2">
+              <Form.Item
+                name="message"
+                label={
+                  <div className="!text-base !font-moderat-bold">
+                    Your Message
+                  </div>
+                }
+                rules={[
+                  { required: true, message: "Please enter your message" },
+                ]}
+              >
                 <Input.TextArea
                   rows={12}
-                  placeholder="Email"
+                  placeholder="Message"
                   className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6 !h-full"
                 />
               </Form.Item>
@@ -168,9 +164,16 @@ export default function ContactForm() {
             <Button
               htmlType="submit"
               type="default"
-              className="!border !border-black !px-10 !py-4 !hover:bg-black !hover:text-white transition !rounded-none mt-4"
+              className="!border !border-black !px-10 !py-4 !hover:bg-black !hover:text-white transition !rounded-none mt-4 hover:!bg-black hover:!text-white"
             >
               Submit Inquiry
+              {loading && (
+                <Spin
+                  indicator={
+                    <LoadingOutlined className="text-sm text-black" spin />
+                  }
+                />
+              )}
             </Button>
           </Form.Item>
         </Form>

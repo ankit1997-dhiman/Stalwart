@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import Property from "@/common/properties/Property";
-import { properties } from "@/constants/constants";
 import { Property } from "@/common/properties/Property";
 import { graphqlRequest } from "@/utils/graphqlRequest";
+import { message } from "antd";
 
 export const CurrentProperties = () => {
   const [propertiesData, setPropertiesData] = useState([]);
@@ -10,52 +10,77 @@ export const CurrentProperties = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       const query = `query GetProperties($first: Int, $status: [PropertyStatusEnum!]) {
-        properties(first: $first, status: $status, orderBy: CREATED_AT_DESC) {
-          totalCount
-          nodes {
-            id
-            formattedAddress
-            status
-            saleOrLease
-            listingType
-            advertisedPrice
-            latitude
-            longitude
-            vendors {
-              contact {
-                firstName
-                lastName
-              }
-            }
-            images {
-              url
-            }
-            createdAt
-            updatedAt
-          }
+  properties(first: $first, status: $status, orderBy: CREATED_AT_DESC) {
+    totalCount
+    nodes {
+      id
+      price
+      formattedAddress
+      status
+      saleOrLease
+      listingType
+      advertisedPrice
+      latitude
+      longitude
+      createdAt
+      updatedAt
+
+      listingDetails {
+							  ... on ResidentialSale {
+								bedrooms
+								bathrooms
+								carportSpaces
+								garageSpaces
+								openCarSpaces
+								
+							  }
+							  ... on ResidentialRental {
+								bedrooms
+								bathrooms
+								carportSpaces
+								garageSpaces
+								openCarSpaces
+							  }
+							} 
+
+      vendors {
+        contact {
+          firstName
+          lastName
         }
       }
+
+      images {
+        url
+      }
+    }
+  }
+}
+
       `;
       try {
         const res = await graphqlRequest(query);
 
         if (res.data) {
-          console.log(res.data);
-          const properties = res.data.properties.nodes;
-          const active = properties.filter((p) => p.status === "ACTIVE");
-          const nonActive = properties.filter((p) => p.status !== "ACTIVE");
+          const propertiesdummy = res.data.properties.nodes;
+          const active = propertiesdummy.filter((p) => p.status === "ACTIVE");
+          // const nonActive = propertiesdummy.filter(
+          //   (p) => p.status !== "ACTIVE"
+          // );
+          const onlySaleProperties = res.data.properties.nodes;
+          const onlySale = onlySaleProperties.filter(
+            (property) => property.status === "SALE"
+          );
+          // const final = [...active, ...nonActive].slice(0, 4);
 
-          const final = [...active, ...nonActive].slice(0, 4);
-          setPropertiesData(final);
-          console.log(properties, "prop");
+          setPropertiesData(active);
         }
       } catch (error) {
-        console.log(error);
+        message.log(error);
       }
     };
     fetchProperties();
   }, []);
-  console.log(properties, "proptre gjhgjhgjhgjhgjhg");
 
   return (
     <section className="container pb-30 grid grid-cols-1 lg:grid-cols-4 gap-8 px-12.5 xl:px-0">
@@ -80,8 +105,17 @@ export const CurrentProperties = () => {
 
       {/* Right Grid */}
       <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {properties.map((property, idx) => (
-          <Property property={property} key={idx} />
+        {propertiesData.map((property, idx) => (
+          <Property
+            address={property.formattedAddress}
+            // property={property}
+            key={idx}
+            image={property?.images[0]?.url}
+            price={property.price}
+            bed={property.listingDetails.bedrooms}
+            bathrooms={property.listingDetails.bathrooms}
+            carportSpaces={property.listingDetails.carportSpaces}
+          />
         ))}
       </div>
     </section>

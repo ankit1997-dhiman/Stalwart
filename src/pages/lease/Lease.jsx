@@ -3,23 +3,99 @@ import {
   properties,
   topStatusOptions,
 } from "@/constants/constants";
-import { Button, Form, Input, Select } from "antd";
-import React from "react";
+import { Button, Form, Input, message, Select } from "antd";
+import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FilteredProperties } from "../buy/components/FilteredProperties";
 import { Property } from "@/common/properties/Property";
 import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
+import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
+import dummyImage from "@/assets/images/dummy-image.jpg";
 
 export const Lease = () => {
+  const [data, setData] = useState([]);
   const [filterLeaseForm] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Form Data:", values);
-  };
+  const onFinish = (values) => {};
 
-  console.log(bottomStatusOptions[0], 99);
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const query = `
+        query GetSaleProperties($first: Int, $status: [PropertyStatusEnum!]) {
+          properties(
+            first: $first
+            status: $status
+            orderBy: CREATED_AT_DESC
+          ) {
+            totalCount
+            nodes {
+              id
+              price
+              formattedAddress
+              status
+              saleOrLease
+              advertisedPrice
+              latitude
+              longitude
+              description
+              featured
+              createdAt
+              updatedAt
+
+              listingDetails {
+                ... on ResidentialSale {
+                  bedrooms
+                  bathrooms
+                  carportSpaces
+                  garageSpaces
+                  openCarSpaces
+                }
+                ... on ResidentialRental {
+                  bedrooms
+                  bathrooms
+                  carportSpaces
+                  garageSpaces
+                  openCarSpaces
+                }
+              }
+
+              vendors {
+                contact {
+                  firstName
+                  lastName
+                }
+              }
+
+              images {
+                url
+              }
+            }
+          }
+        }
+      `;
+
+      try {
+        // ✅ pass array instead of string
+        const variables = {
+          // first: 10,
+          status: ["DRAFT", "UNDER_OFFER", "ACTIVE"],
+        };
+
+        const res = await graphqlRequest(query, variables);
+
+        if (res?.data?.properties?.nodes) {
+          setData(res.data.properties.nodes);
+        }
+      } catch (error) {
+        console.error(error);
+        message.error("Failed to fetch properties");
+      }
+    };
+
+    fetchProperties();
+  }, []);
   return (
-    <div className="container">
+    <div className="container xl:px-0 px-12.5">
       <div className="w-full xl:w-[999px] mx-auto">
         <WithSectionLayout
           title={" PORTA AD DOMUN"}
@@ -98,7 +174,6 @@ export const Lease = () => {
                   }`}
                 >
                   {options?.map((opt) => {
-                    console.log(opt, 44);
                     return (
                       <Select.Option
                         key={opt}
@@ -118,11 +193,25 @@ export const Lease = () => {
 
       <FilteredProperties />
       <div className="my-28">
-        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {properties.map((property, idx) => (
-            <Property property={property} key={idx} leaseTag={false} />
-          ))}
-        </div>
+        {Array.isArray(data) && data.length > 0 ? (
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {data.map((property, idx) => (
+              <Property
+                key={property.id || idx}
+                address={property?.formattedAddress}
+                image={property?.images?.[0]?.url}
+                price={property?.price}
+                bed={property?.listingDetails?.bedrooms ?? 0}
+                bathrooms={property?.listingDetails?.bathrooms ?? 0}
+                carportSpaces={property?.listingDetails?.carportSpaces ?? 0}
+                property={property}
+                leaseTag={false}
+              />
+            ))}
+          </div>
+        ) : (
+          <PropertiesNotFound />
+        )}
       </div>
     </div>
   );
