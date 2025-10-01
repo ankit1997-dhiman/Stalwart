@@ -76,7 +76,7 @@ export const CurrentProperties = () => {
           setPropertiesData(active);
         }
       } catch (error) {
-        message.log(error);
+         message.error(error.message);
       }
     };
     fetchProperties();

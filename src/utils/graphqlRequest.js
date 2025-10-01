@@ -10,10 +10,10 @@ import api from "./api";
 export const graphqlRequest = async (query, variables = {}) => {
   try {
     const response = await api.post("", { query, variables });
-    // console.log(response, query, variables, "sdfasdf");
     return response.data; // contains { data, errors }
   } catch (error) {
-    message.error("GraphQL Error:", error.response?.data || error.message);
+    message.error(error.response?.data?.errors?.[0]?.message || error.message);
     throw error;
   }
 };
+
