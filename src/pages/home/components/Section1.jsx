@@ -212,6 +212,27 @@ export const Section1 = () => {
                 })}
               </Select>
             </Form.Item>
+            <Form.Item
+              name={"bathrooms"}
+              label={false}
+              className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
+            >
+              <Select
+                className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full`}
+              >
+                {bedrooms.map((item, idx) => {
+                  console.log(item);
+                  return (
+                    <Select.Option
+                      value={item}
+                      className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
+                    >
+                      <div className="font-monument text-[10px]">{item} +</div>
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
           </div>
         </Form>
 
