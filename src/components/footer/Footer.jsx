@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
 import logo from "@/assets/images/footer-logo.png";
 import { contactInfo, footerLinks, legalLinks } from "@/constants/footerLinks";
+import StickyButton from "@/common/Button/StickyButton";
+import EnquiryModal from "@/common/modal/EnquiryModal";
 
 export default function Footer() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {};
+  const onFinish = (values) => { };
 
   // Config for top links
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <footer className="bg-[#4A443E] text-white py-18 px-6">
+    <footer className="bg-[#4A443E] text-white py-18 px-6 ">
       <div className="container">
         {/* Top Links */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 mb-10 text-sm">
@@ -141,10 +151,15 @@ export default function Footer() {
             Peoples and their elders, past, present and future.
           </p>
           <p className="font-moderat text-sm text-white/60">
-            Design By Studio Corelands
+            <Link key="Corelands" to={URLS.CORELANDS} target="_blank">
+              Design By Studio Corelands
+            </Link>
           </p>
         </div>
+
+        <EnquiryModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </div>
+      <StickyButton handleClick={showModal} />
     </footer>
   );
 }

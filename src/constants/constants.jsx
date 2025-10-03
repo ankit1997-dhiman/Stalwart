@@ -13,12 +13,7 @@ export const bottomStatusOptions = [
   ["CAR", "1+", "2+", "3+", "4+", "5+", "6+"],
 ];
 export const bedrooms = [1, 2, 3, 4, 5, 6];
-//   "min. price": { 1: "Option 1B", 2: "Option 1C" },
-//   "max. price": { 1: "Option 2B", 2: "Option 2C" },
-//   bedrooms: { 1: "1+", 2: "2+", 3: "3+", 4: "4+", 5: "5+", 6: "6+" },
-//   bath: { 1: "1+", 2: "2+", 3: "3+", 4: "4+", 5: "5+", 6: "6+" },
-//   car: { 1: "1+", 2: "2+", 3: "3+", 4: "4+", 5: "5+", 6: "6+" },
-// };
+
 
 // Keys order if you want to keep the same layout as bottomStatusOptions
 export const keysOrder = [

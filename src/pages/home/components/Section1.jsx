@@ -8,40 +8,47 @@ import { graphqlRequest } from "@/utils/graphqlRequest";
 
 const { Option } = Select;
 
+// Reusable Select component
+const FilterSelect = ({ name, placeholder, options }) => ( 
+   <Form.Item name={name} label={false} className="!mb-0 !w-full !h-[50px]">
+    <Select
+      className="!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full"
+      placeholder={placeholder}
+    >
+      {options.map((item) => (
+        <Option key={item} value={item} className="!bg-[#4F4C45] !text-white !rounded-none font-monument text-[10px]">
+          <div className="font-monument text-[10px]">{item} +</div>
+        </Option>
+      ))}
+    </Select>
+  </Form.Item>
+);
+
 export const Section1 = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
 
   const onFinish = async (values) => {
-    console.log("Form values:", values); // Debug: check field names
-
     const filters = [];
 
-    // Mapping of form keys to API filter types and strategies
     const fieldMap = {
       bedrooms: { type: "BEDROOM", strategy: "IS_GREATER_THAN" },
       bathrooms: { type: "BATHROOM", strategy: "IS_GREATER_THAN" },
-      carspaces: { type: "CAR_SPACE", strategy: "IS_GREATER_THAN" },
-      // Add more mappings here if needed
+      car: { type: "CAR_SPACE", strategy: "IS_GREATER_THAN" },
     };
 
-    // Loop through fieldMap dynamically
-    Object.keys(fieldMap).forEach((key) => {
+    Object.entries(fieldMap).forEach(([key, config]) => {
       const value = values[key];
-
-      // Only add filter if value exists and is numeric
-      if (value !== undefined && value !== null && value !== "") {
-        const strValue = String(value).trim();
+      if (value) {
         filters.push({
-          type: fieldMap[key].type,
-          strategy: fieldMap[key].strategy,
-          value: strValue,
+          type: config.type,
+          strategy: config.strategy,
+          value: String(value).trim(),
           displayValue: null,
         });
       }
     });
 
-    // Add address filter separately if present
     if (values.address?.trim()) {
       filters.push({
         type: "ADDRESS",
@@ -51,66 +58,41 @@ export const Section1 = () => {
       });
     }
 
-    // Skip creating filterSet if no filters exist
-    if (filters.length === 0) {
-      console.log("No filters to apply, skipping filterSet.");
-      return;
-    }
+    if (!filters.length) return;
 
-    // Create a single filterGroup with all filters
     const filterSet = {
-      // operand: "AND",
-      filterGroups: [
-        {
-          operand: "AND",
-          filters,
-        },
-      ],
+      filterGroups: [{ operand: "AND", filters }],
     };
 
-    const variables = {
-      first: 10, // number of results to fetch
-      filterSet,
-    };
-
-    console.log("Variables payload:", JSON.stringify(variables, null, 2));
+    const variables = { first: 10, filterSet };
 
     const query = `
-    query GetFilteredProperties($first: Int, $filterSet: FilterSetAttributes) {
-      properties(first: $first, filterSet: $filterSet) {
-        totalCount
-        nodes {
-          id
-          address {
-            street
-            postcode
-          }
-          listingDetails {
-            ... on ResidentialSale {
-              bedrooms
-              bathrooms
+      query GetFilteredProperties($first: Int, $filterSet: FilterSetAttributes) {
+        properties(first: $first, filterSet: $filterSet) {
+          totalCount
+          nodes {
+            id
+            address { street postcode }
+            listingDetails {
+              ... on ResidentialSale { bedrooms bathrooms }
+              ... on ResidentialRental { bedrooms bathrooms }
             }
-            ... on ResidentialRental {
-              bedrooms
-              bathrooms
-            }
+            price
+            status
           }
-          price
-          status
         }
       }
-    }
-  `;
+    `;
 
     try {
       const res = await graphqlRequest(query, variables);
       if (res?.properties?.nodes) {
-        console.log("Filtered Properties:", res.properties.nodes);
+        setData(res.properties.nodes);
         message.success("Properties fetched successfully!");
       }
     } catch (error) {
-      console.error("GraphQL error:", error);
-      message.error("Failed to fetch properties. Check console for details.");
+      console.error(error);
+      message.error("Failed to fetch properties.");
     }
   };
 
@@ -128,26 +110,16 @@ export const Section1 = () => {
           form={form}
           onFinish={onFinish}
           layout="vertical"
-          initialValues={{
-            status: "BUY",
-            status0: "MIN. PRICE",
-            status1: "MAX. PRICE",
-            bedrooms: "BED",
-            status3: "BATH",
-            status4: "CAR",
-          }}
+          initialValues={{ status: "BUY", bedrooms: "BED", bathrooms: "BATH", car: "CAR" }}
+          className="placeholder-white"
         >
           {/* Top Row */}
           <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
             <Form.Item name="status" label={false} className="!mb-0">
-              <Select className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px]">
-                {topStatusOptions.map((opt, idx) => (
-                  <Option
-                    key={idx}
-                    value={opt}
-                    className="!bg-[#4F4C45] !text-white !rounded-none font-monument"
-                  >
-                    <div className="font-monument text-[10px]">{opt}</div>
+              <Select className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px] !placeholder:text-white uppercase" placeholder="BUY">
+                {topStatusOptions.map((opt) => (
+                  <Option key={opt} value={opt} className="!bg-[#4F4C45] !text-white !rounded-none font-monument !text-[10px]">
+                    {opt}
                   </Option>
                 ))}
               </Select>
@@ -159,10 +131,7 @@ export const Section1 = () => {
                 <AddressAutocomplete />
               </Form.Item>
 
-              <Button
-                htmlType="submit"
-                className="!h-[50px] ml-2 flex items-center justify-center bg-white !border-none"
-              >
+              <Button htmlType="submit" className="!h-[50px] ml-2 flex items-center justify-center bg-white !border-none">
                 <FaSearch className="mr-2" />
               </Button>
             </div>
@@ -170,69 +139,9 @@ export const Section1 = () => {
 
           {/* Bottom Row */}
           <div className="hidden xl:flex items-stretch justify-between gap-7.5 pb-4 w-full">
-            <Form.Item
-              name={"bedrooms"}
-              label={false}
-              className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
-            >
-              <Select
-                className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full`}
-              >
-                {bedrooms.map((item, idx) => {
-                  console.log(item);
-                  return (
-                    <Select.Option
-                      value={item}
-                      className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
-                    >
-                      <div className="font-monument text-[10px]">{item} +</div>
-                    </Select.Option>
-                  );
-                })}
-              </Select>
-            </Form.Item>
-            <Form.Item
-              name={"bathrooms"}
-              label={false}
-              className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
-            >
-              <Select
-                className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full`}
-              >
-                {bedrooms.map((item, idx) => {
-                  console.log(item);
-                  return (
-                    <Select.Option
-                      value={item}
-                      className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
-                    >
-                      <div className="font-monument text-[10px]">{item} +</div>
-                    </Select.Option>
-                  );
-                })}
-              </Select>
-            </Form.Item>
-            <Form.Item
-              name={"bathrooms"}
-              label={false}
-              className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument"
-            >
-              <Select
-                className={`!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full`}
-              >
-                {bedrooms.map((item, idx) => {
-                  console.log(item);
-                  return (
-                    <Select.Option
-                      value={item}
-                      className="!bg-[#4F4C45] !text-white !w-full !rounded-none font-monument text-[10px] font-normal"
-                    >
-                      <div className="font-monument text-[10px]">{item} +</div>
-                    </Select.Option>
-                  );
-                })}
-              </Select>
-            </Form.Item>
+            <FilterSelect name="bedrooms" placeholder="BED" options={bedrooms} />
+            <FilterSelect name="bathrooms" placeholder="BATH" options={bedrooms} />
+            <FilterSelect name="car" placeholder="CAR" options={bedrooms} />
           </div>
         </Form>
 

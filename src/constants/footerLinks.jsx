@@ -44,7 +44,16 @@ export const footerLinks = [
   },
   {
     title: "SOCIAL MEDIA",
-    links: ["Instagram", "Facebook", "LinkedIn"],
+    links: [
+      <Link key="Instagram" to={URLS.INSTAGRAM} target="_blank">
+        Instagram
+      </Link>,
+      <Link key="Facebook" to={URLS.FACEBOOK} target="_blank">
+        Facebook
+      </Link>,
+      <Link key="Facebook" to={URLS.LINKED_IN} target="_blank">
+        LinkedIn
+      </Link>],
   },
   {
     title: "CONTACT",
@@ -58,8 +67,8 @@ export const footerLinks = [
 ];
 
 export const contactInfo = [
-  { text: "0000 000 000" },
-  { text: "contactus@stalwart.com.au" },
+  { text: "+61 414 000 044" },
+  { text: "info@stalwartrealstate.com.au" },
 ];
 
 export const legalLinks = ["Terms & Conditions", "Privacy Policy"];

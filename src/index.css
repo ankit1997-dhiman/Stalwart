@@ -85,6 +85,12 @@ button {
 .ant-collapse-header {
   padding-left: 0px !important;
 }
+.placeholder-white .ant-select-selection-placeholder{
+  color: white;
+}
+.placeholder-white .ant-select-selection-item{
+  color: white;
+}
 
 @media only screen and (max-width: 768px) {
   .ant-carousel .slick-slide {
@@ -99,6 +105,9 @@ button {
   }
 }
 
-.ant-modal-content {
+.custom-modal .ant-modal-content {
   padding: 0px !important;
+}
+p{
+  margin: 0px;
 }

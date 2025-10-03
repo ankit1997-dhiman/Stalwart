@@ -12,11 +12,5 @@ export const Tab1 = () => {
       onClick
     />
   );
-  //   return Array(5)
-  //     .fill(0)
-  //     .map((_, idx) => (
-  //   <Carousel afterChange={onChange}>
-
-  //   </Carousel>
-  // ));
+ 
 };

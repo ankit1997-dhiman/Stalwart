@@ -41,7 +41,7 @@ export default function MeetOurTeam() {
   };
   return (
     <section className="bg-[#706C62] py-30 px-12.5 xl:px-0">
-      <div className="container flex flex-col xl:flex-row gap-12 items-start">
+      <div className="container flex flex-col xl:flex-row gap-12 items-start custom-modal">
         {/* Left Section */}
         <div className="xl:w-1/3 flex flex-col justify-center">
           <h2 className="text-xl font-semibold mb-4 uppercase text-white font-moderat-medium">
