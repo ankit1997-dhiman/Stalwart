@@ -9,7 +9,7 @@ export const WithSectionLayout = ({ title, leftText, rightText, midText }) => {
         </h4>
       )}
       {leftText || rightText || midText ? (
-        <p className="font-moderat-bold text-base text-center">
+        <p className="font-moderat-bold text-base text-center pb-5">
           {leftText && <span>{leftText}</span>}
           {midText && (
             <span className="mx-2 font-moderat-regular text-base">

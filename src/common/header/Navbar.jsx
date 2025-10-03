@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useMatch } from "react-router-dom";
 import { Drawer } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
@@ -13,10 +13,12 @@ export default function Navbar() {
 
   const location = useLocation();
   const { pathname } = location;
+  const matchProperty = useMatch("/property/:id")
 
   // Define the paths where Nav1 should be shown
 
-  const showNav1 = nav1Paths.includes(pathname);
+  const showNav1 = nav1Paths.includes(pathname) || matchProperty;
+
 
   const showDrawer = () => setOpen(true);
   const onClose = () => setOpen(false);
@@ -35,7 +37,7 @@ export default function Navbar() {
       <div
         className={`${
           showNav1 ? "" : ""
-        } container flex justify-between items-center py-14 `}
+        } container flex justify-between items-center py-14`}
       >
         <Link to={URLS.HOME}>
           <img

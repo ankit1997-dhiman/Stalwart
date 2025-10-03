@@ -11,7 +11,7 @@ export default function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const onFinish = (values) => { };
+  const onFinish = (values) => {};
 
   // Config for top links
   const showModal = () => {
@@ -157,9 +157,14 @@ export default function Footer() {
           </p>
         </div>
 
-        <EnquiryModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <EnquiryModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
       </div>
-      <StickyButton handleClick={showModal} />
+      <div className="flex items-center justify-center">
+        <StickyButton handleClick={showModal} />
+      </div>
     </footer>
   );
 }

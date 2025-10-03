@@ -6,7 +6,7 @@ export const URLS = {
   CAREERS: "/careers",
   ABOUT: "/about",
   BUY: "/buy",
-  PROPERTY:"/property",
+  PROPERTY:"/property/:id",
   SOLD_PROPERTIES: "/sold-properties",
   LEASE_PROPERTIES: "/leased-properties",
   LEASE: "/lease",

@@ -59,7 +59,7 @@ export const PropertyDetails = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container pt-30">
       <PropertySection
         image={image}
         title="3 Waitara Street, Logan Central | QLD 4114"

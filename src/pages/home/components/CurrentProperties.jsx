@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Property } from "@/common/properties/Property";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message } from "antd";
+import { Link } from "react-router-dom";
+import { URLS } from "@/constants/Urls";
 
 export const CurrentProperties = () => {
   const [propertiesData, setPropertiesData] = useState([]);
@@ -76,11 +78,12 @@ export const CurrentProperties = () => {
           setPropertiesData(active);
         }
       } catch (error) {
-         message.error(error.message);
+        message.error(error.message);
       }
     };
     fetchProperties();
   }, []);
+  console.log(propertiesData, 88);
 
   return (
     <section className="container pb-30 grid grid-cols-1 lg:grid-cols-4 gap-8 px-12.5 xl:px-0">
@@ -106,16 +109,18 @@ export const CurrentProperties = () => {
       {/* Right Grid */}
       <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
         {propertiesData.map((property, idx) => (
-          <Property
-            address={property.formattedAddress}
-            // property={property}
-            key={idx}
-            image={property?.images[0]?.url}
-            price={property.price}
-            bed={property.listingDetails.bedrooms}
-            bathrooms={property.listingDetails.bathrooms}
-            carportSpaces={property.listingDetails.carportSpaces}
-          />
+          <Link to={`/property/${property.id}`}>
+            <Property
+              address={property.formattedAddress}
+              // property={property}
+              key={idx}
+              image={property?.images[0]?.url}
+              price={property.price}
+              bed={property.listingDetails.bedrooms}
+              bathrooms={property.listingDetails.bathrooms}
+              carportSpaces={property.listingDetails.carportSpaces}
+            />
+          </Link>
         ))}
       </div>
     </section>

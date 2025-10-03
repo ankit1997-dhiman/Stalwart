@@ -10,7 +10,7 @@ const OurPhilosophy = () => {
         {/* <MyIcon className="w-6 h-6 text-blue-500" /> */}
         <img src={blackLogo} className="w-6 h-3 mb-15" />
         {/* <BiLogOut className="w-6 h-6 text-black  block" /> */}
-        <p className="text-xs md:text-base text-black mt-15 ont-moderat-medium">
+        <p className="text-xs md:text-base text-black mt-15 ont-moderat-medium pb-5">
           OUR PHILOSOPHY
         </p>
         <h4 className="text-base md:text-[32px] uppercase text-black mt-5 leading-6 sm:leading-10 w-full xl:w-2/3 font-moderat-medium font-medium">
@@ -29,7 +29,7 @@ const OurPhilosophy = () => {
 
         <div className="flex items-end justify-end gap-4 mt-8">
           <div className="w-[553px]  ">
-            <p className="text-[16px] font-light text-[#000000]">
+            <p className="text-[16px] font-moderat-regular text-[#000000] pb-5 leading-6">
               At Stalwart Real Estate, we help clients maximise the value of
               their property assets with minimal stress, delivering exceptional
               results through expert negotiation and thoughtful, strategic
