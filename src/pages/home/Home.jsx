@@ -15,7 +15,7 @@ export const Home = () => {
       <RequestAnAppraisal />
       <Section4 />
       <PropertiesTab />
-      <CurrentProperties />
+      <CurrentProperties  title="OUR CURRENT PROPERTIES"/>
       <OurStory />
       <Section8 />
       <InstagramPosts />

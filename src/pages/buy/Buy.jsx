@@ -193,7 +193,7 @@ export function Buy() {
 
       <div className="my-12 xl:my-28">
         {Array.isArray(data) && data.length > 0 ? (
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {data.map((property, idx) => (
               <Property
                 key={property.id || idx}

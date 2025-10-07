@@ -4,9 +4,10 @@ import { Property } from "@/common/properties/Property";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message } from "antd";
 import { Link } from "react-router-dom";
-import { URLS } from "@/constants/Urls";
+import IconImage from "@/assets/icons/black-arrow-right.svg"
+import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 
-export const CurrentProperties = () => {
+export const CurrentProperties = ({ title }) => {
   const [propertiesData, setPropertiesData] = useState([]);
 
   useEffect(() => {
@@ -86,30 +87,32 @@ export const CurrentProperties = () => {
   console.log(propertiesData, 88);
 
   return (
-    <section className="container pb-30 grid grid-cols-1 lg:grid-cols-4 gap-8 px-12.5 xl:px-0">
+    <section className="container flex flex-col lg:flex-row justify-between gap-16 lg:gap-7.5 px-12.5 xl:px-0 pt-9.5 pb-28">
       {/* Left Section */}
-      <div className="lg:col-span-1 flex flex-col justify-between">
-        <div>
-          <h2 className="text-base md:text-xl font-medium mb-7 md:mb-4 font-moderat-medium">
-            OUR CURRENT PROPERTIES
-          </h2>
-          <p className="text-black text-xs md:text-sm">
-            We specialise in Real Estate for Brisbane, Gold Coast, Logan,
-            Ipswich, Redland City and Toowoomba.
-          </p>
-          <a
-            href="#"
-            className="mt-16 inline-flex items-center font-semibold text-sm text-black hover:underline"
-          >
-            SEE ALL <span className="ml-2">→</span>
-          </a>
-        </div>
+      <div className="w-full lg:w-[553px]">
+        <p className="text-base md:text-2xl font-medium font-moderat-medium">
+          {title ? title : null}
+        </p>
+        <p className="text-black text-xs md:text-sm font-moderat-regular pt-7">
+          We specialise in Real Estate for Brisbane, Gold Coast, Logan, Ipswich,
+          Redland City and Toowoomba.
+        </p>
+       
+         <Link to="#" className="mt-6 lg:mt-16 inline-flex items-center font-semibold text-sm text-black">
+          <ButtonWithIcon
+            text="See All"
+            iconPosition="right"
+            iconImage={IconImage}
+            className="border-none font-bold font-moderat uppercase"
+          />
+        </Link>
+        
       </div>
 
       {/* Right Grid */}
-      <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className=" w-full lg:w-[1136px] grid grid-cols-1 lg:grid-cols-2 gap-12.5 lg:gap-7.5">
         {propertiesData.map((property, idx) => (
-          <Link to={`/property/${property.id}`}>
+          <Link to={`/property/${property.id}`} className="w-full">
             <Property
               address={property.formattedAddress}
               // property={property}

@@ -34,11 +34,11 @@ export default function ContactForm() {
         {/* Header */}
         <div className="flex flex-col xl:flex-row justify-between items-start md:items-center pt-16 md:pt-30 pb-3 md:pb-16">
           <div className="xl:w-3/5 w-full">
-            <p className="text-black text-xs md:text-4xl font-moderat-medium uppercase tracking-wide mb-5 ">
+            <p className="text-black text-xs md:text-4xl font-moderat-medium uppercase tracking-wide mb-5 pb-2.5 md:pb-5">
               HOW CAN WE HELP?
             </p>
           </div>
-          <p className="text-black text-xs md:text-sm xl:w-2/5 w-full font-moderat-regular">
+          <p className="text-black text-xs md:text-sm xl:w-2/5 w-full font-moderat-regular pb-2.5 md:pb-5">
             Whether you're looking to chat to a member of our team, enquire
             about working with us, or looking for an update on the market, we're
             here to help.

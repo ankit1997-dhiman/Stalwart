@@ -8,7 +8,7 @@ import blackLogo from "@/assets/images/header-black-logo.png";
 import { URLS } from "@/constants/Urls";
 import { menuItems, nav1Paths } from "@/constants/menuLinks";
 
-export default function Navbar() {
+export default function MobileNavbar() {
   const [open, setOpen] = useState(false);
 
   const location = useLocation();
@@ -38,9 +38,7 @@ export default function Navbar() {
   ];
 
   // useEffect(() => {}, [url]);
-  console.log(footerMenu, 99);
-
-  console.log(showNav1 , "Navbar" )
+  console.log("footerMenu,", showNav1,99);
 
   return (
     <>
@@ -52,14 +50,14 @@ export default function Navbar() {
       >
         <Link to={URLS.HOME}>
           <img
-            src={showNav1 ? blackLogo : whiteLogo}
+            src={showNav1 ? whiteLogo : blackLogo}
             alt="logo"
             className="w-[143px]"
           />
         </Link>
 
         <RxHamburgerMenu
-          className={`${showNav1 ? "text-black " : "text-white "}  text-xl`}
+          className={`${!showNav1 ? "text-black " : "text-white "}  text-xl`}
           onClick={showDrawer}
         />
       </div>

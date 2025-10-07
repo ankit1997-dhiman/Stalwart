@@ -123,18 +123,21 @@ const PropertiesTab = () => {
   ];
 
   return (
-    <section className="container py-30 xl:px-0">
-      <img src={image} className="h-2.5 w-5 mx-auto" />
-      <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-7 md:py-16 font-monument">
+    <section className="container py-22 xl:px-0">
+      <img src={image} className="h-4 w-7.5 mx-auto" />
+      <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-[64px] font-monument">
         REPLACE SUBHEADING
       </p>
-      <Tabs
-        activeKey={activeTab}
-        onChange={(key) => setActiveTab(key)}
-        centered
-        items={items}
-        tabBarGutter={100}
-      />
+      <div className="custom-tabs">
+        <Tabs
+          activeKey={activeTab}
+          onChange={(key) => setActiveTab(key)}
+          centered
+          items={items}
+          tabBarGutter={107}
+          className=""
+        />
+      </div>
     </section>
   );
 };

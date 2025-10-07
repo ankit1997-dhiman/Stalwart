@@ -12,9 +12,9 @@ const HeroSection = ({ title, bgImage }) => {
       <div className="container">
         <div className="flex items-center justify-between">
           <div>
-            <img src={logo} alt="logo" className="w-10" />
+            <img src={logo} alt="logo" className="w-5 lg:w-10" />
           </div>
-          <div className="text-white uppercase font-monument text-xl">
+          <div className="text-white uppercase font-monument text-sm lg:text-xl">
             {title ? title : ""}
           </div>
         </div>

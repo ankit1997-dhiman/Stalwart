@@ -212,7 +212,7 @@ export default function AddressAutocomplete({
   }, [value]);
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" , width:"100%"} }>
       <Input
         value={input}
         onChange={(e) => {

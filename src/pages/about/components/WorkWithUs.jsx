@@ -9,29 +9,29 @@ export default function WorkWithUs() {
         {/* Left Content */}
         <div className="xl:w-4/6 flex flex-col justify-between items-stretch">
           <div>
-            <h4 className="text-sm uppercase mb-4 tracking-wide font-moderat-medium">
+            <p className="text-[10px] md:text-[10px] xl:text-sm uppercase mb-4 tracking-wide font-moderat-medium pb-2.5 md:pb-5">
               Stalwart Careers
-            </h4>
-            <h2 className="text-3xl font-medium uppercase mb-6 font-moderat-medium">
+            </p>
+            <p className="text-xl xl:text-3xl font-medium uppercase mb-6 font-moderat-medium pb-2.5 md:pb-5">
               Work With Us
-            </h2>
+            </p >
           </div>
           <div className="block xl:hidden py-8">
             <img
               src={image}
               alt="Work With Us"
-              className="w-full h-auto object-cover "
+              className="w-full object-cover h-[300px] md:h-[350px] lg:[350px] "
             />
           </div>
           <div>
-            <p className="mb-8 font-moderat-regular text-sm">
+            <p className="mb-8 font-moderat-regular text-sm pb-2.5 md:pb-5">
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <a className="flex transition py-14.5 md:py-0 font-moderat-bold uppercase text-sm">
+            <a className="flex transition py-7.5 md:py-0 font-moderat-bold uppercase text-sm">
               Apply Now
               <span className="pl-3">
                 <CgArrowLongRight className="text-xl " />
@@ -45,7 +45,7 @@ export default function WorkWithUs() {
           <img
             src={image}
             alt="Work With Us"
-            className="w-full h-auto object-cover rounded"
+            className="w-full object-cover rounded"
           />
         </div>
       </div>

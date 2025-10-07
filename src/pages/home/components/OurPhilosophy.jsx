@@ -13,12 +13,12 @@ const OurPhilosophy = () => {
         <p className="text-xs md:text-base text-black mt-15 ont-moderat-medium pb-5">
           OUR PHILOSOPHY
         </p>
-        <h4 className="text-base md:text-[32px] uppercase text-black mt-5 leading-6 sm:leading-10 w-full xl:w-2/3 font-moderat-medium font-medium">
+        <h4 className="text-base md:text-[32px] uppercase text-black mt-5 leading-6 sm:leading-10 w-full lg:w-[845px] font-moderat-medium font-medium">
           Attention to detail combined with the finest craftsmanship and
           quality. 
         </h4>
         <div
-          className="bg-cover h-[189px] my-12.5 bg-no-repeat bg-center sm:hidden"
+          className="bg-cover h-[189px] my-12.5 lg:my-18 bg-no-repeat bg-center sm:hidden"
           style={{ backgroundImage: `url(${mobileImage})` }}
         ></div>
 
@@ -27,8 +27,8 @@ const OurPhilosophy = () => {
           style={{ backgroundImage: `url(${image})` }}
         ></div>
 
-        <div className="flex items-end justify-end gap-4 mt-8">
-          <div className="w-[553px]  ">
+        <div className="flex items-end justify-end gap-4">
+          <div className="w-full lg:w-[553px]  ">
             <p className="text-[16px] font-moderat-regular text-[#000000] pb-5 leading-6">
               At Stalwart Real Estate, we help clients maximise the value of
               their property assets with minimal stress, delivering exceptional

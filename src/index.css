@@ -19,7 +19,7 @@ button {
 }
 @font-face {
   font-family: Moderat-Regular;
-  src: url("../src/assets/fonts/Moderat-Regular.woff");
+  src: url("../src/assets/fonts/Moderat-Regular.ttf");
 }
 @font-face {
   font-family: Moderat-Bold;
@@ -43,6 +43,7 @@ button {
   --font-moderat-light: Moderat-Light, "sans-serif";
   --font-miller-light: Miller-Light, "sans-serif";
 }
+
 .custom-field .ant-select-selector {
   border-radius: 0px !important;
   border: 0px !important;
@@ -50,7 +51,7 @@ button {
   line-height: 22px;
 }
 .container {
-  max-width: 1340px;
+   /* max-width: 1300px; */
   margin: 0 auto;
 }
 @media only screen and (min-width: 1600px) {
@@ -77,7 +78,7 @@ button {
 }
 
 .ant-carousel .slick-list {
-  padding: 0px 0px 0px -20px !important; /* compensate outer spacing */
+  padding: 0px 0px 0px -20px !important; 
 }
 .custom-select-field .ant-select-selector {
   border: none !important;
@@ -108,6 +109,24 @@ button {
 .custom-modal .ant-modal-content {
   padding: 0px !important;
 }
+
 p{
   margin: 0px;
+}
+.ant-checkbox-inner{
+  border: solid 1px black;
+  border-radius: 0px;
+}
+.custom-tabs .ant-tabs-content-holder{
+  padding-top: 72px;
+}
+.custom-tabs .ant-tabs-tab{
+  padding: 0px;
+}
+.custom-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #000 !important;
+}
+
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #000 !important;
 }

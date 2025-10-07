@@ -9,100 +9,104 @@ import Insta4 from "../../../assets/images/image-4.png";
 import Insta5 from "../../../assets/images/image-5.png";
 import Insta6 from "../../../assets/images/image-6.png";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
 const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];
 
 const InstagramPosts = () => {
   return (
-    <div className="bg-[#F4F2F0] px-12.5 xl:px-0">
+    <div className="bg-[#F4F2F0] py-16.5 px-12.5 xl:px-0">
       <div className="container">
-        <div className="pt-16 pb-12">
-          <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
-            <h2 className="text-[40px] font-light font-miller-light">
+        <div className="lg:pt-18">
+          <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between lg:gap-6">
+            <p className="text-2xl md:text-[40px] font-light font-miller-light pb-12">
               Keep Up With Us On Instagram
-            </h2>
+            </p>
 
             {/* Mobile Carousel */}
-            <div className="block xl:hidden py-4 md:py-18">
-              <Carousel
-                // slidesToShow={5}
-                autoplay
-                arrows={true}
-                draggable={true}
-                dots={true}
-                responsive={[
-                  {
-                    breakpoint: 768,
-                    settings: {
-                      slidesToShow: 2,
-                    },
-                  },
-                ]}
+            <div className="block xl:hidden">
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={10}
+                slidesPerView={3}
+                loop={true}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: true,
+                }}
+                className="mySwiper h-full"
               >
                 {images.map((src, idx) => (
-                  <div key={idx} className="w-full !mx-4">
+                  <SwiperSlide key={idx} className="w-full">
                     <img
                       src={src}
                       alt={`Insta ${idx}`}
                       className="w-full object-cover"
                     />
-                  </div>
+                  </SwiperSlide>
                 ))}
-              </Carousel>
+              </Swiper>
             </div>
 
             {/* Form */}
-            <div className="xl:w-1/2">
-              <p className="pb-7.5">
+            <div className="lg:w-1/2">
+              <p className="pt-26 md:pt-0 font-moderat-regular leading-[20px] text-[#4F4C45] text-sm w-full md:w-[553px]">
                 Subscribe to get the latest insider tips, market updates and
                 access to the hottest deals as they come on the market.
               </p>
-              <form className="flex flex-col sm:flex-row gap-4 w-full">
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="flex-1 border-b border-gray-400 bg-transparent focus:outline-none"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="flex-1 border-b border-gray-400 bg-transparent focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="border-b border-black text-sm font-medium"
-                >
-                  Submit
-                </button>
+              <form className="justify-baseline pt-7.5 lg:pt-7.5">
+                <div className="border-b border-gray-400 bg-transparent focus:outline-none flex justify-between flex-col md:flex-row gap-10 lg:gap-0">
+                  <div className="flex flex-row flex-wrap justify-evenly gap-5 md:gap-0">
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="flex-1 placeholder:text-[#4F4C45]/60 pb-3 border-b border-[#4F4C45] md:border-0 w-1/2 lg:w-full"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email Address"
+                      className="flex-1 placeholder:text-[#4F4C45]/60 pb-3 border-b border-[#4F4C45] md:border-0 w-1/2 lg:w-full"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="text-sm font-medium text-left lg:text-right text-[#4F4C45]/60 pb-3"
+                  >
+                    <span className="text-[#4F4C45]/60">Submit</span>
+                  </button>
+                </div>
               </form>
             </div>
           </div>
         </div>
 
         {/* Desktop Carousel */}
-        <div className="hidden xl:block py-4 md:py-18">
-          <Carousel
-            slidesToShow={5}
-            autoplay
-            dots={true}
-            responsive={[
-              {
-                breakpoint: 768,
-                settings: {
-                  slidesToShow: 2,
-                },
-              },
-            ]}
+        <div className="hidden xl:block md:py-20">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={5}
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: true,
+            }}
+            // pagination={{ clickable: true }}
+            // navigation
+            className="mySwiper h-full"
           >
             {images.map((src, idx) => (
-              <div key={idx} className="w-full !mx-4">
+              <SwiperSlide key={idx} className="w-full">
                 <img
                   src={src}
                   alt={`Insta ${idx}`}
                   className="w-full object-cover"
                 />
-              </div>
+              </SwiperSlide>
             ))}
-          </Carousel>
+          </Swiper>
         </div>
       </div>
     </div>

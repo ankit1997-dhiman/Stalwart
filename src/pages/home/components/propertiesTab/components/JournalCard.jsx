@@ -1,21 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const JournalCard = ({ image, title, description }) => {
   return (
     <div className="bg-white border flex ">
       <div className="w-[45%]">
-        <img src={image} alt={title} className="h-full  object-cover" />
+        <img src={image} alt={title} className="h-full object-cover" />
       </div>
       <div className="p-4 w-[55%]">
-        <h4 className="text-base font-medium md:text-lg mb-2 font-moderat-medium">
+        <p className="text-base font-medium md:text-lg font-moderat-medium">
           {title}
-        </h4>
-        <p className="text-[10px] md:text-sm text-black pt-7.5 mb-2.5 font-moderat-light">
+        </p>
+        <p className="text-[10px] md:text-xs text-black pt-8 font-moderat-light">
           {description}
         </p>
-        <a href="#" className="!font-moderat-bold !text-xs  hover:underline">
-          SEE MORE
-        </a>
+        <div className="mt-2.5">
+          <Link to="#" className="font-moderat-bold text-xs ">
+            SEE MORE
+          </Link>
+        </div>
       </div>
     </div>
   );

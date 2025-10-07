@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../../assets/images/Stalwart_Logo.png";
-import bgImage from "../../../assets/images/section-2-image.png";
+import bgImage from "../../../assets/images/our-story-bg-image.png";
 
 const Section7 = () => {
   return (
@@ -21,12 +21,12 @@ const Section7 = () => {
         </div>
 
         {/* Title */}
-        <h2 className="text-2xl tracking-wide pt-10 font-miller-light">
+        <p className="text-2xl lg:text-3xl tracking-wide pt-10 font-miller-light">
           Nostra Fabula
-        </h2>
+        </p>
 
         {/* Subtitle */}
-        <p className="text-xs font-normal mt-1 uppercase tracking-widest font-monument">
+        <p className="text-[10px] lg:text-xs pt-2.5 font-normal uppercase tracking-widest font-monument">
           Our Story
         </p>
       </div>

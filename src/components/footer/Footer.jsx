@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
-import logo from "@/assets/images/footer-logo.png";
+import logo from "@/assets/icons/logo-footer.svg";
 import { contactInfo, footerLinks, legalLinks } from "@/constants/footerLinks";
 import StickyButton from "@/common/Button/StickyButton";
 import EnquiryModal from "@/common/modal/EnquiryModal";
@@ -26,13 +26,13 @@ export default function Footer() {
     <footer className="bg-[#4A443E] text-white py-18 px-6 ">
       <div className="container">
         {/* Top Links */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 mb-10 text-sm">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm">
           {footerLinks.map((section) => (
             <div key={section.title}>
-              <h3 className="font-semibold mb-10">{section.title}</h3>
-              <ul className="space-y-2">
+              <p className="font-semibold pb-10 text-[11px] font-monument">{section.title}</p>
+              <ul className="space-y-1">
                 {section.links.map((link, i) => (
-                  <li key={i}>{link}</li>
+                  <li key={i} className="font-moderat-regular text-[14px]">{link}</li>
                 ))}
               </ul>
             </div>
@@ -41,9 +41,9 @@ export default function Footer() {
 
         {/* Sign-up Form */}
         <div>
-          <h3 className="mb-4 text-lg font-medium py-12">
+          <p className="lg:text-[25px] font-medium font-miller-light leading-10 py-12.5">
             Sign Up For Latest Property Results
-          </h3>
+          </p>
           <Form
             form={form}
             onFinish={onFinish}
@@ -56,11 +56,11 @@ export default function Footer() {
                 rules={[
                   { required: true, message: "Please enter your first name" },
                 ]}
-                className="w-full border-b border-white text-white"
+                className="w-full border-b border-white text-white !m-0 "
               >
                 <Input
                   placeholder="First Name*"
-                  className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0"
+                  className="w-full !bg-transparent !text-white !placeholder-white placeholder:font-moderat-regular !py-3 !border-0 !px-0"
                 />
               </Form.Item>
 
@@ -69,11 +69,11 @@ export default function Footer() {
                 rules={[
                   { required: true, message: "Please enter your last name" },
                 ]}
-                className="w-full border-b border-white text-white"
+                className="w-full border-b border-white text-white !m-0"
               >
                 <Input
                   placeholder="Last Name*"
-                  className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0"
+                  className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0 !px-0"
                 />
               </Form.Item>
             </div>
@@ -84,32 +84,32 @@ export default function Footer() {
                 { required: true, message: "Please enter your email" },
                 { type: "email", message: "Please enter a valid email" },
               ]}
-              className="w-full border-b border-white text-white"
+              className="w-full border-b border-white text-white !m-0 !pt-8"
             >
               <Input
                 placeholder="Email*"
-                className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0"
+                className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0 !px-0"
               />
             </Form.Item>
 
-            <div className="flex flex-col md:flex-row gap-6 md:gap-20">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-20 pt-8">
               <Form.Item
                 name="phone"
                 rules={[
                   { required: true, message: "Please enter your phone number" },
                 ]}
-                className="w-full border-b border-white text-white"
+                className="w-full border-b border-white text-white !m-0"
               >
                 <Input
                   placeholder="Phone*"
-                  className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0"
+                  className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0 !px-0"
                 />
               </Form.Item>
 
-              <Form.Item className="col-span-1 flex items-end">
+              <Form.Item className="col-span-1 flex items-end !m-0">
                 <Button
                   htmlType="submit"
-                  className="!bg-transparent !text-white !px-10 !rounded-none !py-5 hover:bg-gray-300 transition font-medium w-full !border !border-white"
+                  className="!bg-transparent !text-white !px-10 !rounded-none hover:bg-gray-300 transition font-medium !border !border-white lg:w-[268px] !h-[48px]"
                 >
                   Subscribe
                 </Button>
@@ -119,11 +119,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-xs text-gray-300 pt-12 w-full">
+        <div className="flex flex-wrap flex-col md:flex-row justify-between items-start md:items-center text-xs text-gray-300 pt-18 w-full">
           <div className="flex flex-col md:flex-row gao-3 md:gap-18">
             <img src={logo} alt="Logo" className="h-6" />
 
-            <ul className="py-6 xl:py-0">
+            <ul className="pb-6 xl:py-0">
               {contactInfo.map((item, i) => (
                 <li key={i} className="font-moderat text-sm text-white/60">
                   {item.text}
@@ -144,7 +144,7 @@ export default function Footer() {
         </div>
 
         {/* Acknowledgement */}
-        <div className="flex md:flex-row flex-col justify-between item-start md:items-center pt-7">
+        <div className="flex md:flex-row flex-col justify-between item-start md:items-center gap-7 pt-11">
           <p className="font-moderat text-sm text-white/60">
             We respectfully acknowledge the Traditional Owners of the land on
             which we work and learn, and pay respect to the First Nations

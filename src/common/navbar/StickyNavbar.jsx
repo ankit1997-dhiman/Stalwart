@@ -7,7 +7,7 @@ import TranslateLogo from "@/assets/icons/translate.svg";
 
 export const StickyNavbar = () => {
   return (
-    <div className="container flex justify-between items-center">
+    <div className="container  justify-between items-center  xl:flex hidden">
       <div>
         <Link to={URLS.HOME}>
           <img src={logoBlack} alt="logo" className="w-6 h-3" />
