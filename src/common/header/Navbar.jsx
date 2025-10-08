@@ -37,18 +37,13 @@ export default function Navbar() {
     },
   ];
 
-  // useEffect(() => {}, [url]);
-  console.log(footerMenu, 99);
-
-  console.log(showNav1 , "Navbar" )
-
   return (
     <>
       {/* Navbar */}
       <div
         className={`${
           showNav1 ? "" : ""
-        } container flex justify-between items-center py-14 `}
+        } container flex justify-between items-center pt-14 `}
       >
         <Link to={URLS.HOME}>
           <img

@@ -23,7 +23,7 @@ const LandingStep = () => (
     <Form.Item
       name="address"
       label={false}
-      className="!mb-0 !w-full !rounded-xl"
+      className="!mb-0 !w-full !rounded-xl "
       rules={[{ required: true, message: "Please enter your address" }]}
     >
       <AddressAutocomplete />
@@ -90,7 +90,6 @@ const ConfirmDetailsStep = () => (
               : Promise.reject("You must agree to continue"),
         },
       ]}
-      
     >
       <Checkbox>
         Don’t worry, we never pass your details onto any third parties. By
@@ -158,7 +157,10 @@ const SellWithStalwart = () => {
   const steps = [
     { title: "Landing", content: <LandingStep /> },
     { title: "Confirm your details", content: <ConfirmDetailsStep /> },
-    { title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?", content: <TenantedStep /> },
+    {
+      title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
+      content: <TenantedStep />,
+    },
     { title: "WHEN ARE YOU THINKING OF SELLING?", content: <AppointedStep /> },
   ];
 
@@ -167,7 +169,7 @@ const SellWithStalwart = () => {
     return (
       <>
         <section
-          className="relative h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0"
+          className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[86px]"
           style={{ backgroundImage: `url(${bgImage})` }}
         >
           <p className="font-monument text-[15px] lg:text-xl font-medium text-white text-center pb-6 lg:pb-10 uppercase">
@@ -178,7 +180,7 @@ const SellWithStalwart = () => {
             form={form}
             onFinish={() => next()}
             preserve={true}
-            className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between bg-white"
+            className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between z-20"
           >
             <LandingStep />
 
@@ -273,7 +275,7 @@ const SellWithStalwart = () => {
 
   // Inner Steps
   return (
-    <div className="relative">
+    <div className="relative -mt-[86px]">
       <div className="flex container justify-between items-center gap-50 h-screen">
         {/* Left Side */}
         <div className="w-[60%] pt-18 pr-60">

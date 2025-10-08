@@ -6,7 +6,7 @@ import {
   properties,
   topStatusOptions,
 } from "@/constants/constants";
-import { FilteredProperties } from "../buy/components/FilteredProperties";
+// import { FilteredProperties } from "../buy/components/FilteredProperties";
 import { Property } from "@/common/properties/Property";
 import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 
@@ -102,7 +102,7 @@ export function LeasedProperties() {
         </Form>
       </div>
 
-      <FilteredProperties />
+      {/* <FilteredProperties /> */}
       <div className="my-28">
         <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {properties.map((property, idx) => (

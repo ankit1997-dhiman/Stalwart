@@ -176,7 +176,7 @@ export default function AddressAutocomplete({
     };
   }, [input, loaded, country, finalized]);
 
-  // keyboard navigation
+
   const onKeyDown = (e) => {
     if (!suggestions.length) return;
     if (e.key === "ArrowDown") {
@@ -197,7 +197,7 @@ export default function AddressAutocomplete({
   function handleSelect(suggestion) {
     const formatted = suggestion.displayName || suggestion.address || "";
     suppressFetchRef.current = true;
-    setFinalized(true); // ✅ lock dropdown
+    setFinalized(true); 
     setInput(formatted);
     setSuggestions([]);
 
@@ -217,13 +217,12 @@ export default function AddressAutocomplete({
         value={input}
         onChange={(e) => {
           setInput(e.target.value);
-          setSuggestions([]); // clear old list
-          setFinalized(false); // ✅ user typed → unlock dropdown
+          setSuggestions([]); 
+          setFinalized(false); 
           if (onChange) onChange(e.target.value);
         }}
         onKeyDown={onKeyDown}
-        placeholder="Start typing an address..."
-        className="!border-none !h-[50px] !font-moderat-medium !text-sm !outline-white !w-full"
+        className="!border-none !h-[50px] !text-[12px] !outline-white !w-full !rounded-none !font-monument"
       />
 
       {loading && !finalized && (

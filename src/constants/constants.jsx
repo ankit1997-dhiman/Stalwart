@@ -8,8 +8,8 @@ export const topStatusOptions = ["BUY", "SELL", "LEASE"];
 
 // Bottom row options (can be different for each select)
 export const bottomStatusOptions = [
-  ["MIN. PRICE", "Option 1B", "Option 1C"],
-  ["MAX. PRICE", "Option 2B", "Option 2C"],
+  // ["MIN. PRICE", "Option 1B", "Option 1C"],
+  // ["MAX. PRICE", "Option 2B", "Option 2C"],
   ["BED", "1+", "2+", "3+", "4+", "5+", "6+"],
   ["BATH", "1+", "2+", "3+", "4+", "5+", "6+"],
   ["CAR", "1+", "2+", "3+", "4+", "5+", "6+"],

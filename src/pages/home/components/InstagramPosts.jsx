@@ -14,9 +14,9 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];
 
-const InstagramPosts = () => {
+const InstagramPosts = ({backGroundWhite}) => {
   return (
-    <div className="bg-[#F4F2F0] py-16.5 px-12.5 xl:px-0">
+    <div className={`${backGroundWhite ? "bg-white" :"bg-[#F4F2F0]" }  py-16.5 px-12.5 xl:px-0 `}>
       <div className="container">
         <div className="lg:pt-18">
           <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between lg:gap-6">

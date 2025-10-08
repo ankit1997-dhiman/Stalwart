@@ -67,10 +67,10 @@ button {
 }
 
 .ant-select-dropdown {
-  background-color: transparent !important;
+  /* background-color: transparent !important; */
   padding: 0px !important;
 }
-.ant-select-arrow {
+.placeholder-white .ant-select-arrow {
   color: white !important;
 }
 .ant-carousel .slick-slide {
@@ -130,3 +130,41 @@ p{
 .custom-tabs .ant-tabs-ink-bar {
   background-color: #000 !important;
 }
+
+.custom-field .ant-input{
+   border: none !important;
+  font-family: Monument;
+}
+
+.custom-field .ant-select-selector{
+  border: 0px ;
+  font-family: Monument;
+  padding: 0px 24px;
+  font-size: 10px;
+}
+.custom-field .ant-select-selection-item{
+  font-size: 10px;
+}
+.inquiry-form .ant-input {
+  background-color: #4f4c45 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0px;
+  font-family: Monument;
+  font-size: 10px;
+  padding: 0px 24px;
+}
+.inquiry-form  .ant-select-arrow{
+  color: black;
+}
+.inquiry-form  .ant-select-selection-placeholder{
+  color: black;
+  font-size: 10px;
+
+}
+.inquiry-form .ant-select-selector{
+  border: 0px ;
+  font-family: Monument;
+  padding: 0px 24px;
+}
+

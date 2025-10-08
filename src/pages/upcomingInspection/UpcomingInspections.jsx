@@ -6,7 +6,6 @@ import {
 } from "@/constants/constants";
 import { Button, Form, Input, Select } from "antd";
 import React from "react";
-import { FilteredProperties } from "../buy/components/FilteredProperties";
 import AuctionCard from "../upcomingAuction/components/AuctionCard";
 import { FaSearch } from "react-icons/fa";
 
@@ -104,7 +103,6 @@ export default function UpcomingInspections() {
         </Form>
       </div>
 
-      <FilteredProperties />
       {properties.map((item, idx) => {
         return (
           <AuctionCard

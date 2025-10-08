@@ -7,7 +7,7 @@ import {
 import { Button, Form, Input, Select } from "antd";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
-import { FilteredProperties } from "../buy/components/FilteredProperties";
+// import { FilteredProperties } from "../buy/components/FilteredProperties";
 import AuctionCard from "./components/AuctionCard";
 
 export default function UpcomingAuction() {
@@ -104,7 +104,7 @@ export default function UpcomingAuction() {
         </Form>
       </div>
 
-      <FilteredProperties />
+      {/* <FilteredProperties /> */}
       {properties.map((item, idx) => {
         return (
           <AuctionCard

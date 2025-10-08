@@ -9,40 +9,53 @@ const Header = () => {
   const location = useLocation();
   const { pathname } = location;
 
-  // Define the paths where Nav1 should be shown
-
   const showNav1 = nav1Paths.includes(pathname);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      const currentScroll = window.scrollY;
+      if (currentScroll > 10 && currentScroll > lastScrollY) {
         setIsSticky(true);
-      } else {
+      } else if (currentScroll < lastScrollY - 5) {
         setIsSticky(false);
       }
+      lastScrollY = currentScroll;
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
-    <div className="px-12.5 xl:px-0 ">
-      {isSticky ? (
-        <div
-          className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-white xl:block hidden`}
-        >
-          <StickyNavbar />
-        </div>
-      ) : (
-        <div className={`${showNav1 ? "" : "-mb-36"} bg-transparent  !z-50`}>
-          {/* Normal Header */}
-          <Navbar />
-        </div>
-      )}
+    <div className="px-12.5 xl:px-0 relative z-50">
+      {/* Always render both navbars, just animate visibility */}
+      {/* <div
+        className={`fixed top-0 left-0 w-full z-50 transform transition-transform duration-500 ease-in-out will-change-transform ${
+          isSticky ? "translate-y-0 opacity-100 bg-white shadow-md" : "-translate-y-full opacity-0 bg-transparent"
+        } xl:block hidden`}
+      > */}
+      <div
+        className={`fixed top-0 left-0 w-full transform transition-transform duration-500 ease-in-out will-change-transform ${
+          isSticky
+            ? "z-50 translate-y-0 opacity-100 bg-white"
+            : "z-0 -translate-y-full opacity-0 bg-transparent"
+        } xl:block hidden`}
+      >
+        <StickyNavbar />
+      </div>
+
+      <div
+        className={`transition-opacity duration-300 ${
+          isSticky ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <Navbar />
+      </div>
     </div>
   );
 };

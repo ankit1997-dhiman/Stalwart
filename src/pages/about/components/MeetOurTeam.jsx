@@ -2,7 +2,9 @@ import { Grid, Modal } from "antd";
 import TeamPopup from "./TeamPopup";
 import React, { useState } from "react";
 import image from "../../../assets/images/Team.png";
-import { CgArrowLongRight } from "react-icons/cg";
+import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
+import { Link } from "react-router-dom";
+import IconImage from "@/assets/icons/Arrow-right.png"
 const { useBreakpoint } = Grid;
 
 const teamMembers = [
@@ -44,21 +46,22 @@ export default function MeetOurTeam() {
       <div className="container flex flex-col xl:flex-row gap-12 items-start custom-modal">
         {/* Left Section */}
         <div className="xl:w-1/3 flex flex-col justify-center">
-          <h2 className="text-xl font-semibold mb-4 uppercase text-white font-moderat-medium">
+          <p className="text-xl lg:text-2xl font-semibold uppercase text-white font-moderat-medium">
             Meet Our Team
-          </h2>
-          <p className="text-white mb-6 font-moderat-regular">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
           </p>
-          <a className="inline-flex items-center text-white  transition py-14.5 md:py-0 font-moderat-bold uppercase text-sm">
-            Learn More{" "}
-            <span className="pl-3">
-              <CgArrowLongRight className="text-xl " />
-            </span>
-          </a>
+          <p className="text-white font-moderat-regular pt-10 lg:text-base">
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+
+          <Link to="#">
+            <ButtonWithIcon
+              text=" Learn More"
+              iconPosition="right"
+              iconImage={IconImage}
+              className="border-none bg-none !text-white font-bold font-moderat pt-15 text-sm"
+            />
+          </Link>
+          
         </div>
 
         {/* Right Section - Team Grid */}

@@ -9,10 +9,10 @@ import { graphqlRequest } from "@/utils/graphqlRequest";
 const { Option } = Select;
 
 // Reusable Select component
-const FilterSelect = ({ name, placeholder, options }) => ( 
+ const FilterSelect = ({ name, placeholder, options }) => ( 
    <Form.Item name={name} label={false} className="!mb-0 !w-full !h-[50px]">
     <Select
-      className="!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full"
+      className="!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full !placeholder:text-[10px]"
       placeholder={placeholder}
     >
       {options.map((item) => (
@@ -98,7 +98,7 @@ export const Section1 = () => {
 
   return (
     <section
-      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 custom-field"
+      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 custom-field -mt-[86px]"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="w-[999px]">
@@ -116,7 +116,7 @@ export const Section1 = () => {
           {/* Top Row */}
           <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
             <Form.Item name="status" label={false} className="!mb-0">
-              <Select className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px] !placeholder:text-white uppercase" placeholder="BUY">
+              <Select className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px] !placeholder:text-white !placeholder:text-[10px] uppercase" placeholder="BUY">
                 {topStatusOptions.map((opt) => (
                   <Option key={opt} value={opt} className="!bg-[#4F4C45] !text-white !rounded-none font-monument !text-[10px]">
                     {opt}

@@ -7,14 +7,14 @@ import TranslateLogo from "@/assets/icons/translate.svg";
 
 export const StickyNavbar = () => {
   return (
-    <div className="container  justify-between items-center  xl:flex hidden">
+    <div className="container justify-between items-center xl:flex hidden">
       <div>
         <Link to={URLS.HOME}>
           <img src={logoBlack} alt="logo" className="w-6 h-3" />
         </Link>
       </div>
       <div>
-        <ul className="flex items-center gap-x-20 py-6.5">
+        <ul className="flex items-center gap-x-20 py-6.5 !m-0">
           {menuItems.map((item, index) => (
             <li key={index} className="text-xs font-monument hover:underline">
               {item.link ? (

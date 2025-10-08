@@ -13,7 +13,7 @@ export const About = () => {
       <OurPhilosophyAbout />
       <MeetOurTeam />
       <WorkWithUs />
-      <InstagramPosts />
+      <InstagramPosts backGroundWhite={true}/>
     </div>
   );
 };
