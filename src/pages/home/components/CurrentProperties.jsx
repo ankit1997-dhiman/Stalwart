@@ -87,7 +87,7 @@ export const CurrentProperties = ({ title }) => {
   console.log(propertiesData, 88);
 
   return (
-    <section className="container flex flex-col lg:flex-row justify-between gap-16 lg:gap-7.5 px-12.5 xl:px-0 pt-9.5 pb-28">
+    <section className="container flex flex-col lg:flex-row justify-between gap-16 lg:gap-7.5 px-12.5 xl:px-0 ">
       {/* Left Section */}
       <div className="w-full lg:w-[553px]">
         <p className="text-base md:text-2xl font-medium font-moderat-medium">

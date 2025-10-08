@@ -3,7 +3,7 @@ import { Form, Select } from "antd";
  export const FilterSelectDropdown = ({ name, placeholder, options }) => ( 
    <Form.Item name={name} label={false} className="!mb-0 !w-full !h-[50px]">
     <Select
-      className=" !text-black !h-[50px] !text-[10px] font-normal font-monument w-full !z-10 !placeholder:text-[10px]" 
+      className=" !text-black !h-[50px] !text-[10px] font-normal font-monument w-full !z-10 !placeholder:text-[10px] border-1 lg:border-0" 
       placeholder={placeholder}
     >
       {options.map((item) => (

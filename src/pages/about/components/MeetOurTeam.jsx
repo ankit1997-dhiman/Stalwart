@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import image from "../../../assets/images/Team.png";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { Link } from "react-router-dom";
-import IconImage from "@/assets/icons/Arrow-right.png"
+import IconImage from "@/assets/icons/arrow-right.png"
 const { useBreakpoint } = Grid;
 
 const teamMembers = [

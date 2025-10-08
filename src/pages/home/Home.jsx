@@ -12,10 +12,16 @@ export const Home = () => {
     <>
       <Section1 />
       <OurPhilosophy />
-      <RequestAnAppraisal />
+
+      <section className="bg-[#4F4C45] py-[79px] xl:px-0 px-12.5">
+        <RequestAnAppraisal  lightMode={false}/>
+      </section>
+
       <Section4 />
       <PropertiesTab />
-      <CurrentProperties  title="OUR CURRENT PROPERTIES"/>
+      <section className="pt-9.5 pb-28">
+      <CurrentProperties title="OUR CURRENT PROPERTIES" />
+      </section>
       <OurStory />
       <Section8 />
       <InstagramPosts />

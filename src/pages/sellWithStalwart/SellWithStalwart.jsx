@@ -1,137 +1,19 @@
 import React, { useState } from "react";
-import { Form, Button, Input, Checkbox, Collapse, message } from "antd";
+import { Form, Button,  Collapse, message } from "antd";
 import { Link } from "react-router-dom";
 import { HiArrowLongRight } from "react-icons/hi2";
-import { FaMinus, FaPlus } from "react-icons/fa";
-
+import Plus from "@/assets/icons/plus-icon.svg";
+import Minus from "@/assets/icons/minus.svg";
 import image from "@/assets/images/right.png";
 import bgImage from "@/assets/images/about-bg.png";
 import sectionBgImage from "@/assets/images/tab-image.png";
 import { CurrentProperties } from "../home/components/CurrentProperties";
-import AddressAutocomplete from "../home/components/AddressAutocomplete";
-
-// --- Collapse Panel Items ---
-const collapseItems = [
-  { key: "1", label: "This is panel header 1", content: "text content 1" },
-  { key: "2", label: "This is panel header 2", content: "text content 2" },
-  { key: "3", label: "This is panel header 3", content: "text content 3" },
-];
-
-// --- Step Components ---
-const LandingStep = () => (
-  <>
-    <Form.Item
-      name="address"
-      label={false}
-      className="!mb-0 !w-full !rounded-xl "
-      rules={[{ required: true, message: "Please enter your address" }]}
-    >
-      <AddressAutocomplete />
-    </Form.Item>
-  </>
-);
-
-const ConfirmDetailsStep = () => (
-  <>
-    <div className="grid grid-cols-2 gap-7.5">
-      <Form.Item
-        name="confirm_firstName"
-        label="First Name"
-        rules={[{ required: true, message: "First name is required" }]}
-      >
-        <Input
-          placeholder="First Name"
-          className="!border-black !border !rounded-none !py-2"
-        />
-      </Form.Item>
-      <Form.Item
-        name="confirm_lastName"
-        label="Last Name"
-        rules={[{ required: true, message: "Last name is required" }]}
-      >
-        <Input
-          placeholder="Last Name"
-          className="!border-black !border !rounded-none !py-2"
-        />
-      </Form.Item>
-      <Form.Item
-        name="confirm_email"
-        label="Contact Email"
-        rules={[
-          { required: true, message: "Email is required" },
-          { type: "email", message: "Enter a valid email" },
-        ]}
-      >
-        <Input
-          placeholder="Contact Email"
-          className="!border-black !border !rounded-none !py-2"
-        />
-      </Form.Item>
-      <Form.Item
-        name="confirm_number"
-        label="Contact Number"
-        rules={[{ required: true, message: "Contact number is required" }]}
-      >
-        <Input
-          placeholder="Contact Number"
-          className="!border-black !border !rounded-none !py-2"
-        />
-      </Form.Item>
-    </div>
-
-    <Form.Item
-      name="confirm_privacy"
-      valuePropName="checked"
-      rules={[
-        {
-          validator: (_, value) =>
-            value
-              ? Promise.resolve()
-              : Promise.reject("You must agree to continue"),
-        },
-      ]}
-    >
-      <Checkbox>
-        Don’t worry, we never pass your details onto any third parties. By
-        continuing you agree to our Privacy Policy.
-      </Checkbox>
-    </Form.Item>
-  </>
-);
-
-const TenantedStep = () => (
-  <>
-    <Form.Item
-      name="tenancy_status"
-      label={false}
-      rules={[{ required: true, message: "Please select an option" }]}
-    >
-      <Checkbox.Group className="flex flex-col gap-7.5">
-        <Checkbox value="yes">Owner Occupier</Checkbox>
-        <Checkbox value="no">Owner Investor</Checkbox>
-      </Checkbox.Group>
-    </Form.Item>
-  </>
-);
-
-const AppointedStep = () => (
-  <>
-    <Form.Item
-      name="appointed_status"
-      label={false}
-      rules={[{ required: true, message: "Please select an option" }]}
-    >
-      <Checkbox.Group className="flex flex-col gap-7.5">
-        <Checkbox value="yes">Now</Checkbox>
-        <Checkbox value="no">Within the next month</Checkbox>
-        <Checkbox value="no">2-6 Months</Checkbox>
-        <Checkbox value="no">6+ Months</Checkbox>
-        <Checkbox value="no">Already on the market</Checkbox>
-        <Checkbox value="no">Not sure</Checkbox>
-      </Checkbox.Group>
-    </Form.Item>
-  </>
-);
+import { collapseItems } from "@/constants/constants";
+import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
+import { SellLandingStep } from "./components/SellLandingStep";
+import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
+import { AppointedStep } from "./components/AppointedStep";
+import { TenantedStep } from "./components/TenantedStep";
 
 // --- Main Component ---
 const SellWithStalwart = () => {
@@ -155,7 +37,7 @@ const SellWithStalwart = () => {
   };
 
   const steps = [
-    { title: "Landing", content: <LandingStep /> },
+    { title: "Landing", content: <SellLandingStep /> },
     { title: "Confirm your details", content: <ConfirmDetailsStep /> },
     {
       title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
@@ -182,7 +64,7 @@ const SellWithStalwart = () => {
             preserve={true}
             className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between z-20"
           >
-            <LandingStep />
+            <SellLandingStep />
 
             <Button
               htmlType="submit"
@@ -197,12 +79,12 @@ const SellWithStalwart = () => {
 
         {/* Experience Section */}
         <section className="px-12.5 lg:px-0">
-          <div className="container flex gap-10 py-32">
-            <div className="w-full lg:w-[35%]">
-              <p className="pb-10 font-monument lg:text-lg text-sm uppercase leading-6 lg:leading-10">
+          <div className="container lg:flex items-stretch gap-7.5 py-32">
+            <div className="w-full lg:w-[553px]">
+              <p className="font-monument text-sm lg:text-xl uppercase leading-6 lg:leading-10">
                 Experience the stalwart difference
               </p>
-              <p className="pb-16 text-xs lg:text-base font-moderat-regular">
+              <p className="text-xs lg:text-base font-moderat-regular pt-10">
                 At Stalwart, we define prestige property with unrivalled
                 experience, comprehensive local market knowledge, and strategic
                 approaches that consistently deliver exceptional results.
@@ -213,7 +95,7 @@ const SellWithStalwart = () => {
                 expandIconPosition="right"
                 accordion
                 expandIcon={({ isActive }) =>
-                  isActive ? <FaMinus /> : <FaPlus />
+                  !isActive ? <img src={Plus} /> : <img src={Minus} />
                 }
                 items={collapseItems.map((item) => ({
                   key: item.key,
@@ -222,9 +104,13 @@ const SellWithStalwart = () => {
                       {item.label}
                     </div>
                   ),
-                  children: <div>{item.content}</div>,
+                  children: (
+                    <div className="font-moderat-regular text-base !px-0">
+                      {item.content}
+                    </div>
+                  ),
                 }))}
-                className="!border-none !bg-transparent pl-0"
+                className="!border-none !bg-transparent pl-0 !pt-16 custom-accordion"
               />
 
               <p className="pt-10">
@@ -236,39 +122,17 @@ const SellWithStalwart = () => {
             </div>
 
             <div
-              className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[65%]"
+              className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[1136px] h-[300px] lg:h-[764px] mt-3 lg:mt-0"
               style={{ backgroundImage: `url(${sectionBgImage})` }}
             />
           </div>
         </section>
-
-        {/* Questions Section */}
-        <section className="bg-[#F4F2F0] mb-32 px-12.5 lg:px-0">
-          <div className="container flex gap-10 py-20">
-            <div
-              className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[35%]"
-              style={{ backgroundImage: `url(${sectionBgImage})` }}
-            />
-            <div className="w-full lg:w-[65%]">
-              <p className="pb-5 font-miller-light capitalize text-xl lg:text-4xl font-light leading-10">
-                Have any questions?
-              </p>
-              <p className="pb-16 text-sm lg:text-base font-moderat-regular">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-
-              <p className="pt-10">
-                <Link className="text-sm font-moderat-bold flex items-center">
-                  REQUEST NOW
-                  <HiArrowLongRight className="pl-3 text-black text-4xl" />
-                </Link>
-              </p>
-            </div>
-          </div>
+        <section className="bg-[#F4F2F0] py-[79px] xl:px-0 px-12.5">
+          <RequestAnAppraisal lightMode={true} />
         </section>
-
-        <CurrentProperties title="SEE OUR SOLD PROPERTIES" />
+        <section className="py-34 px-12.5 lg:px-0">
+          <CurrentProperties title="SEE OUR SOLD PROPERTIES" />
+        </section>
       </>
     );
   }
@@ -276,16 +140,16 @@ const SellWithStalwart = () => {
   // Inner Steps
   return (
     <div className="relative -mt-[86px]">
-      <div className="flex container justify-between items-center gap-50 h-screen">
+      <div className="flex container justify-between items-center gap-20 h-screen">
         {/* Left Side */}
-        <div className="w-[60%] pt-18 pr-60">
+        <div className="w-full lg:w-[845px] pt-18 ">
           <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
             RENTAL APPRAISAL WITH STALWART
           </p>
           <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 lg:w-[700px] w-full">
             {steps[current].title}
           </p>
-          <p className="mb-10 font-normal font-moderat-regular text-base pb-20">
+          <p className="font-normal font-moderat-regular text-base pb-20">
             {current === 1
               ? "Almost there, we just need to get a few details from you."
               : "Help us to provide you with the very best service by telling us a bit more about your property."}
@@ -320,7 +184,7 @@ const SellWithStalwart = () => {
               )}
               {current < steps.length - 1 && (
                 <Button
-                  className="!rounded-none !px-3 bg-white !border !border-black !py-3"
+                  className="!rounded-none !px-3.5 bg-white !border !border-black !py-2 w-[127px] h-[41px]"
                   onClick={next}
                 >
                   <span className="font-moderat-regular text-base">
@@ -340,7 +204,6 @@ const SellWithStalwart = () => {
           </Form>
         </div>
 
-        {/* Right Side Image */}
         <div className="w-[40%] h-screen absolute right-0 top-0">
           <img
             src={image}

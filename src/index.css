@@ -168,3 +168,16 @@ p{
   padding: 0px 24px;
 }
 
+.custom-accordion .ant-collapse-content-box{
+  padding-left: 0 !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+}
+/* Add this to your CSS or Tailwind config */
+.custom-accordion .ant-collapse-header img {
+  transition: transform 0.3s ease; /* smooth rotation */
+}
+
+.custom-accordion .ant-collapse-item-active .ant-collapse-header img {
+  transform: rotate(180deg); /* adjust angle if you want plus -> minus */
+}
