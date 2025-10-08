@@ -1,7 +1,7 @@
 import image from "@/assets/images/request.png";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon.jsx";
 import { Link } from "react-router-dom";
-import IconImage from "@/assets/icons/Arrow-right.png"
+import IconImage from "@/assets/icons/arrow-right.png"
 import IconImageBlack from "@/assets/icons/black-arrow-right.svg"
 
 const RequestAnAppraisal = ({lightMode}) => {
