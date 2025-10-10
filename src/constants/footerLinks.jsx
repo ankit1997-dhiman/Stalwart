@@ -6,9 +6,8 @@ export const footerLinks = [
     title: "BUY",
     links: [
       "Properties for Sale",
-      "Upcoming Inspections",
-      "Sales Properties",
-      "Suburb Insights",
+      "Upcoming Inspections & Auctions",
+      "Sold Properties",
     ],
   },
   {
@@ -17,8 +16,7 @@ export const footerLinks = [
       "Selling With Stalwart",
       "Book A Property Appraisal",
       "Sold Properties",
-      "Project Marketing",
-      "Suburb Insights",
+      "Project Marketing"
     ],
   },
   {
@@ -28,14 +26,12 @@ export const footerLinks = [
       "Upcoming Inspections",
       "Owners Portal",
       "Tenant Portal",
-      "Suburb Insights",
     ],
   },
   {
     title: "ABOUT",
     links: [
       "Our Team",
-      "Our Suburbs",
       <Link key="careers" to={URLS.CAREERS}>
         Careers
       </Link>,

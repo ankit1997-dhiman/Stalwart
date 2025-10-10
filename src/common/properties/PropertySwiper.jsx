@@ -1,0 +1,61 @@
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { message } from "antd";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import PropertiesNotFound from "@/common/properties/PropertiesNotFound.jsx";
+import dummyImage from "@/assets/images/dummy-image.jpg";
+import { useTruncateText } from "@/hooks/useTruncateText";
+import PropertyCard from "@/pages/home/components/propertiesTab/components/PropertyCard";
+
+const PropertySwiper = ({
+  soldButtonTag,
+  leaseButtonTag,
+  tabdata = [],
+  slidesPerView = 1,
+  delay = 10000,
+  buttonText = "Learn More",
+  onClick = (item) => message.info(`Clicked: ${item.id}`),
+}) => {
+  return (
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={16}
+      slidesPerView={slidesPerView}
+      navigation
+      pagination={{ clickable: true }}
+      autoplay={{ delay, disableOnInteraction: false }}
+      loop={true}
+      lazy={true}
+      a11y={{ enabled: true }}
+      breakpoints={{
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 1 },
+        1024: { slidesPerView: 1 },
+      }}
+    >
+      {tabdata?.length > 0 ? (
+        tabdata.map((item) => (
+          <SwiperSlide key={item.id}>
+            <PropertyCard
+              id={item.id}
+              image={item?.images?.length > 0 ? item.images[0].url : dummyImage}
+              address={item.formattedAddress}
+              subtitle={useTruncateText(item.description, 35)}
+              buttonText={buttonText}
+              onClick={() => onClick(item)}
+              soldTag={soldButtonTag && true}
+              leaseButtonTag={leaseButtonTag && true}
+            />
+          </SwiperSlide>
+        ))
+      ) : (
+        <PropertiesNotFound />
+      )}
+    </Swiper>
+  );
+};
+
+export default PropertySwiper;

@@ -62,9 +62,10 @@ export function Lease() {
     `;
 
     try {
-      const variables = { status: ["DRAFT", "UNDER_OFFER", "ACTIVE"] };
+      const variables = { status: [ "ACTIVE"] };
       const res = await graphqlRequest(query, variables);
-      setData(res?.data?.properties?.nodes || []);
+      const filterProperty = res?.data?.properties?.nodes.filter((item)=> item.saleOrLease == "LEASE")
+      setData(filterProperty || []);
     } catch (error) {
       console.error(error);
       message.error("Failed to fetch properties");

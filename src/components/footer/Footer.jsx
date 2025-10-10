@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
-import logo from "@/assets/icons/logo-footer.svg";
+import logo from "@/assets/icons/footer-logo-bottom.svg";
 import { contactInfo, footerLinks, legalLinks } from "@/constants/footerLinks";
 import StickyButton from "@/common/Button/StickyButton";
 import EnquiryModal from "@/common/modal/EnquiryModal";
+import { FooterCollapse } from "./FooterCollapse";
 
 export default function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,41 +27,43 @@ export default function Footer() {
     <footer className="bg-[#4A443E] text-white py-18 px-6 ">
       <div className="container">
         {/* Top Links */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm">
+        <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm">
           {footerLinks.map((section) => (
             <div key={section.title}>
-              <p className="font-semibold pb-10 text-[11px] font-monument">{section.title}</p>
+              <p className="font-semibold pb-10 text-[11px] font-monument">
+                {section.title}
+              </p>
               <ul className="space-y-1">
                 {section.links.map((link, i) => (
-                  <li key={i} className="font-moderat-regular text-[14px]">{link}</li>
+                  <li key={i} className="font-moderat-regular text-[14px]">
+                    {link}
+                  </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
+        <div className="lg:hidden">
+          <FooterCollapse />
+        </div>
 
         {/* Sign-up Form */}
         <div>
-          <p className="lg:text-[25px] font-medium font-miller-light leading-10 py-12.5">
+          <p className="text-[25px] font-medium font-miller-light leading-10 pt-17.5">
             Sign Up For Latest Property Results
           </p>
-          <Form
-            form={form}
-            onFinish={onFinish}
-            layout="vertical"
-            className="grid grid-cols-1 gap-2 md:gap-x-4"
-          >
-            <div className="flex flex-col md:flex-row justify-between gap-4">
+          <Form form={form} onFinish={onFinish} layout="vertical">
+            <div className="flex flex-col md:flex-row justify-between lg:gap-7.5">
               <Form.Item
                 name="firstName"
                 rules={[
                   { required: true, message: "Please enter your first name" },
                 ]}
-                className="w-full border-b border-white text-white !m-0 "
+                className="w-full border-b border-white text-white !m-0"
               >
                 <Input
                   placeholder="First Name*"
-                  className="w-full !bg-transparent !text-white !placeholder-white placeholder:font-moderat-regular !py-3 !border-0 !px-0"
+                  className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-13"
                 />
               </Form.Item>
 
@@ -73,7 +76,7 @@ export default function Footer() {
               >
                 <Input
                   placeholder="Last Name*"
-                  className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0 !px-0"
+                  className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-13"
                 />
               </Form.Item>
             </div>
@@ -84,15 +87,15 @@ export default function Footer() {
                 { required: true, message: "Please enter your email" },
                 { type: "email", message: "Please enter a valid email" },
               ]}
-              className="w-full border-b border-white text-white !m-0 !pt-8"
+              className="w-full border-b border-white text-white !m-0 "
             >
               <Input
                 placeholder="Email*"
-                className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0 !px-0"
+                className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-10"
               />
             </Form.Item>
 
-            <div className="flex flex-col md:flex-row gap-6 md:gap-20 pt-8">
+            <div className="flex flex-col md:flex-row items-end gap-6 md:gap-20 ">
               <Form.Item
                 name="phone"
                 rules={[
@@ -102,59 +105,92 @@ export default function Footer() {
               >
                 <Input
                   placeholder="Phone*"
-                  className="w-full !bg-transparent !text-white !placeholder-white !py-3 !border-0 !px-0"
+                  className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-10"
                 />
               </Form.Item>
 
-              <Form.Item className="col-span-1 flex items-end !m-0">
-                <Button
-                  htmlType="submit"
-                  className="!bg-transparent !text-white !px-10 !rounded-none hover:bg-gray-300 transition font-medium !border !border-white lg:w-[268px] !h-[48px]"
-                >
-                  Subscribe
-                </Button>
-              </Form.Item>
+              <Button
+                htmlType="submit"
+                className="!bg-transparent !text-white !px-10 !rounded-none hover:bg-gray-300 transition font-medium !border !border-white !w-full lg:!w-[262px] !h-[45px] lg:!h-[48px] !mt-7 !lg:mt-0"
+              >
+                Subscribe
+              </Button>
             </div>
           </Form>
         </div>
-
-        {/* Bottom Section */}
-        <div className="flex flex-wrap flex-col md:flex-row justify-between items-start md:items-center text-xs text-gray-300 pt-18 w-full">
-          <div className="flex flex-col md:flex-row gao-3 md:gap-18">
-            <img src={logo} alt="Logo" className="h-6" />
-
-            <ul className="pb-6 xl:py-0">
-              {contactInfo.map((item, i) => (
-                <li key={i} className="font-moderat text-sm text-white/60">
-                  {item.text}
-                </li>
-              ))}
-            </ul>
-
-            <ul className="pb-6">
-              {legalLinks.map((link, i) => (
-                <li key={i} className="font-moderat text-sm text-white/60">
-                  {link}
-                </li>
-              ))}
-            </ul>
+        <div className="lg:hidden">
+          <div className="grid grid-cols-2 justify-between items-end pt-20 gap-7.5">
+            <div>
+              {" "}
+              <img src={logo} alt="Logo" className="h-6 w-[160px]" />
+            </div>
+            <div>
+              <p className="text-xl font-miller-light text-right text-white/60">— The Fortis Immo</p>
+            </div>
+            <div>
+             
+              <ul className="!m-0">
+                {contactInfo.map((item, i) => (
+                  <li key={i} className="font-moderat text-sm text-white/60">
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="font-moderat text-sm text-white/60 text-right">
+                <Link key="Corelands" to={URLS.CORELANDS} target="_blank">
+                  Design By Studio Corelands
+                </Link>
+              </p>
+            </div>
           </div>
-
-          <p className="text-2xl font-miller-light">— The Fortis Immo</p>
+          <p className="font-moderat text-[10px] text-white/60 pt-21">
+              We respectfully acknowledge the Traditional Owners of the land on
+              which we work and learn, and pay respect to the First Nations
+              Peoples and their elders, past, present and future.
+            </p>
         </div>
 
-        {/* Acknowledgement */}
-        <div className="flex md:flex-row flex-col justify-between item-start md:items-center gap-7 pt-11">
-          <p className="font-moderat text-sm text-white/60">
-            We respectfully acknowledge the Traditional Owners of the land on
-            which we work and learn, and pay respect to the First Nations
-            Peoples and their elders, past, present and future.
-          </p>
-          <p className="font-moderat text-sm text-white/60">
-            <Link key="Corelands" to={URLS.CORELANDS} target="_blank">
-              Design By Studio Corelands
-            </Link>
-          </p>
+        <div className="hidden lg:block">
+          {/* Bottom Section */}
+          <div className="flex flex-wrap flex-col md:flex-row justify-between items-start text-gray-300 pt-18 w-full">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-18 items-start">
+              <img src={logo} alt="Logo" className="w-[262px] h-[30px]" />
+
+              <ul className="pb-6 xl:py-0">
+                {contactInfo.map((item, i) => (
+                  <li key={i} className="font-moderat text-sm text-white/60">
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+
+              <ul className="m-0">
+                {legalLinks.map((link, i) => (
+                  <li key={i} className="font-moderat text-sm text-white/60">
+                    {link}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <p className="text-2xl font-miller-light">— The Fortis Immo</p>
+          </div>
+
+          {/* Acknowledgement */}
+          <div className="flex md:flex-row flex-col justify-between item-start md:items-center gap-7 pt-11">
+            <p className="font-moderat text-sm text-white/60">
+              We respectfully acknowledge the Traditional Owners of the land on
+              which we work and learn, and pay respect to the First Nations
+              Peoples and their elders, past, present and future.
+            </p>
+            <p className="font-moderat text-sm text-white/60">
+              <Link key="Corelands" to={URLS.CORELANDS} target="_blank">
+                Design By Studio Corelands
+              </Link>
+            </p>
+          </div>
         </div>
 
         <EnquiryModal

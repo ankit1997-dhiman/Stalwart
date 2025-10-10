@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import image from "../../../assets/images/Team.png";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { Link } from "react-router-dom";
-import IconImage from "@/assets/icons/arrow-right.png"
+import IconImage from "@/assets/icons/arrow-right.png";
 const { useBreakpoint } = Grid;
 
 const teamMembers = [
@@ -50,7 +50,11 @@ export default function MeetOurTeam() {
             Meet Our Team
           </p>
           <p className="text-white font-moderat-regular pt-10 lg:text-base">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
           </p>
 
           <Link to="#">
@@ -61,7 +65,6 @@ export default function MeetOurTeam() {
               className="border-none bg-none !text-white font-bold font-moderat pt-15 text-sm"
             />
           </Link>
-          
         </div>
 
         {/* Right Section - Team Grid */}
@@ -85,7 +88,7 @@ export default function MeetOurTeam() {
         </div>
       </div>
       <Modal
-        className="p-0 "
+        className="!p-0 custom-modal"
         // title="Basic Modal"
         // closable={{ "aria-label": "Custom Close Button" }}
         open={isModalOpen}
@@ -93,6 +96,7 @@ export default function MeetOurTeam() {
         onCancel={handleCancel}
         footer={false}
         width={modalWidth}
+        style={{ padding: 0 }}
       >
         <TeamPopup />
       </Modal>

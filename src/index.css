@@ -51,7 +51,6 @@ button {
   line-height: 22px;
 }
 .container {
-   /* max-width: 1300px; */
   margin: 0 auto;
 }
 @media only screen and (min-width: 1600px) {
@@ -60,6 +59,7 @@ button {
     margin: 0 auto;
   }
 }
+
 .custom-field .ant-select-selector {
   background-color: #4f4c45 !important;
   color: white !important;
@@ -67,18 +67,19 @@ button {
 }
 
 .ant-select-dropdown {
-  /* background-color: transparent !important; */
   padding: 0px !important;
 }
+
 .placeholder-white .ant-select-arrow {
   color: white !important;
 }
+
 .ant-carousel .slick-slide {
-  padding: 0px 20px 0px 0px !important; /* left-right gap */
+  padding: 0px 20px 0px 0px !important;
 }
 
 .ant-carousel .slick-list {
-  padding: 0px 0px 0px -20px !important; 
+  padding: 0px 0px 0px -20px !important;
 }
 .custom-select-field .ant-select-selector {
   border: none !important;
@@ -86,20 +87,20 @@ button {
 .ant-collapse-header {
   padding-left: 0px !important;
 }
-.placeholder-white .ant-select-selection-placeholder{
+.placeholder-white .ant-select-selection-placeholder {
   color: white;
 }
-.placeholder-white .ant-select-selection-item{
+.placeholder-white .ant-select-selection-item {
   color: white;
 }
 
 @media only screen and (max-width: 768px) {
   .ant-carousel .slick-slide {
-    padding: 0px 20px 0px 0px !important; /* left-right gap */
+    padding: 0px 20px 0px 0px !important;
   }
 
   .ant-carousel .slick-list {
-    margin: 0px 0px 0px -20px; /* compensate outer spacing */
+    margin: 0px 0px 0px -20px;
   }
   .ant-tabs-nav-list {
     padding: 0px 50px;
@@ -110,19 +111,20 @@ button {
   padding: 0px !important;
 }
 
-p{
+p {
   margin: 0px;
 }
-.ant-checkbox-inner{
+.ant-checkbox-inner {
   border: solid 1px black;
   border-radius: 0px;
 }
-.custom-tabs .ant-tabs-content-holder{
+.custom-tabs .ant-tabs-content-holder {
   padding-top: 72px;
 }
-.custom-tabs .ant-tabs-tab{
+.custom-tabs .ant-tabs-tab {
   padding: 0px;
 }
+
 .custom-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
   color: #000 !important;
 }
@@ -131,18 +133,18 @@ p{
   background-color: #000 !important;
 }
 
-.custom-field .ant-input{
-   border: none !important;
+.custom-field .ant-input {
+  border: none !important;
   font-family: Monument;
 }
 
-.custom-field .ant-select-selector{
-  border: 0px ;
+.custom-field .ant-select-selector {
+  border: 0px;
   font-family: Monument;
   padding: 0px 24px;
   font-size: 10px;
 }
-.custom-field .ant-select-selection-item{
+.custom-field .ant-select-selection-item {
   font-size: 10px;
 }
 .inquiry-form .ant-input {
@@ -154,30 +156,61 @@ p{
   font-size: 10px;
   padding: 0px 24px;
 }
-.inquiry-form  .ant-select-arrow{
+.inquiry-form .ant-select-arrow {
   color: black;
 }
-.inquiry-form  .ant-select-selection-placeholder{
+.inquiry-form .ant-select-selection-placeholder {
   color: black;
   font-size: 10px;
-
 }
-.inquiry-form .ant-select-selector{
-  border: 0px ;
+.inquiry-form .ant-select-selector {
+  border: 0px;
   font-family: Monument;
   padding: 0px 24px;
 }
 
-.custom-accordion .ant-collapse-content-box{
+.custom-accordion .ant-collapse-content-box {
   padding-left: 0 !important;
   padding-top: 30px !important;
   padding-bottom: 30px !important;
 }
-/* Add this to your CSS or Tailwind config */
+
 .custom-accordion .ant-collapse-header img {
-  transition: transform 0.3s ease; /* smooth rotation */
+  transition: transform 0.3s ease;
 }
 
 .custom-accordion .ant-collapse-item-active .ant-collapse-header img {
-  transform: rotate(180deg); /* adjust angle if you want plus -> minus */
+  transform: rotate(180deg);
+}
+.footer-collapse {
+  border: none;
+}
+.footer-collapse .ant-collapse-item {
+  border-bottom: none;
+}
+.footer-collapse .ant-collapse-header {
+  padding: 16px;
+}
+.footer-collapse .ant-collapse-header img {
+  transition: transform 0.3s ease;
+}
+
+.footer-collapse .ant-collapse-item-active .ant-collapse-header img {
+  transform: rotate(180deg);
+}
+.footer-collapse .ant-collapse-content-box {
+  background-color: #4a443e;
+}
+.footer-collapse a {
+  color: white;
+}
+.property-slider .swiper {
+  padding: 0px !important;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: white;
+}
+.swiper-pagination-bullet-active {
+  background-color: white;
 }

@@ -1,16 +1,11 @@
 import React from "react";
-import PropertyCard from "./PropertyCard.jsx";
-import image from "../../../../../assets/images/tab-image.png";
+import PropertySwiper from "@/common/properties/PropertySwiper.jsx";
 
-export const Tab1 = () => {
+export const Tab1 = ({ tabdata }) => {
+  console.log(tabdata, "tab dat");
   return (
-    <PropertyCard
-      image={image}
-      title="3 Waitara Street, Logan Central | QLD 4114"
-      subtitle="We specialise in Real Estate for Brisbane, Gold Coast, Logan, Ipswich, Redland City and Toowoomba."
-      buttonText="Learn More"
-      onClick
-    />
+    <>
+      <PropertySwiper delay={10000}  tabdata={tabdata} />
+    </>
   );
- 
 };

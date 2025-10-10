@@ -10,7 +10,7 @@ const OurPhilosophy = () => {
         {/* <MyIcon className="w-6 h-6 text-blue-500" /> */}
         <img src={blackLogo} className="w-6 h-3 mb-15" />
         {/* <BiLogOut className="w-6 h-6 text-black  block" /> */}
-        <p className="text-xs md:text-base text-black mt-15 ont-moderat-medium pb-5">
+        <p className="text-xs md:text-base text-black mt-15 font-moderat-medium pb-5">
           OUR PHILOSOPHY
         </p>
         <h4 className="text-base md:text-[32px] uppercase text-black mt-5 leading-6 sm:leading-10 w-full lg:w-[845px] font-moderat-medium font-medium">

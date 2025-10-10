@@ -1,35 +1,54 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const PropertySection = ({
   image,
-  title,
-  subtitle,
+  address,
+  listingDetails,
   buttonText,
-  onClick,
+  id,
 }) => {
   return (
     <>
-      <div className="mx-auto rounded overflow-hidden pt-16.5 flex flex-col-reverse lg:flex-col gap-12">
+      <div className="mx-auto rounded overflow-hidden flex flex-col-reverse lg:flex-col gap-12">
         {/* Content */}
-        <div className="flex flex-wrap  items-start justify-between mt-5 md:mt-2 lg:px-12.5 xl:px-0 w-full md:pb-18 px-12.5">
+        <div className="flex flex-wrap  items-start justify-between lg:px-12.5 xl:px-0 w-full px-12.5">
           <div className="w-full xl:w-4/5">
-            <h2 className="text-base md:text-2xl font-medium font-moderat-medium">
-              {title}
-            </h2>
-            <p className="w-full xl:w-3/5 text-black text-xs font-normal py-9 sm:py-6 xl:pt-10 font-moderat">
-              {subtitle}
-            </p>
+            {address && (
+              <p className="text-base md:text-2xl font-medium font-moderat-medium uppercase">
+                {address}
+              </p>
+            )}
+            <div className="font-moderat-medium text-sm pt-5">
+              {`${
+                listingDetails.bedrooms ? listingDetails.bedrooms : 0
+              } BED | ${
+                listingDetails.bathrooms ? listingDetails.bathrooms : 0
+              } BATH | ${
+                listingDetails.carportSpaces ? listingDetails.carportSpaces : 0
+              } CAR `}
+            </div>
           </div>
-          <button
-            onClick={onClick}
-            className="w-[262px] bg-white text-black px-4 py-3 xl:py-8.5 rounded-none xl:ml-2 border border-black hidden lg:block"
-          >
-            {buttonText}
-          </button>
+          {buttonText && (
+            <div className="hidden lg:block">
+              <Link
+                to={`/property/${id}`}
+                className="bg-white text-center h-[70px] border-black my-auto"
+              >
+                <p className=" w-full lg:w-[262px] lg:py-5 text-black border font-moderat-regular text-base">
+                  {buttonText}
+                </p>
+              </Link>
+            </div>
+          )}
         </div>
         {/* Image */}
         <div className="w-full h-[900px]  overflow-hidden ">
-          <img src={image} alt={title} className="w-full h-full object-cover" />
+          <img
+            src={image}
+            alt={address}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </>

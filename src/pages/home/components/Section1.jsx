@@ -1,5 +1,5 @@
 import { Form, Select, Button, message } from "antd";
-import { FaSearch } from "react-icons/fa";
+import searchImage from "@/assets/icons/search.svg";
 import bgImage from "../../../assets/images/home-hero.png";
 import { bedrooms, topStatusOptions } from "@/constants/constants";
 import { useState } from "react";
@@ -9,14 +9,18 @@ import { graphqlRequest } from "@/utils/graphqlRequest";
 const { Option } = Select;
 
 // Reusable Select component
- const FilterSelect = ({ name, placeholder, options }) => ( 
-   <Form.Item name={name} label={false} className="!mb-0 !w-full !h-[50px]">
+const FilterSelect = ({ name, placeholder, options }) => (
+  <Form.Item name={name} label={false} className="!mb-0 !w-full !h-[50px]">
     <Select
       className="!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full !placeholder:text-[10px]"
       placeholder={placeholder}
     >
       {options.map((item) => (
-        <Option key={item} value={item} className="!bg-[#4F4C45] !text-white !rounded-none font-monument text-[10px]">
+        <Option
+          key={item}
+          value={item}
+          className="!bg-[#4F4C45] !text-white !rounded-none font-monument text-[10px]"
+        >
           <div className="font-monument text-[10px]">{item} +</div>
         </Option>
       ))}
@@ -110,15 +114,27 @@ export const Section1 = () => {
           form={form}
           onFinish={onFinish}
           layout="vertical"
-          initialValues={{ status: "BUY", bedrooms: "BED", bathrooms: "BATH", car: "CAR" }}
+          initialValues={{
+            status: "BUY",
+            bedrooms: "BED",
+            bathrooms: "BATH",
+            car: "CAR",
+          }}
           className="placeholder-white"
         >
           {/* Top Row */}
           <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
             <Form.Item name="status" label={false} className="!mb-0">
-              <Select className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px] !placeholder:text-white !placeholder:text-[10px] uppercase" placeholder="BUY">
+              <Select
+                className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px] !placeholder:text-white !placeholder:text-[10px] uppercase"
+                placeholder="BUY"
+              >
                 {topStatusOptions.map((opt) => (
-                  <Option key={opt} value={opt} className="!bg-[#4F4C45] !text-white !rounded-none font-monument !text-[10px]">
+                  <Option
+                    key={opt}
+                    value={opt}
+                    className="!bg-[#4F4C45] !text-white !rounded-none font-monument !text-[10px]"
+                  >
                     {opt}
                   </Option>
                 ))}
@@ -127,20 +143,31 @@ export const Section1 = () => {
 
             {/* Search Box */}
             <div className="w-full flex bg-white relative">
-              <Form.Item name="address" label={false} className="!mb-0 !w-full">
+              <Form.Item name="address" label={false} className="!mb-0 !w-full !my-auto">
                 <AddressAutocomplete />
               </Form.Item>
 
-              <Button htmlType="submit" className="!h-[50px] ml-2 flex items-center justify-center bg-white !border-none">
-                <FaSearch className="mr-2" />
+              <Button
+                htmlType="submit"
+                className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px]"
+              >
+                <img src={searchImage} alt="Search" className=" my-auto"/>
               </Button>
             </div>
           </div>
 
           {/* Bottom Row */}
           <div className="hidden xl:flex items-stretch justify-between gap-7.5 pb-4 w-full">
-            <FilterSelect name="bedrooms" placeholder="BED" options={bedrooms} />
-            <FilterSelect name="bathrooms" placeholder="BATH" options={bedrooms} />
+            <FilterSelect
+              name="bedrooms"
+              placeholder="BED"
+              options={bedrooms}
+            />
+            <FilterSelect
+              name="bathrooms"
+              placeholder="BATH"
+              options={bedrooms}
+            />
             <FilterSelect name="car" placeholder="CAR" options={bedrooms} />
           </div>
         </Form>

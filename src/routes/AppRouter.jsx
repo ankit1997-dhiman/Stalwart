@@ -1,6 +1,5 @@
 import AppLayout from "@/common/layout/AppLayout";
 import { PageWrapper } from "@/common/pageWrapper/PageWrapper";
-import { Demo } from "@/components/Demo";
 import ScrollToTop from "@/components/scroll/ScrollToTop";
 import { URLS } from "@/constants/Urls";
 import { About } from "@/pages/about/About.jsx";
@@ -55,10 +54,6 @@ export default function AppRouter() {
                 <Route
                   path={URLS.UPCOMING_INSPECTIONS}
                   element={<UpcomingInspections />}
-                />
-                <Route
-                  path="demo"
-                  element={<Demo />}
                 />
                 <Route
                   path={URLS.LEASE_PROPERTIES}

@@ -49,7 +49,7 @@ export default function Navbar() {
           <img
             src={showNav1 ? blackLogo : whiteLogo}
             alt="logo"
-            className="w-[143px]"
+            className="w-[143px] cursor-pointer"
           />
         </Link>
 
@@ -103,8 +103,10 @@ export default function Navbar() {
             </ul>
             <ul className="flex justify-between space-x-6">
               {footerMenu?.map((item, i) => (
-                <Link key={item.key} to={item.to} target="_blank" >
-                  <span className="text-xs font-normal text-white font-moderat">{item.key}</span>
+                <Link key={item.key} to={item.to} target="_blank">
+                  <span className="text-xs font-normal text-white font-moderat">
+                    {item.key}
+                  </span>
                 </Link>
               ))}
             </ul>
