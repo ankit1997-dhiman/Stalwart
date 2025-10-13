@@ -7,7 +7,7 @@ import whiteLogo from "@/assets/images/white-logo.png";
 import blackLogo from "@/assets/images/header-black-logo.png";
 import { URLS } from "@/constants/Urls";
 import { nav1Paths } from "@/constants/menuLinks";
-import { DropdownMenu } from "../dropdown/DropdownMenu";
+import { DropdownMenu } from "../dropdown/DropdownMenu.jsx";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
