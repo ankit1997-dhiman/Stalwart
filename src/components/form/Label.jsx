@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export default function Label({label}) {
+export default function Label({ label, className }) {
   return (
-    <div className="text-base font-moderat-regular pb-4">{label}</div>
-  )
+    <div className={`text-base font-moderat-regular  ${className}`}>
+      {label}
+    </div>
+  );
 }

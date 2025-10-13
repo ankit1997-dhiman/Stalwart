@@ -37,9 +37,6 @@ export default function MobileNavbar() {
     },
   ];
 
-  // useEffect(() => {}, [url]);
-  console.log("footerMenu,", showNav1,99);
-
   return (
     <>
       {/* Navbar */}
@@ -106,8 +103,10 @@ export default function MobileNavbar() {
             </ul>
             <ul className="flex justify-between space-x-6">
               {footerMenu?.map((item, i) => (
-                <Link key={item.key} to={item.to} target="_blank" >
-                  <span className="text-xs font-normal text-white font-moderat">{item.key}</span>
+                <Link key={item.key} to={item.to} target="_blank">
+                  <span className="text-xs font-normal text-white font-moderat">
+                    {item.key}
+                  </span>
                 </Link>
               ))}
             </ul>

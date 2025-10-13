@@ -1,4 +1,4 @@
-import {Form,  message } from "antd";
+import { Form, message } from "antd";
 import React, { useEffect, useState, useCallback } from "react";
 import { bedrooms } from "@/constants/constants";
 import { Property } from "@/common/properties/Property";
@@ -6,68 +6,21 @@ import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 import { graphqlRequest } from "@/utils/graphqlRequest.js";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { InquiryForm } from "@/components/form/InquiryForm";
+import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 
 export function Lease() {
   const [data, setData] = useState([]);
   const [filterForm] = Form.useForm();
 
   const fetchProperties = useCallback(async () => {
-    const query = `
-      query GetSaleProperties($status: [PropertyStatusEnum!]) {
-        properties(
-          status: $status
-          orderBy: CREATED_AT_DESC
-        ) {
-          nodes {
-            id
-            price
-            formattedAddress
-            status
-            saleOrLease
-            advertisedPrice
-            latitude
-            longitude
-            description
-            featured
-            createdAt
-            updatedAt
-            listingDetails {
-              ... on ResidentialSale {
-                bedrooms
-                bathrooms
-                carportSpaces
-                garageSpaces
-                openCarSpaces
-              }
-              ... on ResidentialRental {
-                bedrooms
-                bathrooms
-                carportSpaces
-                garageSpaces
-                openCarSpaces
-              }
-            }
-            vendors {
-              contact {
-                firstName
-                lastName
-              }
-            }
-            images {
-              url
-            }
-          }
-        }
-      }
-    `;
-
     try {
-      const variables = { status: [ "ACTIVE"] };
-      const res = await graphqlRequest(query, variables);
-      const filterProperty = res?.data?.properties?.nodes.filter((item)=> item.saleOrLease == "LEASE")
+      const variables = { status: ["ACTIVE"] };
+      const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
+      const filterProperty = res?.data?.properties?.nodes.filter(
+        (item) => item.saleOrLease == "LEASE"
+      );
       setData(filterProperty || []);
     } catch (error) {
-      console.error(error);
       message.error("Failed to fetch properties");
     }
   }, []);
@@ -108,17 +61,19 @@ export function Lease() {
               const { id, formattedAddress, images, price, listingDetails } =
                 property;
               return (
-                <Property
-                  key={id}
-                  address={formattedAddress}
-                  image={images?.[0]?.url}
-                  price={price}
-                  bed={listingDetails?.bedrooms ?? 0}
-                  bathrooms={listingDetails?.bathrooms ?? 0}
-                  carportSpaces={listingDetails?.carportSpaces ?? 0}
-                  property={property}
-                  leaseTag={false}
-                />
+                <Link to={`/property/${id}`}>
+                  <Property
+                    key={id}
+                    address={formattedAddress}
+                    image={images?.[0]?.url}
+                    price={price}
+                    bed={listingDetails?.bedrooms ?? 0}
+                    bathrooms={listingDetails?.bathrooms ?? 0}
+                    carportSpaces={listingDetails?.carportSpaces ?? 0}
+                    property={property}
+                    leaseTag={false}
+                  />
+                </Link>
               );
             })}
           </div>

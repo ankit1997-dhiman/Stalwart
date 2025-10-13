@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button,  Collapse, message } from "antd";
+import { Form, Button, Collapse, message } from "antd";
 import { Link } from "react-router-dom";
 import { HiArrowLongRight } from "react-icons/hi2";
 import Plus from "@/assets/icons/plus-icon.svg";
@@ -32,7 +32,6 @@ const SellWithStalwart = () => {
   const prev = () => setCurrent((prev) => prev - 1);
 
   const onFinish = (values) => {
-    console.log("✅ Final Form Values:", values);
     message.success("Form submitted successfully!");
   };
 

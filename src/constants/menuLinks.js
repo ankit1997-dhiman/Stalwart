@@ -2,7 +2,7 @@ import { URLS } from "./Urls";
 import TranslateLogo from "@/assets/icons/translate.svg";
 
 export const menuItems = [
-  { name: "BUY", link: URLS.BUY },
+  { label: "BUY", link: URLS.BUY },
   { name: "SELL",link:URLS.SELL_WITH_STALWART },
   { name: "LEASE", link: URLS.LEASE },
   { name: "ABOUT", link: URLS.ABOUT },

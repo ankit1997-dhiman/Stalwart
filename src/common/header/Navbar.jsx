@@ -7,6 +7,7 @@ import whiteLogo from "@/assets/images/white-logo.png";
 import blackLogo from "@/assets/images/header-black-logo.png";
 import { URLS } from "@/constants/Urls";
 import { menuItems, nav1Paths } from "@/constants/menuLinks";
+import { DropdownMenu } from "../dropdown/DropDownMenu";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -37,6 +38,10 @@ export default function Navbar() {
     },
   ];
 
+  const onSelect = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {/* Navbar */}
@@ -54,7 +59,9 @@ export default function Navbar() {
         </Link>
 
         <RxHamburgerMenu
-          className={`${showNav1 ? "text-black " : "text-white "}  text-xl`}
+          className={`${
+            showNav1 ? "text-black " : "text-white "
+          }  text-xl cursor-pointer`}
           onClick={showDrawer}
         />
       </div>
@@ -78,14 +85,19 @@ export default function Navbar() {
           </div>
         }
       >
-        <div className="flex flex-col h-full justify-between px-6">
+        <div className="flex flex-col h-full justify-between ">
+          <DropdownMenu onSelect={onSelect} />
           {/* Main Menu */}
-          <div className="py-4 text-white">
+          {/* <div className="py-4 text-white">
             <ul className="space-y-6 py-6.5 text-xs font-normal">
               {menuItems.map((item, idx) => (
                 <li key={idx} className="font-monument text-white">
                   {item.link ? (
-                    <Link to={item.link} className="!text-white">
+                    <Link
+                      to={item.link}
+                      className="!text-white"
+                      onClick={() => handleClick()}
+                    >
                       {item.name}
                     </Link>
                   ) : (
@@ -94,10 +106,10 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Footer Menu */}
-          <div className="flex flex-col">
+          <div className="flex flex-col px-6">
             <ul className="space-y-6 py-6.5 text-xs font-normal font-monument text-white">
               <li>SOCIAL MEDIA</li>
             </ul>

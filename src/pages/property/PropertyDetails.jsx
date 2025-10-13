@@ -17,10 +17,12 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import EnquiryModal from "@/common/modal/EnquiryModal";
+import { ShareModal } from "@/components/share/ShareModal";
 
 export const PropertyDetails = () => {
   const [propertyData, setPropertyData] = useState(null);
   const [open, setOpen] = useState(false);
+  const [openShareModal, setOpenShareModal] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -125,9 +127,6 @@ export const PropertyDetails = () => {
       }).format(propertyData.price)
     : propertyData?.advertisedPrice || "Contact Agent";
 
-  // ✅ Truncate long description
-  console.log(propertyData, "adkfmaskd");
-
   return (
     <div className="container pt-24">
       {/* 🏠 Property Banner Section */}
@@ -192,9 +191,9 @@ export const PropertyDetails = () => {
                 </Link>
               </p>
             )}
-            {/* <p className="leading-5 font-moderat-bold uppercase pb-15 text-base">
-              Seller Disclosure Statement
-            </p> */}
+            <p className="leading-5 font-moderat-bold uppercase pb-15 text-base">
+              Download Document
+            </p>
 
             <div className="space-y-2 flex flex-col gap-5 pt-5 lg:pt-15">
               <button
@@ -203,7 +202,10 @@ export const PropertyDetails = () => {
               >
                 Enquire Now
               </button>
-              <button className="border-1 border-black py-5 px-8 w-full lg:w-64">
+              <button
+                className="border-1 border-black py-5 px-8 w-full lg:w-64"
+                onClick={() => setOpenShareModal(true)}
+              >
                 Share
               </button>
             </div>
@@ -279,6 +281,10 @@ export const PropertyDetails = () => {
         {/* 🏡 Related Listings Section */}
         <RelatedProperties />
         <EnquiryModal setIsModalOpen={setOpen} isModalOpen={open} />
+        <ShareModal
+          openShareModal={openShareModal}
+          setOpenShareModal={setOpenShareModal}
+        />
       </div>
     </div>
   );

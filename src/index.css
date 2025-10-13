@@ -214,3 +214,16 @@ p {
 .swiper-pagination-bullet-active {
   background-color: white;
 }
+
+.custom-menu .ant-menu-title-content {
+  color: white !important;
+}
+.custom-menu .ant-menu-item-selected .ant-menu-title-content {
+  color: #000 !important;
+}
+.custom-menu .ant-menu-item-active .ant-menu-title-content {
+  color: #000 !important;
+}
+.custom-menu .ant-menu-submenu-active .menu-label {
+  color: black !important;
+}

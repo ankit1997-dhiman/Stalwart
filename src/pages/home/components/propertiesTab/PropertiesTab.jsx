@@ -10,7 +10,7 @@ import LeaseTab from "./components/LeaseTab.jsx";
 // Map tab key → status
 const tabListingTypes = {
   1: ["ACTIVE"], // FEATURED (no filter)
-  2: [ "ACTIVE"], // BUY
+  2: ["ACTIVE"], // BUY
   3: ["SOLD"], // SELL (adjust if needed)
   4: ["LEASED"], // LEASE
 };
@@ -20,8 +20,8 @@ const PropertiesTab = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-  const fetchProperties = async () => {
-    const query = `
+    const fetchProperties = async () => {
+      const query = `
        query GetSaleProperties($status: [PropertyStatusEnum!]) {
         properties(
           status: $status
@@ -70,49 +70,30 @@ const PropertiesTab = () => {
       }
     `;
 
-    try {
-      // const status = tabListingTypes[activeTab];
+      try {
+        const status = tabListingTypes[activeTab];
+        const variables = {
+          first: 50, // fetch enough to allow filtering locally
+          ...(status ? { status } : {}),
+        };
 
-      // build variables cleanly
-      // const variables = {
-        // first: 10,
-        // ...(activeTab === "1" ? { featured: true } : {}), // only add featured:true for Featured tab
-        // ...(status ? { status } : {}), // only add status filter when needed
-      // };
+        const res = await graphqlRequest(query, variables);
 
-      // const res = await graphqlRequest(query, variables);
-      // console.log(res,"res");
-      
+        let nodes = res?.data?.properties?.nodes || [];
 
-      // if (res?.data?.properties?.nodes) {
-      //   setData(res.data.properties.nodes);
-      // }
-       const status = tabListingTypes[activeTab];
-      const variables = {
-        first: 50, // fetch enough to allow filtering locally
-        ...(status ? { status } : {}),
-      };
+        // Apply filtering on client side
+        if (activeTab === "1") {
+          nodes = nodes.filter((p) => p.featured === true);
+        }
 
-      const res = await graphqlRequest(query, variables);
-
-      let nodes = res?.data?.properties?.nodes || [];
-
-      // Apply filtering on client side
-      if (activeTab === "1") {
-        nodes = nodes.filter((p) => p.featured === true);
+        setData(nodes);
+      } catch (error) {
+        message.error(error.message || "Something went wrong");
       }
+    };
 
-      console.log(nodes)
-      setData(nodes);
-
-    } catch (error) {
-      message.error(error.message || "Something went wrong");
-    }
-  };
-
-  fetchProperties();
-}, [activeTab]);
-
+    fetchProperties();
+  }, [activeTab]);
 
   const items = [
     {
@@ -120,7 +101,7 @@ const PropertiesTab = () => {
       label: (
         <p className="font-moderat-medium font-medium text-base">FEATURED</p>
       ),
-      children: <Tab1 tabdata={data}/>,
+      children: <Tab1 tabdata={data} />,
     },
     {
       key: "2",

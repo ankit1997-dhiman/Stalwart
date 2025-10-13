@@ -197,19 +197,13 @@ const AppointedStep = () => (
 const LastStep = () => (
   <>
     <div className="grid grid-cols-2 gap-4">
-      <Form.Item
-        name="firstName"
-       
-        rules={[{ required: true }]}
-      >
+      <Form.Item name="firstName" rules={[{ required: true }]}>
         <Input
           placeholder="e.g. 500"
           className="!border-black !border !rounded-none !py-2"
         />
       </Form.Item>
-    
     </div>
-   
   </>
 );
 
@@ -221,7 +215,6 @@ const SwitchWithStalwart = () => {
   const next = () => setCurrent((prev) => prev + 1);
   const prev = () => setCurrent((prev) => prev - 1);
   const onFinish = (values) => {
-    console.log("Form Values:", values);
     next();
   };
 
@@ -240,7 +233,8 @@ const SwitchWithStalwart = () => {
       content: <AppointedStep />,
     },
     {
-      title: "How much rent do you think is achievable for your property in the current market?",
+      title:
+        "How much rent do you think is achievable for your property in the current market?",
       content: <LastStep />,
     },
   ];
@@ -270,8 +264,11 @@ const SwitchWithStalwart = () => {
 
           <div className="flex gap-4 mt-10">
             {current > 1 && (
-              <Button className="!rounded-none !px-3 bg-white !border !border-black !py-3" onClick={prev}>
-                  <sapn className="font-moderat-regular text-base ">Go Back</sapn>
+              <Button
+                className="!rounded-none !px-3 bg-white !border !border-black !py-3"
+                onClick={prev}
+              >
+                <sapn className="font-moderat-regular text-base ">Go Back</sapn>
               </Button>
             )}
             {current < steps.length - 1 && (
@@ -285,8 +282,11 @@ const SwitchWithStalwart = () => {
               </Button>
             )}
             {current === steps.length - 1 && (
-              <Button onClick={() => message.success("Processing complete!")} className="!rounded-none !px-3 bg-white !border !border-black !py-3">
-                    <sapn className="font-moderat-regular text-base ">Submit</sapn>
+              <Button
+                onClick={() => message.success("Processing complete!")}
+                className="!rounded-none !px-3 bg-white !border !border-black !py-3"
+              >
+                <sapn className="font-moderat-regular text-base ">Submit</sapn>
               </Button>
             )}
           </div>

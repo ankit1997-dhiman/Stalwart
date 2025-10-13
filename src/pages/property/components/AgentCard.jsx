@@ -12,7 +12,12 @@ export const AgentCard = ({
         <p className="pb-5 font-moderat-bold text-sm lg:text-base uppercase">
           {name}
         </p>
-        <p className="font-moderat-regular text-sm lg:text-base">{phone}</p>
+        <a
+          href={`to:${phone}`}
+          className="font-moderat-regular text-sm lg:text-base"
+        >
+          {phone}
+        </a>
       </div>
     </div>
   );

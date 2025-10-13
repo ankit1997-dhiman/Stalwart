@@ -1,6 +1,7 @@
 import { Button, Checkbox, Form, Input, message, Spin } from "antd";
 import React, { useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
+import Label from "@/components/form/Label";
 
 export default function ContactForm() {
   const [contactForm] = Form.useForm();
@@ -58,16 +59,33 @@ export default function ContactForm() {
           <div className="py-18 hidden xl:block">
             <Form.Item
               name="roles"
-              className="!rounded-none !border-black w-full"
+              className="!rounded-none !border-black !block w-full"
             >
-              <Checkbox.Group className="!rounded-none !border-black ">
+              <Checkbox.Group className="!rounded-none !border-black !block">
                 <div className=" md:flex-row flex-col flex justify-between items-center md:gap-34 w-full">
-                  <div className="font-bold font-moderat">Type Of Inquiry</div>
-                  <Checkbox value="General">General</Checkbox>
-                  <Checkbox value="Buy">Buy</Checkbox>
-                  <Checkbox value="Sell">Sell</Checkbox>
-                  <Checkbox value="Lease">Lease</Checkbox>
-                  <Checkbox value="Other">Other</Checkbox>
+                  <Label
+                    label="Type Of Inquiry"
+                    className="!font-moderat-bold"
+                  />
+
+                  <Checkbox value="General">
+                    <Label
+                      label="General"
+                      className="!font-moderat-bold pl-8"
+                    />
+                  </Checkbox>
+                  <Checkbox value="Buy">
+                    <Label label="Buy" className="!font-moderat-bold pl-8" />
+                  </Checkbox>
+                  <Checkbox value="Sell">
+                    <Label label="Sell" className="!font-moderat-bold pl-8" />
+                  </Checkbox>
+                  <Checkbox value="Lease">
+                    <Label label="Lease" className="!font-moderat-bold pl-8" />
+                  </Checkbox>
+                  <Checkbox value="Other">
+                    <Label label="Other" className="!font-moderat-bold pl-8" />
+                  </Checkbox>
                 </div>
               </Checkbox.Group>
             </Form.Item>
@@ -80,7 +98,7 @@ export default function ContactForm() {
               <Form.Item
                 name="name"
                 label={
-                  <div className="!text-base !font-moderat-bold">Full Name</div>
+                  <Label label="Full Name" className="!font-moderat-bold" />
                 }
                 rules={[
                   { required: true, message: "Please enter your full name" },
@@ -96,9 +114,10 @@ export default function ContactForm() {
               <Form.Item
                 name="contact"
                 label={
-                  <div className="!text-base !font-moderat-bold">
-                    Contact Number
-                  </div>
+                  <Label
+                    label="Contact Number"
+                    className="!font-moderat-bold"
+                  />
                 }
                 rules={[
                   {
@@ -121,9 +140,10 @@ export default function ContactForm() {
               <Form.Item
                 name="email"
                 label={
-                  <div className="!text-base !font-moderat-bold">
-                    Contact Email
-                  </div>
+                  <Label
+                    label=" Contact Email"
+                    className="!font-moderat-bold"
+                  />
                 }
                 rules={[
                   { required: true, message: "Please enter your email" },

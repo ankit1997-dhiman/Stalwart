@@ -95,7 +95,6 @@ export const Section1 = () => {
         message.success("Properties fetched successfully!");
       }
     } catch (error) {
-      console.error(error);
       message.error("Failed to fetch properties.");
     }
   };
@@ -143,7 +142,11 @@ export const Section1 = () => {
 
             {/* Search Box */}
             <div className="w-full flex bg-white relative">
-              <Form.Item name="address" label={false} className="!mb-0 !w-full !my-auto">
+              <Form.Item
+                name="address"
+                label={false}
+                className="!mb-0 !w-full !my-auto"
+              >
                 <AddressAutocomplete />
               </Form.Item>
 
@@ -151,7 +154,7 @@ export const Section1 = () => {
                 htmlType="submit"
                 className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px]"
               >
-                <img src={searchImage} alt="Search" className=" my-auto"/>
+                <img src={searchImage} alt="Search" className=" my-auto" />
               </Button>
             </div>
           </div>
