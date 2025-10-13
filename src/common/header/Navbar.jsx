@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useMatch } from "react-router-dom";
 import { Drawer } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -6,8 +6,8 @@ import { IoMdClose } from "react-icons/io";
 import whiteLogo from "@/assets/images/white-logo.png";
 import blackLogo from "@/assets/images/header-black-logo.png";
 import { URLS } from "@/constants/Urls";
-import { menuItems, nav1Paths } from "@/constants/menuLinks";
-import { DropdownMenu } from "../dropdown/DropDownMenu";
+import { nav1Paths } from "@/constants/menuLinks";
+import { DropdownMenu } from "../dropdown/DropDownMenu.jsx";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
