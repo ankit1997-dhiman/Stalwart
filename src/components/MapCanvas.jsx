@@ -11,7 +11,7 @@ export const MapCanvas = ({ latitude, longitude, zoom = 15 }) => {
         src={src}
         width="100%"
         height="100%"
-        style={{ border: 0, filter: "grayscale(100%) contrast(120%)" }}
+        // style={{ border: 0, filter: "grayscale(100%) contrast(120%)" }}
       ></iframe>
     </div>
   );

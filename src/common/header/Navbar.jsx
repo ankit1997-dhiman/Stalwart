@@ -48,7 +48,7 @@ export default function Navbar() {
       <div
         className={`${
           showNav1 ? "" : ""
-        } container flex justify-between items-center pt-14 `}
+        } container flex justify-between items-center pt-4 `}
       >
         <Link to={URLS.HOME}>
           <img

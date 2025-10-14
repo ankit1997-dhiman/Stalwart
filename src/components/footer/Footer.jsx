@@ -33,11 +33,11 @@ export default function Footer() {
               <p className="font-semibold pb-10 text-[11px] font-monument">
                 {section.title}
               </p>
-              <ul className="space-y-1">
+              <ul className="space-y-1 flex flex-col">
                 {section.links.map((link, i) => (
-                  <li key={i} className="font-moderat-regular text-[14px]">
-                    {link}
-                  </li>
+                  <Link key="Instagram" to={link.to} target={link.external}>
+                    {link.label}
+                  </Link>
                 ))}
               </ul>
             </div>
@@ -125,10 +125,11 @@ export default function Footer() {
               <img src={logo} alt="Logo" className="h-6 w-[160px]" />
             </div>
             <div>
-              <p className="text-xl font-miller-light text-right text-white/60">— The Fortis Immo</p>
+              <p className="text-xl font-miller-light text-right text-white/60">
+                — The Fortis Immo
+              </p>
             </div>
             <div>
-             
               <ul className="!m-0">
                 {contactInfo.map((item, i) => (
                   <li key={i} className="font-moderat text-sm text-white/60">
@@ -146,10 +147,10 @@ export default function Footer() {
             </div>
           </div>
           <p className="font-moderat text-[10px] text-white/60 pt-21">
-              We respectfully acknowledge the Traditional Owners of the land on
-              which we work and learn, and pay respect to the First Nations
-              Peoples and their elders, past, present and future.
-            </p>
+            We respectfully acknowledge the Traditional Owners of the land on
+            which we work and learn, and pay respect to the First Nations
+            Peoples and their elders, past, present and future.
+          </p>
         </div>
 
         <div className="hidden lg:block">

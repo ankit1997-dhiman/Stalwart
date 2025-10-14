@@ -1,120 +1,90 @@
 import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
-import {
-  bottomStatusOptions,
-  properties,
-  topStatusOptions,
-} from "@/constants/constants";
-import { Button, Form, Input, Select } from "antd";
-import React from "react";
+import { bedrooms } from "@/constants/constants";
+import { Button, Form, message } from "antd";
+import React, { useCallback, useEffect, useState } from "react";
 import AuctionCard from "../upcomingAuction/components/AuctionCard";
-import { FaSearch } from "react-icons/fa";
+import { InquiryForm } from "@/components/form/InquiryForm";
+import { GET_UPCOMING_INSPECTION } from "@/queries/inspectionQueries";
+import { graphqlRequest } from "@/utils/graphqlRequest";
 
 export default function UpcomingInspections() {
-  const [upcomingAuctionForm] = Form.useForm();
+  const [upcomingInspectionForm] = Form.useForm();
+  const [upcomingInspecion, setUpcomingInspecion] = useState([]);
 
-  const onFinish = (values) => {};
+  const fetchInspectionProperties = useCallback(async () => {
+    try {
+      console.log("yex");
+      const variables = { status: ["ACTIVE"] };
+      const res = await graphqlRequest(GET_UPCOMING_INSPECTION, variables);
+      const filteredProperties = [];
+      res?.data?.properties?.nodes.forEach((property) => {
+        const { nodes: inspections } = property.inspections;
+        if (inspections.length > 0) {
+          const lastInspection = inspections[inspections.length - 1];
+          filteredProperties.push({
+            ...property,
+            lastInspection, // ✅ attach last inspection here
+          });
+        }
+      });
+
+      setUpcomingInspecion(filteredProperties);
+
+      // setUpcomingInspecion(res?.data?.properties?.nodes || []);
+    } catch (error) {
+      message.error("Failed to fetch inspection");
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchInspectionProperties();
+    upcomingInspectionForm.setFieldsValue({ status: "BUY" });
+  }, [fetchInspectionProperties]);
+
+  console.log(upcomingInspecion, "upcomingInspecion");
+
+  const handleSubmit = (values) => {};
   return (
     <div className="container">
-      <div className="w-full xl:w-[999px] mx-auto ">
+      <div className="w-full lg:w-[999px] mx-auto">
         <WithSectionLayout
-          title="PROPERTIES FOR SALE"
-          leftText="Buy"
+          title="Upcoming Inspection"
+          leftText="Propoerties"
           midText="|"
-          rightText="Auctions"
+          rightText="Inspection"
         />
 
-        <Form
-          form={upcomingAuctionForm}
-          onFinish={onFinish}
-          layout="vertical"
-          initialValues={{
-            name: "",
-            status: "BUY",
-            status0: "MIN. PRICE",
-            status1: "MAX. PRICE",
-            status2: "BED",
-            status3: "BATH",
-            status4: "CAR",
-          }}
-        >
-          {/* Top Row */}
-          <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
-            <Form.Item name="status" label={false} className="!mb-0 ">
-              <Select className="w-full xl:!w-[180px] border-black border !rounded-none !text-black !h-[50px] !bg-white">
-                {topStatusOptions.map((opt) => (
-                  <Select.Option
-                    key={opt}
-                    value={opt}
-                    className=" !text-black !rounded-none font-monument"
-                  >
-                    <div className="font-monument text-[10px]">{opt}</div>
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-
-            <div className="w-full flex bg-white border-black border">
-              <Form.Item
-                name="name"
-                label={false}
-                className="!mb-0 !w-full !rounded-xl"
-              >
-                <Input
-                  placeholder="Search..."
-                  className="!h-[50px] !border-none !rounded-none !outline-0"
-                />
-              </Form.Item>
-              <Button
-                htmlType="submit"
-                className="!h-[50px] ml-2 flex items-center justify-center bg-white !border-none"
-              >
-                <FaSearch className="mr-2" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Bottom Row */}
-          <div className="hidden xl:flex items-stretch justify-between gap-7.5 pb-4 w-full">
-            {bottomStatusOptions.map((options, idx) => (
-              <Form.Item
-                key={idx}
-                name={`status${idx}`}
-                label={false}
-                className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument !outline-0"
-              >
-                <Select
-                  className={`!text-black !h-[50px] text-[10px] font-normal font-monument !border-0 !outline-none !rounded-none !bg-white ${
-                    idx === 0 ? "!w-[180px]" : "!w-full"
-                  }`}
-                >
-                  {options.map((opt) => (
-                    <Select.Option
-                      key={opt}
-                      value={opt}
-                      className=" !text-black !w-full !rounded-none font-monument text-[10px] font-normal bg-white"
-                    >
-                      <div className="font-monument text-[10px]">{opt}</div>
-                    </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            ))}
-          </div>
-        </Form>
+        <InquiryForm
+          form={upcomingInspectionForm}
+          onFinish={handleSubmit}
+          status="BUY"
+          bedroomOptions={bedrooms}
+          bathroomOptions={bedrooms}
+          carOptions={bedrooms}
+        />
       </div>
 
-      {properties.map((item, idx) => {
-        return (
-          <AuctionCard
-            key={idx}
-            image={item.image}
-            price={item.price}
-            hoverAddress={item.hoverAddress}
-            address={item.address}
-            inspection={true}
-          />
-        );
-      })}
+      <div className="border-t border-b-black/30 mt-16 "></div>
+      <div className="">
+        {upcomingInspecion.map((item) => {
+          return (
+            <AuctionCard
+              key={item.id}
+              id={item?.id}
+              image={item?.images?.[0]?.url}
+              price={item?.advertisedPrice}
+              hoverAddress={item?.formattedAddress}
+              address={item?.formattedAddress}
+              bed={item?.listingDetails?.bedrooms ?? 0}
+              bathrooms={item?.listingDetails?.bathrooms ?? 0}
+              carportSpaces={item?.listingDetails?.carportSpaces ?? 0}
+              inspection={true}
+              time={item?.lastInspection.start}
+            />
+          );
+        })}
+      </div>
+
       <div className="my-20 flex items-center justify-center">
         <Button className="border-2 !px-18.5 !py-6 text-center font-moderat-regular text-base !border-black !rounded-none">
           Load More

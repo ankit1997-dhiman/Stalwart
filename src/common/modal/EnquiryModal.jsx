@@ -18,6 +18,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen }) => {
     <div className="container mx-auto">
       <Modal
         open={isModalOpen}
+        onCancel={handleCancel}
         className="custom-modal"
         footer={false}
         width={1400}

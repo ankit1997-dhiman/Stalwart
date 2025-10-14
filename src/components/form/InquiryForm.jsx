@@ -35,7 +35,7 @@ export const InquiryForm = ({
 
         <div className="w-full flex items-center bg-white border-black border">
           <Form.Item
-            name="name"
+            name="address"
             label={false}
             className="!w-full !rounded-xl !my-auto outline-0"
           >
@@ -67,7 +67,7 @@ export const InquiryForm = ({
           options={bathroomOptions}
         />
         <FilterSelectDropdown
-          name="car"
+          name="carSpaces"
           placeholder="CAR"
           options={carOptions}
         />

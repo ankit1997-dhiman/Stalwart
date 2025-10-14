@@ -1,63 +1,59 @@
-import { Link } from "react-router-dom";
 import { URLS } from "./Urls";
 
 export const footerLinks = [
   {
     title: "BUY",
     links: [
-      "Properties for Sale",
-      "Upcoming Inspections & Auctions",
-      "Sold Properties",
+      { label: "Properties for Sale", to: URLS.BUY, external: false },
+      { label: "Upcoming Inspections", to: URLS.UPCOMING_INSPECTIONS },
+      { label: "Upcoming Auctions", to: URLS.UPCOMING_AUCTIONS },
+      { label: "Get A Property Estimate" },
+      { label: "Suburb Insight" },
+      { label: "Our Team", to: URLS.ABOUT },
     ],
   },
   {
     title: "SELL",
     links: [
-      "Selling With Stalwart",
-      "Book A Property Appraisal",
-      "Sold Properties",
-      "Project Marketing"
+      { label: "Sell with Stalwart", to: URLS.SELL_WITH_STALWART },
+      { label: "Sold Properties", to: URLS.SOLD_PROPERTIES },
+      { label: "Book a Property Appraisal", to: "#" },
+      { label: "Suburb Insight", to: "#" },
+      { label: "Our Team", to: URLS.ABOUT },
     ],
   },
   {
     title: "LEASE",
     links: [
-      "Properties for Lease",
-      "Upcoming Inspections",
-      "Owners Portal",
-      "Tenant Portal",
+      { label: "Leasing with Stalwart", to: URLS.SELL_WITH_STALWART },
+      { label: "Properties for Lease", to: URLS.LEASE_PROPERTIES },
+      { label: "Upcoming Inspection", to: URLS.UPCOMING_INSPECTIONS },
+      { label: "Owners Portal" },
+      { label: "Tenant Portal" },
+      { label: "Our Team", to: URLS.ABOUT },
     ],
   },
   {
     title: "ABOUT",
     links: [
-      "Our Team",
-      <Link key="careers" to={URLS.CAREERS}>
-        Careers
-      </Link>,
-      "News/Blogs",
+      { label: "Our Team", to: URLS.ABOUT },
+      { label: "Careers", to: URLS.CAREERS },
+      { label: "News/Blogs" },
     ],
   },
   {
     title: "SOCIAL MEDIA",
     links: [
-      <Link key="Instagram" to={URLS.INSTAGRAM} target="_blank">
-        Instagram
-      </Link>,
-      <Link key="Facebook" to={URLS.FACEBOOK} target="_blank">
-        Facebook
-      </Link>,
-      <Link key="Facebook" to={URLS.LINKED_IN} target="_blank">
-        LinkedIn
-      </Link>],
+      { label: "Instagram", to: URLS.INSTAGRAM, external: true },
+      { label: "Facebook", to: URLS.FACEBOOK, external: true },
+      { label: "LinkedIn", to: URLS.LINKED_IN, external: true },
+    ],
   },
   {
     title: "CONTACT",
     links: [
-      "Request an Appraisal",
-      <Link key="contact" to={URLS.CONTACT_US}>
-        Contact
-      </Link>,
+      { label: "Request an Appraisal" },
+      { label: "Contact", to: URLS.CONTACT_US },
     ],
   },
 ];
