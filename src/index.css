@@ -236,3 +236,6 @@ p {
 .skiptranslate {
   display: none;
 }
+.ant-modal {
+  margin: auto;
+}

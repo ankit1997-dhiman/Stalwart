@@ -5,9 +5,9 @@ import { FilterSelectDropdown } from "../select/FilterSelectDropdown";
 
 export const InquiryForm = ({
   form,
-  onFinish,
   status = "BUY",
   showStatus = true,
+  onSubmit,
   namePlaceholder = "Start Typing To Find Your Address...",
   bedroomOptions = [],
   bathroomOptions = [],
@@ -17,7 +17,7 @@ export const InquiryForm = ({
   return (
     <Form
       form={form}
-      onFinish={onFinish}
+      onFinish={onSubmit}
       layout="vertical"
       className={`!pt-11 ${className}`}
     >

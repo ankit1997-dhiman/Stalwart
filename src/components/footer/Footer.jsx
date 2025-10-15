@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
 import logo from "@/assets/icons/footer-logo-bottom.svg";
 import { contactInfo, footerLinks, legalLinks } from "@/constants/footerLinks";
@@ -9,8 +9,11 @@ import EnquiryModal from "@/common/modal/EnquiryModal";
 import { FooterCollapse } from "./FooterCollapse";
 
 export default function Footer() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const matchProperty = useMatch("/property/:id");
+  const showButton = matchProperty;
 
   const onFinish = (values) => {};
 
@@ -197,11 +200,14 @@ export default function Footer() {
         <EnquiryModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          handleCancel={handleCancel}
         />
       </div>
-      <div className="flex items-center justify-center">
-        <StickyButton handleClick={showModal} />
-      </div>
+      {showButton && (
+        <div className="flex items-center justify-center z-50">
+          <StickyButton handleClick={showModal} />
+        </div>
+      )}
     </footer>
   );
 }

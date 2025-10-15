@@ -5,19 +5,26 @@ import image from "../../../assets/images/Team.png";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { Link } from "react-router-dom";
 import IconImage from "@/assets/icons/arrow-right.png";
+import nehaImage from "@/assets/images/neha.jpg";
+import jagroopImage from "@/assets/images/jagroop.jpg";
+import sandeepImage from "@/assets/images/sandeep.jpg";
+import dineshImage from "@/assets/images/dinesh.jpg";
+
 const { useBreakpoint } = Grid;
 
 const teamMembers = [
-  { id: 1, name: "John Doe", image: "/images/member1.jpg" },
-  { id: 2, name: "Jane Smith", image: "/images/member2.jpg" },
-  { id: 3, name: "Alex Johnson", image: "/images/member3.jpg" },
-  { id: 4, name: "Emily Brown", image: "/images/member4.jpg" },
-  { id: 5, name: "Chris White", image: "/images/member5.jpg" },
-  { id: 6, name: "Sophia Davis", image: "/images/member6.jpg" },
+  { id: 1, name: "NEHA SANGWAN", image: nehaImage },
+  { id: 2, name: "JAGROOP SINGH", image: jagroopImage },
+  { id: 3, name: "SANDEEP KUMAR", image: sandeepImage },
+  { id: 4, name: "DINESH SANGROHA", image: dineshImage },
 ];
+
+console.log(teamMembers[0].image);
 
 export default function MeetOurTeam() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [member, setMember] = useState({});
+  console.log(member);
 
   const screens = useBreakpoint();
 
@@ -30,7 +37,8 @@ export default function MeetOurTeam() {
   if (screens.lg) modalWidth = 900;
   if (screens.xl) modalWidth = 1200;
 
-  const showModal = () => {
+  const showModal = (teamMember) => {
+    setMember(teamMember);
     setIsModalOpen(true);
   };
 
@@ -73,12 +81,12 @@ export default function MeetOurTeam() {
             <div
               key={member.id}
               className="relative overflow-hidden"
-              onClick={showModal}
+              onClick={() => showModal(member)}
             >
               <img
-                src={image}
+                src={member.image}
                 alt={member.name}
-                className="w-full h-[312px] object-cover grayscale hover:grayscale-0 transition"
+                className="w-full  object-cover grayscale hover:grayscale-0 transition"
               />
               <span className="absolute bottom-4 right-4 text-white text-sm uppercase">
                 {member.name}
@@ -89,8 +97,6 @@ export default function MeetOurTeam() {
       </div>
       <Modal
         className="!p-0 custom-modal"
-        // title="Basic Modal"
-        // closable={{ "aria-label": "Custom Close Button" }}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -98,7 +104,7 @@ export default function MeetOurTeam() {
         width={modalWidth}
         style={{ padding: 0 }}
       >
-        <TeamPopup />
+        <TeamPopup image={member.image} name={member.name} />
       </Modal>
     </section>
   );

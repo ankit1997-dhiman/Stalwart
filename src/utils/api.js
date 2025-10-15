@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  // baseURL: " https://e7a133872ebf.ngrok-free.app", // GraphQL endpoint
-  baseURL: import.meta.env.VITE_BASE_URL, // GraphQL endpoint
+  baseURL: "http://72.60.76.204/api/graphql", // GraphQL endpoint
+  // baseURL: import.meta.env.VITE_BASE_URL, // GraphQL endpoint
   headers: {
     "Content-Type": "application/json",
   },

@@ -18,94 +18,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import EnquiryModal from "@/common/modal/EnquiryModal";
 import { ShareModal } from "@/components/share/ShareModal";
+import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
 
 export const PropertyDetails = () => {
   const [propertyData, setPropertyData] = useState(null);
   const [open, setOpen] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
   const { id } = useParams();
+  console.log(id, "id on property page");
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const query = `
-        query GetSaleProperties($ids: [ID!], $first: Int, $status: [PropertyStatusEnum!]) {
-          properties(
-            first: $first
-            status: $status
-            orderBy: CREATED_AT_DESC
-            ids: $ids
-          ) {
-            totalCount
-            nodes {
-              id
-              price
-              formattedAddress
-              status
-              saleOrLease
-              advertisedPrice
-              latitude
-              longitude
-              description
-              featured
-              createdAt
-              updatedAt
-
-              listingDetails {
-                ... on ResidentialSale {
-                  bedrooms
-                  bathrooms
-                  carportSpaces
-                  garageSpaces
-                  openCarSpaces
-                }
-                ... on ResidentialRental {
-                  bedrooms
-                  bathrooms
-                  carportSpaces
-                  garageSpaces
-                  openCarSpaces
-                }
-              }
-
-              agents {
-                id
-                name
-                avatarUrl
-                email
-                phone
-              }
-                 inspections {
-        nodes {
-          id
-          finish
-          start
-          
-        }
-      }
-        floorplans {
-        url
-        id
-      }
-
-              vendors {
-                contact {
-                  firstName
-                  lastName
-                }
-              }
-
-              images {
-                url
-              }
-            }
-          }
-        }
-      `;
-
       const variables = { ids: [id] };
+      console.log(variables, "variables");
 
       try {
-        const res = await graphqlRequest(query, variables);
+        const res = await graphqlRequest(GET_PROPERTY_BY_ID, variables);
+        console.log(res, "res");
         const property = res?.data?.properties?.nodes?.[0];
         setPropertyData(property || null);
       } catch (error) {
@@ -115,8 +44,7 @@ export const PropertyDetails = () => {
 
     fetchProperties();
   }, [id]);
-
-  if (!id || !propertyData) return <NotFound />;
+  console.log(propertyData?.formattedAddress, "propertyData");
 
   // ✅ Format the price (AUD)
   const formattedPrice = propertyData?.price
@@ -126,6 +54,15 @@ export const PropertyDetails = () => {
         minimumFractionDigits: 0,
       }).format(propertyData.price)
     : propertyData?.advertisedPrice || "Contact Agent";
+
+  if (!id || !propertyData) return <NotFound />;
+
+  const handleShareCancel = () => {
+    setOpenShareModal(false);
+  };
+  const handleEnquiryCancel = () => {
+    setOpen(false);
+  };
 
   return (
     <div className="container pt-24">
@@ -214,7 +151,7 @@ export const PropertyDetails = () => {
           {/* Right Column */}
           <div className="w-full md:w-[65%] lg:w-[75%]">
             <div className="flex flex-col lg:flex-row gap-10 items-stretch">
-              <div className="w-full lg:w-[703px]">
+              <div className="w-full lg:w-[703px] !z-10">
                 <Swiper
                   modules={[Navigation, Pagination, Autoplay]}
                   spaceBetween={16}
@@ -280,10 +217,17 @@ export const PropertyDetails = () => {
 
         {/* 🏡 Related Listings Section */}
         <RelatedProperties />
-        <EnquiryModal setIsModalOpen={setOpen} isModalOpen={open} />
+        <EnquiryModal
+          setIsModalOpen={setOpen}
+          isModalOpen={open}
+          propertyTitle={propertyData?.formattedAddress}
+          listingDetails={propertyData?.listingDetails}
+          handleCancel={handleEnquiryCancel}
+        />
         <ShareModal
           openShareModal={openShareModal}
           setOpenShareModal={setOpenShareModal}
+          handleShareCancel={handleShareCancel}
         />
       </div>
     </div>

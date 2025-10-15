@@ -38,7 +38,6 @@ const GoogleTranslate = () => {
     const select = document.querySelector("select.goog-te-combo");
     if (select) {
       select.value = lang;
-      console.log(select.value);
       // Trigger translation
       select.dispatchEvent(new Event("change"));
 

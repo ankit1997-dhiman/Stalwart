@@ -13,7 +13,6 @@ export default function UpcomingInspections() {
 
   const fetchInspectionProperties = useCallback(async () => {
     try {
-      console.log("yex");
       const variables = { status: ["ACTIVE"] };
       const res = await graphqlRequest(GET_UPCOMING_INSPECTION, variables);
       const filteredProperties = [];
@@ -40,8 +39,6 @@ export default function UpcomingInspections() {
     fetchInspectionProperties();
     upcomingInspectionForm.setFieldsValue({ status: "BUY" });
   }, [fetchInspectionProperties]);
-
-  console.log(upcomingInspecion, "upcomingInspecion");
 
   const handleSubmit = (values) => {};
   return (

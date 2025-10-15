@@ -3,7 +3,11 @@ import React from "react";
 import ShareButtons from "./ShareButton";
 import { useParams } from "react-router-dom";
 
-export const ShareModal = ({ setOpenShareModal, openShareModal }) => {
+export const ShareModal = ({
+  setOpenShareModal,
+  openShareModal,
+  handleShareCancel,
+}) => {
   const { id } = useParams();
 
   const handleCancel = () => {
@@ -17,7 +21,7 @@ export const ShareModal = ({ setOpenShareModal, openShareModal }) => {
         open={openShareModal}
         footer={false}
         width={300}
-        onCancel={handleCancel}
+        onCancel={handleShareCancel}
       >
         <ShareButtons propertyUrl={propertyUrl} />
       </Modal>
