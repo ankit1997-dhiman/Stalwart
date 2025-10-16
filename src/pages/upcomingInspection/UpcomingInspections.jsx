@@ -44,21 +44,24 @@ export default function UpcomingInspections() {
   return (
     <div className="container">
       <div className="w-full lg:w-[999px] mx-auto">
-        <WithSectionLayout
-          title="Upcoming Inspection"
-          leftText="Propoerties"
-          midText="|"
-          rightText="Inspection"
-        />
-
-        <InquiryForm
-          form={upcomingInspectionForm}
-          onFinish={handleSubmit}
-          status="BUY"
-          bedroomOptions={bedrooms}
-          bathroomOptions={bedrooms}
-          carOptions={bedrooms}
-        />
+        <div className="px-12.5 lg:px-0">
+          <WithSectionLayout
+            title="Upcoming Inspection"
+            leftText="Propoerties"
+            midText="|"
+            rightText="Inspection"
+          />
+        </div>
+        <div className="px-12.5 lg:px-0">
+          <InquiryForm
+            form={upcomingInspectionForm}
+            onFinish={handleSubmit}
+            status="BUY"
+            bedroomOptions={bedrooms}
+            bathroomOptions={bedrooms}
+            carOptions={bedrooms}
+          />
+        </div>
       </div>
 
       <div className="border-t border-b-black/30 mt-16 "></div>

@@ -1,10 +1,10 @@
-import { Form, Select, Button, message } from "antd";
+import { Form, Select, Button } from "antd";
 import searchImage from "@/assets/icons/search.svg";
 import bgImage from "../../../assets/images/home-hero.png";
-import { bedrooms, topStatusOptions } from "@/constants/constants";
+import { bedrooms } from "@/constants/constants";
 import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
-import { graphqlRequest } from "@/utils/graphqlRequest";
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -30,73 +30,27 @@ const FilterSelect = ({ name, placeholder, options }) => (
 
 export const Section1 = () => {
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+  const [activeTab, setActiveTab] = useState("BUY");
 
-  const onFinish = async (values) => {
-    const filters = [];
+  // Handle form submission
+  const handleSubmit = () => {
+    if (!query || !activeTab) return;
 
-    const fieldMap = {
-      bedrooms: { type: "BEDROOM", strategy: "IS_GREATER_THAN" },
-      bathrooms: { type: "BATHROOM", strategy: "IS_GREATER_THAN" },
-      car: { type: "CAR_SPACE", strategy: "IS_GREATER_THAN" },
-    };
-
-    Object.entries(fieldMap).forEach(([key, config]) => {
-      const value = values[key];
-      if (value) {
-        filters.push({
-          type: config.type,
-          strategy: config.strategy,
-          value: String(value).trim(),
-          displayValue: null,
-        });
-      }
-    });
-
-    if (values.address?.trim()) {
-      filters.push({
-        type: "ADDRESS",
-        strategy: "CONTAINS",
-        value: values.address.trim(),
-        displayValue: null,
-      });
+    if (activeTab === "SELL") {
+      navigate("/get-property-estimate", { state: { activeTab, query } });
+    } else {
+      navigate("/search-results", { state: { activeTab, query } });
     }
 
-    if (!filters.length) return;
+    setQuery(""); // Clear input after submit
+  };
 
-    const filterSet = {
-      filterGroups: [{ operand: "AND", filters }],
-    };
-
-    const variables = { first: 10, filterSet };
-
-    const query = `
-      query GetFilteredProperties($first: Int, $filterSet: FilterSetAttributes) {
-        properties(first: $first, filterSet: $filterSet) {
-          totalCount
-          nodes {
-            id
-            address { street postcode }
-            listingDetails {
-              ... on ResidentialSale { bedrooms bathrooms }
-              ... on ResidentialRental { bedrooms bathrooms }
-            }
-            price
-            status
-          }
-        }
-      }
-    `;
-
-    try {
-      const res = await graphqlRequest(query, variables);
-      if (res?.properties?.nodes) {
-        setData(res.properties.nodes);
-        message.success("Properties fetched successfully!");
-      }
-    } catch (error) {
-      message.error("Failed to fetch properties.");
-    }
+  // Handle tab click
+  const handleClick = (value) => {
+    setActiveTab(value);
+    setQuery(""); // Reset input when switching tabs
   };
 
   return (
@@ -105,13 +59,13 @@ export const Section1 = () => {
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="w-[999px]">
-        <h4 className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
+        <p className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
           PORTA AD DOMUN
-        </h4>
+        </p>
 
         <Form
           form={form}
-          onFinish={onFinish}
+          onFinish={handleSubmit}
           layout="vertical"
           initialValues={{
             status: "BUY",
@@ -122,39 +76,60 @@ export const Section1 = () => {
           className="placeholder-white"
         >
           {/* Top Row */}
-          <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
-            <Form.Item name="status" label={false} className="!mb-0">
-              <Select
-                className="w-full xl:!w-[180px] !bg-black !text-white !h-[50px] !placeholder:text-white !placeholder:text-[10px] uppercase"
-                placeholder="BUY"
-              >
-                {topStatusOptions.map((opt) => (
-                  <Option
-                    key={opt}
-                    value={opt}
-                    className="!bg-[#4F4C45] !text-white !rounded-none font-monument !text-[10px]"
-                  >
-                    {opt}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
+          <div className="flex flex-col xl:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
+            <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase">
+              <p className="py-4.5">Get Property Estimate</p>
+            </div>
 
             {/* Search Box */}
-            <div className="w-full flex bg-white relative">
+            <div className="w-full flex  relative">
+              <div className="flex bg-[#4F4C45]  px-10 absolute -top-15 right-0 rounded-t-2xl h-[60px]">
+                <div
+                  className={`${
+                    activeTab === "SELL" ? "bg-white text-black" : "text-white"
+                  }  px-5 lg:px-10 cursor-pointer py-5`}
+                  onClick={() => handleClick("SELL")}
+                >
+                  SELL
+                </div>
+                <div
+                  className={`${
+                    activeTab === "BUY" ? "bg-white text-black " : "text-white"
+                  }  px-5 lg:px-10 cursor-pointer py-5`}
+                  onClick={() => handleClick("BUY")}
+                >
+                  BUY
+                </div>
+                <div
+                  className={`${
+                    activeTab === "LEASE" ? "bg-white text-black" : "text-white"
+                  }  px-5 lg:px-10 cursor-pointer py-5`}
+                  onClick={() => handleClick("LEASE")}
+                >
+                  LEASE
+                </div>
+              </div>
+
               <Form.Item
                 name="address"
                 label={false}
                 className="!mb-0 !w-full !my-auto"
+                rules={[
+                  { required: true, message: "Please enter your full name" },
+                ]}
               >
-                <AddressAutocomplete />
+                <AddressAutocomplete
+                  activeTab={activeTab}
+                  value={query}
+                  onChange={(val) => setQuery(val)} // update parent state
+                />
               </Form.Item>
 
               <Button
                 htmlType="submit"
-                className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px]"
+                className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px] !rounded-none"
               >
-                <img src={searchImage} alt="Search" className=" my-auto" />
+                <img src={searchImage} alt="Search" className="my-auto" />
               </Button>
             </div>
           </div>

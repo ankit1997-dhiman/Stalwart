@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PropertyCard = ({ id, image, address, subtitle, buttonText, soldTag ,leaseTag}) => {
+const PropertyCard = ({
+  id,
+  image,
+  address,
+  subtitle,
+  buttonText,
+  soldTag,
+  leaseTag,
+}) => {
   return (
     <>
       <div className="mx-auto rounded overflow-hidden">
@@ -43,7 +51,7 @@ const PropertyCard = ({ id, image, address, subtitle, buttonText, soldTag ,lease
                 to={`/property/${id}`}
                 className="bg-white text-center h-[97px] border-black my-auto"
               >
-                <p className="lg:w-[262px] lg:py-9 text-black border font-moderat-regular text-base">
+                <p className="lg:w-[262px] lg:py-9 text-black border font-moderat-regular text-base px-6 py-3 lg:px-0 ">
                   {buttonText}
                 </p>
               </Link>

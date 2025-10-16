@@ -25,13 +25,9 @@ export const FooterCollapse = () => {
           }
           key={index}
         >
-          <ul className="space-y-3 ">
+          <ul className="space-y-3 flex flex-col ">
             {section.links.map((link, i) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                target={link.external ? "_blank" : "_self"}
-              >
+              <Link key="Instagram" to={link.to} target={link.external}>
                 {link.label}
               </Link>
             ))}

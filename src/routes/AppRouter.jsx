@@ -12,6 +12,7 @@ import { Lease } from "@/pages/lease/Lease";
 import { LeasedProperties } from "@/pages/lease/LeasedProperties";
 import { NotFound } from "@/pages/NotFound.jsx";
 import { PropertyDetails } from "@/pages/property/PropertyDetails";
+import { SearchResult } from "@/pages/search/SearchResult";
 import SellWithStalwart from "@/pages/sellWithStalwart/SellWithStalwart";
 import { SoldProperties } from "@/pages/soldProperties/SoldProperties";
 import SwitchWithStalwart from "@/pages/switchToStalwart/SwitchToStalwart";
@@ -38,7 +39,8 @@ export default function AppRouter() {
                 <Route path={URLS.CAREERS} element={<Careers />} />
                 <Route path={URLS.CONTACT_US} element={<Contact />} />
                 <Route path={URLS.BUY} element={<Buy />} />
-                
+                <Route path={URLS.SEARCH_RESULT} element={<SearchResult />} />
+
                 <Route
                   path={URLS.SWITCH_WITH_STALWART}
                   element={<SwitchWithStalwart />}

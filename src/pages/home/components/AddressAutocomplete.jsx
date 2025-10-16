@@ -1,10 +1,17 @@
-import { Input, message } from "antd";
 import React, { useEffect, useRef, useState } from "react";
+import { Input, message } from "antd";
+import { fetchAllSuburbs } from "@/utils/googlePlaces";
 
-/**
- * Simple loader for Google Maps JS (places). Returns `loaded` boolean.
- * Accepts full API key string (from env).
- */
+/* ----------------------------- Simple Debounce ----------------------------- */
+function debounce(fn, delay = 300) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+/* -------------------------- Google Maps Loader Hook ------------------------- */
 function useGoogleMaps(apiKey) {
   const [loaded, setLoaded] = useState(false);
 
@@ -36,46 +43,44 @@ function useGoogleMaps(apiKey) {
     script.async = true;
     script.defer = true;
     script.onload = () => setLoaded(true);
-    script.onerror = (e) => {
-      message.error("Failed to load Google Maps script", e);
-    };
+    script.onerror = () => message.error("Failed to load Google Maps script");
     document.head.appendChild(script);
   }, [apiKey]);
 
   return loaded;
 }
 
-/**
- * AddressAutocomplete component
- */
+/* ---------------------------- Main Autocomplete ---------------------------- */
 export default function AddressAutocomplete({
   value,
   onChange,
-  apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   onSelect,
+  apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   country = "au",
+  activeTab,
 }) {
   const loaded = useGoogleMaps(apiKey);
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [finalized, setFinalized] = useState(false); // ✅ prevent dropdown after selection
+  const [finalized, setFinalized] = useState(false);
+  const [allSuburbs, setAllSuburbs] = useState([]);
 
   const debounceRef = useRef(null);
   const mountedRef = useRef(true);
   const placesServiceRef = useRef(null);
   const suppressFetchRef = useRef(false);
 
+  /* ----------------------------- Mount Cleanup ----------------------------- */
   useEffect(() => {
     mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
+    return () => (mountedRef.current = false);
   }, []);
 
+  /* ----------------------- Google Places Service ----------------------- */
   function getPlacesService() {
-    if (!placesServiceRef.current) {
+    if (!placesServiceRef.current && window.google) {
       placesServiceRef.current = new window.google.maps.places.PlacesService(
         document.createElement("div")
       );
@@ -83,100 +88,122 @@ export default function AddressAutocomplete({
     return placesServiceRef.current;
   }
 
-  // fetch suggestions with debouncing
+  /* ---------------------- Fetch All Suburbs on Mount ---------------------- */
   useEffect(() => {
-    if (!loaded) return;
+    const loadSuburbs = async () => {
+      try {
+        const suburbs = await fetchAllSuburbs();
+        setAllSuburbs(suburbs || []);
+      } catch (err) {
+        console.error("Failed to load suburbs:", err);
+      }
+    };
+    loadSuburbs();
+  }, []);
 
-    // 🚫 don’t fetch if finalized (after selection)
-    if (finalized) return;
+  /* ---------------------- Clear Input/Suggestions on Tab Change ---------------------- */
+  useEffect(() => {
+    setInput("");
+    setSuggestions([]);
+    setActiveIndex(-1);
+    setFinalized(false);
+  }, [activeTab]);
 
-    // 🚫 skip once after selecting
-    if (suppressFetchRef.current) {
-      suppressFetchRef.current = false;
-      return;
-    }
-
+  /* ------------------------ Debounced Suggestion Fetch ------------------------ */
+  useEffect(() => {
     if (!input.trim()) {
       setSuggestions([]);
       setLoading(false);
       return;
     }
 
+    if (finalized) return;
+    if (suppressFetchRef.current) {
+      suppressFetchRef.current = false;
+      return;
+    }
+
     setLoading(true);
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    const value = input;
 
-    debounceRef.current = setTimeout(() => {
-      if (!mountedRef.current) return;
+    const runAutocomplete = debounce(() => {
+      if (activeTab === "SELL") {
+        // -------------------- GOOGLE PLACES --------------------
+        if (!loaded) return;
 
-      const ac = new window.google.maps.places.AutocompleteService();
-      ac.getPlacePredictions(
-        {
-          input: value,
-          types: ["geocode"],
-          componentRestrictions: { country },
-        },
-        (predictions, status) => {
-          if (!mountedRef.current) return;
-          if (
-            status === window.google.maps.places.PlacesServiceStatus.OK &&
-            Array.isArray(predictions)
-          ) {
-            const limited = predictions.slice(0, 6);
-            const ps = getPlacesService();
+        const ac = new window.google.maps.places.AutocompleteService();
+        ac.getPlacePredictions(
+          {
+            input,
+            types: ["geocode"],
+            componentRestrictions: { country },
+          },
+          (predictions, status) => {
+            if (
+              status === window.google.maps.places.PlacesServiceStatus.OK &&
+              Array.isArray(predictions)
+            ) {
+              const limited = predictions.slice(0, 6);
+              const ps = getPlacesService();
 
-            Promise.all(
-              limited.map(
-                (prediction) =>
-                  new Promise((resolve) => {
-                    ps.getDetails(
-                      {
-                        placeId: prediction.place_id,
-                        fields: ["geometry", "formatted_address", "name"],
-                      },
-                      (place, status2) => {
-                        if (
-                          status2 ===
-                            window.google.maps.places.PlacesServiceStatus.OK &&
-                          place?.geometry?.location
-                        ) {
-                          resolve({
-                            displayName: prediction.description,
-                            placeId: prediction.place_id,
-                            latitude: place.geometry.location.lat(),
-                            longitude: place.geometry.location.lng(),
-                            address:
-                              place.formatted_address || prediction.description,
-                          });
-                        } else {
-                          resolve(null);
+              Promise.all(
+                limited.map(
+                  (prediction) =>
+                    new Promise((resolve) => {
+                      ps.getDetails(
+                        {
+                          placeId: prediction.place_id,
+                          fields: ["geometry", "formatted_address", "name"],
+                        },
+                        (place, status2) => {
+                          if (
+                            status2 ===
+                              window.google.maps.places.PlacesServiceStatus
+                                .OK &&
+                            place?.geometry?.location
+                          ) {
+                            resolve({
+                              displayName: prediction.description,
+                              placeId: prediction.place_id,
+                              latitude: place.geometry.location.lat(),
+                              longitude: place.geometry.location.lng(),
+                              address:
+                                place.formatted_address ||
+                                prediction.description,
+                            });
+                          } else resolve(null);
                         }
-                      }
-                    );
-                  })
-              )
-            ).then((results) => {
-              if (!mountedRef.current) return;
-              const valid = results.filter(Boolean);
-              setSuggestions(valid);
+                      );
+                    })
+                )
+              ).then((results) => {
+                if (!mountedRef.current) return;
+                setSuggestions(results.filter(Boolean));
+                setActiveIndex(-1);
+                setLoading(false);
+              });
+            } else {
+              setSuggestions([]);
               setActiveIndex(-1);
               setLoading(false);
-            });
-          } else {
-            setSuggestions([]);
-            setActiveIndex(-1);
-            setLoading(false);
+            }
           }
-        }
-      );
+        );
+      } else {
+        // -------------------- SUBURBS --------------------
+        const filtered = allSuburbs
+          .filter((s) => s && s.toLowerCase().includes(input.toLowerCase())) // ✅ filter out nulls
+          .slice(0, 6)
+          .map((s) => ({ displayName: s }));
+        setSuggestions(filtered);
+        setActiveIndex(-1);
+        setLoading(false);
+      }
     }, 300);
 
-    return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-    };
-  }, [input, loaded, country, finalized]);
+    runAutocomplete();
+  }, [input, loaded, activeTab, allSuburbs]);
 
-
+  /* ------------------------------ Handle Keys ------------------------------ */
   const onKeyDown = (e) => {
     if (!suggestions.length) return;
     if (e.key === "ArrowDown") {
@@ -194,40 +221,43 @@ export default function AddressAutocomplete({
     }
   };
 
+  /* --------------------------- Handle Selection --------------------------- */
   function handleSelect(suggestion) {
     const formatted = suggestion.displayName || suggestion.address || "";
     suppressFetchRef.current = true;
-    setFinalized(true); 
+    setFinalized(true);
     setInput(formatted);
     setSuggestions([]);
-
     if (onChange) onChange(formatted);
     if (onSelect) onSelect(suggestion);
   }
 
+  /* --------------------------- Sync External Value --------------------------- */
   useEffect(() => {
     if (value !== undefined) {
       setInput(typeof value === "string" ? value : value?.address || "");
     }
   }, [value]);
 
+  /* ----------------------------- Render UI ----------------------------- */
   return (
-    <div style={{ position: "relative" , width:"100%"} }>
+    <div style={{ position: "relative", width: "100%" }}>
       <Input
         value={input}
         onChange={(e) => {
           setInput(e.target.value);
-          setSuggestions([]); 
-          setFinalized(false); 
+          setSuggestions([]);
+          setFinalized(false);
           if (onChange) onChange(e.target.value);
         }}
         onKeyDown={onKeyDown}
         className="!border-none !h-[50px] !text-[12px] !outline-white !w-full !rounded-none !font-monument"
+        placeholder="Enter address or suburb"
       />
 
       {loading && !finalized && (
         <div style={{ position: "absolute", top: "100%", left: 0, padding: 8 }}>
-          loading...
+          Loading...
         </div>
       )}
 
@@ -253,8 +283,7 @@ export default function AddressAutocomplete({
         >
           {suggestions.map((s, idx) => (
             <li
-              id={`addr-option-${idx}`}
-              key={s.placeId}
+              key={s.placeId || s.displayName}
               role="option"
               aria-selected={idx === activeIndex}
               onMouseDown={(e) => {
@@ -269,9 +298,7 @@ export default function AddressAutocomplete({
                 borderBottom: "1px solid #eee",
               }}
             >
-              <div className="font-moderat-medium text-sm ">
-                {s.displayName}
-              </div>
+              <div className="font-moderat-medium text-sm">{s.displayName}</div>
               {s.address && (
                 <div
                   className="font-moderat-light text-xs"
