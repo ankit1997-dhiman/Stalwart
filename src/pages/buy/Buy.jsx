@@ -6,7 +6,6 @@ import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 import { graphqlRequest } from "@/utils/graphqlRequest.js";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { InquiryForm } from "@/components/form/InquiryForm";
-import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 import { Link } from "react-router-dom";
 import { GET_FILTERED_PROPOERTIES } from "@/queries/filterProperties";
 

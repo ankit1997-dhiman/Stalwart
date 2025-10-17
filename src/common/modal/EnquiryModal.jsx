@@ -66,8 +66,8 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
         footer={false}
         width={1400}
       >
-        <div className="bg-[#F4F2F0]  lg:pl-24 relative h-full lg:h-[775px] ">
-          <div className="flex bg-[#dad7d4] w-[160px] lg:w-[282px] h-[180px] lg:h-[304px] rounded-b-full items-end justify-center lg:absolute left-[100px]">
+        <div className="bg-[#F4F2F0]  lg:pl-10 relative h-full lg:h-[775px] ">
+          <div className="flex bg-[#dad7d4] w-[160px] lg:w-[282px] h-[180px] lg:h-[304px] rounded-b-full items-end justify-center lg:absolute left-[60px]">
             <img
               src={Image}
               className="p-4 lg:p-8 w-[140px] h-[140px] lg:w-full lg:h-[280px]"
@@ -92,7 +92,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
                     >
                       <Input
                         placeholder="First Name"
-                        className="!border-black !border !rounded-none !py-2 "
+                        className="!border-black !border !rounded-none !py-2 !bg-transparent"
                       />
                     </Form.Item>
                     <Form.Item
@@ -110,7 +110,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
                     >
                       <Input
                         placeholder="Email"
-                        className="!border-black !border !rounded-none !py-2 "
+                        className="!border-black !border !rounded-none !py-2 !bg-transparent"
                       />
                     </Form.Item>
                   </div>
@@ -129,7 +129,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
                     >
                       <Input
                         placeholder="Last Name"
-                        className="!border-black !border !rounded-none !py-2 "
+                        className="!border-black !border !rounded-none !py-2 !bg-transparent"
                       />
                     </Form.Item>
                     <Form.Item
@@ -146,7 +146,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
                     >
                       <Input
                         placeholder="+61"
-                        className="!border-black !border !rounded-none !py-2"
+                        className="!border-black !border !rounded-none !py-2 !bg-transparent"
                       />
                     </Form.Item>
                   </div>
@@ -164,12 +164,12 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
                   <Input.TextArea
                     placeholder="Your message"
                     rows={10}
-                    className="!border-black !border !rounded-none !py-2 "
+                    className="!border-black !border !rounded-none !py-2 !bg-transparent"
                   />
                 </Form.Item>
                 <div className="flex justify-end">
                   <Button
-                    className="!rounded-none !px-3.5 bg-white !border !border-black !py-2 w-[127px] h-[41px]"
+                    className="!rounded-none !px-3.5 bg-white !border !border-black !py-2 w-[209px] !h-[47px] !bg-transparent"
                     htmlType="submit"
                   >
                     <span className="font-moderat-regular text-xs lg:text-base">
@@ -180,7 +180,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
               </Form>
             </div>
           </div>
-          <div className="absolute right-0 bottom-0 w-[500px] hidden lg:block ml-10 ">
+          <div className="absolute right-0 bottom-0 w-[450px] hidden lg:block ml-10 ">
             {/* Top Section with Circle and Text */}
             <div className="relative ">
               <div className="absolute -top-[10px] w-[220px] h-[240px] bg-[#dad7d4] rounded-t-full z-0"></div>

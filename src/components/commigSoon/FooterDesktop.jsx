@@ -17,7 +17,7 @@ const FooterDesktop = ({ socials, contactLinks }) => (
           <a
             href={url}
             className="text-white font-moderat text-xs font-medium"
-            target="_blank"
+            target="_blank" rel="noreferrer"
           >
             {label}
           </a>

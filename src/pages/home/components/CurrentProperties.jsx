@@ -1,82 +1,24 @@
 import React, { useEffect, useState } from "react";
-// import Property from "@/common/properties/Property";
 import { Property } from "@/common/properties/Property";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message } from "antd";
 import { Link } from "react-router-dom";
-import IconImage from "@/assets/icons/black-arrow-right.svg"
+import IconImage from "@/assets/icons/black-arrow-right.svg";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
+import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 
 export const CurrentProperties = ({ title }) => {
   const [propertiesData, setPropertiesData] = useState([]);
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const query = `query GetProperties($first: Int, $status: [PropertyStatusEnum!]) {
-  properties(first: $first, status: $status, orderBy: CREATED_AT_DESC) {
-    totalCount
-    nodes {
-      id
-      price
-      formattedAddress
-      status
-      saleOrLease
-      listingType
-      advertisedPrice
-      latitude
-      longitude
-      createdAt
-      updatedAt
-
-      listingDetails {
-							  ... on ResidentialSale {
-								bedrooms
-								bathrooms
-								carportSpaces
-								garageSpaces
-								openCarSpaces
-								
-							  }
-							  ... on ResidentialRental {
-								bedrooms
-								bathrooms
-								carportSpaces
-								garageSpaces
-								openCarSpaces
-							  }
-							} 
-
-      vendors {
-        contact {
-          firstName
-          lastName
-        }
-      }
-
-      images {
-        url
-      }
-    }
-  }
-}
-
-      `;
       try {
-        const res = await graphqlRequest(query);
+        const variables = { status: ["ACTIVE"] };
+        const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
 
         if (res.data) {
-          const propertiesdummy = res.data.properties.nodes;
-          const active = propertiesdummy.filter((p) => p.status === "ACTIVE");
-          // const nonActive = propertiesdummy.filter(
-          //   (p) => p.status !== "ACTIVE"
-          // );
-          const onlySaleProperties = res.data.properties.nodes;
-          const onlySale = onlySaleProperties.filter(
-            (property) => property.status === "SALE"
-          );
-          // const final = [...active, ...nonActive].slice(0, 4);
-
-          setPropertiesData(active);
+          const allProperties = res?.data?.properties?.nodes;
+          setPropertiesData(allProperties.slice(0, 4) || []);
         }
       } catch (error) {
         message.error(error.message);
@@ -96,8 +38,11 @@ export const CurrentProperties = ({ title }) => {
           We specialise in Real Estate for Brisbane, Gold Coast, Logan, Ipswich,
           Redland City and Toowoomba.
         </p>
-       
-         <Link to="#" className="mt-6 lg:mt-16 inline-flex items-center font-semibold text-sm text-black">
+
+        <Link
+          to="#"
+          className="mt-6 lg:mt-16 inline-flex items-center font-semibold text-sm text-black"
+        >
           <ButtonWithIcon
             text="See All"
             iconPosition="right"
@@ -105,7 +50,6 @@ export const CurrentProperties = ({ title }) => {
             className="border-none font-bold font-moderat uppercase"
           />
         </Link>
-        
       </div>
 
       {/* Right Grid */}
