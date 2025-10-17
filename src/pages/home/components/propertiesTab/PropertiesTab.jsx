@@ -123,8 +123,8 @@ const PropertiesTab = () => {
   return (
     <section className="container py-22 xl:px-0">
       <img src={image} className="h-4 w-7.5 mx-auto" />
-      <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-[64px] font-monument">
-        REPLACE SUBHEADING
+      <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-[64px] font-monument uppercase">
+        A Door To Home
       </p>
       <div className="custom-tabs">
         <Tabs

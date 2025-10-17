@@ -1,4 +1,5 @@
 import { Property } from "@/common/properties/Property";
+import { GET_FILTERED_PROPOERTIES } from "@/queries/filterProperties";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message } from "antd";
 import React, { useEffect, useState } from "react";
@@ -9,73 +10,19 @@ export const RelatedProperties = () => {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const query = `query GetProperties($first: Int, $status: [PropertyStatusEnum!]) {
-  properties(first: $first, status: $status, orderBy: CREATED_AT_DESC) {
-    totalCount
-    
-    nodes {
-      id
-      price
-      formattedAddress
-      status
-      saleOrLease
-      listingType
-      advertisedPrice
-      latitude
-      longitude
-      createdAt
-      updatedAt
 
-      listingDetails {
-							  ... on ResidentialSale {
-								bedrooms
-								bathrooms
-								carportSpaces
-								garageSpaces
-								openCarSpaces
-								
-							  }
-							  ... on ResidentialRental {
-								bedrooms
-								bathrooms
-								carportSpaces
-								garageSpaces
-								openCarSpaces
-							  }
-							} 
-
-      vendors {
-        contact {
-          firstName
-          lastName
-        }
-      }
-
-      images {
-        url
-      }
-    }
-  }
-}
-
-      `;
       const variables = { first: 3, status: ["ACTIVE"] };
       try {
-        const res = await graphqlRequest(query, variables);
+        const res = await graphqlRequest(GET_FILTERED_PROPOERTIES, variables);
 
         if (res.data) {
-          const propertiesdummy = res.data.properties.nodes;
-          const active = propertiesdummy.filter((p) => p.status === "ACTIVE");
-          // const nonActive = propertiesdummy.filter(
-          //   (p) => p.status !== "ACTIVE"
-          // );
-          const onlySaleProperties = res.data.properties.nodes;
-          const onlySale = onlySaleProperties.filter(
-            (property) => property.status === "SALE"
-          );
-          // const final = [...active, ...nonActive].slice(0, 4);
+          const variables = { status: ["ACTIVE"] };
+          const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
 
-          setPropertiesData(active);
+          if (res.data) {
+            const allProperties = res?.data?.properties?.nodes;
+            setPropertiesData(allProperties.slice(0, 4) || []);
+          }
         }
       } catch (error) {
         message.error(error.message);

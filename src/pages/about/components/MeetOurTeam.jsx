@@ -87,7 +87,7 @@ export default function MeetOurTeam() {
 
           <Link to="#">
             <ButtonWithIcon
-              text=" Learn More"
+              text="Learn More"
               iconPosition="right"
               iconImage={IconImage}
               className="border-none bg-none !text-white font-bold font-moderat pt-15 text-sm"

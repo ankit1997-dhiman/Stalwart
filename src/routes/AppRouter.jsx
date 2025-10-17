@@ -20,7 +20,7 @@ import UpcomingAuction from "@/pages/upcomingAuction/UpcomingAuction";
 import UpcomingInspections from "@/pages/upcomingInspection/UpcomingInspections";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const IS_MAINTENANCE = false; // Toggle this flag
+const IS_MAINTENANCE = true; // Toggle this flag
 
 export default function AppRouter() {
   // Show only the maintenance page

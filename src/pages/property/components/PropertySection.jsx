@@ -6,7 +6,7 @@ export const PropertySection = ({
   address,
   listingDetails,
   buttonText,
-  id,
+  onClick
 }) => {
   return (
     <>
@@ -31,14 +31,14 @@ export const PropertySection = ({
           </div>
           {buttonText && (
             <div className="hidden lg:block">
-              <Link
-                to={`/property/${id}`}
+              <button
+                onClick={onClick}
                 className="bg-white text-center h-[70px] border-black my-auto"
               >
-                <p className=" w-full lg:w-[262px] lg:py-5 text-black border font-moderat-regular text-base">
+                <p className=" w-full lg:w-[262px] lg:py-5 text-black border font-moderat-regular text-base uppercase">
                   {buttonText}
                 </p>
-              </Link>
+              </button>
             </div>
           )}
         </div>

@@ -1,32 +1,9 @@
-import { Form, Select, Button } from "antd";
+import { Form,  Button } from "antd";
 import searchImage from "@/assets/icons/search.svg";
 import bgImage from "../../../assets/images/home-hero.png";
-import { bedrooms } from "@/constants/constants";
 import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
-
-const { Option } = Select;
-
-// Reusable Select component
-const FilterSelect = ({ name, placeholder, options }) => (
-  <Form.Item name={name} label={false} className="!mb-0 !w-full !h-[50px]">
-    <Select
-      className="!bg-[#4F4C45] !text-white !h-[50px] text-[10px] font-normal font-monument w-full !placeholder:text-[10px]"
-      placeholder={placeholder}
-    >
-      {options.map((item) => (
-        <Option
-          key={item}
-          value={item}
-          className="!bg-[#4F4C45] !text-white !rounded-none font-monument text-[10px]"
-        >
-          <div className="font-monument text-[10px]">{item} +</div>
-        </Option>
-      ))}
-    </Select>
-  </Form.Item>
-);
 
 export const Section1 = () => {
   const [form] = Form.useForm();
@@ -83,11 +60,11 @@ export const Section1 = () => {
 
             {/* Search Box */}
             <div className="w-full flex  relative">
-              <div className="flex bg-[#4F4C45]  px-10 absolute -top-15 right-0 rounded-t-2xl h-[60px]">
+              <div className="flex bg-[#4F4C45] absolute -top-15 right-0  h-[50px]">
                 <div
                   className={`${
                     activeTab === "SELL" ? "bg-white text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer py-5`}
+                  }  px-5 lg:px-10 cursor-pointer py-3 font-normal font-monument text-[10px]`}
                   onClick={() => handleClick("SELL")}
                 >
                   SELL
@@ -95,7 +72,7 @@ export const Section1 = () => {
                 <div
                   className={`${
                     activeTab === "BUY" ? "bg-white text-black " : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer py-5`}
+                  }  px-5 lg:px-10 cursor-pointer py-5 font-normal font-monument text-[10px]`}
                   onClick={() => handleClick("BUY")}
                 >
                   BUY
@@ -103,7 +80,7 @@ export const Section1 = () => {
                 <div
                   className={`${
                     activeTab === "LEASE" ? "bg-white text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer py-5`}
+                  }  px-5 lg:px-10 cursor-pointer  font-normal font-monument text-[10px]`}
                   onClick={() => handleClick("LEASE")}
                 >
                   LEASE
@@ -134,20 +111,8 @@ export const Section1 = () => {
             </div>
           </div>
 
-          {/* Bottom Row */}
-          <div className="hidden xl:flex items-stretch justify-between gap-7.5 pb-4 w-full">
-            <FilterSelect
-              name="bedrooms"
-              placeholder="BED"
-              options={bedrooms}
-            />
-            <FilterSelect
-              name="bathrooms"
-              placeholder="BATH"
-              options={bedrooms}
-            />
-            <FilterSelect name="car" placeholder="CAR" options={bedrooms} />
-          </div>
+         
+         
         </Form>
 
         <p className="hidden md:block text-white text-center text-[11px] pt-20 pb-40 font-monument font-light uppercase">

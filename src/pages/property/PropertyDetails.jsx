@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import image from "@/assets/images/tab-image.png";
 import dummyImage from "@/assets/images/dummy-image.jpg";
-import { CalendarOutlined, OpenAIFilled } from "@ant-design/icons";
-import { message } from "antd";
+import { CalendarOutlined,  } from "@ant-design/icons";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { AgentCard } from "./components/AgentCard";
 import { PropertyInfo } from "./components/PropertyInfo";
@@ -30,7 +29,6 @@ export const PropertyDetails = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       const variables = { ids: [id] };
-      console.log(variables, "variables");
 
       try {
         const res = await graphqlRequest(GET_PROPERTY_BY_ID, variables);
@@ -38,13 +36,13 @@ export const PropertyDetails = () => {
         const property = res?.data?.properties?.nodes?.[0];
         setPropertyData(property || null);
       } catch (error) {
-        message.error(error.message);
+        console.log(error, "error");
+        // message.error(error.message);
       }
     };
 
     fetchProperties();
   }, [id]);
-  console.log(propertyData?.formattedAddress, "propertyData");
 
   // ✅ Format the price (AUD)
   const formattedPrice = propertyData?.price
@@ -71,7 +69,8 @@ export const PropertyDetails = () => {
         image={propertyData?.images?.[0]?.url || image}
         address={propertyData?.formattedAddress}
         listingDetails={propertyData?.listingDetails}
-        buttonText="TBD"
+        buttonText="Enquire Now"
+        onClick={() => setOpen(true)}
       />
 
       <div className="px-12.5 md:px-0">

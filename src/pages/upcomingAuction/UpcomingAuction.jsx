@@ -1,121 +1,123 @@
 import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
-import {
-  bottomStatusOptions,
-  properties,
-  topStatusOptions,
-} from "@/constants/constants";
-import { Button, Form, Input, Select } from "antd";
-import React from "react";
-import { FaSearch } from "react-icons/fa";
-// import { FilteredProperties } from "../buy/components/FilteredProperties";
-import AuctionCard from "./components/AuctionCard";
+import { bedrooms } from "@/constants/constants";
+import { Button, Form, message } from "antd";
+import React, { useCallback, useEffect, useState } from "react";
+import AuctionCard from "../upcomingAuction/components/AuctionCard";
+import { InquiryForm } from "@/components/form/InquiryForm";
+import { GET_UPCOMING_INSPECTION } from "@/queries/inspectionQueries";
+import { graphqlRequest } from "@/utils/graphqlRequest";
+import { GET_AUCTION_PROPERTY } from "@/queries/getAuctionProperty";
+import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
+import { Link } from "react-router-dom";
+
+import dummyImage from "@/assets/images/dummy-image.jpg";
 
 export default function UpcomingAuction() {
-  const [upcomingAuctionForm] = Form.useForm();
+  const [upcomingInspectionForm] = Form.useForm();
+  const [upcomingAuction, setUpcomingAction] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {};
+  const fetchInspectionProperties = useCallback(async () => {
+    try {
+      const dynamicFilters = [];
+      dynamicFilters.push({
+        type: "AUTHORITY",
+        strategy: "IS",
+        value: "Auction",
+      });
+
+      const variables = {
+        ...(dynamicFilters.length && {
+          filterSet: {
+            filterGroups: [{ operand: "AND", filters: dynamicFilters }],
+            operand: "AND",
+          },
+        }),
+        status: "ACTIVE", // always fetch sold properties
+        page: 1,
+        order: "UPDATED_AT_NEWEST",
+      };
+
+      const res = await graphqlRequest(GET_AUCTION_PROPERTY, variables);
+
+      if (res.data) {
+        const allProperties = res?.data?.properties?.nodes;
+        setUpcomingAction(allProperties.slice(0, 4) || []);
+      }
+      // setUpcomingInspecion(res?.data?.properties?.nodes || []);
+    } catch (error) {
+      message.error("Failed to fetch inspection");
+    }
+  }, []);
+
+  console.log(upcomingAuction, "auc");
+
+  useEffect(() => {
+    fetchInspectionProperties();
+    upcomingInspectionForm.setFieldsValue({ status: "BUY" });
+  }, [fetchInspectionProperties]);
+
+  const handleSubmit = (values) => {};
   return (
     <div className="container">
-      <div className="w-full xl:w-[999px] mx-auto ">
-        <WithSectionLayout
-          title="PROPERTIES FOR SALE"
-          leftText="Buy"
-          midText="|"
-          rightText="Auctions"
-        />
-
-        <Form
-          form={upcomingAuctionForm}
-          onFinish={onFinish}
-          layout="vertical"
-          initialValues={{
-            name: "",
-            status: "BUY",
-            status0: "MIN. PRICE",
-            status1: "MAX. PRICE",
-            status2: "BED",
-            status3: "BATH",
-            status4: "CAR",
-          }}
-        >
-          {/* Top Row */}
-          <div className="flex flex-col xl:flex-row items-stretch justify-between gap-1.5 md:gap-7.5 pb-16 md:pb-4 w-full">
-            <Form.Item name="status" label={false} className="!mb-0 ">
-              <Select className="w-full xl:!w-[180px] border-black border !rounded-none !text-black !h-[50px] !bg-white">
-                {topStatusOptions.map((opt) => (
-                  <Select.Option
-                    key={opt}
-                    value={opt}
-                    className=" !text-black !rounded-none font-monument"
-                  >
-                    <div className="font-monument text-[10px]">{opt}</div>
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-
-            <div className="w-full flex bg-white border-black border">
-              <Form.Item
-                name="name"
-                label={false}
-                className="!mb-0 !w-full !rounded-xl"
-              >
-                <Input
-                  placeholder="Search..."
-                  className="!h-[50px] !border-none !rounded-none !outline-0"
-                />
-              </Form.Item>
-              <Button
-                htmlType="submit"
-                className="!h-[50px] ml-2 flex items-center justify-center bg-white !border-none"
-              >
-                <FaSearch className="mr-2" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Bottom Row */}
-          <div className="hidden xl:flex items-stretch justify-between gap-7.5 pb-4 w-full">
-            {bottomStatusOptions.map((options, idx) => (
-              <Form.Item
-                key={idx}
-                name={`status${idx}`}
-                label={false}
-                className="!mb-0 !w-full !h-[50px] text-[10px] font-normal font-monument !outline-0"
-              >
-                <Select
-                  className={`!text-black !h-[50px] text-[10px] font-normal font-monument !border-0 !outline-none !rounded-none !bg-white ${
-                    idx === 0 ? "!w-[180px]" : "!w-full"
-                  }`}
-                >
-                  {options.map((opt) => (
-                    <Select.Option
-                      key={opt}
-                      value={opt}
-                      className=" !text-black !w-full !rounded-none font-monument text-[10px] font-normal bg-white"
-                    >
-                      <div className="font-monument text-[10px]">{opt}</div>
-                    </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            ))}
-          </div>
-        </Form>
+      <div className="w-full lg:w-[999px] mx-auto">
+        <div className="px-12.5 lg:px-0">
+          <WithSectionLayout
+            title="Upcoming Auction"
+            leftText="Propoerties"
+            midText="|"
+            rightText="Auction"
+          />
+        </div>
+        <div className="px-12.5 lg:px-0">
+          <InquiryForm
+            form={upcomingInspectionForm}
+            onFinish={handleSubmit}
+            status="BUY"
+            bedroomOptions={bedrooms}
+            bathroomOptions={bedrooms}
+            carOptions={bedrooms}
+          />
+        </div>
       </div>
 
-      {/* <FilteredProperties /> */}
-      {properties.map((item, idx) => {
-        return (
-          <AuctionCard
-            key={idx}
-            image={item.image}
-            price={item.price}
-            hoverAddress={item.hoverAddress}
-            address={item.address}
-          />
-        );
-      })}
+      <div className="border-t border-b-black/30 mt-16 "></div>
+      {loading ? (
+        <p className="text-center">
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </p>
+      ) : (
+        <div className="">
+          {upcomingAuction.length > 0 ? (
+            <div className="grid grid-cols-1  gap-6">
+              {upcomingAuction.map((item) => {
+                const { id, formattedAddress, images, price, listingDetails,auctionDatetime } =
+                  item;
+                return (
+                  <AuctionCard
+                    key={id}
+                    id={id}
+                    image={images.length ? images?.[0]?.url : dummyImage}
+                    price={price}
+                    hoverAddress={formattedAddress}
+                    address={formattedAddress}
+                    bed={listingDetails?.bedrooms ?? 0}
+                    bathrooms={listingDetails?.bathrooms ?? 0}
+                    carportSpaces={listingDetails?.carportSpaces ?? 0}
+                    inspection={false}
+                    time={auctionDatetime ? auctionDatetime : null}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <PropertiesNotFound />
+          )}
+        </div>
+      )}
+
       <div className="my-20 flex items-center justify-center">
         <Button className="border-2 !px-18.5 !py-6 text-center font-moderat-regular text-base !border-black !rounded-none">
           Load More
