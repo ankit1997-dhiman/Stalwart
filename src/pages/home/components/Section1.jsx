@@ -1,14 +1,9 @@
-import { Form, Select, Button } from "antd";
+import { Form,  Button } from "antd";
 import searchImage from "@/assets/icons/search.svg";
 import bgImage from "../../../assets/images/home-hero.png";
-import { bedrooms } from "@/constants/constants";
 import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
-
-const { Option } = Select;
-
-
 
 export const Section1 = () => {
   const [form] = Form.useForm();
@@ -65,11 +60,11 @@ export const Section1 = () => {
 
             {/* Search Box */}
             <div className="w-full flex  relative">
-              <div className="flex bg-[#4F4C45]  px-10 absolute -top-15 right-0 rounded-t-2xl h-[60px]">
+              <div className="flex bg-[#4F4C45] absolute -top-15 right-0  h-[50px]">
                 <div
                   className={`${
                     activeTab === "SELL" ? "bg-white text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer py-5 font-normal font-monument text-[10px]`}
+                  }  px-5 lg:px-10 cursor-pointer py-3 font-normal font-monument text-[10px]`}
                   onClick={() => handleClick("SELL")}
                 >
                   SELL
@@ -85,7 +80,7 @@ export const Section1 = () => {
                 <div
                   className={`${
                     activeTab === "LEASE" ? "bg-white text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer py-5 font-normal font-monument text-[10px]`}
+                  }  px-5 lg:px-10 cursor-pointer  font-normal font-monument text-[10px]`}
                   onClick={() => handleClick("LEASE")}
                 >
                   LEASE
