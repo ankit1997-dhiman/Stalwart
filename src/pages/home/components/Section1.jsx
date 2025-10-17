@@ -4,6 +4,7 @@ import bgImage from "../../../assets/images/home-hero.png";
 import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 export const Section1 = () => {
   const [form] = Form.useForm();
@@ -54,33 +55,33 @@ export const Section1 = () => {
         >
           {/* Top Row */}
           <div className="flex flex-col xl:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
-            <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase">
-              <p className="py-4.5">Get Property Estimate</p>
+            <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase flex item-center justify-center">
+              <p className="py-4.5 mx-auto">Get Property Estimate</p>
             </div>
 
             {/* Search Box */}
             <div className="w-full flex  relative">
-              <div className="flex bg-[#4F4C45] absolute -top-15 right-0  h-[50px]">
+              <div className="flex bg-[#4F4C45] absolute -top-12 right-0  h-[50px]">
                 <div
                   className={`${
-                    activeTab === "SELL" ? "bg-white text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer py-3 font-normal font-monument text-[10px]`}
+                    activeTab === "SELL" ? " text-black" : "text-white"
+                  }  px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto`}
                   onClick={() => handleClick("SELL")}
                 >
                   SELL
                 </div>
                 <div
                   className={`${
-                    activeTab === "BUY" ? "bg-white text-black " : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer py-5 font-normal font-monument text-[10px]`}
+                    activeTab === "BUY" ? " text-black " : "text-white"
+                  }  px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto`}
                   onClick={() => handleClick("BUY")}
                 >
                   BUY
                 </div>
                 <div
                   className={`${
-                    activeTab === "LEASE" ? "bg-white text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer  font-normal font-monument text-[10px]`}
+                    activeTab === "LEASE" ? "text-black" : "text-white"
+                  }  px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto`}
                   onClick={() => handleClick("LEASE")}
                 >
                   LEASE
@@ -116,7 +117,7 @@ export const Section1 = () => {
         </Form>
 
         <p className="hidden md:block text-white text-center text-[11px] pt-20 pb-40 font-monument font-light uppercase">
-          7 Jul 2025 | 11:13:35 AM
+          {moment().format("DD MMM YYYY | hh:mm:ss A")}
         </p>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { Property } from "@/common/properties/Property";
 import { GET_FILTERED_PROPOERTIES } from "@/queries/filterProperties";
+import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message } from "antd";
 import React, { useEffect, useState } from "react";

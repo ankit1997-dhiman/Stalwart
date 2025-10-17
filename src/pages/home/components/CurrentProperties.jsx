@@ -26,6 +26,8 @@ export const CurrentProperties = ({ title }) => {
     };
     fetchProperties();
   }, []);
+  console.log(propertiesData,"propertiesData");
+  
 
   return (
     <section className="container flex flex-col lg:flex-row justify-between gap-16 lg:gap-7.5 px-12.5 xl:px-0 ">
@@ -64,7 +66,7 @@ export const CurrentProperties = ({ title }) => {
               price={property.price}
               bed={property.listingDetails.bedrooms}
               bathrooms={property.listingDetails.bathrooms}
-              carportSpaces={property.listingDetails.carportSpaces}
+              carportSpaces={property.listingDetails.garageSpaces}
             />
           </Link>
         ))}

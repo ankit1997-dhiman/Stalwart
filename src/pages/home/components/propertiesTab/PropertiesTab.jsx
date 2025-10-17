@@ -95,6 +95,10 @@ const PropertiesTab = () => {
     fetchProperties();
   }, [activeTab]);
 
+
+  console.log(data,"da");
+  
+
   const items = [
     {
       key: "1",

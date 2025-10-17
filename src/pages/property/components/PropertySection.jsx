@@ -25,7 +25,7 @@ export const PropertySection = ({
               } BED | ${
                 listingDetails.bathrooms ? listingDetails.bathrooms : 0
               } BATH | ${
-                listingDetails.carportSpaces ? listingDetails.carportSpaces : 0
+                listingDetails.garageSpaces ? listingDetails.garageSpaces : 0
               } CAR `}
             </div>
           </div>
