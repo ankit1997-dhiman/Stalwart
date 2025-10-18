@@ -17,31 +17,47 @@ import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import EnquiryModal from "@/common/modal/EnquiryModal";
 import { ShareModal } from "@/components/share/ShareModal";
 import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
+import { message, Skeleton, Spin } from "antd";
 
 export const PropertyDetails = () => {
   const [propertyData, setPropertyData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
   const { id } = useParams();
 
-  useEffect(() => {
-    const fetchProperties = async () => {
+  const fetchProperties = async () => {
+    try {
+      setLoading(true);
       const variables = { ids: [id] };
+      const res = await graphqlRequest(GET_PROPERTY_BY_ID, variables);
+      const property = res?.data?.properties?.nodes?.[0] || null;
+      setPropertyData(property);
+    } catch (error) {
+      message.error(error.message || "Failed to fetch property details");
+      setPropertyData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      try {
-        const res = await graphqlRequest(GET_PROPERTY_BY_ID, variables);
-
-        const property = res?.data?.properties?.nodes?.[0];
-        setPropertyData(property || null);
-      } catch (error) {
-        message.error(error.message);
-      }
-    };
-
-    fetchProperties();
+  useEffect(() => {
+    if (id) fetchProperties();
   }, [id]);
 
-  // ✅ Format the price (AUD)
+  if (!id) return <NotFound />;
+
+  if (loading)
+    return (
+      <div className="container flex flex-col items-center justify-center h-[80vh]">
+        <Skeleton size="large" />
+        <Skeleton size="large" />
+        <Skeleton size="large" />
+      </div>
+    );
+
+  if (!propertyData) return <NotFound />;
+
   const formattedPrice = propertyData?.price
     ? new Intl.NumberFormat("en-AU", {
         style: "currency",
@@ -50,14 +66,24 @@ export const PropertyDetails = () => {
       }).format(propertyData.price)
     : propertyData?.advertisedPrice || "Contact Agent";
 
-  if (!id || !propertyData) return <NotFound />;
+  const handleShareCancel = () => setOpenShareModal(false);
+  const handleEnquiryCancel = () => setOpen(false);
 
-  const handleShareCancel = () => {
-    setOpenShareModal(false);
-  };
-  const handleEnquiryCancel = () => {
-    setOpen(false);
-  };
+  const hasInspections =
+    propertyData?.inspections?.nodes &&
+    propertyData.inspections.nodes.length > 0;
+
+  const hasFloorplan =
+    propertyData?.floorplans &&
+    propertyData.floorplans.length > 0 &&
+    propertyData.floorplans[0]?.url;
+
+  console.log(propertyData);
+
+  const images = propertyData?.images.length ? propertyData?.images : [];
+  const sortedImages = images.sort((a, b) => a.position - b.position);
+
+  const hasAgents = propertyData?.agents && propertyData.agents.length > 0;
 
   return (
     <div className="container pt-24">
@@ -66,8 +92,12 @@ export const PropertyDetails = () => {
         image={propertyData?.images}
         address={propertyData?.formattedAddress}
         listingDetails={propertyData?.listingDetails}
-        buttonText="Enquire Now"
-        onClick={() => setOpen(true)}
+        buttonText={`${
+          propertyData.status === "SOLD" ? "SOLD" : "Enquire Now"
+        }`}
+        onClick={() =>
+          `${propertyData.status === "SOLD" ? null : setOpen(true)}`
+        }
       />
 
       <div className="px-12.5 md:px-0">
@@ -82,7 +112,11 @@ export const PropertyDetails = () => {
 
           <div className="w-full md:w-[65%] lg:w-[75%] space-y-4">
             <div className="leading-5 pb-2.5 md:pb-5 font-moderat-regular text-sm">
-              <RawHtml html={propertyData?.description} />
+              {propertyData?.description ? (
+                <RawHtml html={propertyData.description} />
+              ) : (
+                <p className="text-gray-500">No description available.</p>
+              )}
             </div>
           </div>
         </section>
@@ -92,19 +126,16 @@ export const PropertyDetails = () => {
           {/* Left Column */}
           <div className="w-full md:w-[35%] lg:w-[25%] space-y-5">
             <PropertyInfo
-              label={`For ${propertyData.saleOrLease}`}
+              label={`For ${propertyData?.saleOrLease || "Sale"}`}
               value={formattedPrice}
             />
-            {propertyData?.inspections.nodes.length > 0 && (
+
+            {hasInspections && (
               <PropertyInfo
                 label="Next Inspection/Auction"
-                value={
-                  propertyData?.inspections.nodes.length
-                    ? moment(propertyData?.inspections.nodes[0].start).format(
-                        "DD MMM YYYY, h:mm A"
-                      )
-                    : null
-                }
+                value={moment(propertyData.inspections.nodes[0].start).format(
+                  "DD MMM YYYY, h:mm A"
+                )}
                 Icon={CalendarOutlined}
               />
             )}
@@ -113,17 +144,19 @@ export const PropertyDetails = () => {
               Gallery {propertyData?.images?.length || 0}
             </p>
 
-            {propertyData?.floorplans[0]?.url && (
+            {hasFloorplan && (
               <p className="pb-5">
-                <Link
-                  href={propertyData?.floorplans[0]?.url}
+                <a
+                  href={propertyData.floorplans[0].url}
                   target="_blank"
-                  className="leading-5 font-moderat-bold uppercase  text-base"
+                  rel="noopener noreferrer"
+                  className="leading-5 font-moderat-bold uppercase text-base"
                 >
                   Floorplan
-                </Link>
+                </a>
               </p>
             )}
+
             <p className="leading-5 font-moderat-bold uppercase pb-15 text-base">
               Download Document
             </p>
@@ -148,26 +181,19 @@ export const PropertyDetails = () => {
           <div className="w-full md:w-[65%] lg:w-[75%]">
             <div className="flex flex-col lg:flex-row gap-10 items-stretch">
               <div className="w-full lg:w-[703px] !z-10">
-                <Swiper
-                  modules={[Navigation, Pagination, Autoplay]}
-                  spaceBetween={16}
-                  slidesPerView={1}
-                  navigation
-                  pagination={{ clickable: true }}
-                  autoplay={{ delay: 8000, disableOnInteraction: false }}
-                  loop={true}
-                  lazy={true}
-                  a11y={{ enabled: true }}
-                  breakpoints={{
-                    640: { slidesPerView: 1 },
-                    768: { slidesPerView: 1 },
-                    1024: { slidesPerView: 1 },
-                  }}
-                  className="property-slider"
-                  // style={{ padding: "1rem 0" }}
-                >
-                  {propertyData?.images.length > 0 ? (
-                    propertyData?.images?.map((item) => (
+                {sortedImages.length > 0 ? (
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    spaceBetween={16}
+                    slidesPerView={1}
+                    navigation
+                    pagination={{ clickable: true }}
+                    autoplay={{ delay: 8000, disableOnInteraction: false }}
+                    loop={true}
+                    lazy={true}
+                    a11y={{ enabled: true }}
+                  >
+                    {sortedImages.map((item) => (
                       <SwiperSlide key={item.id}>
                         <img
                           src={item.url || dummyImage}
@@ -175,16 +201,15 @@ export const PropertyDetails = () => {
                           className="lg:h-[612px] lg:w-[812px]"
                         />
                       </SwiperSlide>
-                    ))
-                  ) : (
-                    <PropertiesNotFound description="No images Found" />
-                  )}
-                </Swiper>
+                    ))}
+                  </Swiper>
+                ) : (
+                  <PropertiesNotFound description="No images Found" />
+                )}
               </div>
 
-              <div className=" flex flex-col gap-10 lg:h-[612px] ">
-                {/* 🧍 Agent Details */}
-                {propertyData?.agents?.length > 0 ? (
+              <div className="flex flex-col gap-10 lg:h-[612px]">
+                {hasAgents ? (
                   propertyData.agents.map((agent) => (
                     <AgentCard
                       key={agent.id}
@@ -201,18 +226,25 @@ export const PropertyDetails = () => {
                 )}
               </div>
             </div>
+
             <div className="py-10">
-              <MapCanvas
-                latitude={propertyData.latitude}
-                longitude={propertyData.longitude}
-              />
+              {propertyData?.latitude && propertyData?.longitude ? (
+                <MapCanvas
+                  latitude={propertyData.latitude}
+                  longitude={propertyData.longitude}
+                />
+              ) : (
+                <p className="text-gray-500 text-sm">
+                  Map coordinates not available.
+                </p>
+              )}
             </div>
-            {/* <img src={MapImage} className="w-full py-10" alt="Map" /> */}
           </div>
         </section>
 
         {/* 🏡 Related Listings Section */}
         <RelatedProperties />
+
         <EnquiryModal
           setIsModalOpen={setOpen}
           isModalOpen={open}
@@ -220,6 +252,7 @@ export const PropertyDetails = () => {
           listingDetails={propertyData?.listingDetails}
           handleCancel={handleEnquiryCancel}
         />
+
         <ShareModal
           openShareModal={openShareModal}
           setOpenShareModal={setOpenShareModal}

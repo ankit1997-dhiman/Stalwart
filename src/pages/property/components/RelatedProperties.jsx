@@ -8,27 +8,26 @@ import { Link } from "react-router-dom";
 
 export const RelatedProperties = () => {
   const [propertiesData, setPropertiesData] = useState([]);
+  const fetchProperties = async () => {
+    const variables = { first: 3, status: ["ACTIVE"] };
+    try {
+      const res = await graphqlRequest(GET_FILTERED_PROPOERTIES, variables);
 
-  useEffect(() => {
-    const fetchProperties = async () => {
-
-      const variables = { first: 3, status: ["ACTIVE"] };
-      try {
-        const res = await graphqlRequest(GET_FILTERED_PROPOERTIES, variables);
+      if (res.data) {
+        const variables = { status: ["ACTIVE"] };
+        const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
 
         if (res.data) {
-          const variables = { status: ["ACTIVE"] };
-          const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
-
-          if (res.data) {
-            const allProperties = res?.data?.properties?.nodes;
-            setPropertiesData(allProperties.slice(0, 4) || []);
-          }
+          const allProperties = res?.data?.properties?.nodes;
+          setPropertiesData(allProperties.slice(0, 3) || []);
         }
-      } catch (error) {
-        message.error(error.message);
       }
-    };
+    } catch (error) {
+      message.error(error.message);
+    }
+  };
+
+  useEffect(() => {
     fetchProperties();
   }, []);
   return (
@@ -43,12 +42,13 @@ export const RelatedProperties = () => {
           <Link to={`/property/${property.id}`}>
             <Property
               key={idx}
-              address={property.formattedAddress}
-              image={property.images?.[0]?.url}
-              price={property.price}
-              bed={property.listingDetails?.bedrooms}
-              bathrooms={property.listingDetails?.bathrooms}
-              carportSpaces={property.listingDetails?.carportSpaces}
+              id={property.id}
+              address={property?.formattedAddress}
+              image={property?.images}
+              price={property?.advertisedPrice}
+              bed={property?.listingDetails?.bedrooms}
+              bathrooms={property?.listingDetails?.bathrooms}
+              carportSpaces={property?.listingDetails?.carportSpaces}
             />
           </Link>
         ))}

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export const PropertySection = ({
   image,
@@ -9,7 +8,13 @@ export const PropertySection = ({
   onClick,
 }) => {
   const sortedImages =
-    image.length && image.sort((a, b) => (a.position || 0) - (b.position || 0));
+    Array.isArray(image) && image.length
+      ? [...image].sort((a, b) => (a.position || 0) - (b.position || 0))
+      : [];
+
+  // ✅ Get first image or fallback to dummy image
+  const firstImage = sortedImages?.[0]?.url || DummyImage;
+
   return (
     <>
       <div className="mx-auto rounded overflow-hidden flex flex-col-reverse lg:flex-col gap-12">
@@ -47,7 +52,7 @@ export const PropertySection = ({
         {/* Image */}
         <div className="w-full h-[900px]  overflow-hidden ">
           <img
-            src={sortedImages[0].url}
+            src={firstImage}
             alt={address}
             className="w-full h-full object-cover"
           />
