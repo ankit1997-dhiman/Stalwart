@@ -33,9 +33,7 @@ export const Tab1 = ({ tabdata }) => {
             <SwiperSlide key={item.id}>
               <PropertyCard
                 id={item.id}
-                image={
-                  item?.images?.length > 0 ? item.images[0].url : dummyImage
-                }
+                image={item?.images?.length > 0 ? item.images : dummyImage}
                 address={item.formattedAddress}
                 subtitle={useTruncateText(item.description, 35)}
                 buttonText={"Learn More"}

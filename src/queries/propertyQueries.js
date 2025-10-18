@@ -2,7 +2,6 @@ export const GET_SALE_PROPERTIES = `
   query GetSaleProperties($status: [PropertyStatusEnum!]) {
     properties(
       status: $status
-      orderBy: CREATED_AT_DESC
     ) {
       nodes {
         id
@@ -39,8 +38,9 @@ export const GET_SALE_PROPERTIES = `
             lastName
           }
         }
-        images {
+        images{
           url
+          position
         }
       }
     }

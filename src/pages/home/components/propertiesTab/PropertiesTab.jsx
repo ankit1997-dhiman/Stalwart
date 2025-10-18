@@ -64,6 +64,7 @@ const PropertiesTab = () => {
             }
             images {
               url
+              position
             }
           }
         }

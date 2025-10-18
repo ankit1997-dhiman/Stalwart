@@ -12,6 +12,11 @@ export function Property({
   image,
   bed,
 }) {
+  console.log(image, "images");
+  const sortedImages =
+    image.length &&
+    image.slice().sort((a, b) => (a.position || 0) - (b.position || 0));
+
   return (
     <div
       key={id}
@@ -27,7 +32,9 @@ export function Property({
       <div
         className="absolute inset-0 bg-cover bg-no-repeat bg-center transition-transform duration-500"
         style={{
-          backgroundImage: `url(${image ? image : DummyImage})`,
+          backgroundImage: `url(${
+            sortedImages ? sortedImages[0].url : DummyImage
+          })`,
         }}
       ></div>
 

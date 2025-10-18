@@ -54,29 +54,31 @@ export const Section1 = () => {
           className="placeholder-white"
         >
           {/* Top Row */}
-          <div className="flex flex-col xl:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
+          <div className="flex items-end justify-end">
+            <div className="flex bg-[#4F4C45]  h-[50px]">
+              {["SELL", "BUY", "LEASE"].map((tab) => (
+                <div
+                  key={tab}
+                  onClick={() => handleClick(tab)}
+                  className={`px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto py-5 transition-colors duration-200 ${
+                    activeTab === tab
+                      ? "text-black bg-white"
+                      : "text-white bg-[#4F4C45]"
+                  }`}
+                >
+                  {tab}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
             <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase flex item-center justify-center">
               <p className="py-4.5 mx-auto">Get Property Estimate</p>
             </div>
 
             {/* Search Box */}
-            <div className="w-full flex  relative">
-              <div className="flex bg-[#4F4C45] absolute -top-12 right-0 h-[50px]">
-                {["SELL", "BUY", "LEASE"].map((tab) => (
-                  <div
-                    key={tab}
-                    onClick={() => handleClick(tab)}
-                    className={`px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto py-5 transition-colors duration-200 ${
-                      activeTab === tab
-                        ? "text-black bg-white"
-                        : "text-white bg-[#4F4C45]"
-                    }`}
-                  >
-                    {tab}
-                  </div>
-                ))}
-              </div>
-
+            <div className="w-full flex flex-row ">
               <Form.Item
                 name="address"
                 label={false}

@@ -10,6 +10,11 @@ const PropertyCard = ({
   soldTag,
   leaseTag,
 }) => {
+  console.log(image, "here is tthe code");
+  const sortedImages =
+    image.length &&
+    image.slice().sort((a, b) => (a.position || 0) - (b.position || 0));
+
   return (
     <>
       <div className="mx-auto rounded overflow-hidden">
@@ -17,7 +22,7 @@ const PropertyCard = ({
         {image && (
           <div className="w-full h-[400px] lg:h-[900px]  overflow-hidden relative">
             <img
-              src={image}
+              src={sortedImages[0].url}
               alt={address}
               className="w-full h-full object-cover"
             />
