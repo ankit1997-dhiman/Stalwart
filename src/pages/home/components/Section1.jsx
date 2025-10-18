@@ -1,4 +1,4 @@
-import { Form,  Button } from "antd";
+import { Form, Button } from "antd";
 import searchImage from "@/assets/icons/search.svg";
 import bgImage from "../../../assets/images/home-hero.png";
 import { useState } from "react";
@@ -61,31 +61,20 @@ export const Section1 = () => {
 
             {/* Search Box */}
             <div className="w-full flex  relative">
-              <div className="flex bg-[#4F4C45] absolute -top-12 right-0  h-[50px]">
-                <div
-                  className={`${
-                    activeTab === "SELL" ? " text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto`}
-                  onClick={() => handleClick("SELL")}
-                >
-                  SELL
-                </div>
-                <div
-                  className={`${
-                    activeTab === "BUY" ? " text-black " : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto`}
-                  onClick={() => handleClick("BUY")}
-                >
-                  BUY
-                </div>
-                <div
-                  className={`${
-                    activeTab === "LEASE" ? "text-black" : "text-white"
-                  }  px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto`}
-                  onClick={() => handleClick("LEASE")}
-                >
-                  LEASE
-                </div>
+              <div className="flex bg-[#4F4C45] absolute -top-12 right-0 h-[50px]">
+                {["SELL", "BUY", "LEASE"].map((tab) => (
+                  <div
+                    key={tab}
+                    onClick={() => handleClick(tab)}
+                    className={`px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto py-5 transition-colors duration-200 ${
+                      activeTab === tab
+                        ? "text-black bg-white"
+                        : "text-white bg-[#4F4C45]"
+                    }`}
+                  >
+                    {tab}
+                  </div>
+                ))}
               </div>
 
               <Form.Item
@@ -111,9 +100,6 @@ export const Section1 = () => {
               </Button>
             </div>
           </div>
-
-         
-         
         </Form>
 
         <p className="hidden md:block text-white text-center text-[11px] pt-20 pb-40 font-monument font-light uppercase">

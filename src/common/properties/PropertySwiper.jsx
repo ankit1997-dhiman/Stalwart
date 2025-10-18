@@ -8,17 +8,18 @@ import "swiper/css/pagination";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound.jsx";
 import dummyImage from "@/assets/images/dummy-image.jpg";
 import { useTruncateText } from "@/hooks/useTruncateText";
-import PropertyCard from "@/pages/home/components/propertiesTab/components/PropertyCard";
+import { Property } from "./Property";
 
 const PropertySwiper = ({
   soldButtonTag,
-  leaseButtonTag,
+  activeTab,
   tabdata = [],
   slidesPerView = 1,
   delay = 10000,
   buttonText = "Learn More",
   onClick = (item) => message.info(`Clicked: ${item.id}`),
 }) => {
+  console.log(activeTab, "active");
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -33,13 +34,17 @@ const PropertySwiper = ({
       breakpoints={{
         640: { slidesPerView: 1 },
         768: { slidesPerView: 1 },
-        1024: { slidesPerView: 1 },
+        1024: { slidesPerView: 3 },
       }}
     >
       {tabdata?.length > 0 ? (
         tabdata.map((item) => (
           <SwiperSlide key={item.id}>
-            <PropertyCard
+            <Property
+              price
+              bed={item.listingDetails.bedrooms}
+              bathrooms={item.listingDetails.bathrooms}
+              carportSpaces={item.listingDetails.garageSpaces}
               id={item.id}
               image={item?.images?.length > 0 ? item.images[0].url : dummyImage}
               address={item.formattedAddress}
@@ -47,7 +52,6 @@ const PropertySwiper = ({
               buttonText={buttonText}
               onClick={() => onClick(item)}
               soldTag={soldButtonTag && true}
-              leaseButtonTag={leaseButtonTag && true}
             />
           </SwiperSlide>
         ))

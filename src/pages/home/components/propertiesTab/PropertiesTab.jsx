@@ -95,9 +95,7 @@ const PropertiesTab = () => {
     fetchProperties();
   }, [activeTab]);
 
-
-  console.log(data,"da");
-  
+  console.log(data, "da");
 
   const items = [
     {
@@ -110,17 +108,17 @@ const PropertiesTab = () => {
     {
       key: "2",
       label: <p className="font-moderat-medium font-medium text-base">BUY</p>,
-      children: <Tab2 tabdata={data} />,
+      children: <Tab2 tabdata={data} activeTab={activeTab} />,
     },
     {
       key: "3",
       label: <p className="font-moderat-medium font-medium text-base">SOLD</p>,
-      children: <SellTab tabdata={data} />,
+      children: <SellTab tabdata={data} activeTab={activeTab} />,
     },
     {
       key: "4",
       label: <p className="font-moderat-medium font-medium text-base">LEASE</p>,
-      children: <LeaseTab tabdata={data} />,
+      children: <LeaseTab tabdata={data} activeTab={activeTab} />,
     },
   ];
 

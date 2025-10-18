@@ -54,7 +54,8 @@ export const DropdownMenu = ({ onSelect }) => {
         !bg-transparent 
         [&_.ant-menu-item]:!my-2 
         [&_.ant-menu-submenu-title]:!my-2 
-        [&_.ant-menu-item]:!rounded-lg 
+        [&_.ant-menu-submenu-title]:!rounded-none 
+        [&_.ant-menu-item]:!rounded-none 
         [&_.ant-menu-item:hover]:!bg-[#fff] 
         [&_.ant-menu-submenu-title:hover]:!bg-[#fff] 
         [&_.ant-menu-submenu:hover]:!text-[#000] 
@@ -63,7 +64,7 @@ export const DropdownMenu = ({ onSelect }) => {
         [&_.ant-menu-submenu-arrow]:!text-white 
         [&_.ant-menu-submenu-expand-icon]:!text-white 
         [&_.ant-menu-title-content a]:!text-[#fff]
-        custom-menu"
+        custom-menu !rounded-none"
       openKeys={stateOpenKeys}
       onOpenChange={onOpenChange}
       defaultSelectedKeys={["1"]}
