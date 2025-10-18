@@ -89,7 +89,12 @@ export const drawerMenuitems = [
       },
       {
         key: "g13",
-        label: <DrawerSubmenuLabel label="Upcoming Inspections" />,
+        label: (
+          <DrawerSubmenuLabel
+            label="Upcoming Inspections"
+            link={URLS.UPCOMING_INSPECTIONS}
+          />
+        ),
       },
       {
         key: "g14",
@@ -103,10 +108,10 @@ export const drawerMenuitems = [
   },
   {
     key: "sub4",
-    label: <DrawerMenuLabel label="ABOUT" />,
+    label: <DrawerMenuLabel label="ABOUT" link={URLS.ABOUT} />,
   },
   {
     key: "sub5",
-    label: <DrawerMenuLabel label="CONTACT" />,
+    label: <DrawerMenuLabel label="CONTACT" link={URLS.CONTACT_US} />,
   },
 ];

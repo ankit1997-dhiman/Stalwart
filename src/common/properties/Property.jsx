@@ -1,4 +1,3 @@
-import { Empty } from "antd";
 import React from "react";
 import DummyImage from "@/assets/images/dummy-image.jpg";
 import { Link } from "react-router-dom";
@@ -11,18 +10,16 @@ export function Property({
   price,
   bathrooms,
   carportSpaces,
+  garageSpaces,
+  openCarSpaces,
   image = [],
   bed,
 }) {
-  // ✅ Safely sort images by position (ascending)
   const sortedImages =
     Array.isArray(image) && image.length
       ? [...image].sort((a, b) => (a.position || 0) - (b.position || 0))
       : [];
-
-  // ✅ Get first image or fallback to dummy image
   const firstImage = sortedImages?.[0]?.url || DummyImage;
-  console.log(id, "id");
 
   return (
     <div
@@ -58,7 +55,9 @@ export function Property({
             </div>
             <div className="font-moderat-medium text-xs pt-2">
               {`${bed || 0} BED | ${bathrooms || 0} BATH | ${
-                carportSpaces || 0
+                (carportSpaces || 0) +
+                (openCarSpaces || 0) +
+                (garageSpaces || 0)
               } CAR `}
             </div>
           </div>

@@ -15,6 +15,9 @@ export const PropertySection = ({
   // ✅ Get first image or fallback to dummy image
   const firstImage = sortedImages?.[0]?.url || DummyImage;
 
+  const carspace = listingDetails.carportSpaces + listingDetails.garageSpaces;
+  console.log(carspace, "dfaksjalskdjfl");
+
   return (
     <>
       <div className="mx-auto rounded overflow-hidden flex flex-col-reverse lg:flex-col gap-12">
@@ -32,7 +35,11 @@ export const PropertySection = ({
               } BED | ${
                 listingDetails.bathrooms ? listingDetails.bathrooms : 0
               } BATH | ${
-                listingDetails.garageSpaces ? listingDetails.garageSpaces : 0
+                listingDetails
+                  ? (listingDetails.garageSpaces || 0) +
+                    (listingDetails.carportSpaces || 0) +
+                    (listingDetails.openCarSpaces || 0)
+                  : 0
               } CAR `}
             </div>
           </div>

@@ -12,13 +12,13 @@ import { Property } from "./Property";
 
 const PropertySwiper = ({
   soldButtonTag,
-  activeTab,
   tabdata = [],
   slidesPerView = 1,
   delay = 10000,
   buttonText = "Learn More",
   onClick = (item) => message.info(`Clicked: ${item.id}`),
 }) => {
+  console.log(tabdata, "tabdata");
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -43,7 +43,9 @@ const PropertySwiper = ({
               price={item.advertisedPrice}
               bed={item.listingDetails.bedrooms}
               bathrooms={item.listingDetails.bathrooms}
-              carportSpaces={item.listingDetails.garageSpaces}
+              carportSpaces={item.listingDetails.carportSpaces}
+              garageSpaces={item.listingDetails.garageSpaces}
+              openCarSpaces={item.listingDetails.openCarSpaces}
               id={item.id}
               image={item?.images?.length > 0 ? item.images : dummyImage}
               address={item.formattedAddress}

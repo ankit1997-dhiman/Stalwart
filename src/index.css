@@ -227,6 +227,9 @@ p {
 .custom-menu .ant-menu-submenu-active .menu-label {
   color: black !important;
 }
+.custom-menu .ant-menu-submenu-active {
+  color: #fff !important;
+}
 .custom-menu .ant-menu-item-active .menu-label {
   color: black !important;
 }

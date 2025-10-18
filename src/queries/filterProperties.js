@@ -4,6 +4,9 @@ export const GET_FILTERED_PROPOERTIES = `query GetFilteredProperties($first: Int
     nodes {
       id
       formattedAddress
+      status
+      saleOrLease
+      advertisedPrice
       address {
         street
         postcode
@@ -12,10 +15,16 @@ export const GET_FILTERED_PROPOERTIES = `query GetFilteredProperties($first: Int
         ... on ResidentialSale {
           bedrooms
           bathrooms
+           carportSpaces
+            garageSpaces
+            openCarSpaces
         }
         ... on ResidentialRental {
           bedrooms
           bathrooms
+           carportSpaces
+            garageSpaces
+            openCarSpaces
         }
       }
       price

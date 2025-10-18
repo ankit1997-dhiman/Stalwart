@@ -5,7 +5,7 @@ import { graphqlRequest } from "@/utils/graphqlRequest";
 import { AgentCard } from "./components/AgentCard";
 import { PropertyInfo } from "./components/PropertyInfo";
 import { PropertySection } from "./components/PropertySection";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { NotFound } from "../NotFound";
 import { RawHtml } from "@/components/RawHtml";
 import { MapCanvas } from "@/components/MapCanvas";
@@ -17,7 +17,7 @@ import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import EnquiryModal from "@/common/modal/EnquiryModal";
 import { ShareModal } from "@/components/share/ShareModal";
 import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
-import { message, Skeleton, Spin } from "antd";
+import { message, Skeleton } from "antd";
 
 export const PropertyDetails = () => {
   const [propertyData, setPropertyData] = useState(null);
@@ -47,24 +47,17 @@ export const PropertyDetails = () => {
 
   if (!id) return <NotFound />;
 
-  if (loading)
-    return (
-      <div className="container flex flex-col items-center justify-center h-[80vh]">
-        <Skeleton size="large" />
-        <Skeleton size="large" />
-        <Skeleton size="large" />
-      </div>
-    );
+  // 🦴 Skeleton Loader Layout
 
   if (!propertyData) return <NotFound />;
 
-  const formattedPrice = !propertyData?.advertisedPrice
-    ? new Intl.NumberFormat("en-AU", {
-        style: "currency",
-        currency: "AUD",
-        minimumFractionDigits: 0,
-      }).format(propertyData.advertisedPrice)
-    : propertyData?.advertisedPrice || "Contact Agent";
+  const formattedPrice =
+    propertyData?.advertisedPrice ||
+    new Intl.NumberFormat("en-AU", {
+      style: "currency",
+      currency: "AUD",
+      minimumFractionDigits: 0,
+    }).format(propertyData.advertisedPrice || 0);
 
   const handleShareCancel = () => setOpenShareModal(false);
   const handleEnquiryCancel = () => setOpen(false);
@@ -78,11 +71,8 @@ export const PropertyDetails = () => {
     propertyData.floorplans.length > 0 &&
     propertyData.floorplans[0]?.url;
 
-  console.log(propertyData);
-
-  const images = propertyData?.images.length ? propertyData?.images : [];
+  const images = propertyData?.images?.length ? propertyData.images : [];
   const sortedImages = images.sort((a, b) => a.position - b.position);
-
   const hasAgents = propertyData?.agents && propertyData.agents.length > 0;
 
   return (
@@ -104,9 +94,8 @@ export const PropertyDetails = () => {
         {/* 📝 Description Section */}
         <section className="flex flex-col md:flex-row justify-between gap-10 lg:gap-20 py-10 lg:py-25">
           <div className="w-full md:w-[35%] lg:w-[25%]">
-            <p className="leading-5 font-moderat-bold text-base">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium
+            <p className="leading-5 font-moderat-bold text-base uppercase">
+              description
             </p>
           </div>
 
@@ -198,7 +187,7 @@ export const PropertyDetails = () => {
                         <img
                           src={item.url || dummyImage}
                           alt="Property"
-                          className="lg:h-[612px] lg:w-[812px]"
+                          className="lg:h-[612px] lg:w-[812px] object-cover"
                         />
                       </SwiperSlide>
                     ))}

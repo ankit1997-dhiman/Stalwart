@@ -10,7 +10,7 @@ export const Section1 = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("BUY");
+  const [activeTab, setActiveTab] = useState("SELL");
 
   // Handle form submission
   const handleSubmit = () => {
@@ -38,7 +38,7 @@ export const Section1 = () => {
     >
       <div className="w-[999px]">
         <p className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
-          PORTA AD DOMUN
+          PORTA AD DOMUM
         </p>
 
         <Form
@@ -74,7 +74,11 @@ export const Section1 = () => {
 
           <div className="flex flex-col lg:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
             <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase flex item-center justify-center">
-              <p className="py-4.5 mx-auto">Get Property Estimate</p>
+              <p className="py-4.5 mx-auto">{`${
+                activeTab === "SELL"
+                  ? "Get Property Estimate"
+                  : "SEARCH HOMES FOR SALE"
+              }`}</p>
             </div>
 
             {/* Search Box */}
