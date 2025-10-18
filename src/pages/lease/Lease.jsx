@@ -30,9 +30,7 @@ export function Lease() {
     filterForm.setFieldsValue({ status: "LEASE" });
   }, [fetchProperties]);
 
-  const handleSubmit = (values) => {
-    console.log("Form submitted:", values);
-  };
+  const handleSubmit = (values) => {};
 
   return (
     <div className="container lg:px-0 px-12.5">

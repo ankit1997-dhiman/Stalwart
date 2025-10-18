@@ -35,6 +35,7 @@ const GoogleTranslate = () => {
 
   // Function to change language dynamically
   const handleLanguageChange = (lang) => {
+    // setLanguage(lang);
     const select = document.querySelector("select.goog-te-combo");
     if (select) {
       select.value = lang;
@@ -61,6 +62,11 @@ const GoogleTranslate = () => {
       key: "en",
       label: <SubMenuLabel label="English" />,
       onClick: () => handleLanguageChange("en"),
+    },
+    {
+      key: "hi",
+      label: <SubMenuLabel label="Hindi" />,
+      onClick: () => handleLanguageChange("hi"),
     },
     {
       key: "zh-CN",

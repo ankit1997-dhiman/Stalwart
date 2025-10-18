@@ -26,24 +26,8 @@ export const StickyNavbar = () => {
               )}
             </li>
           ))}
-          {/* <li className="text-xs font-monument hover:underline">
-            <img
-              src={TranslateLogo}
-              alt="Translate"
-              className="w-6 h-6 cursor-pointer"
-            />
-          </li> */}
+
           <GoogleTranslate />
-          {/* <Dropdown
-            menu={{ items }}
-            placement="bottomRight"
-            trigger={["click"]}
-          >
-            <li className="text-xs font-monument hover:underline cursor-pointer flex items-center">
-              <img src={TranslateLogo} alt="Translate" className="w-6 h-6" />
-            </li>
-          </Dropdown>
-          <div id="google_translate_element" style={{ display: "none" }}></div> */}
         </ul>
       </div>
     </div>

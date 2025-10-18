@@ -14,7 +14,6 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
   const [data, setData] = useState([]);
 
   const handleSubmit = async (values) => {
-    console.log(values);
     // setLoading(true);
     try {
       const response = await fetch("http://localhost:3001/api/send-email", {

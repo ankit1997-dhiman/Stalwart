@@ -1,6 +1,7 @@
 import { Button, Empty } from "antd";
 import React from "react";
 import DummyImage from "@/assets/images/dummy-image.jpg";
+import { Link } from "react-router-dom";
 export function Property({
   id,
   address,
@@ -12,10 +13,8 @@ export function Property({
   image,
   bed,
 }) {
-  console.log(image, "images");
   const sortedImages =
-    image.length &&
-    image.slice().sort((a, b) => (a.position || 0) - (b.position || 0));
+    image.length && image.sort((a, b) => (a.position || 0) - (b.position || 0));
 
   return (
     <div
@@ -45,7 +44,7 @@ export function Property({
 
       {/* Hover content */}
       <div className="absolute bottom-0 left-0 w-full p-5 text-xs font-medium text-gray-800 bg-white/80 backdrop-blur-sm transform translate-y-full opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="flex justify-between items-start gap-6">
+        <div className="flex justify-between items-center gap-6">
           <div>
             <div className="font-moderat-bold text-xs font-bold uppercase">
               {address ? address : null}
@@ -57,14 +56,19 @@ export function Property({
             </div>
           </div>
           <div>
-            <Button className="!bg-transparent !text-black !border !border-black !px-8 !py-5 !rounded-none lg:!w-[122px] lg:!h-[44px]">
+            <Link
+              to={`/property/${id}`}
+              className="!bg-transparent !text-black !border !border-black !px-8 !py-5 !rounded-none lg:!w-[122px] lg:!h-[44px]"
+            >
               <span className="font-moderat-regular text-xs">Learn More</span>
-            </Button>
+            </Link>
           </div>
         </div>
-        <div className="py-3 text-xs font-moderat-medium">
-          {price ? `$ ${price.toLocaleString("en-AU")}` : null}
-        </div>
+        {price && (
+          <div className="py-3 text-xs font-moderat-medium uppercase">
+            {` ${price.toLocaleString("en-AU")}`}
+          </div>
+        )}
       </div>
     </div>
   );

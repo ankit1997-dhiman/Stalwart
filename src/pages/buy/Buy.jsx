@@ -19,7 +19,6 @@ export function Buy() {
       setLoading(true);
 
       const { bedrooms, bathrooms, carSpaces, address } = filtersFromForm;
-      console.log(bedrooms, "bedrooms");
 
       // Build dynamic filters array (only numeric fields)
       const dynamicFilters = [];
@@ -71,7 +70,6 @@ export function Buy() {
 
       setData(properties);
     } catch (error) {
-      console.error(error);
       message.error("Failed to fetch properties");
     } finally {
       setLoading(false);
@@ -90,12 +88,10 @@ export function Buy() {
   // HANDLE LIVE FILTER CHANGES
   // =========================
   const handleValuesChange = (allValues) => {
-    console.log(allValues, "sdfasdjfnval");
     const { address, bedrooms, bathrooms, carSpaces } = allValues;
     const allEmpty = !address && !bedrooms && !bathrooms && !carSpaces;
 
     if (allEmpty) {
-      console.log(here);
       fetchProperties(); // show all sold properties
     } else {
       fetchProperties(allValues); // filtered

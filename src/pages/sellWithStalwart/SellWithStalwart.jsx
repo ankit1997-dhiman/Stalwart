@@ -25,7 +25,7 @@ const SellWithStalwart = () => {
       // await form.validateFields();
       setCurrent((prev) => prev + 1);
     } catch (error) {
-      console.log("Validation failed:", error);
+      throw error;
     }
   };
 

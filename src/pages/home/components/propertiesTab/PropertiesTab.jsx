@@ -6,6 +6,7 @@ import Tab2 from "./components/Tab2.jsx";
 import { graphqlRequest } from "@/utils/graphqlRequest.js";
 import SellTab from "./components/SellTab.jsx";
 import LeaseTab from "./components/LeaseTab.jsx";
+import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries.js";
 
 // Map tab key → status
 const tabListingTypes = {
@@ -18,85 +19,30 @@ const tabListingTypes = {
 const PropertiesTab = () => {
   const [activeTab, setActiveTab] = useState("1");
   const [data, setData] = useState([]);
+  const fetchProperties = async () => {
+    try {
+      const status = tabListingTypes[activeTab];
+      const variables = {
+        first: 50,
+        ...(status ? { status } : {}),
+      };
+      const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
+      let nodes = res?.data?.properties?.nodes || [];
+
+      // Apply filtering on client side
+      if (activeTab === "1") {
+        nodes = nodes.filter((p) => p.featured === true);
+      }
+
+      setData(nodes);
+    } catch (error) {
+      message.error(error.message || "Something went wrong");
+    }
+  };
 
   useEffect(() => {
-    const fetchProperties = async () => {
-      const query = `
-       query GetSaleProperties($status: [PropertyStatusEnum!]) {
-        properties(
-          status: $status
-          orderBy: CREATED_AT_DESC
-        ) {
-          nodes {
-            id
-            price
-            formattedAddress
-            status
-            saleOrLease
-            advertisedPrice
-            latitude
-            longitude
-            description
-            featured
-            createdAt
-            updatedAt
-            listingDetails {
-              ... on ResidentialSale {
-                bedrooms
-                bathrooms
-                carportSpaces
-                garageSpaces
-                openCarSpaces
-              }
-              ... on ResidentialRental {
-                bedrooms
-                bathrooms
-                carportSpaces
-                garageSpaces
-                openCarSpaces
-              }
-            }
-            vendors {
-              contact {
-                firstName
-                lastName
-              }
-            }
-            images {
-              url
-              position
-            }
-          }
-        }
-      }
-    `;
-
-      try {
-        const status = tabListingTypes[activeTab];
-        const variables = {
-          first: 50, // fetch enough to allow filtering locally
-          ...(status ? { status } : {}),
-        };
-
-        const res = await graphqlRequest(query, variables);
-
-        let nodes = res?.data?.properties?.nodes || [];
-
-        // Apply filtering on client side
-        if (activeTab === "1") {
-          nodes = nodes.filter((p) => p.featured === true);
-        }
-
-        setData(nodes);
-      } catch (error) {
-        message.error(error.message || "Something went wrong");
-      }
-    };
-
     fetchProperties();
   }, [activeTab]);
-
-  console.log(data, "da");
 
   const items = [
     {

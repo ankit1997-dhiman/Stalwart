@@ -50,8 +50,6 @@ export default function UpcomingAuction() {
     }
   }, []);
 
-  console.log(upcomingAuction, "auc");
-
   useEffect(() => {
     fetchInspectionProperties();
     upcomingInspectionForm.setFieldsValue({ status: "BUY" });
@@ -93,8 +91,14 @@ export default function UpcomingAuction() {
           {upcomingAuction.length > 0 ? (
             <div className="grid grid-cols-1  gap-6">
               {upcomingAuction.map((item) => {
-                const { id, formattedAddress, images, price, listingDetails,auctionDatetime } =
-                  item;
+                const {
+                  id,
+                  formattedAddress,
+                  images,
+                  price,
+                  listingDetails,
+                  auctionDatetime,
+                } = item;
                 return (
                   <AuctionCard
                     key={id}

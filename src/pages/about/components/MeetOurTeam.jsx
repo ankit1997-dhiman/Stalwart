@@ -39,12 +39,9 @@ const teamMembers = [
   },
 ];
 
-console.log(teamMembers[0].image);
-
 export default function MeetOurTeam() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [member, setMember] = useState({});
-  console.log(member);
 
   const screens = useBreakpoint();
 

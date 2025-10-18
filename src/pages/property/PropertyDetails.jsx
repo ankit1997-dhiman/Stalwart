@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import image from "@/assets/images/tab-image.png";
 import dummyImage from "@/assets/images/dummy-image.jpg";
-import { CalendarOutlined,  } from "@ant-design/icons";
+import { CalendarOutlined } from "@ant-design/icons";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { AgentCard } from "./components/AgentCard";
 import { PropertyInfo } from "./components/PropertyInfo";
@@ -24,7 +23,6 @@ export const PropertyDetails = () => {
   const [open, setOpen] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
   const { id } = useParams();
-  console.log(id, "id on property page");
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -32,12 +30,11 @@ export const PropertyDetails = () => {
 
       try {
         const res = await graphqlRequest(GET_PROPERTY_BY_ID, variables);
-        console.log(res, "res");
+
         const property = res?.data?.properties?.nodes?.[0];
         setPropertyData(property || null);
       } catch (error) {
-        console.log(error, "error");
-        // message.error(error.message);
+        message.error(error.message);
       }
     };
 
@@ -66,7 +63,7 @@ export const PropertyDetails = () => {
     <div className="container pt-24">
       {/* 🏠 Property Banner Section */}
       <PropertySection
-        image={propertyData?.images?.[0]?.url || image}
+        image={propertyData?.images}
         address={propertyData?.formattedAddress}
         listingDetails={propertyData?.listingDetails}
         buttonText="Enquire Now"

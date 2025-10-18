@@ -13,8 +13,6 @@ export const SearchResult = () => {
   const [type, setType] = useState(activeTab);
   const [data, setData] = useState([]);
 
-  console.log(activeTab, query);
-
   const fetchProperties = async () => {
     // setLoading(true);
 
@@ -41,10 +39,6 @@ export const SearchResult = () => {
       };
       const res = await graphqlRequest(FILTER_SUBURB_AND_STATUS, variables);
       setData(res?.data?.properties?.nodes);
-      console.log(res, "res");
-
-      // setProperties(properties);
-      // setError(data?.data?.properties?.nodes?.length === 0);
     } catch (err) {
       message.error(err, 4000);
     } finally {
@@ -55,7 +49,6 @@ export const SearchResult = () => {
   useEffect(() => {
     fetchProperties();
   }, [type]);
-  console.log(data.image);
 
   return (
     <div className="container lg:px-0 px-12.5">
@@ -65,7 +58,6 @@ export const SearchResult = () => {
             {data.map((property) => {
               const { id, formattedAddress, images, price, listingDetails } =
                 property;
-              console.log(listingDetails, "listing");
               return (
                 <Link to={`/property/${id}`}>
                   <Property

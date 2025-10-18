@@ -19,7 +19,6 @@ const PropertySwiper = ({
   buttonText = "Learn More",
   onClick = (item) => message.info(`Clicked: ${item.id}`),
 }) => {
-  console.log(activeTab, "active");
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -41,12 +40,12 @@ const PropertySwiper = ({
         tabdata.map((item) => (
           <SwiperSlide key={item.id}>
             <Property
-              price
+              price={item.advertisedPrice}
               bed={item.listingDetails.bedrooms}
               bathrooms={item.listingDetails.bathrooms}
               carportSpaces={item.listingDetails.garageSpaces}
               id={item.id}
-              image={item?.images?.length > 0 ? item.images[0].url : dummyImage}
+              image={item?.images?.length > 0 ? item.images : dummyImage}
               address={item.formattedAddress}
               subtitle={useTruncateText(item.description, 35)}
               buttonText={buttonText}

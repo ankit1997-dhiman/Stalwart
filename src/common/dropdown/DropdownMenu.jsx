@@ -2,9 +2,7 @@ import { drawerMenuitems } from "@/constants/DrawerMenu";
 import { Menu } from "antd";
 import React, { useState } from "react";
 
-const onClick = (e) => {
-  console.log("click ", e);
-};
+const onClick = (e) => {};
 
 const getLevelKeys = (items1) => {
   const key = {};

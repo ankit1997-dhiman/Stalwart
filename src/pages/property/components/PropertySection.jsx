@@ -6,8 +6,10 @@ export const PropertySection = ({
   address,
   listingDetails,
   buttonText,
-  onClick
+  onClick,
 }) => {
+  const sortedImages =
+    image.length && image.sort((a, b) => (a.position || 0) - (b.position || 0));
   return (
     <>
       <div className="mx-auto rounded overflow-hidden flex flex-col-reverse lg:flex-col gap-12">
@@ -45,7 +47,7 @@ export const PropertySection = ({
         {/* Image */}
         <div className="w-full h-[900px]  overflow-hidden ">
           <img
-            src={image}
+            src={sortedImages[0].url}
             alt={address}
             className="w-full h-full object-cover"
           />

@@ -10,7 +10,6 @@ const PropertyCard = ({
   soldTag,
   leaseTag,
 }) => {
-  console.log(image, "here is tthe code");
   const sortedImages =
     image.length &&
     image.slice().sort((a, b) => (a.position || 0) - (b.position || 0));

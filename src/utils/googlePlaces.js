@@ -3,9 +3,6 @@
 import { GET_ALL_SUBURBS } from "@/queries/suburbsQueries";
 import { graphqlRequest } from "./graphqlRequest";
 
-
-
-
 let googleLoaded = false;
 let placesService = null;
 
@@ -121,7 +118,6 @@ export const fetchPlaceSuggestions = async (input, country = "au") => {
 // src/utils/fetchAllSuburbs.js
 export const fetchAllSuburbs = async () => {
   try {
-    console.log("Fetching suburbs...");
     const res = await graphqlRequest(GET_ALL_SUBURBS);
 
     // Extract and deduplicate suburbs
@@ -129,8 +125,6 @@ export const fetchAllSuburbs = async () => {
       res?.data?.properties?.nodes
         ?.map((node) => node?.address?.postcode?.suburb)
         ?.filter((suburb) => suburb != null) || []; // Filter out null/undefined values
-    
-    console.log(suburbs, "fetch");
 
     // Return unique suburbs
     return [...new Set(suburbs)];

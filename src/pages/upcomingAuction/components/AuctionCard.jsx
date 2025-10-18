@@ -14,7 +14,6 @@ export default function AuctionCard({
   carportSpaces,
   id,
 }) {
-  console.log(image)
   return (
     <div className="contanier border-b border-black/60 group">
       <div className="p-12.5 flex lg:flex-row flex-col gap-8 lg:gap-0 items-stretch justify-between hover:bg-[#4F4C45] transition-colors duration-900">
