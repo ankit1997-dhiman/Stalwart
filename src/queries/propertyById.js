@@ -36,6 +36,7 @@ export const GET_PROPERTY_BY_ID = `query GetSaleProperties($ids: [ID!], $first: 
         avatarUrl
         email
         phone
+        mobile
       }
       inspections {
         nodes {

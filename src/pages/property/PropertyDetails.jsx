@@ -58,12 +58,12 @@ export const PropertyDetails = () => {
 
   if (!propertyData) return <NotFound />;
 
-  const formattedPrice = propertyData?.price
+  const formattedPrice = !propertyData?.advertisedPrice
     ? new Intl.NumberFormat("en-AU", {
         style: "currency",
         currency: "AUD",
         minimumFractionDigits: 0,
-      }).format(propertyData.price)
+      }).format(propertyData.advertisedPrice)
     : propertyData?.advertisedPrice || "Contact Agent";
 
   const handleShareCancel = () => setOpenShareModal(false);
@@ -215,7 +215,7 @@ export const PropertyDetails = () => {
                       key={agent.id}
                       name={agent.name}
                       email={agent.email}
-                      phone={agent.phone}
+                      phone={agent.mobile}
                       image={agent.avatarUrl}
                     />
                   ))
