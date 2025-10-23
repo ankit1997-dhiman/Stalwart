@@ -1,9 +1,10 @@
-import { BiLogOut } from "react-icons/bi";
+
 import image from "../../../assets/images/section-2-image.png";
 import mobileImage from "../../../assets/images/mobile-philosophy.png";
 import blackLogo from "@/assets/images/black-logo.png";
 import { Link } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 
 const OurPhilosophy = () => {
   return (
@@ -37,12 +38,13 @@ const OurPhilosophy = () => {
               results through expert negotiation and thoughtful, strategic
               marketing. 
             </p>
-            <Link
+            <LenisAnimatedLink
               to={URLS.ABOUT}
-              className="mt-5 font-moderat-medium md:text-base md:font-medium"
+              className="font-moderat-medium md:text-base md:font-medium text-black"
             >
               LEARN MORE ABOUT US
-            </Link>
+            </LenisAnimatedLink>
+           
           </div>
         </div>
       </div>

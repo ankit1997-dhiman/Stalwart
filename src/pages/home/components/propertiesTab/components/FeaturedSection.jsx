@@ -1,9 +1,10 @@
 import React from "react";
 import image from "../../../../../assets/images/image-9.png";
 import logo from "@/assets/images/black-logo.png";
-import IconImage from "@/assets/icons/black-arrow-right.svg"
+import IconImage from "@/assets/icons/black-arrow-right.svg";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { Link } from "react-router-dom";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 const FeaturedSection = () => {
   return (
     <div className="flex flex-col md:flex-row">
@@ -29,17 +30,15 @@ const FeaturedSection = () => {
             Mauris in est sed nibh tempor feugiat. Lorem ipsum dolor sit amet,
             consectetur adipiscing elit.
           </p>
-          <Link
-            to="#"
-            className="mt-11 inline-flex items-center font-semibold text-sm text-black"
+          <LenisAnimatedLink
+            to={"#"}
+            iconPosition="right"
+            iconImage={IconImage}
+            className="mt-11 inline-flex items-center font-semibold text-sm text-black uppercase"
           >
-            <ButtonWithIcon
-              text="See All"
-              iconPosition="right"
-              iconImage={IconImage}
-              className="border-none font-bold font-moderat uppercase"
-            />
-          </Link>
+            See All
+          </LenisAnimatedLink>
+          
           <img
             src={image}
             alt="Featured"

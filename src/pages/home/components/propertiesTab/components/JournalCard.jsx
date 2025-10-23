@@ -1,3 +1,4 @@
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -15,9 +16,9 @@ const JournalCard = ({ image, title, description }) => {
           {description}
         </p>
         <div className="mt-2.5">
-          <Link to="#" className="font-moderat-bold text-xs ">
+          <LenisAnimatedLink to={"#"} className="font-moderat-bold text-xs">
             SEE MORE
-          </Link>
+          </LenisAnimatedLink>
         </div>
       </div>
     </div>

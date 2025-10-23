@@ -7,6 +7,7 @@ import IconImage from "@/assets/icons/black-arrow-right.svg";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 import { URLS } from "@/constants/Urls";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 
 export const CurrentProperties = ({ title }) => {
   const [propertiesData, setPropertiesData] = useState([]);
@@ -17,7 +18,11 @@ export const CurrentProperties = ({ title }) => {
       try {
         setLoading(true);
         const variables = { status: ["ACTIVE"] };
-        const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
+        const res = await graphqlRequest(
+          "/api/graphql",
+          GET_SALE_PROPERTIES,
+          variables
+        );
 
         if (res?.data?.properties?.nodes?.length) {
           const allProperties = res.data.properties.nodes;
@@ -58,17 +63,14 @@ export const CurrentProperties = ({ title }) => {
           Redland City and Toowoomba.
         </p>
 
-        <Link
+        <LenisAnimatedLink
           to={URLS.BUY}
-          className="mt-6 lg:mt-16 inline-flex items-center font-semibold text-sm text-black"
+          iconPosition="right"
+          iconImage={IconImage}
+          className="mt-6 lg:mt-16 inline-flex items-center  text-sm border-none  font-moderat-bold uppercase text-black"
         >
-          <ButtonWithIcon
-            text="See All"
-            iconPosition="right"
-            iconImage={IconImage}
-            className="border-none font-bold font-moderat uppercase"
-          />
-        </Link>
+          See All
+        </LenisAnimatedLink>       
       </div>
 
       {/* Right Grid */}

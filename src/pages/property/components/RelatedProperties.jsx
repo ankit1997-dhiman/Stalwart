@@ -11,11 +11,11 @@ export const RelatedProperties = () => {
   const fetchProperties = async () => {
     const variables = { first: 3, status: ["ACTIVE"] };
     try {
-      const res = await graphqlRequest(GET_FILTERED_PROPOERTIES, variables);
+      const res = await graphqlRequest("/api/graphql",GET_FILTERED_PROPOERTIES, variables);
 
       if (res.data) {
         const variables = { status: ["ACTIVE"] };
-        const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
+        const res = await graphqlRequest("/api/graphql",GET_SALE_PROPERTIES, variables);
 
         if (res.data) {
           const allProperties = res?.data?.properties?.nodes;

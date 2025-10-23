@@ -30,7 +30,7 @@ export const PropertyDetails = () => {
     try {
       setLoading(true);
       const variables = { ids: [id] };
-      const res = await graphqlRequest(GET_PROPERTY_BY_ID, variables);
+      const res = await graphqlRequest("/api/graphql",GET_PROPERTY_BY_ID, variables);
       const property = res?.data?.properties?.nodes?.[0] || null;
       setPropertyData(property);
     } catch (error) {
@@ -218,10 +218,12 @@ export const PropertyDetails = () => {
 
             <div className="py-10">
               {propertyData?.latitude && propertyData?.longitude ? (
-                <MapCanvas
-                  latitude={propertyData.latitude}
-                  longitude={propertyData.longitude}
-                />
+                <div style={{ height: "300px", width: "100%" }}>
+                  <MapCanvas
+                    latitude={propertyData.latitude}
+                    longitude={propertyData.longitude}
+                  />
+                </div>
               ) : (
                 <p className="text-gray-500 text-sm">
                   Map coordinates not available.

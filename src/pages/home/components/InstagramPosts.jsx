@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel } from "antd";
+import { Carousel, Form, Input } from "antd";
 
 // Import all images
 import Insta1 from "../../../assets/images/insta-1.png";
@@ -11,12 +11,17 @@ import Insta6 from "../../../assets/images/image-6.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import Label from "@/components/form/Label";
 
 const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];
 
-const InstagramPosts = ({backGroundWhite}) => {
+const InstagramPosts = ({ backGroundWhite }) => {
   return (
-    <div className={`${backGroundWhite ? "bg-white" :"bg-[#F4F2F0]" }  py-16.5 px-12.5 xl:px-0 `}>
+    <div
+      className={`${
+        backGroundWhite ? "bg-white" : "bg-[#F4F2F0]"
+      }  py-16.5 px-12.5 xl:px-0 `}
+    >
       <div className="container">
         <div className="lg:pt-18">
           <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between lg:gap-6">
@@ -55,19 +60,41 @@ const InstagramPosts = ({backGroundWhite}) => {
                 Subscribe to get the latest insider tips, market updates and
                 access to the hottest deals as they come on the market.
               </p>
-              <form className="justify-baseline pt-7.5 lg:pt-7.5">
+              <Form className="justify-baseline pt-7.5 lg:pt-7.5">
                 <div className="border-b border-gray-400 bg-transparent focus:outline-none flex justify-between flex-col md:flex-row gap-10 lg:gap-0">
                   <div className="flex flex-row flex-wrap justify-evenly gap-5 md:gap-0">
-                    <input
-                      type="text"
-                      placeholder="Full Name"
-                      className="flex-1 placeholder:text-[#4F4C45]/60 pb-3 border-b border-[#4F4C45] md:border-0 w-1/2 lg:w-full"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email Address"
-                      className="flex-1 placeholder:text-[#4F4C45]/60 pb-3 border-b border-[#4F4C45] md:border-0 w-1/2 lg:w-full"
-                    />
+                    <Form.Item
+                      name="email"
+                      label={false}
+                      rules={[
+                        { required: true, message: "Please enter your email" },
+                        {
+                          type: "name",
+                          message: "Please enter a valid email",
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder="Full Name"
+                        className="!py-2.5 !outline-none !border-b-black !border-none !bg-transparent "
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name="email"
+                       label={false}
+                      rules={[
+                        { required: true, message: "Please enter your email" },
+                        {
+                          type: "email",
+                          message: "Please enter a valid email",
+                        },
+                      ]}
+                    >
+                      <Input
+                        placeholder="Email"
+                        className="!py-2.5 !outline-none !border-b-black !border !rounded-none !mt-6"
+                      />
+                    </Form.Item>
                   </div>
 
                   <button
@@ -77,7 +104,7 @@ const InstagramPosts = ({backGroundWhite}) => {
                     <span className="text-[#4F4C45]/60">Submit</span>
                   </button>
                 </div>
-              </form>
+              </Form>
             </div>
           </div>
         </div>

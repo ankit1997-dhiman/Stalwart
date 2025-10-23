@@ -16,7 +16,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
   const handleSubmit = async (values) => {
     // setLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/api/send-email", {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -42,7 +42,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
         const variables = { ids: [id] };
 
         try {
-          const res = await graphqlRequest(GET_PROPERTY_BY_ID, variables);
+          const res = await graphqlRequest("/api/graphql",GET_PROPERTY_BY_ID, variables);
           const property = res?.data?.properties?.nodes?.[0];
           setData(property || null);
         } catch (error) {
@@ -168,7 +168,7 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
                 </Form.Item>
                 <div className="flex justify-end">
                   <Button
-                    className="!rounded-none !px-3.5 bg-white !border !border-black !py-2 w-[209px] !h-[47px] !bg-transparent"
+                    className="!rounded-none !px-3.5  !border !border-black !py-2 w-[209px] !h-[47px] !bg-transparent"
                     htmlType="submit"
                   >
                     <span className="font-moderat-regular text-xs lg:text-base">

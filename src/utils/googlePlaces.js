@@ -118,7 +118,7 @@ export const fetchPlaceSuggestions = async (input, country = "au") => {
 // src/utils/fetchAllSuburbs.js
 export const fetchAllSuburbs = async () => {
   try {
-    const res = await graphqlRequest(GET_ALL_SUBURBS);
+    const res = await graphqlRequest("/api/graphql",GET_ALL_SUBURBS);
 
     // Extract and deduplicate suburbs
     const suburbs =

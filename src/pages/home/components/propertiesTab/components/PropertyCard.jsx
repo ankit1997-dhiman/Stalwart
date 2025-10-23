@@ -1,15 +1,8 @@
+import { AnimatedButton } from "@/common/Button/AnimatedButton";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PropertyCard = ({
-  id,
-  image,
-  address,
-  subtitle,
-  buttonText,
-  soldTag,
-  leaseTag,
-}) => {
+const PropertyCard = ({ id, image, address, subtitle, soldTag, leaseTag }) => {
   const sortedImages =
     image.length &&
     image.slice().sort((a, b) => (a.position || 0) - (b.position || 0));
@@ -49,18 +42,8 @@ const PropertyCard = ({
               </p>
             )}
           </div>
-          {buttonText && (
-            <div>
-              <Link
-                to={`/property/${id}`}
-                className="bg-white text-center h-[97px] border-black my-auto"
-              >
-                <p className="lg:w-[262px] lg:py-9 text-black border font-moderat-regular text-base px-6 py-3 lg:px-0 ">
-                  {buttonText}
-                </p>
-              </Link>
-            </div>
-          )}
+
+          <AnimatedButton to={`/property/${id}`} buttonText="Learn More" className="lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center"/>
         </div>
       </div>
     </>

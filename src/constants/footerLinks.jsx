@@ -25,7 +25,7 @@ export const footerLinks = [
   {
     title: "LEASE",
     links: [
-      { label: "Leasing with Stalwart", to: URLS.SELL_WITH_STALWART },
+      { label: "Leasing with Stalwart", to: URLS.SWITCH_WITH_STALWART },
       { label: "Properties for Lease", to: URLS.LEASE_PROPERTIES },
       { label: "Upcoming Inspection", to: URLS.UPCOMING_INSPECTIONS },
       { label: "Owners Portal" },

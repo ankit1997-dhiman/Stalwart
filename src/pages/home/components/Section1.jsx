@@ -86,7 +86,7 @@ export const Section1 = () => {
               <Form.Item
                 name="address"
                 label={false}
-                className="!mb-0 !w-full !my-auto"
+                className="!mb-0 !w-full !my-auto bg-white"
                 rules={[
                   { required: true, message: "Please enter your full name" },
                 ]}

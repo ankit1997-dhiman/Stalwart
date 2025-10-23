@@ -15,7 +15,7 @@ export function Lease() {
   const fetchProperties = useCallback(async () => {
     try {
       const variables = { status: ["ACTIVE"] };
-      const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
+      const res = await graphqlRequest("/api/graphql",GET_SALE_PROPERTIES, variables);
       const filterProperty = res?.data?.properties?.nodes.filter(
         (item) => item.saleOrLease == "LEASE"
       );

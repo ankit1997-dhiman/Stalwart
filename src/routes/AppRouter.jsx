@@ -1,5 +1,6 @@
 import AppLayout from "@/common/layout/AppLayout";
 import { PageWrapper } from "@/common/pageWrapper/PageWrapper";
+import ThankyouPage from "@/common/ThankyouPage";
 import ScrollToTop from "@/components/scroll/ScrollToTop";
 import { URLS } from "@/constants/Urls";
 import { About } from "@/pages/about/About.jsx";
@@ -10,12 +11,13 @@ import { Contact } from "@/pages/contact/Contact";
 import { Home } from "@/pages/home/Home.jsx";
 import { Lease } from "@/pages/lease/Lease";
 import { LeasedProperties } from "@/pages/lease/LeasedProperties";
+import { LetterOfOffers } from "@/pages/letters/LetterOfOffers";
 import { NotFound } from "@/pages/NotFound.jsx";
 import { PropertyDetails } from "@/pages/property/PropertyDetails";
 import { SearchResult } from "@/pages/search/SearchResult";
 import SellWithStalwart from "@/pages/sellWithStalwart/SellWithStalwart";
 import { SoldProperties } from "@/pages/soldProperties/SoldProperties";
-import SwitchWithStalwart from "@/pages/switchToStalwart/SwitchToStalwart";
+import SwitchToStalwart from "@/pages/switchToStalwart/SwitchToStalwart";
 import UpcomingAuction from "@/pages/upcomingAuction/UpcomingAuction";
 import UpcomingInspections from "@/pages/upcomingInspection/UpcomingInspections";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -40,10 +42,11 @@ export default function AppRouter() {
                 <Route path={URLS.CONTACT_US} element={<Contact />} />
                 <Route path={URLS.BUY} element={<Buy />} />
                 <Route path={URLS.SEARCH_RESULT} element={<SearchResult />} />
+                <Route path={URLS.LETTER_OF_OFFER} element={<LetterOfOffers />} />
 
                 <Route
-                  path={URLS.SWITCH_WITH_STALWART}
-                  element={<SwitchWithStalwart />}
+                  path={URLS.SWITCH_TO_STALWART}
+                  element={<SwitchToStalwart />}
                 />
                 <Route
                   path={URLS.SOLD_PROPERTIES}
@@ -60,6 +63,10 @@ export default function AppRouter() {
                 <Route
                   path={URLS.LEASE_PROPERTIES}
                   element={<LeasedProperties />}
+                />
+                <Route
+                  path={URLS.THANK_YOU}
+                  element={<ThankyouPage />}
                 />
                 <Route path={URLS.LEASE} element={<Lease />} />
                 <Route

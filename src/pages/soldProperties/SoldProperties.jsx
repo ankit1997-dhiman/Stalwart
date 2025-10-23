@@ -68,7 +68,7 @@ export function SoldProperties() {
         order: "UPDATED_AT_NEWEST",
       };
 
-      const res = await graphqlRequest(GET_FILTERED_PROPOERTIES, variables);
+      const res = await graphqlRequest("/api/graphql",GET_FILTERED_PROPOERTIES, variables);
       let properties = res?.data?.properties?.nodes || [];
 
       setSoldProperties(properties);
@@ -134,7 +134,7 @@ export function SoldProperties() {
               <Link to={`/property/${id}`} key={id}>
                 <Property
                   address={formattedAddress}
-                  image={images?.[0]?.url}
+                  image={images}
                   price={price}
                   bed={listingDetails?.bedrooms ?? 0}
                   bathrooms={listingDetails?.bathrooms ?? 0}

@@ -26,7 +26,7 @@ const PropertiesTab = () => {
         first: 50,
         ...(status ? { status } : {}),
       };
-      const res = await graphqlRequest(GET_SALE_PROPERTIES, variables);
+      const res = await graphqlRequest("/api/graphql",GET_SALE_PROPERTIES, variables);
       let nodes = res?.data?.properties?.nodes || [];
 
       // Apply filtering on client side

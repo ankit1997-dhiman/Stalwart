@@ -38,7 +38,7 @@ export default function UpcomingAuction() {
         order: "UPDATED_AT_NEWEST",
       };
 
-      const res = await graphqlRequest(GET_AUCTION_PROPERTY, variables);
+      const res = await graphqlRequest("/api/graphql",GET_AUCTION_PROPERTY, variables);
 
       if (res.data) {
         const allProperties = res?.data?.properties?.nodes;
@@ -103,7 +103,7 @@ export default function UpcomingAuction() {
                   <AuctionCard
                     key={id}
                     id={id}
-                    image={images.length ? images?.[0]?.url : dummyImage}
+                    images={images}
                     price={price}
                     hoverAddress={formattedAddress}
                     address={formattedAddress}

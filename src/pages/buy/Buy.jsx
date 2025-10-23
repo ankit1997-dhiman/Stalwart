@@ -65,7 +65,7 @@ export function Buy() {
         order: "UPDATED_AT_NEWEST",
       };
 
-      const res = await graphqlRequest(GET_FILTERED_PROPOERTIES, variables);
+      const res = await graphqlRequest("/api/graphql",GET_FILTERED_PROPOERTIES, variables);
       let properties = res?.data?.properties?.nodes || [];
 
       setData(properties);

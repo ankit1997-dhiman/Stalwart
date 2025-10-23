@@ -14,7 +14,7 @@ export default function UpcomingInspections() {
   const fetchInspectionProperties = useCallback(async () => {
     try {
       const variables = { status: ["ACTIVE"] };
-      const res = await graphqlRequest(GET_UPCOMING_INSPECTION, variables);
+      const res = await graphqlRequest("/api/graphql",GET_UPCOMING_INSPECTION, variables);
       const filteredProperties = [];
       res?.data?.properties?.nodes.forEach((property) => {
         const { nodes: inspections } = property.inspections;
@@ -71,7 +71,7 @@ export default function UpcomingInspections() {
             <AuctionCard
               key={item.id}
               id={item?.id}
-              image={item?.images?.[0]?.url}
+              images={item?.images}
               price={item?.advertisedPrice}
               hoverAddress={item?.formattedAddress}
               address={item?.formattedAddress}

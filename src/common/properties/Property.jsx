@@ -1,6 +1,7 @@
 import React from "react";
 import DummyImage from "@/assets/images/dummy-image.jpg";
 import { Link } from "react-router-dom";
+import { AnimatedButton } from "../Button/AnimatedButton";
 
 export function Property({
   id,
@@ -62,12 +63,11 @@ export function Property({
             </div>
           </div>
           <div>
-            <Link
+            <AnimatedButton
               to={`/property/${id}`}
-              className="!bg-transparent !text-black !border !border-black !px-8 !py-5 !rounded-none lg:!w-[122px] lg:!h-[44px]"
-            >
-              <span className="font-moderat-regular text-xs">Learn More</span>
-            </Link>
+              buttonText="Learn More"
+              className=" !text-black !border !border-black  !rounded-none lg:!w-[122px] lg:!h-[44px]"
+            />
           </div>
         </div>
 

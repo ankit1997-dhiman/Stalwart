@@ -1,10 +1,11 @@
 import React from "react";
 import moment from "moment";
 import { FaRegCalendar } from "react-icons/fa";
+import DummyImage from "@/assets/images/dummy-image.jpg";
 import { Link } from "react-router-dom";
 
 export default function AuctionCard({
-  image,
+  images,
   time,
   address,
   price,
@@ -14,6 +15,11 @@ export default function AuctionCard({
   carportSpaces,
   id,
 }) {
+   const sortedImages =
+      Array.isArray(images) && images.length
+        ? [...images].sort((a, b) => (a.position || 0) - (b.position || 0))
+        : [];
+    const firstImage = sortedImages?.[0]?.url || DummyImage;
   return (
     <div className="contanier border-b border-black/60 group">
       <div className="p-12.5 flex lg:flex-row flex-col gap-8 lg:gap-0 items-stretch justify-between hover:bg-[#4F4C45] transition-colors duration-900">
@@ -29,7 +35,7 @@ export default function AuctionCard({
             </div>
           </div>
           <div>
-            <img src={image} className="w-full lg:w-[500px] lg:h-[300px]" />
+            <img src={firstImage} className="w-full lg:w-[500px] lg:h-[300px]" />
           </div>
           <div className="lg:flex items-stretch justify-between flex-col hidden ">
             <div>
