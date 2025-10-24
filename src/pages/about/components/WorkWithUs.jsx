@@ -1,8 +1,10 @@
 import React from "react";
 import image from "../../../assets/images/work.png";
-import IconImage from "@/assets/icons/black-arrow-right.svg"
+import IconImage from "@/assets/icons/black-arrow-right.svg";
 import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { Link } from "react-router-dom";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { URLS } from "@/constants/Urls";
 
 export default function WorkWithUs() {
   return (
@@ -33,17 +35,15 @@ export default function WorkWithUs() {
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <Link
-              to="#"
+
+            <LenisAnimatedLink
+              to={URLS.CAREERS}
+              iconPosition="right"
+              iconImage={IconImage}
               className="mt-6 lg:mt-7.5 inline-flex items-center font-semibold text-sm text-black"
             >
-              <ButtonWithIcon
-                text="APPLY NOW"
-                iconPosition="right"
-                iconImage={IconImage}
-                className="border-none font-bold font-moderat uppercase"
-              />
-            </Link>
+              APPLY NOW
+            </LenisAnimatedLink>
           </div>
         </div>
 

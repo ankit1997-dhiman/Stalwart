@@ -251,7 +251,7 @@ export default function AddressAutocomplete({
           if (onChange) onChange(e.target.value);
         }}
         onKeyDown={onKeyDown}
-        className="!border-none !h-[50px] !text-[12px] !outline-white !w-full !rounded-none !font-monument"
+        className="!border-none !h-[50px] !text-[14px] !outline-white !w-full !rounded-none !font-monument placeholder:font-moderat-regular"
         placeholder="Enter address or suburb"
       />
 

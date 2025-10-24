@@ -8,7 +8,7 @@ import mobileImage1 from "@/assets/images/mobile-image-house.png";
 
 export const Section4 = () => {
   return (
-    <section className="w-full flex items-stretch justify-between gap-7.5 h-[400px] md:h-[1080px] md:my-9">
+    <section className="w-full flex items-stretch justify-between gap-7.5 h-[400px] md:h-[1080px] md:py-9">
       <div
         className="xl:hidden block flex-1 bg-cover bg-center transition-all duration-700"
         style={{ backgroundImage: `url(${mobileImage1})` }}

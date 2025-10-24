@@ -7,7 +7,7 @@ const AppLayout = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="relative z-20 bg-white">
         <Outlet />
       </main>
       <Footer />

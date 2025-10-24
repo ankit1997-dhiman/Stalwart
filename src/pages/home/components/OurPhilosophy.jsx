@@ -32,7 +32,7 @@ const OurPhilosophy = () => {
 
         <div className="flex items-end justify-end gap-4">
           <div className="w-full lg:w-[553px]  ">
-            <p className="text-[16px] font-moderat-regular text-[#000000] pb-5 leading-6">
+            <p className="text-xs lg:text-[16px] font-moderat-regular text-[#000000] pb-5 leading-6">
               At Stalwart Real Estate, we help clients maximise the value of
               their property assets with minimal stress, delivering exceptional
               results through expert negotiation and thoughtful, strategic
@@ -40,7 +40,7 @@ const OurPhilosophy = () => {
             </p>
             <LenisAnimatedLink
               to={URLS.ABOUT}
-              className="font-moderat-medium md:text-base md:font-medium text-black origin-left hover:scale-x-[103%] duration-500"
+              className="font-moderat-medium md:text-base md:font-medium text-black origin-left hover:scale-x-[103%] duration-500 text-xs"
             >
               LEARN MORE ABOUT US
             </LenisAnimatedLink>

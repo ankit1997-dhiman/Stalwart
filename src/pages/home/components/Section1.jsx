@@ -37,7 +37,7 @@ export const Section1 = () => {
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="w-[999px]">
-        <p className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-2 md:pb-20">
+        <p className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-20 md:pb-20">
           PORTA AD DOMUM
         </p>
 
@@ -72,7 +72,7 @@ export const Section1 = () => {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
+          <div className="flex flex-col-reverse lg:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
             <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase flex item-center justify-center">
               <p className="py-4.5 mx-auto">{`${
                 activeTab === "SELL"
@@ -108,7 +108,7 @@ export const Section1 = () => {
           </div>
         </Form>
 
-        <p className="hidden md:block text-white text-center text-[11px] pt-20 pb-40 font-monument font-light uppercase">
+        <p className=" text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase">
           {moment().format("DD MMM YYYY | hh:mm:ss A")}
         </p>
       </div>

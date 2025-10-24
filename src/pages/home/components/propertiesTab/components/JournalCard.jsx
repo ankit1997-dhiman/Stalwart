@@ -16,7 +16,7 @@ const JournalCard = ({ image, title, description }) => {
           {description}
         </p>
         <div className="mt-2.5">
-          <LenisAnimatedLink to={"#"} className="font-moderat-bold text-xs">
+          <LenisAnimatedLink to={"#"} className="font-moderat-bold text-xs origin-left hover:scale-x-[104%] duration-500">
             SEE MORE
           </LenisAnimatedLink>
         </div>

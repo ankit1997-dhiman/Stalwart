@@ -105,6 +105,9 @@ button {
   .ant-tabs-nav-list {
     padding: 0px 50px;
   }
+  .custom-tabs .ant-tabs-content-holder {
+    padding-top: 58px;
+  }
 }
 
 .custom-modal .ant-modal-content {

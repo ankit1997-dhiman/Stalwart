@@ -9,20 +9,26 @@ import InstagramPosts from "./components/InstagramPosts.jsx";
 import { CurrentProperties } from "./components/CurrentProperties";
 export const Home = () => {
   return (
-    <>
+    <div className="relative z-20 bg-white">
       <Section1 />
       <OurPhilosophy />
       <section className="bg-[#4F4C45] py-[79px] xl:px-0 px-12.5">
         <RequestAnAppraisal lightMode={false} />
       </section>
-      <Section4 />
-      <PropertiesTab />
-      <section className="pt-9.5 pb-28">
+      <div className="bg-white">
+        <Section4 />
+      </div>
+      <div className="bg-white">
+        <PropertiesTab />
+      </div>
+      <section className="pt-9.5 pb-28 bg-white">
         <CurrentProperties title="OUR CURRENT PROPERTIES" />
       </section>
       <OurStory />
       <Section8 />
-      <InstagramPosts />
-    </>
+      <div className="relative z-20 bg-white">
+        <InstagramPosts />
+      </div>
+    </div>
   );
 };

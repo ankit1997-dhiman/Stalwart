@@ -3,6 +3,7 @@ import logo from "@/assets/images/Stalwart_Logo.png";
 
 const HeroSection = ({ title, bgImage }) => {
   return (
+    
     <section
       className="h-screen flex items-center justify-center bg-cover bg-center bg-fixed px-12.5 xl:px-0 -mt-[86px]"
       style={{

@@ -12,6 +12,7 @@ import Insta6 from "../../../assets/images/image-6.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import Label from "@/components/form/Label";
+import { AnimatedButton } from "@/common/Button/AnimatedButton";
 
 const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];
 
@@ -61,8 +62,8 @@ const InstagramPosts = ({ backGroundWhite }) => {
                 access to the hottest deals as they come on the market.
               </p>
               <Form className="justify-baseline pt-7.5 lg:pt-7.5">
-                <div className=" flex justify-between item-center flex-col md:flex-row gap-10 lg:gap-0">
-                  <div className="flex flex-row flex-wrap justify-center items-center gap-5 md:gap-6">
+                <div className=" flex justify-between item-center flex-col md:flex-row gap-1 lg:gap-6 mt-4">
+                  <div className="flex flex-row  justify-start items-center gap-5 md:gap-6 w-full">
                     <Form.Item
                       name="email"
                       label={false}
@@ -73,15 +74,16 @@ const InstagramPosts = ({ backGroundWhite }) => {
                           message: "Please enter a valid email",
                         },
                       ]}
+                        className="!mb-0 lg:w-[35%]"
                     >
                       <Input
                         placeholder="Full Name"
-                        className="!py-2.5 !outline-none !border-b-black !border-t-0 !border-r-0 !border-l-0 !bg-transparent !rounded-none"
+                        className="!py-2.5 !outline-none !border-b-black !border-t-0 !border-r-0 !border-l-0 !bg-transparent !rounded-none !px-0"
                       />
                     </Form.Item>
                     <Form.Item
                       name="email"
-                       label={false}
+                      label={false}
                       rules={[
                         { required: true, message: "Please enter your email" },
                         {
@@ -89,22 +91,22 @@ const InstagramPosts = ({ backGroundWhite }) => {
                           message: "Please enter a valid email",
                         },
                       ]}
+                      className="!mb-0 w-full"
                     >
                       <Input
                         placeholder="Email"
-                         className="!py-2.5 !outline-none !border-b-black !border-t-0 !border-r-0 !border-l-0 !bg-transparent !rounded-none"
+                        className="!py-2.5 !outline-none !border-b-black !border-t-0 !border-r-0 !border-l-0 !bg-transparent !rounded-none !px-0"
                       />
                     </Form.Item>
                   </div>
-
-                     {/* <AnimatedButton to={`/property/${id}`} buttonText="Learn More" className="lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center !text-black"/> */}
-
-                  <button
-                    type="submit"
-                    className="text-sm font-medium text-left lg:text-right text-black pb-3 "
-                  >
-                    <span className="text-black">Submit</span>
-                  </button>
+                  <div className="flex justify-end lg:pt-0 pt-5">
+                    <button
+                      type="submit"
+                      className="text-sm font-medium text-left lg:text-right text-black w-full  origin-left hover:scale-x-[104%] duration-500"
+                    >
+                      <span className="text-black">Submit</span>
+                    </button>
+                  </div>
                 </div>
               </Form>
             </div>

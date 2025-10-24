@@ -58,11 +58,7 @@ const OurPhilosophyAbout = () => {
               backgroundImage: `url(${bgImage})`, // use imported image
             }}
           >
-            {/* <img
-              src={image}
-              alt="Scenic Property"
-              className="w-full h-auto object-cover rounded pl-60"
-            /> */}
+            
           </div>
         </div>
       </section>

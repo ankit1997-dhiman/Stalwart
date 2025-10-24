@@ -48,23 +48,23 @@ const PropertiesTab = () => {
     {
       key: "1",
       label: (
-        <p className="font-moderat-medium font-medium text-base">FEATURED</p>
+        <p className="font-moderat-medium text-[10px] lg:text-base">FEATURED</p>
       ),
       children: <Tab1 tabdata={data} />,
     },
     {
       key: "2",
-      label: <p className="font-moderat-medium font-medium text-base">BUY</p>,
+      label: <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">BUY</p>,
       children: <Tab2 tabdata={data} activeTab={activeTab} />,
     },
     {
       key: "3",
-      label: <p className="font-moderat-medium font-medium text-base">SOLD</p>,
+      label: <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">SOLD</p>,
       children: <SellTab tabdata={data} activeTab={activeTab} />,
     },
     {
       key: "4",
-      label: <p className="font-moderat-medium font-medium text-base">LEASE</p>,
+      label: <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">LEASE</p>,
       children: <LeaseTab tabdata={data} activeTab={activeTab} />,
     },
   ];

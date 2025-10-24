@@ -9,6 +9,8 @@ import nehaImage from "@/assets/images/neha.jpg";
 import jagroopImage from "@/assets/images/jagroop.jpg";
 import sandeepImage from "@/assets/images/sandeep.jpg";
 import dineshImage from "@/assets/images/dinesh.jpg";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { URLS } from "@/constants/Urls";
 
 const { useBreakpoint } = Grid;
 
@@ -82,14 +84,16 @@ export default function MeetOurTeam() {
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
 
-          <Link to="#">
-            <ButtonWithIcon
-              text="Learn More"
-              iconPosition="right"
-              iconImage={IconImage}
-              className="border-none bg-none !text-white font-bold font-moderat pt-15 text-sm"
-            />
-          </Link>
+          <LenisAnimatedLink
+            to={URLS.ABOUT}
+            iconPosition="right"
+            iconImage={IconImage}
+            className=" !text-white font-moderat-bold pt-15 text-xs lg:text-sm uppercase"
+          >
+           Learn More
+          </LenisAnimatedLink>
+
+          
         </div>
 
         {/* Right Section - Team Grid */}
@@ -105,7 +109,7 @@ export default function MeetOurTeam() {
                 alt={member.name}
                 className="w-full  object-cover grayscale hover:grayscale-0 transition"
               />
-              <span className="absolute bottom-4 right-4 text-white text-sm uppercase">
+              <span className="absolute bottom-4 right-4 text-white text-sm uppercase font-moderat-medium">
                 {member.name}
               </span>
             </div>

@@ -8,6 +8,10 @@ import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 import { URLS } from "@/constants/Urls";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
+import { useTruncateText } from "@/hooks/useTruncateText";
 
 export const CurrentProperties = ({ title }) => {
   const [propertiesData, setPropertiesData] = useState([]);
@@ -67,14 +71,56 @@ export const CurrentProperties = ({ title }) => {
           to={URLS.BUY}
           iconPosition="right"
           iconImage={IconImage}
-          className="mt-6 lg:mt-16 inline-flex items-center  text-sm border-none  font-moderat-bold uppercase text-black"
+          className="mt-6 lg:mt-16 inline-flex items-center text-xs lg:text-sm border-none  font-moderat-bold uppercase text-black"
         >
           See All
-        </LenisAnimatedLink>       
+        </LenisAnimatedLink>
+      </div>
+
+      <div className="md:hidden">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={16}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay:8000, disableOnInteraction: false }}
+          loop={true}
+          lazy={true}
+          a11y={{ enabled: true }}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 1 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {propertiesData?.length > 0 ? (
+            propertiesData.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Property
+                  price={item.advertisedPrice}
+                  bed={item.listingDetails.bedrooms}
+                  bathrooms={item.listingDetails.bathrooms}
+                  carportSpaces={item.listingDetails.carportSpaces}
+                  garageSpaces={item.listingDetails.garageSpaces}
+                  openCarSpaces={item.listingDetails.openCarSpaces}
+                  id={item.id}
+                  image={item?.images?.length > 0 ? item.images : dummyImage}
+                  address={item.formattedAddress}
+                  subtitle={useTruncateText(item.description, 35)}
+                  buttonText={"Learn More"}
+                  onClick={() => onClick(item)}
+                />
+              </SwiperSlide>
+            ))
+          ) : (
+            <PropertiesNotFound />
+          )}
+        </Swiper>
       </div>
 
       {/* Right Grid */}
-      <div className="w-full lg:w-[1136px] grid grid-cols-1 lg:grid-cols-2 gap-12.5 lg:gap-7.5">
+      <div className="hidden w-full lg:w-[1136px] md:grid grid-cols-1 lg:grid-cols-2 gap-12.5 lg:gap-7.5">
         {loading ? (
           // 🦴 Show Skeletons
           Array.from({ length: 4 }).map((_, i) => (

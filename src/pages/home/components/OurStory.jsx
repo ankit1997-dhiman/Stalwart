@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "../../../assets/images/Stalwart_Logo.png";
 import bgImage from "../../../assets/images/our-story-bg-image.png";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { URLS } from "@/constants/Urls";
 
 const Section7 = () => {
   return (
@@ -26,9 +28,14 @@ const Section7 = () => {
         </p>
 
         {/* Subtitle */}
-        <p className="text-[10px] lg:text-xs pt-2.5 font-normal uppercase tracking-widest font-monument">
-          Our Story
-        </p>
+        <div className="flex justify-center items-center">
+          <LenisAnimatedLink
+            to={URLS.ABOUT}
+            className="text-[10px] lg:text-xs pt-2.5 font-normal uppercase tracking-widest font-monument text-center origin-left hover:scale-x-[103%] duration-500 !block w-full"
+          >
+            Our Story
+          </LenisAnimatedLink>
+        </div>
       </div>
     </section>
   );

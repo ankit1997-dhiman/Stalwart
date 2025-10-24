@@ -8,7 +8,7 @@ import HeroSection from "@/common/HeroSection";
 
 export const About = () => {
   return (
-    <div>
+    <div className="relative z-20 bg-white">
       <HeroSection title={"About Us"} bgImage={bgImage} />
       <OurPhilosophyAbout />
       <MeetOurTeam />
