@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
 import { Link, useMatch } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
@@ -11,6 +11,8 @@ import { FooterCollapse } from "./FooterCollapse";
 export default function Footer() {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBottom, setIsBottom] = useState(false);
+  console.log(isBottom, "<<<<<<<");
 
   const matchProperty = useMatch("/property/:id");
   const showButton = matchProperty;
@@ -26,10 +28,30 @@ export default function Footer() {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY; // How much user scrolled
+      const windowHeight = window.innerHeight; // Visible height of window
+      const fullHeight = document.documentElement.scrollHeight; // Total page height
+
+      // Check if user reached bottom (allow small margin for precision)
+      if (scrollTop + windowHeight >= fullHeight - 1) {
+        setIsBottom(true);
+      } else {
+        setIsBottom(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup listener on unmount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="relative">
-      
-      <footer className="sticky top-0 bottom-0 bg-[#4A443E] text-white py-18 px-12.5 lg:px-0 z-10">
+    <>
+      <div className={`${!isBottom ? "mt-0px" : "mt-[900px]"}`}></div>
+      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white py-18 px-12.5 lg:px-0 z-10 mt-[900px]">
         <div className="container">
           {/* Top Links */}
           <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
@@ -214,6 +236,6 @@ export default function Footer() {
           </div>
         )}
       </footer>
-    </div>
+    </>
   );
 }

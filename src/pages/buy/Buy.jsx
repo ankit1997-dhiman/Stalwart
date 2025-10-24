@@ -65,7 +65,11 @@ export function Buy() {
         order: "UPDATED_AT_NEWEST",
       };
 
-      const res = await graphqlRequest("/api/graphql",GET_FILTERED_PROPOERTIES, variables);
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_FILTERED_PROPOERTIES,
+        variables
+      );
       let properties = res?.data?.properties?.nodes || [];
 
       setData(properties);
@@ -99,87 +103,91 @@ export function Buy() {
   };
 
   return (
-    <div className="container lg:px-0 px-12.5">
-      <div className="w-full lg:w-[999px] mx-auto">
-        <WithSectionLayout
-          title="PROPERTIES FOR BUY"
-          leftText="Buy"
-          midText="|"
-          rightText="Auction"
-        />
+    <div className="bg-white">
+      <div className="container lg:px-0 px-12.5">
+        <div className="w-full lg:w-[999px] mx-auto">
+          <WithSectionLayout
+            title="PROPERTIES FOR BUY"
+            leftText="Buy"
+            midText="|"
+            rightText="Auction"
+          />
 
-        <InquiryForm
-          form={filterForm}
-          onSubmit={handleValuesChange}
-          status="BUY"
-          bedroomOptions={bedrooms}
-          bathroomOptions={bedrooms}
-          carOptions={bedrooms}
-        />
-      </div>
-      <div className="border-t border-b-black/30 my-16 "></div>
-      {loading ? (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {Array.from({ length: data.length }).map((_, i) => (
-            <div className="relative border border-gray-300 rounded overflow-hidden h-[300px] lg:h-[450px] p-5">
-              <Skeleton.Image active className="!w-full !h-[200px]" />
-              <div className="pt-5">
-                <Skeleton active paragraph={{ rows: 2 }} title={false} />
+          <InquiryForm
+            form={filterForm}
+            onSubmit={handleValuesChange}
+            status="BUY"
+            bedroomOptions={bedrooms}
+            bathroomOptions={bedrooms}
+            carOptions={bedrooms}
+          />
+        </div>
+        <div className="border-t border-b-black/30 my-16 "></div>
+        {loading ? (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {Array.from({ length: data.length }).map((_, i) => (
+              <div className="relative border border-gray-300 rounded overflow-hidden h-[300px] lg:h-[450px] p-5">
+                <Skeleton.Image active className="!w-full !h-[200px]" />
+                <div className="pt-5">
+                  <Skeleton active paragraph={{ rows: 2 }} title={false} />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="">
-          {data.length > 0 ? (
-            <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {data.map((property) => {
-                if (!property || !property.id) return null; // skip invalid entries
+            ))}
+          </div>
+        ) : (
+          <div className="">
+            {data.length > 0 ? (
+              <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {data.map((property) => {
+                  if (!property || !property.id) return null; // skip invalid entries
 
-                const {
-                  id,
-                  formattedAddress = "No address available",
-                  images = [],
-                  advertisedPrice = 0,
-                  listingDetails = {},
-                } = property;
+                  const {
+                    id,
+                    formattedAddress = "No address available",
+                    images = [],
+                    advertisedPrice = 0,
+                    listingDetails = {},
+                  } = property;
 
-                const {
-                  bedrooms = 0,
-                  bathrooms = 0,
-                  carportSpaces = 0,
-                  garageSpaces = 0,
-                  openCarSpaces = 0,
-                } = listingDetails || {};
+                  const {
+                    bedrooms = 0,
+                    bathrooms = 0,
+                    carportSpaces = 0,
+                    garageSpaces = 0,
+                    openCarSpaces = 0,
+                  } = listingDetails || {};
 
-                return (
-                  <Link to={`/property/${id}`} key={id}>
-                    <Property
-                      id={id}
-                      address={formattedAddress}
-                      image={
-                        Array.isArray(images) && images.length > 0 ? images : []
-                      }
-                      price={advertisedPrice}
-                      bed={bedrooms}
-                      bathrooms={bathrooms}
-                      carportSpaces={carportSpaces}
-                      garageSpaces={garageSpaces}
-                      openCarSpaces={openCarSpaces}
-                      property={property}
-                      leaseTag={false}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-          ) : (
-            <PropertiesNotFound />
-          )}
-        </div>
-      )}
+                  return (
+                    <Link to={`/property/${id}`} key={id}>
+                      <Property
+                        id={id}
+                        address={formattedAddress}
+                        image={
+                          Array.isArray(images) && images.length > 0
+                            ? images
+                            : []
+                        }
+                        price={advertisedPrice}
+                        bed={bedrooms}
+                        bathrooms={bathrooms}
+                        carportSpaces={carportSpaces}
+                        garageSpaces={garageSpaces}
+                        openCarSpaces={openCarSpaces}
+                        property={property}
+                        leaseTag={false}
+                      />
+                    </Link>
+                  );
+                })}
+              </div>
+            ) : (
+              <PropertiesNotFound />
+            )}
+          </div>
+        )}
 
-      <div className="mt-16"></div>
+        <div className="pt-16"></div>
+      </div>
     </div>
   );
 }
