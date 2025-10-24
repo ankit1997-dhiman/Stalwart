@@ -59,8 +59,14 @@ export const footerLinks = [
 ];
 
 export const contactInfo = [
-  { text: "+61 414 000 044" },
-  { text: "info@stalwartrealstate.com.au" },
+  { text: "+61 414 000 044", to: "tel:+61 414 000 044" },
+  {
+    text: "info@stalwartrealstate.com.au",
+    to: "mailto:info@stalwartrealstate.com.au",
+  },
 ];
 
-export const legalLinks = ["Terms & Conditions", "Privacy Policy"];
+export const legalLinks = [
+  { text: "Terms & Conditions", to: URLS.TERM_AND_CONDITION },
+  { text: "Privacy Policy", to: URLS.PRIVACY_POLICY },
+];

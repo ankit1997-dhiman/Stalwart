@@ -40,13 +40,11 @@ const RequestAnAppraisal = ({ lightMode }) => {
           iconPosition="right"
           iconImage={lightMode ? IconImageBlack : IconImage}
           className={`${
-              lightMode ? "text-black" : "text-white"
-            }  font-moderat-bold text-xs md:text-sm`}
+            lightMode ? "!text-black" : "!text-white"
+          }  font-moderat-bold text-xs md:text-sm`}
         >
           REQUEST NOW
         </LenisAnimatedLink>
-
-      
       </div>
       <div
         className={`${lightMode ? "w-full lg:w-[553px]" : "w-full xl:w-1/2"} `}

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Collapse, message } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import { HiArrowLongRight } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 import Plus from "@/assets/icons/plus-icon.svg";
 import Minus from "@/assets/icons/minus.svg";
 import image from "@/assets/images/right.png";
@@ -15,6 +14,8 @@ import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
 import { AppointedStep } from "./components/AppointedStep";
 import { TenantedStep } from "./components/TenantedStep";
 import { URLS } from "@/constants/Urls";
+import IconImage from "@/assets/icons/black-arrow-right.svg";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 
 // --- Main Component ---
 const SellWithStalwart = () => {
@@ -30,17 +31,16 @@ const SellWithStalwart = () => {
 
   const prev = () => setCurrent((prev) => prev - 1);
 
- const onFinish = async (values) => {
-  try {
-    const allValues = { ...formValues, ...values };
-    console.log("All form data:", JSON.parse(JSON.stringify(allValues)));
-    message.success("Form submitted successfully!");
-    navigate(URLS.THANK_YOU);
-  } catch (error) {
-    console.error("Form submit error:", error);
-  }
-};
-
+  const onFinish = async (values) => {
+    try {
+      const allValues = { ...formValues, ...values };
+      console.log("All form data:", JSON.parse(JSON.stringify(allValues)));
+      message.success("Form submitted successfully!");
+      navigate(URLS.THANK_YOU);
+    } catch (error) {
+      console.error("Form submit error:", error);
+    }
+  };
 
   const steps = [
     { title: "Landing", content: <SellLandingStep /> },
@@ -116,10 +116,14 @@ const SellWithStalwart = () => {
                 />
 
                 <p className="pt-10">
-                  <Link className="text-sm font-moderat-bold flex items-center">
+                  <LenisAnimatedLink
+                    to={URLS.SOLD_PROPERTIES}
+                    iconPosition="right"
+                    iconImage={IconImage}
+                    className="text-sm font-moderat-bold flex items-center !text-black"
+                  >
                     SEE ALL SOLD PROPERTIES
-                    <HiArrowLongRight className="pl-3 text-black text-4xl" />
-                  </Link>
+                  </LenisAnimatedLink>
                 </p>
               </div>
 

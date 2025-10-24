@@ -11,6 +11,8 @@ export const URLS = {
   SOLD_PROPERTIES: "/sold-properties",
   LEASE_PROPERTIES: "/leased-properties",
   LEASE: "/lease",
+  PRIVACY_POLICY: "/privacy-policy",
+  TERM_AND_CONDITION: "/terms-and-conditions",
   UPCOMING_AUCTIONS: "/upcoming-auction",
   UPCOMING_INSPECTIONS: "/upcoming-inspection",
   SELL_WITH_STALWART: "/sell-with-stalwart",

@@ -7,6 +7,7 @@ export function Contact() {
     <>
       <HeroSection title={"CONTACT US"} bgImage={bgImage} />
       <ContactForm />
+      <div className="pt-10"></div>
     </>
   );
 }

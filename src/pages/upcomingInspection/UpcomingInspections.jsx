@@ -14,7 +14,11 @@ export default function UpcomingInspections() {
   const fetchInspectionProperties = useCallback(async () => {
     try {
       const variables = { status: ["ACTIVE"] };
-      const res = await graphqlRequest("/api/graphql",GET_UPCOMING_INSPECTION, variables);
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_UPCOMING_INSPECTION,
+        variables
+      );
       const filteredProperties = [];
       res?.data?.properties?.nodes.forEach((property) => {
         const { nodes: inspections } = property.inspections;
@@ -90,6 +94,7 @@ export default function UpcomingInspections() {
           Load More
         </Button>
       </div>
+      <div className="pt-10"></div>
     </div>
   );
 }

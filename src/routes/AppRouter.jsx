@@ -13,11 +13,13 @@ import { Lease } from "@/pages/lease/Lease";
 import { LeasedProperties } from "@/pages/lease/LeasedProperties";
 import { LetterOfOffers } from "@/pages/letters/LetterOfOffers";
 import { NotFound } from "@/pages/NotFound.jsx";
+import { PrivacyPolicy } from "@/pages/privacyPolicy/PrivacyPolicy";
 import { PropertyDetails } from "@/pages/property/PropertyDetails";
 import { SearchResult } from "@/pages/search/SearchResult";
 import SellWithStalwart from "@/pages/sellWithStalwart/SellWithStalwart";
 import { SoldProperties } from "@/pages/soldProperties/SoldProperties";
 import SwitchToStalwart from "@/pages/switchToStalwart/SwitchToStalwart";
+import { Term } from "@/pages/terms/Term";
 import UpcomingAuction from "@/pages/upcomingAuction/UpcomingAuction";
 import UpcomingInspections from "@/pages/upcomingInspection/UpcomingInspections";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -42,7 +44,12 @@ export default function AppRouter() {
                 <Route path={URLS.CONTACT_US} element={<Contact />} />
                 <Route path={URLS.BUY} element={<Buy />} />
                 <Route path={URLS.SEARCH_RESULT} element={<SearchResult />} />
-                <Route path={URLS.LETTER_OF_OFFER} element={<LetterOfOffers />} />
+                <Route
+                  path={URLS.LETTER_OF_OFFER}
+                  element={<LetterOfOffers />}
+                />
+                <Route path={URLS.PRIVACY_POLICY} element={<PrivacyPolicy />} />
+                <Route path={URLS.TERM_AND_CONDITION} element={<Term />} />
 
                 <Route
                   path={URLS.SWITCH_TO_STALWART}
@@ -64,10 +71,7 @@ export default function AppRouter() {
                   path={URLS.LEASE_PROPERTIES}
                   element={<LeasedProperties />}
                 />
-                <Route
-                  path={URLS.THANK_YOU}
-                  element={<ThankyouPage />}
-                />
+                <Route path={URLS.THANK_YOU} element={<ThankyouPage />} />
                 <Route path={URLS.LEASE} element={<Lease />} />
                 <Route
                   path={URLS.SELL_WITH_STALWART}

@@ -1,4 +1,3 @@
-import { useLenis } from "lenis/react";
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -18,12 +17,9 @@ export const LenisAnimatedLink = ({
   const [hovered, setHovered] = useState(false);
   const linkProgress = useRef(0);
   const iconProgress = useRef(0);
-  const lenis = useLenis();
   const frameRef = useRef(null);
 
   useEffect(() => {
-    // if (!lenis) return;
-
     const update = () => {
       const target = hovered ? 1 : 0;
       linkProgress.current += (target - linkProgress.current) * lerp;
@@ -55,7 +51,7 @@ export const LenisAnimatedLink = ({
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
-  }, [hovered, lenis, offset, scale, lerp, iconOffset]);
+  }, [hovered, offset, scale, lerp, iconOffset]);
 
   return (
     <Link

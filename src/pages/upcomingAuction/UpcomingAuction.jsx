@@ -38,7 +38,11 @@ export default function UpcomingAuction() {
         order: "UPDATED_AT_NEWEST",
       };
 
-      const res = await graphqlRequest("/api/graphql",GET_AUCTION_PROPERTY, variables);
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_AUCTION_PROPERTY,
+        variables
+      );
 
       if (res.data) {
         const allProperties = res?.data?.properties?.nodes;
@@ -127,6 +131,7 @@ export default function UpcomingAuction() {
           Load More
         </Button>
       </div>
+      <div className="pt-20"></div>
     </div>
   );
 }

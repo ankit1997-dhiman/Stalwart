@@ -2,7 +2,15 @@ import React from "react";
 import Team from "@/assets/images/TeamPop.png";
 import { useTruncateText } from "@/hooks/useTruncateText";
 
-export default function TeamPopup({ image, name, desc }) {
+export default function TeamPopup({
+  image,
+  name,
+  desc,
+  inTitle,
+  outTitle,
+  position,
+}) {
+  console.log(position, inTitle, "dkjasldkj");
   return (
     <div className="block xl:flex justify-between items-stretch gap-6 bg-[#D9D9D9]">
       <div
@@ -13,17 +21,17 @@ export default function TeamPopup({ image, name, desc }) {
       </div>
       <div className="w-full xl:w-3/5 p-12 flex justify-between flex-col">
         <p className="font-moderat-medium text-xl lg:text-2xl">
-          {name ? name : ""} | POSITION
+          {name ? name : ""} | {position}
         </p>
         <div className="space-y-4">
           <div className="font-moderat-bold text-xs lg:text-base uppercase">
-            Step In
+            {inTitle}
           </div>
           <div className="font-moderat-light text-xs lg:text-base">
             {useTruncateText(desc, 140)}
           </div>
           <div className="font-moderat-bold text-xs lg:text-base uppercase">
-            Step out
+            {outTitle}
           </div>
         </div>
       </div>

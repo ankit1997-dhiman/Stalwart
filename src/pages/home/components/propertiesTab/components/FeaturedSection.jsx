@@ -2,7 +2,6 @@ import React from "react";
 import image from "../../../../../assets/images/image-9.png";
 import logo from "@/assets/images/black-logo.png";
 import IconImage from "@/assets/icons/black-arrow-right.svg";
-import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { Link } from "react-router-dom";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 const FeaturedSection = () => {
@@ -38,7 +37,7 @@ const FeaturedSection = () => {
           >
             See All
           </LenisAnimatedLink>
-          
+
           <img
             src={image}
             alt="Featured"

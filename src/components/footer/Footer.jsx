@@ -162,9 +162,13 @@ export default function Footer() {
               <div>
                 <ul className="!m-0">
                   {contactInfo.map((item, i) => (
-                    <li key={i} className="font-moderat text-sm text-white/60">
+                    <Link
+                      to={item.to}
+                      key={i}
+                      className="font-moderat text-sm text-white/60"
+                    >
                       {item.text}
-                    </li>
+                    </Link>
                   ))}
                 </ul>
               </div>
@@ -189,19 +193,29 @@ export default function Footer() {
               <div className="flex flex-col md:flex-row gap-3 md:gap-18 items-start">
                 <img src={logo} alt="Logo" className="w-[262px] h-[30px]" />
 
-                <ul className="pb-6 xl:py-0">
+                <ul className="pb-6 xl:py-0 flex flex-col">
                   {contactInfo.map((item, i) => (
-                    <li key={i} className="font-moderat text-sm text-white/60">
+                    <Link
+                      to={item.to}
+                      key={i}
+                      target="_blank"
+                      className="font-moderat text-sm text-white/60"
+                    >
                       {item.text}
-                    </li>
+                    </Link>
                   ))}
                 </ul>
 
-                <ul className="m-0">
+                <ul className="m-0 flex flex-col">
                   {legalLinks.map((link, i) => (
-                    <li key={i} className="font-moderat text-sm text-white/60">
-                      {link}
-                    </li>
+                    <Link
+                      to={link.to}
+                      key={i}
+                      target="_blank"
+                      className="font-moderat text-sm text-white/60"
+                    >
+                      {link.text}
+                    </Link>
                   ))}
                 </ul>
               </div>

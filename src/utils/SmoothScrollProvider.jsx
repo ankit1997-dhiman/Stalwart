@@ -1,32 +1,28 @@
-// SmoothScrollProvider.jsx
 import { useEffect } from "react";
-import Lenis from "lenis";
 
-export const SmoothScrollProvider = ({ children }) => {
+export default function SmoothScroll() {
   useEffect(() => {
-    // ✅ initialize Lenis
-    const lenis = new Lenis({
-      duration: 1.2, // keep it around 1–1.5 for natural feel
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: false, // turn off unless needed (touch can feel laggy)
-      lerp: 0.1, // smoothing intensity
-    });
+    let currentScroll = window.scrollY;
+    let targetScroll = window.scrollY;
+    const ease = 0.5;
 
-    // ✅ create RAF loop
-    let frame;
-    const raf = (time) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
-    };
-    frame = requestAnimationFrame(raf);
+    function smoothScroll() {
+      currentScroll += (targetScroll - currentScroll) * ease;
+      window.scrollTo(0, currentScroll);
+      requestAnimationFrame(smoothScroll);
+    }
 
-    // ✅ cleanup on unmount
+    function handleScroll() {
+      targetScroll = window.scrollY;
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    requestAnimationFrame(smoothScroll);
+
     return () => {
-      cancelAnimationFrame(frame);
-      lenis.destroy();
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  return <>{children}</>;
-};
+  return null;
+}

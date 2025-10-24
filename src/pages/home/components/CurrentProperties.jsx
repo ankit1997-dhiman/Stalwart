@@ -71,7 +71,7 @@ export const CurrentProperties = ({ title }) => {
           to={URLS.BUY}
           iconPosition="right"
           iconImage={IconImage}
-          className="mt-6 lg:mt-16 inline-flex items-center text-xs lg:text-sm border-none  font-moderat-bold uppercase text-black"
+          className="mt-6 lg:mt-16 inline-flex items-center text-xs lg:text-sm border-none  font-moderat-bold uppercase !text-black"
         >
           See All
         </LenisAnimatedLink>
@@ -84,7 +84,7 @@ export const CurrentProperties = ({ title }) => {
           slidesPerView={1}
           navigation
           pagination={{ clickable: true }}
-          autoplay={{ delay:8000, disableOnInteraction: false }}
+          autoplay={{ delay: 8000, disableOnInteraction: false }}
           loop={true}
           lazy={true}
           a11y={{ enabled: true }}
