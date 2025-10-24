@@ -8,7 +8,7 @@ export const LenisAnimatedLink = ({
   iconPosition,
   iconImage,
   className = "",
-  offset = 6,
+  offset = 0,
   scale = 1,
   lerp = 0.2,
 }) => {

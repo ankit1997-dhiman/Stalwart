@@ -61,8 +61,8 @@ const InstagramPosts = ({ backGroundWhite }) => {
                 access to the hottest deals as they come on the market.
               </p>
               <Form className="justify-baseline pt-7.5 lg:pt-7.5">
-                <div className="border-b border-gray-400 bg-transparent focus:outline-none flex justify-between flex-col md:flex-row gap-10 lg:gap-0">
-                  <div className="flex flex-row flex-wrap justify-evenly gap-5 md:gap-0">
+                <div className=" flex justify-between item-center flex-col md:flex-row gap-10 lg:gap-0">
+                  <div className="flex flex-row flex-wrap justify-center items-center gap-5 md:gap-6">
                     <Form.Item
                       name="email"
                       label={false}
@@ -76,7 +76,7 @@ const InstagramPosts = ({ backGroundWhite }) => {
                     >
                       <Input
                         placeholder="Full Name"
-                        className="!py-2.5 !outline-none !border-b-black !border-none !bg-transparent "
+                        className="!py-2.5 !outline-none !border-b-black !border-t-0 !border-r-0 !border-l-0 !bg-transparent !rounded-none"
                       />
                     </Form.Item>
                     <Form.Item
@@ -92,16 +92,18 @@ const InstagramPosts = ({ backGroundWhite }) => {
                     >
                       <Input
                         placeholder="Email"
-                        className="!py-2.5 !outline-none !border-b-black !border !rounded-none !mt-6"
+                         className="!py-2.5 !outline-none !border-b-black !border-t-0 !border-r-0 !border-l-0 !bg-transparent !rounded-none"
                       />
                     </Form.Item>
                   </div>
 
+                     {/* <AnimatedButton to={`/property/${id}`} buttonText="Learn More" className="lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center !text-black"/> */}
+
                   <button
                     type="submit"
-                    className="text-sm font-medium text-left lg:text-right text-[#4F4C45]/60 pb-3"
+                    className="text-sm font-medium text-left lg:text-right text-black pb-3 "
                   >
-                    <span className="text-[#4F4C45]/60">Submit</span>
+                    <span className="text-black">Submit</span>
                   </button>
                 </div>
               </Form>

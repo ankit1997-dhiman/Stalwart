@@ -40,7 +40,7 @@ const OurPhilosophy = () => {
             </p>
             <LenisAnimatedLink
               to={URLS.ABOUT}
-              className="font-moderat-medium md:text-base md:font-medium text-black"
+              className="font-moderat-medium md:text-base md:font-medium text-black origin-left hover:scale-x-[103%] duration-500"
             >
               LEARN MORE ABOUT US
             </LenisAnimatedLink>
