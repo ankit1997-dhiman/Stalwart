@@ -50,8 +50,8 @@ export default function Footer() {
 
   return (
     <>
-      <div className={`${!isBottom ? "mt-0px" : "mt-[900px]"}`}></div>
-      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white py-18 px-12.5 lg:px-0 z-10 mt-[900px]">
+      {/* <div className={`${isBottom ? "mt-0px" : "-mt-[880px]"}`}></div> */}
+      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white py-18 px-12.5 lg:px-0 z-10 ">
         <div className="container">
           {/* Top Links */}
           <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">

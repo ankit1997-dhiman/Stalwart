@@ -8,9 +8,9 @@ const App = () => {
   });
   return (
     <>
-      <ReactLenis root>
-        <AppRouter />
-      </ReactLenis>
+      {/* <ReactLenis root> */}
+      <AppRouter />
+      {/* </ReactLenis> */}
     </>
   );
 };

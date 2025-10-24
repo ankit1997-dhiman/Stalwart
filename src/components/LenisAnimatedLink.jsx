@@ -9,7 +9,7 @@ export const LenisAnimatedLink = ({
   iconImage,
   className = "",
   offset = 0, // link vertical offset
-  scale = 1,  // link scale effect
+  scale = 1, // link scale effect
   lerp = 0.2, // easing
   iconOffset = 20, // icon move distance (px)
 }) => {
@@ -22,7 +22,7 @@ export const LenisAnimatedLink = ({
   const frameRef = useRef(null);
 
   useEffect(() => {
-    if (!lenis) return;
+    // if (!lenis) return;
 
     const update = () => {
       const target = hovered ? 1 : 0;
