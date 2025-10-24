@@ -5,16 +5,19 @@ import { Link } from "react-router-dom";
 export const LenisAnimatedLink = ({
   to,
   children,
-  iconPosition,
+  iconPosition = "right",
   iconImage,
   className = "",
-  offset = 0,
-  scale = 1,
-  lerp = 0.2,
+  offset = 0, // link vertical offset
+  scale = 1,  // link scale effect
+  lerp = 0.2, // easing
+  iconOffset = 20, // icon move distance (px)
 }) => {
   const linkRef = useRef(null);
+  const iconRef = useRef(null);
   const [hovered, setHovered] = useState(false);
-  const progress = useRef(0);
+  const linkProgress = useRef(0);
+  const iconProgress = useRef(0);
   const lenis = useLenis();
   const frameRef = useRef(null);
 
@@ -23,20 +26,26 @@ export const LenisAnimatedLink = ({
 
     const update = () => {
       const target = hovered ? 1 : 0;
-      progress.current += (target - progress.current) * lerp;
+      linkProgress.current += (target - linkProgress.current) * lerp;
+      iconProgress.current += (target - iconProgress.current) * lerp;
 
-      const y = -progress.current * offset;
-      const s = 1 + (scale - 1) * progress.current;
+      // link animation (translate + scale)
+      const y = -linkProgress.current * offset;
+      const s = 1 + (scale - 1) * linkProgress.current;
 
       if (linkRef.current) {
         linkRef.current.style.transform = `translateY(${y}px) scale(${s})`;
       }
 
-      // Continue the loop only if not fully at target
-      if (Math.abs(progress.current - target) > 0.001) {
+      // icon animation (slide left→right)
+      if (iconRef.current) {
+        const x = iconProgress.current * iconOffset;
+        iconRef.current.style.transform = `translateX(${x}px)`;
+      }
+
+      if (Math.abs(linkProgress.current - target) > 0.001) {
         frameRef.current = requestAnimationFrame(update);
       } else {
-        progress.current = target; // snap exactly to target
         frameRef.current = null;
       }
     };
@@ -46,7 +55,7 @@ export const LenisAnimatedLink = ({
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
-  }, [hovered, lenis, offset, scale, lerp]);
+  }, [hovered, lenis, offset, scale, lerp, iconOffset]);
 
   return (
     <Link
@@ -54,10 +63,17 @@ export const LenisAnimatedLink = ({
       to={to}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`flex items-center  cursor-pointer will-change-transform ${className}`}
+      className={`flex items-center cursor-pointer will-change-transform ${className}`}
     >
-      {children} {iconPosition === "right" && <img src={iconImage} className="pl-5" />}
+      {children}
+      {iconPosition === "right" && (
+        <img
+          ref={iconRef}
+          src={iconImage}
+          alt=""
+          className="pl-3 will-change-transform"
+        />
+      )}
     </Link>
   );
 };
- 
