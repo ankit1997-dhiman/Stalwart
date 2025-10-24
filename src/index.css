@@ -4,6 +4,11 @@
 button {
   @apply transition-colors duration-200;
 }
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+}
 
 @font-face {
   font-family: Monument;

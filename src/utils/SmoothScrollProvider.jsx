@@ -1,24 +1,29 @@
 // SmoothScrollProvider.jsx
-import Lenis from "lenis";
 import { useEffect } from "react";
+import Lenis from "lenis";
 
 export const SmoothScrollProvider = ({ children }) => {
   useEffect(() => {
+    // ✅ initialize Lenis
     const lenis = new Lenis({
-      duration: 2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smoother ease
+      duration: 1.2, // keep it around 1–1.5 for natural feel
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      smoothTouch: true,
+      smoothTouch: false, // turn off unless needed (touch can feel laggy)
+      lerp: 0.1, // smoothing intensity
     });
 
-    function raf(time) {
+    // ✅ create RAF loop
+    let frame;
+    const raf = (time) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+      frame = requestAnimationFrame(raf);
+    };
+    frame = requestAnimationFrame(raf);
 
-    requestAnimationFrame(raf);
-
+    // ✅ cleanup on unmount
     return () => {
+      cancelAnimationFrame(frame);
       lenis.destroy();
     };
   }, []);

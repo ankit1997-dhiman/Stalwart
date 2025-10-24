@@ -27,8 +27,8 @@ export default function Footer() {
   };
 
   return (
-    <>
-      <div className="py-[200px]"></div>
+    <div className="relative">
+      
       <footer className="sticky top-0 bottom-0 bg-[#4A443E] text-white py-18 px-12.5 lg:px-0 z-10">
         <div className="container">
           {/* Top Links */}
@@ -214,6 +214,6 @@ export default function Footer() {
           </div>
         )}
       </footer>
-    </>
+    </div>
   );
 }
