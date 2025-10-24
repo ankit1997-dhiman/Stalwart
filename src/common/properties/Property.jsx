@@ -66,7 +66,7 @@ export function Property({
             <AnimatedButton
               to={`/property/${id}`}
               buttonText="Learn More"
-              className=" !text-black !border !border-black  !rounded-none lg:!w-[122px] lg:!h-[44px]"
+              className="text-black px-6 py-3"
             />
           </div>
         </div>

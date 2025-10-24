@@ -5,9 +5,9 @@ export const AnimatedButton = ({ to, buttonText, className }) => {
   return (
     <Link
       to={to}
-      className={`${className} hover:!bg-black hover:!text-white border border-black transition-colors duration-800  `}
+      className={`hover:!bg-black  hover:!text-white border border-black transition-colors duration-800 group ${className}`}
     >
-      {buttonText}
+      <span className={` `}>{buttonText}</span>
     </Link>
   );
 };
