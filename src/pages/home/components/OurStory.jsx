@@ -31,7 +31,7 @@ const Section7 = () => {
         <div className="flex justify-center items-center">
           <LenisAnimatedLink
             to={URLS.ABOUT}
-            className="text-[10px] lg:text-xs pt-2.5 font-normal uppercase tracking-widest font-monument text-center origin-left hover:scale-x-[103%] duration-500 !block w-full"
+            className="text-[10px] lg:text-xs pt-2.5 font-normal uppercase tracking-widest font-monument text-center origin-bottom hover:scale-x-[106P%] duration-500 !block w-full"
           >
             Our Story
           </LenisAnimatedLink>
