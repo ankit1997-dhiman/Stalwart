@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       {/* <ReactLenis root> */}
-      <SmoothScroll />
+      {/* <SmoothScroll /> */}
       <AppRouter />
       {/* </SmoothScroll> */}
       {/* </ReactLenis> */}

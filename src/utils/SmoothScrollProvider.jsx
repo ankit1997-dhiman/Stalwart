@@ -2,26 +2,26 @@ import { useEffect } from "react";
 
 export default function SmoothScroll() {
   useEffect(() => {
-    const content = document.documentElement; // or a wrapper div
-    const speed = 0.08;
-
-    let current = 0;
-    let target = 0;
+    let currentScroll = window.scrollY;
+    let targetScroll = window.scrollY;
+    const ease = 0.5;
 
     function smoothScroll() {
-      target = window.scrollY;
-      current += (target - current) * speed;
-      content.style.transform = `translateY(${-current}px)`;
+      currentScroll += (targetScroll - currentScroll) * ease;
+      window.scrollTo(0, currentScroll);
       requestAnimationFrame(smoothScroll);
     }
 
-    // Prevent native scroll
-    content.style.position = "fixed";
-    content.style.top = 0;
-    content.style.left = 0;
-    content.style.width = "100%";
+    function handleScroll() {
+      targetScroll = window.scrollY;
+    }
 
-    smoothScroll();
+    window.addEventListener("scroll", handleScroll);
+    requestAnimationFrame(smoothScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return null;
