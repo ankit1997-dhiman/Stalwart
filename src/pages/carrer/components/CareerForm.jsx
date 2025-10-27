@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Checkbox, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import Label from "@/components/form/Label";
 
 export default function CareerForm() {
   const [form] = Form.useForm();
@@ -29,7 +30,7 @@ export default function CareerForm() {
           </p>
         </div>
 
-        <hr className="mb-14.5 md:mb-20 border-gray-300 " />
+        <hr className="mb-0 md:mb-20 border-gray-300 " />
 
         {/* Ant Design Form */}
         <Form
@@ -39,42 +40,41 @@ export default function CareerForm() {
           className="space-t-7.5 md:space-t-10"
         >
           {/* Type of Role */}
-          <div>
-            <p className="font-moderat-bold mb-10 md:mb-3 text-base font-bold">
-              Type Of Role
-            </p>
-            <Form.Item name="roles" className="!rounded-none !border-black">
-              <Checkbox.Group className=" !rounded-none !border-black">
-                <div className="flex flex-wrap gap-6">
-                  <Checkbox
-                    value="Sales Agent"
-                    className="!font-moderat-regular !font-bold !rounded-none !border-black !text-base"
-                  >
-                    Sales Agent
+          <div className="pt-18 pb-11">
+            <Form.Item
+              name="roles"
+              className="!rounded-none !border-black !block w-full"
+            >
+              <Checkbox.Group className="!rounded-none !border-black !block">
+                <div className=" md:flex-row flex-col flex justify-between items-start md:items-center gap-4 md:gap-10 w-full">
+                  <Label label="Type Of Role" className="!font-moderat-bold" />
+
+                  <Checkbox value="sales_agent">
+                    <Label
+                      label="Sales Agent"
+                      className="!font-moderat-bold pl-8"
+                    />
                   </Checkbox>
-                  <Checkbox
-                    value="Property Manager"
-                    className="!font-moderat-regular !font-bold !rounded-none !border-black !text-base"
-                  >
-                    Property Manager
+                  <Checkbox value="property_manager">
+                    <Label
+                      label="Property Manager"
+                      className="!font-moderat-bold pl-8"
+                    />
                   </Checkbox>
-                  <Checkbox
-                    value="Admin/Office Support"
-                    className="!font-moderat-regular !font-bold !rounded-none !border-black !text-base"
-                  >
-                    Admin/Office Support
+                  <Checkbox value="admin">
+                    <Label
+                      label="Admin/Office Support"
+                      className="!font-moderat-bold pl-8"
+                    />
                   </Checkbox>
-                  <Checkbox
-                    value="Marketing & Communications"
-                    className="!font-moderat-regular !font-bold !rounded-none !border-black !text-base"
-                  >
-                    Marketing & Communications
+                  <Checkbox value="marketing">
+                    <Label
+                      label="Marketing & Communications"
+                      className="!font-moderat-bold pl-8"
+                    />
                   </Checkbox>
-                  <Checkbox
-                    value="Other"
-                    className="!font-moderat-regular !font-bold !rounded-none !border-black !text-base"
-                  >
-                    Other
+                  <Checkbox value="Other">
+                    <Label label="Other" className="!font-moderat-bold pl-8" />
                   </Checkbox>
                 </div>
               </Checkbox.Group>
@@ -82,13 +82,10 @@ export default function CareerForm() {
           </div>
 
           {/* Name and Email */}
-          <div className="grid grid-cols-1 xl:grid-cols-2 ">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 ">
             <Form.Item
               name="fullName"
-              label={
-                <div className="!font-moderat-bold text-base">Full Name</div>
-              }
-              className="font-moderat-bold"
+              label={<Label label="Full Name" className="!font-moderat-bold" />}
               rules={[{ required: true, message: "Please enter your name" }]}
             >
               <Input
@@ -100,11 +97,8 @@ export default function CareerForm() {
             <Form.Item
               name="email"
               label={
-                <div className="!font-moderat-bold text-base">
-                  Contact Email
-                </div>
+                <Label label="Contact Email" className="!font-moderat-bold" />
               }
-              className="font-bold"
               rules={[
                 { required: true, message: "Please enter your email" },
                 { type: "email", message: "Please enter a valid email" },
@@ -118,15 +112,12 @@ export default function CareerForm() {
           </div>
 
           {/* Contact Number and City */}
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 ">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 ">
             <Form.Item
               name="contactNumber"
               label={
-                <div className="!font-moderat-bold text-base">
-                  Contact Number
-                </div>
+                <Label label="Contact Number" className="!font-moderat-bold" />
               }
-              className="font-bold"
               rules={[
                 { required: true, message: "Please enter your phone number" },
               ]}
@@ -140,11 +131,8 @@ export default function CareerForm() {
             <Form.Item
               name="city"
               label={
-                <div className="!font-moderat-bold text-base">
-                  City / Suburb
-                </div>
+                <Label label=" City / Suburb" className="!font-moderat-bold" />
               }
-              className="font-bold"
               rules={[
                 { required: true, message: "Please enter your location" },
               ]}
@@ -157,15 +145,15 @@ export default function CareerForm() {
           </div>
 
           {/* Resume, LinkedIn, License */}
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <Form.Item
               name="resume"
               label={
-                <div className="font-moderat-bold text-base">
-                  Upload Resume / CV
-                </div>
+                <Label
+                  label=" Upload Resume / CV"
+                  className="!font-moderat-bold"
+                />
               }
-              className="font-bold !py-2.5"
               valuePropName="fileList" // tell Form to use fileList as the value
               getValueFromEvent={(e) => e.fileList} // extract fileList from Upload event
               // rules={[{ required: true, message: "Please upload a file!" }]}
@@ -185,7 +173,6 @@ export default function CareerForm() {
               label={
                 <div className="font-moderat-bold text-base">LinkedIn</div>
               }
-              className="font-bold"
             >
               <Input
                 placeholder="http://"
@@ -195,7 +182,6 @@ export default function CareerForm() {
 
             <Form.Item
               name="licenseNumber"
-              className="font-bold"
               label={
                 <div className="font-moderat-bold text-base">
                   Real Estate License Number{" "}
@@ -219,7 +205,6 @@ export default function CareerForm() {
               </div>
             }
             rules={[{ required: true, message: "Please enter your message" }]}
-            className="font-bold"
           >
             <Input.TextArea
               placeholder="Message"

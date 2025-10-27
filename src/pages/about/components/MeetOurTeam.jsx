@@ -103,7 +103,7 @@ export default function MeetOurTeam() {
           {teamMembers.map((member) => (
             <div
               key={member.id}
-              className="relative overflow-hidden"
+              className="relative overflow-hidden cursor-pointer"
               onClick={() => showModal(member)}
             >
               <img

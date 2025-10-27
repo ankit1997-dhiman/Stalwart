@@ -45,50 +45,51 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <div
-        className={`${
-          showNav1 ? "" : ""
-        } container flex justify-between items-center pt-14 `}
-      >
-        <Link to={URLS.HOME}>
-          <img
-            src={showNav1 ? blackLogo : whiteLogo}
-            alt="logo"
-            className="w-[143px] cursor-pointer"
-          />
-        </Link>
-
-        <RxHamburgerMenu
+      <div className={`${showNav1 ? "bg-white" : ""}  `}>
+        <div
           className={`${
-            showNav1 ? "text-black " : "text-white "
-          }  text-xl cursor-pointer`}
-          onClick={showDrawer}
-        />
-      </div>
-
-      {/* Drawer */}
-      <Drawer
-        closable={false}
-        placement="left"
-        onClose={onClose}
-        open={open}
-        className="!bg-[#4F4C45] !p-0"
-        title={
-          <div className="flex justify-between gap-10 items-center px-6 py-10">
-            <Link to={URLS.HOME}>
-              <img src={whiteLogo} alt="logo" className="w-[143px]" />
-            </Link>
-            <IoMdClose
-              onClick={onClose}
-              className="text-white text-xl cursor-pointer"
+            showNav1 ? "bg-white" : ""
+          } container flex justify-between items-center pt-14 `}
+        >
+          <Link to={URLS.HOME}>
+            <img
+              src={showNav1 ? blackLogo : whiteLogo}
+              alt="logo"
+              className="w-[143px] cursor-pointer"
             />
-          </div>
-        }
-      >
-        <div className="flex flex-col h-full justify-between ">
-          <DropdownMenu onSelect={onSelect} />
-          {/* Main Menu */}
-          {/* <div className="py-4 text-white">
+          </Link>
+
+          <RxHamburgerMenu
+            className={`${
+              showNav1 ? "text-black " : "text-white "
+            }  text-xl cursor-pointer`}
+            onClick={showDrawer}
+          />
+        </div>
+
+        {/* Drawer */}
+        <Drawer
+          closable={false}
+          placement="left"
+          onClose={onClose}
+          open={open}
+          className="!bg-[#4F4C45] !p-0"
+          title={
+            <div className="flex justify-between gap-10 items-center px-6 py-10">
+              <Link to={URLS.HOME}>
+                <img src={whiteLogo} alt="logo" className="w-[143px]" />
+              </Link>
+              <IoMdClose
+                onClick={onClose}
+                className="text-white text-xl cursor-pointer"
+              />
+            </div>
+          }
+        >
+          <div className="flex flex-col h-full justify-between ">
+            <DropdownMenu onSelect={onSelect} />
+            {/* Main Menu */}
+            {/* <div className="py-4 text-white">
             <ul className="space-y-6 py-6.5 text-xs font-normal">
               {menuItems.map((item, idx) => (
                 <li key={idx} className="font-monument text-white">
@@ -108,23 +109,24 @@ export default function Navbar() {
             </ul>
           </div> */}
 
-          {/* Footer Menu */}
-          <div className="flex flex-col px-6">
-            <ul className="space-y-6 py-6.5 text-xs font-normal font-monument text-white">
-              <li>SOCIAL MEDIA</li>
-            </ul>
-            <ul className="flex justify-between space-x-6">
-              {footerMenu?.map((item, i) => (
-                <Link key={item.key} to={item.to} target="_blank">
-                  <span className="text-xs font-normal text-white font-moderat">
-                    {item.key}
-                  </span>
-                </Link>
-              ))}
-            </ul>
+            {/* Footer Menu */}
+            <div className="flex flex-col px-6">
+              <ul className="space-y-6 py-6.5 text-xs font-normal font-monument text-white">
+                <li>SOCIAL MEDIA</li>
+              </ul>
+              <ul className="flex justify-between space-x-6">
+                {footerMenu?.map((item, i) => (
+                  <Link key={item.key} to={item.to} target="_blank">
+                    <span className="text-xs font-normal text-white font-moderat">
+                      {item.key}
+                    </span>
+                  </Link>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      </Drawer>
+        </Drawer>
+      </div>
     </>
   );
 }

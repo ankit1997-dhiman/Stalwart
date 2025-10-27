@@ -50,14 +50,13 @@ export default function Footer() {
 
   return (
     <>
-      {/* <div className={`${isBottom ? "mt-0px" : "-mt-[880px]"}`}></div> */}
-      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white py-18 px-12.5 lg:px-0 z-10 ">
+      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
         <div className="container">
           {/* Top Links */}
           <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
             {footerLinks.map((section) => (
               <div key={section.title}>
-                <p className="font-semibold pb-10 text-[11px] font-monument">
+                <p className="font-semibold pb-8 text-[11px] font-monument">
                   {section.title}
                 </p>
                 <ul className="space-y-1 flex flex-col">
@@ -76,7 +75,7 @@ export default function Footer() {
 
           {/* Sign-up Form */}
           <div>
-            <p className="text-[25px] font-medium font-miller-light leading-10 pt-17.5">
+            <p className="text-[25px] font-medium font-miller-light leading-10 pt-12.5">
               Sign Up For Latest Property Results
             </p>
             <Form form={form} onFinish={onFinish} layout="vertical">
@@ -90,7 +89,7 @@ export default function Footer() {
                 >
                   <Input
                     placeholder="First Name*"
-                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-13"
+                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                   />
                 </Form.Item>
 
@@ -103,7 +102,7 @@ export default function Footer() {
                 >
                   <Input
                     placeholder="Last Name*"
-                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-13"
+                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                   />
                 </Form.Item>
               </div>
@@ -118,7 +117,7 @@ export default function Footer() {
               >
                 <Input
                   placeholder="Email*"
-                  className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-10"
+                  className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                 />
               </Form.Item>
 
@@ -135,7 +134,7 @@ export default function Footer() {
                 >
                   <Input
                     placeholder="Phone*"
-                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-10"
+                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                   />
                 </Form.Item>
 
@@ -191,7 +190,65 @@ export default function Footer() {
             {/* Bottom Section */}
             <div className="flex flex-wrap flex-col md:flex-row justify-between items-start text-gray-300 pt-18 w-full">
               <div className="flex flex-col md:flex-row gap-3 md:gap-18 items-start">
-                <img src={logo} alt="Logo" className="w-[262px] h-[30px]" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="262"
+                  height="23"
+                  viewBox="0 0 262 23"
+                  fill="none"
+                >
+                  <g opacity="0.6">
+                    <rect
+                      width="40.7445"
+                      height="22.9043"
+                      fill="url(#pattern0_2081_294)"
+                    />
+                    <rect
+                      x="46.7207"
+                      y="0.00195312"
+                      width="215.279"
+                      height="22.9021"
+                      fill="url(#pattern1_2081_294)"
+                    />
+                  </g>
+                  <defs>
+                    <pattern
+                      id="pattern0_2081_294"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image0_2081_294"
+                        transform="scale(0.000474383 0.000843882)"
+                      />
+                    </pattern>
+                    <pattern
+                      id="pattern1_2081_294"
+                      patternContentUnits="objectBoundingBox"
+                      width="1"
+                      height="1"
+                    >
+                      <use
+                        xlink:href="#image1_2081_294"
+                        transform="scale(0.000409165 0.00384615)"
+                      />
+                    </pattern>
+                    <image
+                      id="image0_2081_294"
+                      width="2108"
+                      height="1185"
+                      preserveAspectRatio="none"
+                    />
+                    <image
+                      id="image1_2081_294"
+                      width="2444"
+                      height="260"
+                      preserveAspectRatio="none"
+                    />
+                  </defs>
+                </svg>
 
                 <ul className="pb-6 xl:py-0 flex flex-col">
                   {contactInfo.map((item, i) => (
@@ -224,7 +281,7 @@ export default function Footer() {
             </div>
 
             {/* Acknowledgement */}
-            <div className="flex md:flex-row flex-col justify-between item-start md:items-center gap-7 pt-11">
+            <div className="flex md:flex-row flex-col justify-between item-start md:items-center gap-7 pt-8">
               <p className="font-moderat text-sm text-white/60">
                 We respectfully acknowledge the Traditional Owners of the land
                 on which we work and learn, and pay respect to the First Nations

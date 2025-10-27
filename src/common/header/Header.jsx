@@ -50,7 +50,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`transition-opacity duration-300 ${
+        className={`transition-opacity duration-300  ${
           isSticky ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
