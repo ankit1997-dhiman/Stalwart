@@ -12,14 +12,14 @@ const App = () => {
     <>
       {/* <ReactLenis root> */}
       {/* <SmoothScroll /> */}
-      {!introDone && (
+      {/* {!introDone && (
         <HeroIntro
           logo={<IntroLogo />}
           title="PORTA AD DOMUM" // change to your brand
           // subtitle="Architecture & Interiors" // change as you need
           // onDone={() => setIntroDone(false)}
         />
-      )}
+      )} */}
       <AppRouter />
       {/* </SmoothScroll> */}
       {/* </ReactLenis> */}

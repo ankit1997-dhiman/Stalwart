@@ -49,7 +49,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
+      <footer className="sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
         <div className="container">
           {/* Top Links */}
           <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
