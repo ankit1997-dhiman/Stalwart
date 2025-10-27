@@ -12,7 +12,7 @@ import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { useTruncateText } from "@/hooks/useTruncateText";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 
-export const CurrentProperties = ({ title }) => {
+export const CurrentProperties = ({ title, desc }) => {
   const [propertiesData, setPropertiesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -62,8 +62,8 @@ export const CurrentProperties = ({ title }) => {
           {title || "Current Properties"}
         </p>
         <p className="text-black text-xs md:text-sm font-moderat-regular pt-7">
-          We specialise in Real Estate for Brisbane, Gold Coast, Logan, Ipswich,
-          Redland City and Toowoomba.
+          {desc ||
+            "We specialise in Real Estate for Brisbane, Gold Coast, Logan, Ipswich, Redland City and Toowoomba."}
         </p>
 
         <LenisAnimatedLink

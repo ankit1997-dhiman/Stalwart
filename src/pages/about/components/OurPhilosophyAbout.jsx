@@ -5,9 +5,9 @@ import bgImage from "../../../assets/images/about-us.png"; // import background
 const OurPhilosophyAbout = () => {
   return (
     <section className="py-34 bg-white px-12.5 xl:px-0">
-      <div className="container flex gap-50 items-stretch justify-between">
+      <div className="container xl:flex gap-50 items-stretch justify-between">
         {/* Left Content */}
-        <div className="flex flex-col justify-between lg:w-[845px] w-full">
+        <div className="flex flex-col justify-between xl:w-[845px] w-full">
           <div>
             <p className="text-xs lg:text-base uppercase tracking-widest text-black font-moderat-medium">
               Our Philosophy
@@ -24,7 +24,7 @@ const OurPhilosophyAbout = () => {
               className="w-full  object-cover py-12.5 h-[400px] md:h-[500px] lg:[600px]"
             />
           </div>
-          <div className="lg:pt-42.5">
+          <div className="xl:pt-42.5">
             <p className="text-gray-700 mb-6 font-moderat-regular pb-5">
               At Stalwart Real Estate, we help clients maximise the value of
               their property assets with minimal stress, delivering exceptional
@@ -52,7 +52,7 @@ const OurPhilosophyAbout = () => {
 
         {/* Right Image */}
         <div
-          className="hidden lg:block bg-no-repeat bg-cover w-full lg:w-[600px] h-full lg:h-[600px]"
+          className="hidden xl:block bg-no-repeat bg-cover w-full lg:w-[600px] h-full lg:h-[600px]"
           style={{
             backgroundImage: `url(${bgImage})`, // use imported image
           }}

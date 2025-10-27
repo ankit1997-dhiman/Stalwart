@@ -12,7 +12,7 @@ export default function TeamPopup({
 }) {
   console.log(position, inTitle, "dkjasldkj");
   return (
-    <div className="block xl:flex justify-between items-stretch gap-6 bg-[#D9D9D9]">
+    <div className=" flex flex-wrap justify-between items-stretch gap-6 bg-[#D9D9D9]">
       <div
         className="w-full xl:w-2/5 h-full  xl:h-auto  bg-[#d5b28f] overflow-hidden"
         // style={{ backgroundImage: `url(${Team})` }}

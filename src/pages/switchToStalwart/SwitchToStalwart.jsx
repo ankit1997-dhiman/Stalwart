@@ -115,13 +115,13 @@ const SwitchToStalwart = () => {
             <div className="container lg:flex items-stretch gap-7.5 py-32">
               <div className="w-full lg:w-[553px]">
                 <p className="font-monument text-sm lg:text-xl uppercase leading-6 lg:leading-10">
-                  Experience the stalwart difference
+                  YOUR PROPERTY. OUR PRIORITY.
                 </p>
                 <p className="text-xs lg:text-base font-moderat-regular pt-10">
-                  At Stalwart, we define prestige property with unrivalled
-                  experience, comprehensive local market knowledge, and
-                  strategic approaches that consistently deliver exceptional
-                  results.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur.
                 </p>
 
                 <Collapse
@@ -170,7 +170,10 @@ const SwitchToStalwart = () => {
           </section>
 
           <section className="py-34 px-12.5 lg:px-0">
-            <CurrentProperties title="SEE OUR SOLD PROPERTIES" />
+            <CurrentProperties
+              title="HEAR FROM OUR CLIENTS"
+              desc="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            />
           </section>
         </>
       ) : (
