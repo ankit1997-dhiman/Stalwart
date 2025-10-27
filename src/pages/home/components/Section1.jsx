@@ -5,6 +5,7 @@ import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import bgVideo from "@/assets/images/bg.mp4";
 
 export const Section1 = () => {
   const [form] = Form.useForm();
@@ -32,11 +33,24 @@ export const Section1 = () => {
   };
 
   return (
-    <section
-      className="h-screen flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 custom-field -mt-[86px]"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      <div className="w-[999px]">
+    <section className="relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field -mt-[86px] overflow-hidden">
+      {/* Background video */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src={bgVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Dark overlay (optional, for readability) */}
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* Foreground content */}
+      <div className="relative z-10 w-[999px]">
         <p className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-20 md:pb-20">
           PORTA AD DOMUM
         </p>
@@ -55,7 +69,7 @@ export const Section1 = () => {
         >
           {/* Top Row */}
           <div className="flex items-end justify-end">
-            <div className="flex bg-[#4F4C45]  h-[50px]">
+            <div className="flex bg-[#4F4C45] h-[50px]">
               {["SELL", "BUY", "LEASE"].map((tab) => (
                 <div
                   key={tab}
@@ -82,7 +96,7 @@ export const Section1 = () => {
             </div>
 
             {/* Search Box */}
-            <div className="w-full flex flex-row ">
+            <div className="w-full flex flex-row">
               <Form.Item
                 name="address"
                 label={false}
@@ -94,7 +108,7 @@ export const Section1 = () => {
                 <AddressAutocomplete
                   activeTab={activeTab}
                   value={query}
-                  onChange={(val) => setQuery(val)} // update parent state
+                  onChange={(val) => setQuery(val)}
                 />
               </Form.Item>
 
@@ -108,7 +122,7 @@ export const Section1 = () => {
           </div>
         </Form>
 
-        <p className=" text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase">
+        <p className="text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase">
           {moment().format("DD MMM YYYY | hh:mm:ss A")}
         </p>
       </div>
