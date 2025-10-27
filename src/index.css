@@ -4,7 +4,8 @@
 button {
   @apply transition-colors duration-200;
 }
-html, body {
+html,
+body {
   height: auto;
   min-height: 100%;
   overflow: visible;
@@ -241,12 +242,27 @@ p {
 .custom-menu .ant-menu-item-active .menu-label {
   color: black !important;
 }
-.skiptranslate .goog-te-gadget {
+/* .skiptranslate .goog-te-gadget {
   display: none;
 }
 .skiptranslate {
   display: none;
+} */
+.skiptranslate,
+.skiptranslate iframe,
+.goog-te-banner-frame,
+.goog-te-gadget {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  top: -9999px !important;
 }
+body {
+  top: 0px !important;
+}
+
 .ant-modal {
   margin: auto;
 }

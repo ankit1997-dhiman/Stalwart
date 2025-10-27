@@ -45,7 +45,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <div className={`${showNav1 ? "bg-white" : ""}  `}>
+      <div className={`${showNav1 ? "bg-white" : ""} `}>
         <div
           className={`${
             showNav1 ? "bg-white" : ""

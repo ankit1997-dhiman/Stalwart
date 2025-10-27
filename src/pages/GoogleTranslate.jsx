@@ -63,11 +63,7 @@ const GoogleTranslate = () => {
       label: <SubMenuLabel label="English" />,
       onClick: () => handleLanguageChange("en"),
     },
-    {
-      key: "hi",
-      label: <SubMenuLabel label="Hindi" />,
-      onClick: () => handleLanguageChange("hi"),
-    },
+
     {
       key: "zh-CN",
       label: <SubMenuLabel label="中文" />,
@@ -87,6 +83,11 @@ const GoogleTranslate = () => {
       key: "es",
       label: <SubMenuLabel label="Español" />,
       onClick: () => handleLanguageChange("es"),
+    },
+    {
+      key: "hi",
+      label: <SubMenuLabel label="हिन्दी" />,
+      onClick: () => handleLanguageChange("hi"),
     },
   ];
 

@@ -1,5 +1,7 @@
-import { Typography } from "@/common/Typography";
 import React from "react";
+import HeroSection from "@/common/HeroSection";
+import { Typography } from "@/common/Typography";
+import bgImage from "@/assets/images/contact-bg.png";
 
 export const Term = () => {
   const legalInfo = [
@@ -12,15 +14,18 @@ export const Term = () => {
   ];
 
   return (
-    <div className="container pt-10">
-      <Typography className="font-moderat-bold text-2xl py-10" text="Legal" />
-      {legalInfo.map((item) => (
-        <Typography
-          className="text-base pb-2 font-moderat-medium"
-          text={item}
-        />
-      ))}
-      <div className="pt-20"></div>
-    </div>
+    <>
+      <HeroSection title={"Term & Condition"} bgImage={bgImage} />
+      <div className="container pt-10">
+        <Typography className="font-moderat-bold text-2xl py-10" text="Legal" />
+        {legalInfo.map((item) => (
+          <Typography
+            className="text-base pb-2 font-moderat-medium"
+            text={item}
+          />
+        ))}
+        <div className="pt-20"></div>
+      </div>
+    </>
   );
 };

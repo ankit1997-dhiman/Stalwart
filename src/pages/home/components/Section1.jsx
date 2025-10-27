@@ -1,6 +1,5 @@
 import { Form, Button } from "antd";
 import searchImage from "@/assets/icons/search.svg";
-import bgImage from "../../../assets/images/home-hero.png";
 import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +42,6 @@ export const Section1 = () => {
         playsInline
       >
         <source src={bgVideo} type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
 
       {/* Dark overlay (optional, for readability) */}

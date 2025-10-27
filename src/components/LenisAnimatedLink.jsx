@@ -5,7 +5,7 @@ export const LenisAnimatedLink = ({
   to,
   children,
   iconPosition = "right",
-  iconImage,
+  icon,
   className = "",
   offset = 0, // link vertical offset
   scale = 1, // link scale effect
@@ -63,12 +63,9 @@ export const LenisAnimatedLink = ({
     >
       {children}
       {iconPosition === "right" && (
-        <img
-          ref={iconRef}
-          src={iconImage}
-          alt=""
-          className="pl-3 will-change-transform"
-        />
+        <div ref={iconRef} className="pl-3 will-change-transform">
+          {icon}
+        </div>
       )}
     </Link>
   );

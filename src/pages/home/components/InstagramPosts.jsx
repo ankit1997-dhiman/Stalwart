@@ -74,7 +74,7 @@ const InstagramPosts = ({ backGroundWhite }) => {
                           message: "Please enter a valid email",
                         },
                       ]}
-                        className="!mb-0 lg:w-[35%]"
+                      className="!mb-0 lg:w-[35%]"
                     >
                       <Input
                         placeholder="Full Name"
@@ -102,7 +102,7 @@ const InstagramPosts = ({ backGroundWhite }) => {
                   <div className="flex justify-end lg:pt-0 pt-5">
                     <button
                       type="submit"
-                      className="text-sm font-medium text-left lg:text-right text-black w-full  origin-left hover:scale-x-[104%] duration-500"
+                      className="text-sm font-medium text-left lg:text-right text-black w-full  origin-left hover:scale-x-[104%] duration-500 cursor-pointer"
                     >
                       <span className="text-black">Submit</span>
                     </button>
