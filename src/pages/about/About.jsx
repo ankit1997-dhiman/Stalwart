@@ -3,8 +3,8 @@ import OurPhilosophyAbout from "./components/OurPhilosophyAbout";
 import MeetOurTeam from "./components/MeetOurTeam";
 import WorkWithUs from "./components/WorkWithUs";
 import InstagramPosts from "../home/components/InstagramPosts";
-import bgImage from "@/assets/images/about-bg.png";
 import HeroSection from "@/common/HeroSection";
+import bgImage from "@/assets/images/contact-bg.png";
 
 export const About = () => {
   return (
@@ -13,7 +13,7 @@ export const About = () => {
       <OurPhilosophyAbout />
       <MeetOurTeam />
       <WorkWithUs />
-      <InstagramPosts backGroundWhite={true}/>
+      <InstagramPosts backGroundWhite={true} />
     </div>
   );
 };

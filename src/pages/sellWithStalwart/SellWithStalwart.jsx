@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Plus from "@/assets/icons/plus-icon.svg";
 import Minus from "@/assets/icons/minus.svg";
 import image from "@/assets/images/right.png";
-import bgImage from "@/assets/images/about-bg.png";
+import bgImage from "@/assets/images/contact-bg.png";
 import sectionBgImage from "@/assets/images/tab-image.png";
 import { CurrentProperties } from "../home/components/CurrentProperties";
 import { collapseItems } from "@/constants/constants";

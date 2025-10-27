@@ -5,7 +5,7 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import Plus from "@/assets/icons/plus-icon.svg";
 import Minus from "@/assets/icons/minus.svg";
 import image from "@/assets/images/right.png";
-import bgImage from "@/assets/images/about-bg.png";
+import bgImage from "@/assets/images/contact-bg.png";
 import sectionBgImage from "@/assets/images/tab-image.png";
 import { CurrentProperties } from "../home/components/CurrentProperties";
 import { collapseItems } from "@/constants/constants";
@@ -67,11 +67,15 @@ const SwitchToStalwart = () => {
     { title: "Confirm your details", content: <ConfirmDetailsStepSwitch /> },
     {
       title: "Is your property currently tenanted?",
-      content: <CheckboxStep questionYes="tenantedYes" questionNo="tenantedNo" />,
+      content: (
+        <CheckboxStep questionYes="tenantedYes" questionNo="tenantedNo" />
+      ),
     },
     {
       title: "Do you currently have a property manager appointed?",
-      content: <CheckboxStep questionYes="appointedYes" questionNo="appointedNo" />,
+      content: (
+        <CheckboxStep questionYes="appointedYes" questionNo="appointedNo" />
+      ),
     },
     {
       title:
