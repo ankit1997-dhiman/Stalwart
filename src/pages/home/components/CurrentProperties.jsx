@@ -3,8 +3,6 @@ import { Property } from "@/common/properties/Property";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message, Skeleton } from "antd";
 import { Link } from "react-router-dom";
-import IconImage from "@/assets/icons/black-arrow-right.svg";
-import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
 import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 import { URLS } from "@/constants/Urls";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
@@ -12,6 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { useTruncateText } from "@/hooks/useTruncateText";
+import { BlackArrow } from "@/assets/icons/BlackArrow";
 
 export const CurrentProperties = ({ title }) => {
   const [propertiesData, setPropertiesData] = useState([]);
@@ -70,20 +69,7 @@ export const CurrentProperties = ({ title }) => {
         <LenisAnimatedLink
           to={URLS.BUY}
           iconPosition="right"
-          icon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="29"
-              height="8"
-              viewBox="0 0 29 8"
-              fill="none"
-            >
-              <path
-                d="M28.3536 4.03568C28.5488 3.84042 28.5488 3.52384 28.3536 3.32858L25.1716 0.146597C24.9763 -0.048665 24.6597 -0.048665 24.4645 0.146597C24.2692 0.341859 24.2692 0.658442 24.4645 0.853704L27.2929 3.68213L24.4645 6.51056C24.2692 6.70582 24.2692 7.0224 24.4645 7.21766C24.6597 7.41293 24.9763 7.41293 25.1716 7.21767L28.3536 4.03568ZM28 3.68213L28 3.18213L4.37114e-08 3.18213L0 3.68213L-4.37114e-08 4.18213L28 4.18213L28 3.68213Z"
-                fill="black"
-              />
-            </svg>
-          }
+          icon={<BlackArrow />}
           className="mt-6 lg:mt-16 inline-flex items-center text-xs lg:text-sm border-none font-moderat-bold uppercase !text-black"
         >
           See All

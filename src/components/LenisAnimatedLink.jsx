@@ -30,7 +30,7 @@ export const LenisAnimatedLink = ({
       const s = 1 + (scale - 1) * linkProgress.current;
 
       if (linkRef.current) {
-        linkRef.current.style.transform = `translateY(${y}px) scale(${s})`;
+        // linkRef.current.style.transform = `translateY(${y}px) scale(${s})`;
       }
 
       // icon animation (slide left→right)

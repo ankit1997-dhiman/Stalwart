@@ -33,11 +33,15 @@ export const SearchResult = () => {
             operand: "AND",
           },
         }),
-        status: ["ACTIVE", "DRAFT"], // always fetch sold properties
+        status: ["ACTIVE"], // always fetch sold properties
         page: 1,
         order: "UPDATED_AT_NEWEST",
       };
-      const res = await graphqlRequest(FILTER_SUBURB_AND_STATUS, variables);
+      const res = await graphqlRequest(
+        "api/graphql/",
+        FILTER_SUBURB_AND_STATUS,
+        variables
+      );
       setData(res?.data?.properties?.nodes);
     } catch (err) {
       message.error(err, 4000);
@@ -51,7 +55,11 @@ export const SearchResult = () => {
   }, [type]);
 
   return (
-    <div className="container lg:px-0 px-12.5">
+    <div
+      className={`${
+        data.length > 3 ? "h-full" : "h-screen"
+      } container lg:px-0 px-12.5 h-full`}
+    >
       <div className=" py-20 ">
         {data.length > 0 ? (
           <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -63,7 +71,7 @@ export const SearchResult = () => {
                   <Property
                     key={id}
                     address={formattedAddress}
-                    image={images?.[0]?.url}
+                    image={images}
                     price={price}
                     bed={listingDetails?.bedrooms ?? 0}
                     bathrooms={listingDetails?.bathrooms ?? 0}

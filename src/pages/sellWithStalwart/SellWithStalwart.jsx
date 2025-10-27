@@ -14,8 +14,8 @@ import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
 import { AppointedStep } from "./components/AppointedStep";
 import { TenantedStep } from "./components/TenantedStep";
 import { URLS } from "@/constants/Urls";
-import IconImage from "@/assets/icons/black-arrow-right.svg";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { BlackArrow } from "@/assets/icons/BlackArrow";
 
 // --- Main Component ---
 const SellWithStalwart = () => {
@@ -119,7 +119,7 @@ const SellWithStalwart = () => {
                   <LenisAnimatedLink
                     to={URLS.SOLD_PROPERTIES}
                     iconPosition="right"
-                    iconImage={IconImage}
+                    icon={<BlackArrow />}
                     className="text-sm font-moderat-bold flex items-center !text-black"
                   >
                     SEE ALL SOLD PROPERTIES

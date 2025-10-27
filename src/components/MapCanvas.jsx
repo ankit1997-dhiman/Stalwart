@@ -39,7 +39,7 @@ export const MapCanvas = ({ latitude, longitude, zoom = 15 }) => {
   };
 
   return (
-    <div style={{ height: "400px", width: "100%" }}>
+    <div style={{ height: "400px", width: "100%" }} className="grayscale">
       <GoogleMapReact
         bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
         defaultCenter={center}

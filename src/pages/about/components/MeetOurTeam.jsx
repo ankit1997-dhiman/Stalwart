@@ -1,16 +1,10 @@
 import { Grid, Modal } from "antd";
 import TeamPopup from "./TeamPopup";
 import React, { useState } from "react";
-import image from "../../../assets/images/Team.png";
-import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
-import { Link } from "react-router-dom";
-import IconImage from "@/assets/icons/arrow-right.png";
 import nehaImage from "@/assets/images/neha.jpg";
 import jagroopImage from "@/assets/images/jagroop.jpg";
 import sandeepImage from "@/assets/images/sandeep.jpg";
 import dineshImage from "@/assets/images/dinesh.jpg";
-import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
-import { URLS } from "@/constants/Urls";
 
 const { useBreakpoint } = Grid;
 

@@ -13,9 +13,6 @@ export const LetterOfOffers = () => {
     <>
       <HeroSection title={"LETTER OF OFFER"} bgImage={bgImage} />
       <div className="container mx-auto max-w-4xl py-10">
-        <h2 className="text-2xl font-semibold mb-8 text-center uppercase">
-          Letter of Offer Form
-        </h2>
         <div className="flex gap-x-26">
           <div className="w-[30%]">
             <div className="text-base font-moderat-medium">
@@ -258,26 +255,16 @@ export const LetterOfOffers = () => {
 
               {/* Settlement */}
               <Form.Item name="specialConditions" label={false} className="">
-                <Input
-                  placeholder="Settlement Date (Days)"
-                />
+                <Input placeholder="Settlement Date (Days)" />
               </Form.Item>
 
-              <Form.Item
-                name="specialConditions"
-                label={false}
-              >
-                <Input.TextArea
-                  rows={4}
-                  placeholder="Special Conditions"
-                />
+              <Form.Item name="specialConditions" label={false}>
+                <Input.TextArea rows={4} placeholder="Special Conditions" />
               </Form.Item>
 
               {/* Notes */}
               <Form.Item name="notes" label={false}>
-                <Input
-                  placeholder="How did you come across this property"
-                />
+                <Input placeholder="How did you come across this property" />
               </Form.Item>
 
               {/* Submit */}
@@ -286,7 +273,6 @@ export const LetterOfOffers = () => {
                   type="primary"
                   htmlType="submit"
                   className="!rounded-none !bg-white !text-black px-6 py-2 uppercase w-[268px] !border-black !border"
-                  
                 >
                   Submit Your Offer
                 </Button>

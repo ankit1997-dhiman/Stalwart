@@ -1,10 +1,8 @@
 import React from "react";
 import image from "../../../assets/images/work.png";
-import IconImage from "@/assets/icons/black-arrow-right.svg";
-import ButtonWithIcon from "@/common/Button/ButtonWithIcon";
-import { Link } from "react-router-dom";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { URLS } from "@/constants/Urls";
+import { BlackArrow } from "@/assets/icons/BlackArrow";
 
 export default function WorkWithUs() {
   return (
@@ -39,7 +37,7 @@ export default function WorkWithUs() {
             <LenisAnimatedLink
               to={URLS.CAREERS}
               iconPosition="right"
-              iconImage={IconImage}
+              icon={<BlackArrow />}
               className="mt-6 lg:mt-7.5 inline-flex items-center font-semibold text-sm text-black"
             >
               APPLY NOW

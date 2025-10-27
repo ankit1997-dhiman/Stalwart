@@ -1,9 +1,8 @@
 import React from "react";
 import image from "../../../../../assets/images/image-9.png";
 import logo from "@/assets/images/black-logo.png";
-import IconImage from "@/assets/icons/black-arrow-right.svg";
-import { Link } from "react-router-dom";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { BlackArrow } from "@/assets/icons/BlackArrow";
 const FeaturedSection = () => {
   return (
     <div className="flex flex-col md:flex-row">
@@ -32,7 +31,7 @@ const FeaturedSection = () => {
           <LenisAnimatedLink
             to={"#"}
             iconPosition="right"
-            iconImage={IconImage}
+            icon={<BlackArrow />}
             className="mt-11 inline-flex items-center font-semibold text-sm text-black uppercase"
           >
             See All

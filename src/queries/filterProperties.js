@@ -31,6 +31,7 @@ export const GET_FILTERED_PROPOERTIES = `query GetFilteredProperties($first: Int
       status
        images {
         url
+        position
       }
     }
   }

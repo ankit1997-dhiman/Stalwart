@@ -266,3 +266,91 @@ body {
 .ant-modal {
   margin: auto;
 }
+
+/* -------------------------------------------------------------------------------------------------------------- */
+/* HeroIntro.css - drop into same folder and import */
+.hero-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* background: #0b0b0b; */
+  color: white;
+  pointer-events: auto;
+}
+
+/* background layer (image or gradient) */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/hero-bg.jpg"); /* change to your image path */
+  background-size: cover;
+  background-position: center;
+  transform-origin: center;
+  /* filter: saturate(1) contrast(1); */
+  will-change: transform, opacity;
+}
+
+/* content centered */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  pointer-events: none; /* so Skip button is used for interaction */
+}
+
+/* logo (optional) */
+.hero-logo svg {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 1.8;
+  opacity: 0.95;
+  will-change: stroke-dashoffset, opacity;
+}
+
+/* Title/Sub */
+.hero-title {
+  font-size: clamp(28px, 5vw, 56px);
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  opacity: 0; /* animated in */
+}
+.hero-subtitle {
+  font-size: clamp(14px, 2.2vw, 20px);
+  margin-top: 0.6rem;
+  opacity: 0; /* animated in */
+}
+
+/* Skip button */
+.hero-skip {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 50;
+  /* background: rgba(255, 255, 255, 0.06); */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  font-size: 13px;
+}
+.hero-skip:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.12);
+  outline-offset: 3px;
+}
+
+/* hide from screen-readers when intro removed */
+.hero-intro[aria-hidden="true"] {
+  display: none;
+}
