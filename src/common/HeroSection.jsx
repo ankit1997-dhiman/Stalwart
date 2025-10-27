@@ -3,11 +3,11 @@ import logo from "@/assets/images/Stalwart_Logo.png";
 
 const HeroSection = ({ title, bgImage }) => {
   return (
-    
     <section
-      className="h-screen flex items-center justify-center bg-cover bg-center bg-fixed px-12.5 xl:px-0 -mt-[86px]"
+      className="h-screen flex items-center justify-center bg-contain bg-center bg-fixed px-12.5 xl:px-0 -mt-[86px]"
       style={{
-        backgroundImage: `url(${bgImage})`, // use imported image
+        backgroundImage: bgImage ? `url('${bgImage}')` : "none", // Added quotes around the URL
+        backgroundColor: "#000", // Fallback color while loading
       }}
     >
       <div className="container">
