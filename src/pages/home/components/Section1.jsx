@@ -39,11 +39,11 @@ export const Section1 = () => {
 
   return (
     <section
-      className={`relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field -mt-[${topMargin}px] overflow-hidden`}
+      className={`relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field -mt-[${topMargin}px] pt-[${topMargin}px] overflow-hidden`}
     >
       {/* Background video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-screen object-cover"
         autoPlay
         muted
         loop
