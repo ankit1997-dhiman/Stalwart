@@ -77,7 +77,12 @@ export default function Navbar() {
           title={
             <div className="flex justify-between gap-10 items-center px-6 py-4 lg:py-10">
               <Link to={URLS.HOME}>
-                <img src={whiteLogo} alt="logo" className="w-[143px]" />
+                <img
+                  src={whiteLogo}
+                  alt="logo"
+                  className="w-[143px]"
+                  onClick={() => setOpen(false)}
+                />
               </Link>
               <IoMdClose
                 onClick={onClose}
@@ -87,7 +92,12 @@ export default function Navbar() {
           }
         >
           <div className="flex flex-col h-full justify-between ">
-            <DropdownMenu onSelect={onSelect} />
+            <DropdownMenu
+              onSelect={(item) => {
+                onSelect(item);
+                onClose(); // 👈 closes the drawer right after selection
+              }}
+            />
 
             {/* Footer Menu */}
             <div className="flex flex-col px-6">
@@ -96,7 +106,12 @@ export default function Navbar() {
               </ul>
               <ul className="flex justify-between space-x-6">
                 {footerMenu?.map((item, i) => (
-                  <Link key={item.key} to={item.to} target="_blank">
+                  <Link
+                    key={item.key}
+                    to={item.to}
+                    target="_blank"
+                    onClick={() => setOpen(false)}
+                  >
                     <span className="text-xs font-normal text-white font-moderat">
                       {item.key}
                     </span>

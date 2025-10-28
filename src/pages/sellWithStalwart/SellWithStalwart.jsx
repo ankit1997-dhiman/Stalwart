@@ -7,7 +7,7 @@ import image from "@/assets/images/right.png";
 import bgImage from "@/assets/images/contact-bg.png";
 import sectionBgImage from "@/assets/images/tab-image.png";
 import { CurrentProperties } from "../home/components/CurrentProperties";
-import { collapseItems } from "@/constants/constants";
+import { collapseItems, topMargin } from "@/constants/constants";
 import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
 import { SellLandingStep } from "./components/SellLandingStep";
 import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
@@ -57,7 +57,7 @@ const SellWithStalwart = () => {
       {current === 0 && (
         <>
           <section
-            className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[86px]"
+            className={`relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[${topMargin}px]`}
             style={{ backgroundImage: `url(${bgImage})` }}
           >
             <p className="font-monument text-[15px] lg:text-xl font-medium text-white text-center pb-6 lg:pb-10 uppercase">
@@ -143,7 +143,7 @@ const SellWithStalwart = () => {
       )}
 
       {current !== 0 && (
-        <div className="relative -mt-[86px]">
+        <div className={`relative -mt-[${topMargin}px]`}>
           <div className="flex container justify-between items-center gap-20 h-screen">
             {/* Left Side */}
             <div className="w-full lg:w-[845px] pt-18 ">

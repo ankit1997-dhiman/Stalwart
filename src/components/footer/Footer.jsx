@@ -49,7 +49,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
+      <footer className="lgsticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
         <div className="container">
           {/* Top Links */}
           <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
@@ -209,7 +209,6 @@ export default function Footer() {
                     <Link
                       to={item.to}
                       key={i}
-                      target="_blank"
                       className="font-moderat text-sm text-white/60"
                     >
                       {item.text}
@@ -222,7 +221,6 @@ export default function Footer() {
                     <Link
                       to={link.to}
                       key={i}
-                      target="_blank"
                       className="font-moderat text-sm text-white/60"
                     >
                       {link.text}
@@ -257,12 +255,12 @@ export default function Footer() {
             handleCancel={handleCancel}
           />
         </div>
-        {showButton && (
-          <div className="flex items-center justify-center z-50">
-            <StickyButton handleClick={showModal} />
-          </div>
-        )}
       </footer>
+      {showButton && (
+        <div className="flex items-center justify-center z-50">
+          <StickyButton handleClick={showModal} />
+        </div>
+      )}
     </>
   );
 }

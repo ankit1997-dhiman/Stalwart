@@ -15,7 +15,7 @@ const PropertySwiper = ({
   tabdata = [],
   slidesPerView = 1,
   delay = 10000,
-  buttonText = "Learn More",
+  buttonText = "View More",
   onClick = (item) => message.info(`Clicked: ${item.id}`),
 }) => {
   console.log(tabdata, "tabdata");
@@ -25,7 +25,7 @@ const PropertySwiper = ({
       spaceBetween={16}
       slidesPerView={slidesPerView}
       navigation
-      pagination={{ clickable: true }}
+      // pagination={{ clickable: true }}
       autoplay={{ delay, disableOnInteraction: false }}
       loop={true}
       lazy={true}

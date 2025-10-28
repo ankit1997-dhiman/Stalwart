@@ -96,7 +96,7 @@ const SwitchToStalwart = () => {
         <>
           {/* Landing Step */}
           <section
-            className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[139px]"
+            className={`relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[${topMargin}px]`}
             style={{ backgroundImage: `url(${bgImage})` }}
           >
             <p className="font-monument text-[15px] lg:text-xl font-medium text-white text-center pb-6 lg:pb-10 uppercase">

@@ -10,7 +10,7 @@ import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries.js";
 
 // Map tab key → status
 const tabListingTypes = {
-  1: ["ACTIVE"], // FEATURED (no filter)
+  1: ["ACTIVE", "UNDER_OFFER"], // FEATURED (no filter)
   2: ["ACTIVE"], // BUY
   3: ["SOLD"], // SELL (adjust if needed)
   4: ["LEASED"], // LEASE
@@ -26,7 +26,11 @@ const PropertiesTab = () => {
         first: 50,
         ...(status ? { status } : {}),
       };
-      const res = await graphqlRequest("/api/graphql",GET_SALE_PROPERTIES, variables);
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_SALE_PROPERTIES,
+        variables
+      );
       let nodes = res?.data?.properties?.nodes || [];
 
       // Apply filtering on client side
@@ -54,17 +58,29 @@ const PropertiesTab = () => {
     },
     {
       key: "2",
-      label: <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">BUY</p>,
+      label: (
+        <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">
+          BUY
+        </p>
+      ),
       children: <Tab2 tabdata={data} activeTab={activeTab} />,
     },
     {
       key: "3",
-      label: <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">SOLD</p>,
+      label: (
+        <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">
+          SOLD
+        </p>
+      ),
       children: <SellTab tabdata={data} activeTab={activeTab} />,
     },
     {
       key: "4",
-      label: <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">LEASE</p>,
+      label: (
+        <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">
+          LEASE
+        </p>
+      ),
       children: <LeaseTab tabdata={data} activeTab={activeTab} />,
     },
   ];

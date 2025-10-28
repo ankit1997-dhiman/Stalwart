@@ -11,7 +11,7 @@ export const LetterOfOffers = () => {
   };
   return (
     <>
-      <HeroSection title={"LETTER OF OFFER"} bgImage={bgImage} />
+      <HeroSection title={"Expression of Interest Form"} bgImage={bgImage} />
       <div className="container mx-auto max-w-4xl py-10">
         <div className="flex gap-x-26">
           <div className="w-[30%]">

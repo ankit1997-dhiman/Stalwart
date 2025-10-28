@@ -23,20 +23,20 @@ export function Property({
   const firstImage = sortedImages?.[0]?.url || DummyImage;
 
   return (
-    <Link to={`property${id}`}>
+    <Link to={`/property/${id}`}>
       <div
         key={id}
         className="relative border border-gray-300 rounded overflow-hidden group h-[300px] lg:h-[450px] object-contain"
       >
         {/* 🏷️ Sold/Lease Tag */}
         {soldTag || leaseTag ? (
-          <div className="text-xs  py-2 text-white font-moderat-bold uppercase absolute left-0 top-2 z-10">
+          <div className="text-xs  py-2 text-white font-moderat-bold uppercase absolute left-0 top-7 z-10">
             {soldTag ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 id="a"
                 data-name="Layer 1"
-                width="177"
+                width="130"
                 height="48"
                 viewBox="0 0 177 48"
               >
@@ -109,7 +109,7 @@ export function Property({
             <div>
               <AnimatedButton
                 to={`/property/${id}`}
-                buttonText="Learn More"
+                buttonText="View More"
                 className="!text-black px-6 py-3"
               />
             </div>

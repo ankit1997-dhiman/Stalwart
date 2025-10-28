@@ -47,7 +47,7 @@ const Header = () => {
         className={`fixed top-0 left-0 w-full transform transition-transform duration-500 ease-in-out will-change-transform ${
           !isMobile
             ? isSticky
-              ? "z-50 translate-y-0 opacity-100 backdrop-blur bg-white/70"
+              ? "z-50 translate-y-0 opacity-100 backdrop-blur bg-white"
               : "z-0 -translate-y-full opacity-0 bg-transparent"
             : "hidden"
         } xl:block hidden`}

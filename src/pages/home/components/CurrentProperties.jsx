@@ -107,7 +107,7 @@ export const CurrentProperties = ({ title, desc }) => {
                   image={item?.images?.length > 0 ? item.images : dummyImage}
                   address={item.formattedAddress}
                   subtitle={useTruncateText(item.description, 35)}
-                  buttonText={"Learn More"}
+                  buttonText={"View More"}
                   onClick={() => onClick(item)}
                 />
               </SwiperSlide>

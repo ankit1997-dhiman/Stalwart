@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "@/assets/images/Stalwart_Logo.png";
+import { topMargin } from "@/constants/constants";
 
 const HeroSection = ({ title, bgImage, bgImageMobile }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);

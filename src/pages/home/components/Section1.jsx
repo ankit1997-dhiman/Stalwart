@@ -97,7 +97,7 @@ export const Section1 = () => {
               <p className="py-4.5 mx-auto">{`${
                 activeTab === "SELL"
                   ? "Get Property Estimate"
-                  : "SEARCH HOMES FOR SALE"
+                  : `Properties FOR ${activeTab}`
               }`}</p>
             </div>
 
@@ -107,9 +107,6 @@ export const Section1 = () => {
                 name="address"
                 label={false}
                 className="!mb-0 !w-full !my-auto "
-                // rules={[
-                //   { required: true, message: "Please enter your full name" },
-                // ]}
               >
                 <AddressAutocomplete
                   activeTab={activeTab}

@@ -20,7 +20,10 @@ export default function TeamPopup({
       </div>
       <div className="w-full xl:w-3/5 p-12 flex justify-between flex-col">
         <p className="font-moderat-medium text-xl lg:text-2xl">
-          {name ? name : ""} | {position}
+          {name ? name : ""}
+        </p>
+        <p className="font-moderat-medium text-sm lg:text-base">
+          {position ? position : ""}
         </p>
         <div className="space-y-4">
           <div className="font-moderat-bold text-xs lg:text-base uppercase pt-10">

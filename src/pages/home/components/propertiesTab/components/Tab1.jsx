@@ -102,7 +102,6 @@ export const Tab1 = ({ tabdata = [] }) => {
                 image={item?.images?.length > 0 ? item.images : dummyImage}
                 address={item.formattedAddress}
                 subtitle={useTruncateText(item.description, 35)}
-               
                 onClick={() => console.log("Clicked:", item.id)}
               />
             </SwiperSlide>

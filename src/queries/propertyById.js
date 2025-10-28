@@ -10,6 +10,8 @@ export const GET_PROPERTY_BY_ID = `query GetSaleProperties($ids: [ID!], $first: 
       advertisedPrice
       latitude
       longitude
+      street
+      headline
       description
       featured
       createdAt

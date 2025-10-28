@@ -8,7 +8,13 @@ import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
 import { RawHtml } from "@/components/RawHtml";
 import { useTruncateText } from "@/hooks/useTruncateText";
 
-const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
+const EnquiryModal = ({
+  isModalOpen,
+  setIsModalOpen,
+  handleCancel,
+  street,
+  headline,
+}) => {
   const [form] = Form.useForm();
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -16,11 +22,14 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
   const handleSubmit = async (values) => {
     // setLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/send-email`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        }
+      );
 
       const result = await response.json();
       if (result.success) {
@@ -42,7 +51,11 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
         const variables = { ids: [id] };
 
         try {
-          const res = await graphqlRequest("/api/graphql",GET_PROPERTY_BY_ID, variables);
+          const res = await graphqlRequest(
+            "/api/graphql",
+            GET_PROPERTY_BY_ID,
+            variables
+          );
           const property = res?.data?.properties?.nodes?.[0];
           setData(property || null);
         } catch (error) {
@@ -182,22 +195,18 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
           <div className="absolute right-0 bottom-0 w-[450px] hidden lg:block ml-10 ">
             {/* Top Section with Circle and Text */}
             <div className="relative ">
-              <div className="absolute -top-[10px] w-[220px] h-[240px] bg-[#dad7d4] rounded-t-full z-0"></div>
+              <div className="absolute -top-[10px] w-[220px] h-[240px] bg-[#dad7d4] rounded-t-full z-0 overflow-hidden"></div>
 
               <div className="relative pt-16 pb-5  pl-10 overflow-auto w-[240px]">
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-800">
                   Step In
                 </p>
-                <p className="text-xs text-gray-500 pt-2.5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
+                <p className="text-xs text-gray-500 pt-2.5">{street}</p>
 
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-800 pt-2.5">
                   Stand Out
                 </p>
-                <p className="text-xs text-gray-500 pt-2.5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
+                <p className="text-xs text-gray-500 pt-2.5 pr-8">{headline}</p>
               </div>
               <div className="p-10 bg-[#dad7d4] relative z-40">
                 <p className="text-xl font-moderat-regular text-gray-800">
@@ -228,7 +237,8 @@ const EnquiryModal = ({ isModalOpen, setIsModalOpen, handleCancel }) => {
                   Step In
                 </p>
                 <p className="text-[8px] text-gray-500 pt-2.5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  {street} Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit.
                 </p>
 
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-800 pt-2.5">

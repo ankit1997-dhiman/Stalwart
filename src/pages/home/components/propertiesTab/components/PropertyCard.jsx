@@ -43,7 +43,11 @@ const PropertyCard = ({ id, image, address, subtitle, soldTag, leaseTag }) => {
             )}
           </div>
 
-          <AnimatedButton to={`/property/${id}`} buttonText="Learn More" className="lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center !text-black"/>
+          <AnimatedButton
+            to={`/property/${id}`}
+            buttonText="View More"
+            className="lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center !text-black"
+          />
         </div>
       </div>
     </>
