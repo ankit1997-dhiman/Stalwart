@@ -86,10 +86,10 @@ const SellWithStalwart = () => {
                   Experience the stalwart difference
                 </p>
                 <p className="text-xs lg:text-base font-moderat-regular pt-10">
-                  At Stalwart, we define prestige property with unrivalled
-                  experience, comprehensive local market knowledge, and
-                  strategic approaches that consistently deliver exceptional
-                  results.
+                  At Stalwart Real Estate, we bring unrivalled expertise, deep
+                  local understanding and a disciplined strategy to every
+                  property we represent — delivering results that consistently
+                  exceed expectations.
                 </p>
 
                 <Collapse
@@ -148,7 +148,7 @@ const SellWithStalwart = () => {
             {/* Left Side */}
             <div className="w-full lg:w-[845px] pt-18 ">
               <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
-                RENTAL APPRAISAL WITH STALWART
+                RENTAL APPRAISAL
               </p>
               <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 lg:w-[700px] w-full">
                 {steps[current].title}

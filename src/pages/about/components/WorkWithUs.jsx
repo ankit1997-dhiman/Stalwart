@@ -27,11 +27,17 @@ export default function WorkWithUs() {
           </div>
           <div>
             <p className="font-moderat-regular text-sm w-full lg:w-[845px]">
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              At Stalwart Real Estate, we are building a culture defined by
+              discipline, collaboration and genuine care. Our people share a
+              commitment to excellence in service, presentation and negotiation
+              and take pride in the details that set our work apart.
+            </p>
+            <p className="font-moderat-regular text-sm w-full lg:w-[845px] pt-2">
+              We look for individuals who value integrity, precision and
+              continuous growth. Whether in sales, property management or
+              support, every role at Stalwart contributes to the same purpose:
+              elevating the experience of real estate for every client we
+              represent.
             </p>
 
             <LenisAnimatedLink

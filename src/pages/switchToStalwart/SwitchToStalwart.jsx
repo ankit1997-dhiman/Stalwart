@@ -8,13 +8,19 @@ import image from "@/assets/images/right.png";
 import bgImage from "@/assets/images/contact-bg.png";
 import sectionBgImage from "@/assets/images/tab-image.png";
 import { CurrentProperties } from "../home/components/CurrentProperties";
-import { collapseItems } from "@/constants/constants";
+import {
+  collapseItems,
+  switchCollapseItems,
+  topMargin,
+} from "@/constants/constants";
 import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
 import { SellLandingStep } from "../sellWithStalwart/components/SellLandingStep";
 import ConfirmDetailsStepSwitch from "./components/ConfirmDetailsStepSwitch";
 import { CheckboxStep } from "./components/CheckboxStep";
 import { LastStep } from "./components/LastStep";
 import { URLS } from "@/constants/Urls";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { BlackArrow } from "@/assets/icons/BlackArrow";
 
 const SwitchToStalwart = () => {
   const [form] = Form.useForm();
@@ -90,7 +96,7 @@ const SwitchToStalwart = () => {
         <>
           {/* Landing Step */}
           <section
-            className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[86px]"
+            className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[139px]"
             style={{ backgroundImage: `url(${bgImage})` }}
           >
             <p className="font-monument text-[15px] lg:text-xl font-medium text-white text-center pb-6 lg:pb-10 uppercase">
@@ -115,13 +121,15 @@ const SwitchToStalwart = () => {
             <div className="container lg:flex items-stretch gap-7.5 py-32">
               <div className="w-full lg:w-[553px]">
                 <p className="font-monument text-sm lg:text-xl uppercase leading-6 lg:leading-10">
-                  YOUR PROPERTY. OUR PRIORITY.
+                  Experience the Stalwart Leasing Difference
                 </p>
                 <p className="text-xs lg:text-base font-moderat-regular pt-10">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
+                  At Stalwart, we redefine property management with precision,
+                  transparency, and care. We don’t just administer rentals — we
+                  actively manage, protect, and optimise your investment.
+                  Through refined systems, proactive communication, and
+                  cutting-edge technology, we deliver certainty, control, and
+                  performance for every property we manage.
                 </p>
 
                 <Collapse
@@ -131,7 +139,7 @@ const SwitchToStalwart = () => {
                   expandIcon={({ isActive }) =>
                     !isActive ? <img src={Plus} /> : <img src={Minus} />
                   }
-                  items={collapseItems.map((item) => ({
+                  items={switchCollapseItems.map((item) => ({
                     key: item.key,
                     label: (
                       <div className="font-moderat-medium text-sm lg:text-lg uppercase">
@@ -148,13 +156,14 @@ const SwitchToStalwart = () => {
                 />
 
                 <p className="pt-10">
-                  <Link
+                  <LenisAnimatedLink
                     to={URLS.SOLD_PROPERTIES}
-                    className="text-sm font-moderat-bold flex items-center text-black"
+                    iconPosition="right"
+                    icon={<BlackArrow />}
+                    className="text-sm font-moderat-bold flex items-center !text-black"
                   >
-                    <span className="text-black">SEE ALL SOLD PROPERTIES</span>
-                    <HiArrowLongRight className="pl-3 text-black text-4xl" />
-                  </Link>
+                    SEE ALL SOLD PROPERTIES
+                  </LenisAnimatedLink>
                 </p>
               </div>
 
@@ -177,7 +186,7 @@ const SwitchToStalwart = () => {
           </section>
         </>
       ) : (
-        <div className="relative -mt-[86px]">
+        <div className={`relative -mt-[${topMargin}px]`}>
           <div className="flex container justify-between items-center gap-20 h-screen">
             <div className="w-full lg:w-[845px] pt-18">
               <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">

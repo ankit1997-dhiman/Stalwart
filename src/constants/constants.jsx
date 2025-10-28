@@ -61,20 +61,64 @@ export const collapseItems = [
     key: "1",
     label: "Our specialist agents",
     content:
-      "Our sales professionals are committed to providing outstanding customer service and going above and beyond for properties. We maximize attention from real buyers worldwide by utilizing creative marketing and a wide network. Our knowledgeable staff skillfully handles your real estate journey, guaranteeing the best possible result for your asset.",
+      "Our sales professionals are driven by discipline, creativity and an unwavering focus on our sellers. Focused on sellers, driven by results. We expose your property’s hidden value to the market through strategy, precision and expert negotiation — delivering outcomes that set new benchmarks.",
   },
   {
     key: "2",
     label: "Top-notch real estate campaigns",
     content:
-      "With custom, high-impact marketing on both traditional and digital platforms, our all-inclusive marketing campaigns increase the impact of your property. Marshall White is an expert at drawing in specific groups, maximizing offers, and eventually finding the right buyer for your house. ",
+      "With tailored, high-impact marketing across both traditional and digital platforms, our campaigns are crafted to amplify your property’s presence in the market. Stalwart’s strategic approach draws in the right buyers, maximises competition, and transforms attention into exceptional offers — achieving the strongest possible result for your home.",
   },
   {
     key: "3",
     label: "A Greater Scope",
     content:
-      "The exposure of your home is maximized by Marshall White's extensive network and nine strategically placed offices around Melbourne and the Mornington Peninsula. We attract a wide variety of potential customers by reaching out to local, national, and international markets. Strong real estate ties and well-informed marketing provide optimal exposure, boosting buyer interest for a successful sale. ",
+      "Stalwart’s extensive network across Brisbane and beyond connects your property with qualified buyers locally, nationally and internationally. Our strong industry ties and informed marketing create powerful exposure, maximising buyer interest and driving outstanding results.",
   },
-  { key: "4", label: "Assistance and Interaction", content: "As a reflection of our dedication to providing outstanding client service, our team places a high priority on open communication and frequent updates during the sale of your property, guaranteeing responsiveness and transparency for a smooth and knowledgeable transaction. " },
-  { key: "5", label: "Digital Approach", content: "Marshall White's sophisticated digital approach focuses on interested purchasers, increasing the likelihood that your property will sell. We make sure your listing reaches the correct audience for the greatest results by fusing cutting-edge technology with market knowledge." },
+  {
+    key: "4",
+    label: "Assistance and Interaction",
+    content:
+      "As part of our commitment to exceptional client service, we prioritise clear communication and consistent updates throughout the sale of your property. Our team ensures responsiveness, transparency and confidence at every stage — creating a seamless and informed selling experience.",
+  },
+  {
+    key: "5",
+    label: "Digital Approach",
+    content:
+      "Stalwart’s digital strategy is designed to engage serious buyers and amplify visibility across the right channels. By combining advanced technology with deep market insight, we ensure your property reaches the right audience - maximising attention, competition and results.",
+  },
 ];
+
+export const switchCollapseItems = [
+  {
+    key: "1",
+    label: "Our Specialist Property Managers",
+    content:
+      "Our team combines experience with empathy — ensuring your investment is handled with professionalism and intent. From tenant selection to lease renewals and inspections, we stay proactive, compliant, and accountable, keeping you informed every step of the way.",
+  },
+  {
+    key: "2",
+    label: "Tailored Leasing Campaigns",
+    content:
+      "Our team combines experience with empathy — ensuring your investment is handled with professionalism and intent. From tenant selection to lease renewals and inspections, we stay proactive, compliant, and accountable, keeping you informed every step of the way.",
+  },
+  {
+    key: "3",
+    label: "A Greater Reach",
+    content:
+      "Stalwart’s network connects your investment to verified tenants across Brisbane and beyond. With intelligent targeting and local expertise, we maximise visibility and minimise vacancy — ensuring consistent returns and reliable occupancy.",
+  },
+  {
+    key: "4",
+    label: "Communication and Interaction",
+    content:
+      "We believe trust is built through clarity. That’s why our team provides regular updates, 360° inspection reports, and direct communication — no call centres, no delays, just seamless interaction and transparency.",
+  },
+  {
+    key: "5",
+    label: "Digital Advantage",
+    content:
+      "Our technology platform gives you 24/7 visibility of rent, maintenance, and inspection reports — all from your phone. With automated workflows, real-time alerts, and secure documentation, you stay informed while we handle every detail with precision.",
+  },
+];
+export const topMargin = 139;

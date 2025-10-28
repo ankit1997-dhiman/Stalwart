@@ -45,11 +45,11 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <div className={`${showNav1 ? "bg-white" : ""} `}>
+      <div className={`${showNav1 ? "bg-white " : ""} lg:px-0 px-12.5`}>
         <div
           className={`${
             showNav1 ? "bg-white" : ""
-          } container flex justify-between items-center pt-14 `}
+          }  flex justify-between items-center py-8 lg:py-14 container`}
         >
           <Link to={URLS.HOME}>
             <img
@@ -75,7 +75,7 @@ export default function Navbar() {
           open={open}
           className="!bg-[#4F4C45] !p-0"
           title={
-            <div className="flex justify-between gap-10 items-center px-6 py-10">
+            <div className="flex justify-between gap-10 items-center px-6 py-4 lg:py-10">
               <Link to={URLS.HOME}>
                 <img src={whiteLogo} alt="logo" className="w-[143px]" />
               </Link>
@@ -88,26 +88,6 @@ export default function Navbar() {
         >
           <div className="flex flex-col h-full justify-between ">
             <DropdownMenu onSelect={onSelect} />
-            {/* Main Menu */}
-            {/* <div className="py-4 text-white">
-            <ul className="space-y-6 py-6.5 text-xs font-normal">
-              {menuItems.map((item, idx) => (
-                <li key={idx} className="font-monument text-white">
-                  {item.link ? (
-                    <Link
-                      to={item.link}
-                      className="!text-white"
-                      onClick={() => handleClick()}
-                    >
-                      {item.name}
-                    </Link>
-                  ) : (
-                    item.name
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div> */}
 
             {/* Footer Menu */}
             <div className="flex flex-col px-6">

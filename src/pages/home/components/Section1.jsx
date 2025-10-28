@@ -7,6 +7,7 @@ import moment from "moment";
 import bgVideo from "@/assets/images/bg.mp4";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { topMargin } from "@/constants/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,7 +38,9 @@ export const Section1 = () => {
   };
 
   return (
-    <section className="relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field -mt-[86px] overflow-hidden">
+    <section
+      className={`relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field -mt-[${topMargin}px] overflow-hidden`}
+    >
       {/* Background video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
@@ -53,7 +56,7 @@ export const Section1 = () => {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Foreground content */}
-      <div className="relative z-10 w-[999px]">
+      <div className="container relative z-10 w-[999px]">
         <p className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-20 md:pb-20">
           PORTA AD DOMUM
         </p>

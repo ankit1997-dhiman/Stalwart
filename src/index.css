@@ -242,6 +242,13 @@ p {
 .custom-menu .ant-menu-item-active .menu-label {
   color: black !important;
 }
+
+.ant-drawer-header {
+  border-bottom: none !important;
+}
+.ant-menu-inline {
+  background: none;
+}
 /* .skiptranslate .goog-te-gadget {
   display: none;
 }
@@ -265,15 +272,6 @@ body {
 
 .ant-modal {
   margin: auto;
-}
-.bg-parallax {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150%;
-  object-fit: cover;
-  transform: translateY(-25%);
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */

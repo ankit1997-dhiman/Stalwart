@@ -1,6 +1,7 @@
 import React from "react";
 import image from "../../../assets/images/about-us.png";
 import bgImage from "../../../assets/images/about-us.png"; // import background
+import { aboutPageContent } from "@/constants/about/aboutPageContent";
 
 const OurPhilosophyAbout = () => {
   return (
@@ -10,11 +11,10 @@ const OurPhilosophyAbout = () => {
         <div className="flex flex-col justify-between xl:w-[845px] w-full">
           <div>
             <p className="text-xs lg:text-base uppercase tracking-widest text-black font-moderat-medium">
-              Our Philosophy
+              {aboutPageContent.OUR_PHILOSOPY}
             </p>
             <p className="text-base md:text-2xl lg:text-[32px] font-medium uppercase font-moderat-medium pt-5.5 ">
-              Attention to detail combined with the finest craftsmanship and
-              quality. 
+              {aboutPageContent.OUR_PHILOSOPY_SUB_TITLE}
             </p>
           </div>
           <div className="block xl:hidden">
@@ -26,26 +26,19 @@ const OurPhilosophyAbout = () => {
           </div>
           <div className="xl:pt-42.5">
             <p className="text-gray-700 mb-6 font-moderat-regular pb-5">
-              At Stalwart Real Estate, we help clients maximise the value of
+              {aboutPageContent.OUR_PHILOSOPY_PARA_1}
+              {/* At Stalwart Real Estate, we help clients maximise the value of
               their property assets with minimal stress, delivering exceptional
               results through expert negotiation and thoughtful, strategic
-              marketing.
+              marketing. */}
             </p>
 
             <p className="text-gray-600 mb-4 font-moderat-regular pb-5">
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              {aboutPageContent.OUR_PHILOSOPY_PARA_2}
             </p>
 
             <p className="text-gray-600 font-moderat-regular pb-5">
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              {aboutPageContent.OUR_PHILOSOPY_PARA_3}
             </p>
           </div>
         </div>

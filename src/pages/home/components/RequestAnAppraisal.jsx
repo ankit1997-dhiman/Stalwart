@@ -2,6 +2,7 @@ import image from "@/assets/images/request.png";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { URLS } from "@/constants/Urls";
 import { WhiteArrow } from "@/assets/icons/WhiteArrow";
+import { BlackArrow } from "@/assets/icons/BlackArrow";
 
 const RequestAnAppraisal = ({ lightMode }) => {
   return (
@@ -35,7 +36,7 @@ const RequestAnAppraisal = ({ lightMode }) => {
         <LenisAnimatedLink
           to={URLS.ABOUT}
           iconPosition="right"
-          icon={<WhiteArrow />}
+          icon={lightMode ? <BlackArrow /> : <WhiteArrow />}
           className={`${
             lightMode ? "!text-black" : "!text-white"
           }  font-moderat-bold text-xs md:text-sm`}

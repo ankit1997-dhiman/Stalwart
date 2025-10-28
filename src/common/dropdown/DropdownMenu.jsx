@@ -59,7 +59,7 @@ export const DropdownMenu = ({ onSelect }) => {
         [&_.ant-menu-submenu-arrow]:!text-white 
         [&_.ant-menu-submenu-expand-icon]:!text-white 
         [&_.ant-menu-title-content a]:!text-[#fff]
-        custom-menu !rounded-none"
+        custom-menu !rounded-none !border-0"
       openKeys={stateOpenKeys}
       onOpenChange={onOpenChange}
       defaultSelectedKeys={["1"]}

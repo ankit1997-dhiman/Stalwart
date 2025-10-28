@@ -30,7 +30,11 @@ export const PropertyDetails = () => {
     try {
       setLoading(true);
       const variables = { ids: [id] };
-      const res = await graphqlRequest("/api/graphql",GET_PROPERTY_BY_ID, variables);
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_PROPERTY_BY_ID,
+        variables
+      );
       const property = res?.data?.properties?.nodes?.[0] || null;
       setPropertyData(property);
     } catch (error) {
@@ -95,7 +99,7 @@ export const PropertyDetails = () => {
         <section className="flex flex-col md:flex-row justify-between gap-10 lg:gap-20 py-10 lg:py-25">
           <div className="w-full md:w-[35%] lg:w-[25%]">
             <p className="leading-5 font-moderat-bold text-base uppercase">
-              description
+              Description
             </p>
           </div>
 
@@ -168,7 +172,7 @@ export const PropertyDetails = () => {
 
           {/* Right Column */}
           <div className="w-full md:w-[65%] lg:w-[75%]">
-            <div className="flex flex-col lg:flex-row gap-10 items-stretch">
+            <div className="flex flex-col xl:flex-row gap-10 items-stretch">
               <div className="w-full lg:w-[703px] !z-10">
                 {sortedImages.length > 0 ? (
                   <Swiper
@@ -197,7 +201,7 @@ export const PropertyDetails = () => {
                 )}
               </div>
 
-              <div className="flex flex-col gap-10 lg:h-[612px]">
+              <div className="flex flex-col justify-between gap-10  ">
                 {hasAgents ? (
                   propertyData.agents.map((agent) => (
                     <AgentCard

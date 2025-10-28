@@ -1,3 +1,4 @@
+import { AnimatedButton } from "@/common/Button/AnimatedButton";
 import React from "react";
 
 export const PropertySection = ({
@@ -47,9 +48,9 @@ export const PropertySection = ({
             <div className="hidden lg:block">
               <button
                 onClick={onClick}
-                className="bg-white text-center h-[70px] border-black my-auto"
+                className="bg-white text-center border-black my-auto hover:bg-black group"
               >
-                <p className=" w-full lg:w-[262px] lg:py-5 text-black border font-moderat-regular text-base uppercase">
+                <p className=" w-full lg:w-[262px] lg:py-5 group-hover:text-white border font-moderat-regular text-base uppercase ">
                   {buttonText}
                 </p>
               </button>
