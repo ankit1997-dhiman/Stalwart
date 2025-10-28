@@ -7,7 +7,6 @@ import whiteLogo from "@/assets/images/white-logo.png";
 import { URLS } from "@/constants/Urls";
 import { nav1Paths } from "@/constants/menuLinks";
 import { DropdownMenu } from "../dropdown/DropdownMenu.jsx";
-import blackLogo from "@/assets/images/blackLogo.svg";
 import { HeaderLogo } from "@/assets/icons/HeaderLogo.jsx";
 
 export default function Navbar() {
