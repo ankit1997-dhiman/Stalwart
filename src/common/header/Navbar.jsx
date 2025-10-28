@@ -4,10 +4,11 @@ import { Drawer } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import whiteLogo from "@/assets/images/white-logo.png";
-import blackLogo from "@/assets/images/header-black-logo.png";
 import { URLS } from "@/constants/Urls";
 import { nav1Paths } from "@/constants/menuLinks";
 import { DropdownMenu } from "../dropdown/DropdownMenu.jsx";
+import blackLogo from "@/assets/images/blackLogo.svg";
+import { HeaderLogo } from "@/assets/icons/HeaderLogo.jsx";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -52,11 +53,20 @@ export default function Navbar() {
           }  flex justify-between items-center py-8 lg:py-14 container`}
         >
           <Link to={URLS.HOME}>
-            <img
+            {showNav1 ? (
+              <HeaderLogo />
+            ) : (
+              <img
+                src={whiteLogo}
+                alt="logo"
+                className="w-[140px] cursor-pointer"
+              />
+            )}
+            {/* <img
               src={showNav1 ? blackLogo : whiteLogo}
               alt="logo"
-              className="w-[143px] cursor-pointer"
-            />
+              className="w-[140px] cursor-pointer"
+            /> */}
           </Link>
 
           <RxHamburgerMenu
@@ -107,7 +117,7 @@ export default function Navbar() {
               <ul className="flex justify-between space-x-6">
                 {footerMenu?.map((item, i) => (
                   <Link
-                    key={item.key}
+                    key={i}
                     to={item.to}
                     target="_blank"
                     onClick={() => setOpen(false)}

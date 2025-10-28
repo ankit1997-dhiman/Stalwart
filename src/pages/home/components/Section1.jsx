@@ -1,13 +1,14 @@
 import { Form, Button } from "antd";
 import searchImage from "@/assets/icons/search.svg";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import bgVideo from "@/assets/images/bg.mp4";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { topMargin } from "@/constants/constants";
+import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { topSpace } from "@/constants/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,8 @@ export const Section1 = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState("SELL");
-  const bgRef = useRef(null);
+
+  const topMargin = useResponsiveMargin(topSpace, 0);
 
   // Handle form submission
   const handleSubmit = () => {
@@ -39,7 +41,10 @@ export const Section1 = () => {
 
   return (
     <section
-      className={`relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field -mt-[${topMargin}px] pt-[${topMargin}px] overflow-hidden`}
+      className={`relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field  overflow-hidden`}
+      style={{
+        marginTop: `-${topMargin}px`,
+      }}
     >
       {/* Background video */}
       <video

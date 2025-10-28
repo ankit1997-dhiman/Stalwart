@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import logo from "@/assets/images/Stalwart_Logo.png";
-import { topMargin } from "@/constants/constants";
+import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { topSpace } from "@/constants/constants";
 
 const HeroSection = ({ title, bgImage, bgImageMobile }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const topMargin = useResponsiveMargin(topSpace, 0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,10 +27,11 @@ const HeroSection = ({ title, bgImage, bgImageMobile }) => {
 
   return (
     <section
-      className={`h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-12.5 xl:px-0 -mt-[${topMargin}px]`}
+      className={`h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-12.5 xl:px-0 `}
       style={{
         backgroundImage: selectedBg ? `url('${selectedBg}')` : "none",
         backgroundColor: "#000", // Fallback color
+        marginTop: `-${topMargin}px`,
       }}
     >
       <div className="container">

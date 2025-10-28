@@ -7,7 +7,7 @@ import image from "@/assets/images/right.png";
 import bgImage from "@/assets/images/contact-bg.png";
 import sectionBgImage from "@/assets/images/tab-image.png";
 import { CurrentProperties } from "../home/components/CurrentProperties";
-import { collapseItems, topMargin } from "@/constants/constants";
+import { collapseItems, topSpace } from "@/constants/constants";
 import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
 import { SellLandingStep } from "./components/SellLandingStep";
 import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
@@ -16,12 +16,15 @@ import { TenantedStep } from "./components/TenantedStep";
 import { URLS } from "@/constants/Urls";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
+import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 
 // --- Main Component ---
 const SellWithStalwart = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
+
+  const topMargin = useResponsiveMargin(topSpace, 0);
 
   const next = async () => {
     // const values = await form.validateFields();
@@ -57,8 +60,11 @@ const SellWithStalwart = () => {
       {current === 0 && (
         <>
           <section
-            className={`relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 -mt-[${topMargin}px]`}
-            style={{ backgroundImage: `url(${bgImage})` }}
+            className={`relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 `}
+            style={{
+              backgroundImage: `url(${bgImage})`,
+              marginTop: `-${topMargin}px`,
+            }}
           >
             <p className="font-monument text-[15px] lg:text-xl font-medium text-white text-center pb-6 lg:pb-10 uppercase">
               SELL WITH STALWART
