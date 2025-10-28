@@ -40,7 +40,7 @@ export const Section1 = () => {
     <section className="relative h-screen flex items-end justify-center px-12.5 xl:px-0 custom-field -mt-[86px] overflow-hidden">
       {/* Background video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover bg-parallax"
+        className="absolute top-0 left-0 w-full h-full object-cover"
         autoPlay
         muted
         loop
@@ -50,7 +50,7 @@ export const Section1 = () => {
       </video>
 
       {/* Dark overlay (optional, for readability) */}
-      {/* <div className="absolute inset-0 bg-black/40" /> */}
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Foreground content */}
       <div className="relative z-10 w-[999px]">

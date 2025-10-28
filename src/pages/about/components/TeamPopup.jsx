@@ -10,11 +10,10 @@ export default function TeamPopup({
   outTitle,
   position,
 }) {
-  console.log(position, inTitle, "dkjasldkj");
   return (
-    <div className=" flex flex-wrap justify-between items-stretch gap-6 bg-[#D9D9D9]">
+    <div className="md:flex  justify-between items-stretch gap-6 bg-[#D9D9D9]">
       <div
-        className="w-full xl:w-2/5 h-full  xl:h-auto  bg-[#d5b28f] overflow-hidden"
+        className="w-full xl:w-[700px] bg-[#787878] overflow-hidden"
         // style={{ backgroundImage: `url(${Team})` }}
       >
         <img src={image} className="mx-auto "></img>
@@ -24,7 +23,7 @@ export default function TeamPopup({
           {name ? name : ""} | {position}
         </p>
         <div className="space-y-4">
-          <div className="font-moderat-bold text-xs lg:text-base uppercase">
+          <div className="font-moderat-bold text-xs lg:text-base uppercase pt-10">
             {inTitle}
           </div>
           <div className="font-moderat-light text-xs lg:text-base">

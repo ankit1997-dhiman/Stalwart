@@ -57,10 +57,10 @@ export default function MeetOurTeam() {
   let modalWidth = 1200;
 
   // responsive widths
-  if (screens.xs) modalWidth = 300;
+  if (screens.xs) modalWidth = 400;
   if (screens.sm) modalWidth = 400;
-  if (screens.md) modalWidth = 400;
-  if (screens.lg) modalWidth = 400;
+  if (screens.md) modalWidth = 600;
+  if (screens.lg) modalWidth = 900;
   if (screens.xl) modalWidth = 1400;
 
   const showModal = (teamMember) => {
@@ -118,7 +118,14 @@ export default function MeetOurTeam() {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={false}
-        width={modalWidth}
+        width={{
+          xs: "100%",
+          sm: "400px",
+          md: "600px",
+          lg: "1200px",
+          xl: "1200px",
+          xxl: "1200px",
+        }}
         style={{ padding: 0 }}
       >
         <TeamPopup
