@@ -7,10 +7,10 @@ export const AgentCard = ({
   email,
 }) => {
   return (
-    <div className="flex items-start gap-8">
+    <div className="flex items-start gap-4 overflow-hidden">
       <img
         src={image}
-        className="w-[150px] lg:w-[200px]  lg:object-cover !object-contain"
+        className="w-[150px] lg:w-[170px]  lg:object-cover !object-contain"
       />
       <div className="w-full">
         <p className="pb-5 font-moderat-bold text-sm lg:text-base uppercase">
@@ -18,7 +18,7 @@ export const AgentCard = ({
         </p>
         <a
           href={`tel:${phone}`}
-          className="font-moderat-regular text-sm lg:text-base cursor-pointer"
+          className="font-moderat-regular text-sm lg:text-base cursor-pointer text-wrap"
         >
           {phone}
         </a>

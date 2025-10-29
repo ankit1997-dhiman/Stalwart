@@ -92,7 +92,10 @@ export function Buy() {
   // HANDLE LIVE FILTER CHANGES
   // =========================
   const handleValuesChange = (allValues) => {
+    console.log(allValues, "allValues");
     const { address, bedrooms, bathrooms, carSpaces } = allValues;
+
+    console.log(address, bedrooms - 1, bathrooms, carSpaces, "asdas");
     const allEmpty = !address && !bedrooms && !bathrooms && !carSpaces;
 
     if (allEmpty) {
@@ -117,9 +120,6 @@ export function Buy() {
             form={filterForm}
             onSubmit={handleValuesChange}
             status="BUY"
-            bedroomOptions={bedrooms}
-            bathroomOptions={bedrooms}
-            carOptions={bedrooms}
           />
         </div>
         <div className="border-t border-b-black/30 my-16 "></div>

@@ -49,7 +49,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="lgsticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
+      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
         <div className="container">
           {/* Top Links */}
           <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
@@ -60,7 +60,7 @@ export default function Footer() {
                 </p>
                 <ul className="space-y-1 flex flex-col">
                   {section.links.map((link, i) => (
-                    <Link key="Instagram" to={link.to} target={link.external}>
+                    <Link key={i} to={link.to} target={link.external}>
                       {link.label}
                     </Link>
                   ))}

@@ -14,7 +14,13 @@ export const bottomStatusOptions = [
   ["BATH", "1+", "2+", "3+", "4+", "5+", "6+"],
   ["CAR", "1+", "2+", "3+", "4+", "5+", "6+"],
 ];
-export const bedrooms = [1, 2, 3, 4, 5, 6];
+export const bedrooms = [
+  { key: 1, value: 0 },
+  { key: 2, value: 1 },
+  { key: 3, value: 2 },
+  { key: 4, value: 3 },
+  { key: 5, value: 4 },
+];
 
 // Keys order if you want to keep the same layout as bottomStatusOptions
 export const keysOrder = [

@@ -73,7 +73,7 @@ export default function AuctionCard({
               to={`/property/${id}`}
               className="font-moderat-regular text-sm"
             >
-              <p className="border-black border px-8 py-3 group-hover:text-white group-hover:border-white">
+              <p className="border-black border px-8 py-3 group-hover:text-black group-hover:bg-white group-hover:border-white">
                 View More
               </p>
             </Link>

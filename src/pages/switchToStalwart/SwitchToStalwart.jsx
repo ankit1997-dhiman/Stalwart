@@ -102,7 +102,7 @@ const SwitchToStalwart = () => {
             }}
           >
             <p className="font-monument text-[15px] lg:text-xl font-medium text-white text-center pb-6 lg:pb-10 uppercase">
-              SWITCH TO STALWART
+              Have a property you'd like us to manage?
             </p>
 
             <div className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between z-20">

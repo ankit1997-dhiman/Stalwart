@@ -11,6 +11,7 @@ import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { Link } from "react-router-dom";
 
 import dummyImage from "@/assets/images/dummy-image.jpg";
+import { LoadMoreButton } from "../../components/LoadMoreButton";
 
 export default function UpcomingAuction() {
   const [upcomingInspectionForm] = Form.useForm();
@@ -66,7 +67,7 @@ export default function UpcomingAuction() {
         <div className="px-12.5 lg:px-0">
           <WithSectionLayout
             title="Upcoming Auction"
-            leftText="Propoerties"
+            leftText="Properties"
             midText="|"
             rightText="Auction"
           />
@@ -125,12 +126,8 @@ export default function UpcomingAuction() {
           )}
         </div>
       )}
+      {upcomingAuction.length > 4 && <LoadMoreButton />}
 
-      <div className="my-20 flex items-center justify-center">
-        <Button className="border-2 !px-18.5 !py-6 text-center font-moderat-regular text-base !border-black !rounded-none">
-          Load More
-        </Button>
-      </div>
       <div className="pt-20"></div>
     </div>
   );

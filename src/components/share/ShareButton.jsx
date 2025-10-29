@@ -7,8 +7,9 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { ButtonLayout } from "./ButtonLayout";
+import { message } from "antd";
 
-const ShareButtons = ({ propertyUrl }) => {
+const ShareButtons = ({ propertyUrl, openShareModal, setOpenShareModal }) => {
   const encodedUrl = encodeURIComponent(propertyUrl);
 
   //   const encodedUrl = encodeURIComponent(propertyUrl);
@@ -30,7 +31,8 @@ const ShareButtons = ({ propertyUrl }) => {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(propertyUrl);
-    alert("Link copied to clipboard!");
+    message.success("Link copied to clipboard!");
+    // setOpenShareModal(false);
   };
 
   return (

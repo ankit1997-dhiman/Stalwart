@@ -59,7 +59,7 @@ export const footerLinks = [
 ];
 
 export const contactInfo = [
-  { text: "+61 (07) 311 280 88", to: "tel:+07 311280088" },
+  { text: "(07) 311 280 88", to: "tel:+ 07 311280088" },
   {
     text: "info@stalwartrealstate.com.au",
     to: "mailto:info@stalwartrealstate.com.au",

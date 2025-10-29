@@ -23,7 +23,11 @@ export const ShareModal = ({
         width={300}
         onCancel={handleShareCancel}
       >
-        <ShareButtons propertyUrl={propertyUrl} />
+        <ShareButtons
+          propertyUrl={propertyUrl}
+          openShareModal={openShareModal}
+          setOpenShareModal={setOpenShareModal}
+        />
       </Modal>
     </div>
   );

@@ -67,7 +67,7 @@ const EnquiryModal = ({
     }
   }, [id]);
 
-  const desc = useTruncateText(data.description, 80);
+  const desc = useTruncateText(data?.description, 80);
 
   return (
     <div className="container mx-auto">
@@ -210,14 +210,14 @@ const EnquiryModal = ({
               </div>
               <div className="p-10 bg-[#dad7d4] relative z-40">
                 <p className="text-xl font-moderat-regular text-gray-800">
-                  {data.formattedAddress ? data?.formattedAddress : null}
+                  {data?.formattedAddress ? data?.formattedAddress : null}
                 </p>
                 <p className="text-sm text-gray-600 pt-4">
                   <div className="font-moderat-medium text-sm pt-5">
-                    {`${data.bedrooms ? data.bedrooms : 0} BED | ${
-                      data.bathrooms ? data.bathrooms : 0
+                    {`${data?.bedrooms ? data.bedrooms : 0} BED | ${
+                      data?.bathrooms ? data.bathrooms : 0
                     } BATH | ${
-                      data.carportSpaces ? data.carportSpaces : 0
+                      data?.carportSpaces ? data.carportSpaces : 0
                     } CAR `}
                   </div>
                 </p>
@@ -250,14 +250,14 @@ const EnquiryModal = ({
               </div>
               <div className="p-10 bg-[#dad7d4] relative z-40">
                 <p className="text-sm font-moderat-regular text-gray-800 uppercase">
-                  {data.formattedAddress ? data?.formattedAddress : null}
+                  {data?.formattedAddress ? data?.formattedAddress : null}
                 </p>
                 <p className="text-sm text-gray-600 pt-4 font-moderat-regular">
                   <div className="font-moderat-medium text-sm pt-5">
-                    {`${data.bedrooms ? data.bedrooms : 0} BED | ${
-                      data.bathrooms ? data.bathrooms : 0
+                    {`${data?.bedrooms ? data.bedrooms : 0} BED | ${
+                      data?.bathrooms ? data.bathrooms : 0
                     } BATH | ${
-                      data.carportSpaces ? data.carportSpaces : 0
+                      data?.carportSpaces ? data.carportSpaces : 0
                     } CAR `}
                   </div>
                 </p>

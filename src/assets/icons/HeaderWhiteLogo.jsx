@@ -1,4 +1,4 @@
-export const HeaderLogo = ({ fill = "#171717" }) => {
+export const HeaderWhiteLogo = ({ fill = "#f4f2f0" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

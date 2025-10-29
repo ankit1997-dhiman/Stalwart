@@ -12,7 +12,7 @@ import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { useTruncateText } from "@/hooks/useTruncateText";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 
-export const CurrentProperties = ({ title, desc }) => {
+export const CurrentProperties = ({ title, desc, status }) => {
   const [propertiesData, setPropertiesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,7 @@ export const CurrentProperties = ({ title, desc }) => {
     const fetchProperties = async () => {
       try {
         setLoading(true);
-        const variables = { status: ["ACTIVE"] };
+        const variables = { status: [status ? status : "ACTIVE"] };
         const res = await graphqlRequest(
           "/api/graphql",
           GET_SALE_PROPERTIES,

@@ -14,6 +14,11 @@ export const InquiryForm = ({
   carOptions = [],
   className = "",
 }) => {
+  const handleSelectChange = async (changedValue) => {
+    form.setFieldsValue(changedValue); // update field
+    const allValues = form.getFieldsValue(); // get all fields
+    onSubmit(allValues); // directly trigger submit handler
+  };
   return (
     <Form
       form={form}
@@ -59,17 +64,17 @@ export const InquiryForm = ({
         <FilterSelectDropdown
           name="bedrooms"
           placeholder="BED"
-          options={bedroomOptions}
+          handleSelectChange={handleSelectChange}
         />
         <FilterSelectDropdown
           name="bathrooms"
           placeholder="BATH"
-          options={bathroomOptions}
+          handleSelectChange={handleSelectChange}
         />
         <FilterSelectDropdown
           name="carSpaces"
           placeholder="CAR"
-          options={carOptions}
+          handleSelectChange={handleSelectChange}
         />
       </div>
     </Form>

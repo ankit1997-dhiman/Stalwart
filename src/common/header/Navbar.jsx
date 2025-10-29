@@ -8,6 +8,7 @@ import { URLS } from "@/constants/Urls";
 import { nav1Paths } from "@/constants/menuLinks";
 import { DropdownMenu } from "../dropdown/DropdownMenu.jsx";
 import { HeaderLogo } from "@/assets/icons/HeaderLogo.jsx";
+import { HeaderWhiteLogo } from "@/assets/icons/HeaderWhiteLogo.jsx";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -52,20 +53,7 @@ export default function Navbar() {
           }  flex justify-between items-center py-8 lg:py-14 container`}
         >
           <Link to={URLS.HOME}>
-            {showNav1 ? (
-              <HeaderLogo />
-            ) : (
-              <img
-                src={whiteLogo}
-                alt="logo"
-                className="w-[140px] cursor-pointer"
-              />
-            )}
-            {/* <img
-              src={showNav1 ? blackLogo : whiteLogo}
-              alt="logo"
-              className="w-[140px] cursor-pointer"
-            /> */}
+            {showNav1 ? <HeaderLogo /> : <HeaderWhiteLogo />}
           </Link>
 
           <RxHamburgerMenu

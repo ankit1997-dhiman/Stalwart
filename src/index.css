@@ -274,6 +274,9 @@ body {
   margin: auto;
 }
 
+.custom-upload .ant-upload-select {
+  width: 100%;
+}
 /* -------------------------------------------------------------------------------------------------------------- */
 /* HeroIntro.css - drop into same folder and import */
 .hero-intro {

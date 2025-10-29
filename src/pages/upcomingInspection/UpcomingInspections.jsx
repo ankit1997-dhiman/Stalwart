@@ -6,6 +6,8 @@ import AuctionCard from "../upcomingAuction/components/AuctionCard";
 import { InquiryForm } from "@/components/form/InquiryForm";
 import { GET_UPCOMING_INSPECTION } from "@/queries/inspectionQueries";
 import { graphqlRequest } from "@/utils/graphqlRequest";
+import { LoadMoreButton } from "../../components/LoadMoreButton";
+import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 
 export default function UpcomingInspections() {
   const [upcomingInspectionForm] = Form.useForm();
@@ -51,7 +53,7 @@ export default function UpcomingInspections() {
         <div className="px-12.5 lg:px-0">
           <WithSectionLayout
             title="Upcoming Inspection"
-            leftText="Propoerties"
+            leftText="Properties"
             midText="|"
             rightText="Inspection"
           />
@@ -70,30 +72,30 @@ export default function UpcomingInspections() {
 
       <div className="border-t border-b-black/30 mt-16 "></div>
       <div className="">
-        {upcomingInspecion.map((item) => {
-          return (
-            <AuctionCard
-              key={item.id}
-              id={item?.id}
-              images={item?.images}
-              price={item?.advertisedPrice}
-              hoverAddress={item?.formattedAddress}
-              address={item?.formattedAddress}
-              bed={item?.listingDetails?.bedrooms ?? 0}
-              bathrooms={item?.listingDetails?.bathrooms ?? 0}
-              carportSpaces={item?.listingDetails?.carportSpaces ?? 0}
-              inspection={true}
-              time={item?.lastInspection.start}
-            />
-          );
-        })}
+        {upcomingInspecion.length ? (
+          upcomingInspecion.map((item) => {
+            return (
+              <AuctionCard
+                key={item.id}
+                id={item?.id}
+                images={item?.images}
+                price={item?.advertisedPrice}
+                hoverAddress={item?.formattedAddress}
+                address={item?.formattedAddress}
+                bed={item?.listingDetails?.bedrooms ?? 0}
+                bathrooms={item?.listingDetails?.bathrooms ?? 0}
+                carportSpaces={item?.listingDetails?.carportSpaces ?? 0}
+                inspection={true}
+                time={item?.lastInspection.start}
+              />
+            );
+          })
+        ) : (
+          <PropertiesNotFound />
+        )}
       </div>
 
-      <div className="my-20 flex items-center justify-center">
-        <Button className="border-2 !px-18.5 !py-6 text-center font-moderat-regular text-base !border-black !rounded-none">
-          Load More
-        </Button>
-      </div>
+      {upcomingInspecion.length > 4 && <LoadMoreButton />}
       <div className="pt-10"></div>
     </div>
   );

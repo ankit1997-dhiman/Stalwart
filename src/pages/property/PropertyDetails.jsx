@@ -94,8 +94,8 @@ export const PropertyDetails = () => {
 
       <div className="px-12.5 md:px-0">
         {/* 📝 Description Section */}
-        <section className="container flex flex-col xl:flex-row justify-between gap-10 lg:gap-10 py-10 lg:py-25">
-          <div className="w-full lg:w-[30%]">
+        <section className="container flex flex-col md:flex-row justify-between gap-10 lg:gap-10 py-10 lg:py-25">
+          <div className="w-full lg:w-[300px]">
             <p className="leading-5 font-moderat-bold text-base uppercase">
               {propertyData.headline}
             </p>
@@ -113,129 +113,132 @@ export const PropertyDetails = () => {
         </section>
 
         {/* 🏘️ Property Info Section */}
-        <div className="container">
-          <section className="flex flex-col md:flex-row justify-between gap-10 lg:gap-10 pb-10 lg:pb-25">
-            {/* Left Column */}
-            <div className="w-full md:w-[30%] space-y-5">
+        {/* <div className="container"> */}
+        <section className="container flex flex-col md:flex-row justify-between gap-10 lg:gap-10 pb-10 lg:pb-25">
+          {/* Left Column */}
+          <div className="w-full md:w-[300px] space-y-5">
+            <PropertyInfo
+              label={`For ${propertyData?.saleOrLease || "Sale"}`}
+              value={formattedPrice}
+            />
+
+            {hasInspections && (
               <PropertyInfo
-                label={`For ${propertyData?.saleOrLease || "Sale"}`}
-                value={formattedPrice}
+                label="Next Inspection/Auction"
+                value={moment(propertyData.inspections.nodes[0].start).format(
+                  "DD MMM YYYY, h:mm A"
+                )}
+                Icon={CalendarOutlined}
               />
+            )}
 
-              {hasInspections && (
-                <PropertyInfo
-                  label="Next Inspection/Auction"
-                  value={moment(propertyData.inspections.nodes[0].start).format(
-                    "DD MMM YYYY, h:mm A"
-                  )}
-                  Icon={CalendarOutlined}
-                />
-              )}
+            <p className="leading-5 font-moderat-bold uppercase pb-5 text-base">
+              Gallery {propertyData?.images?.length || 0}
+            </p>
 
-              <p className="leading-5 font-moderat-bold uppercase pb-5 text-base">
-                Gallery {propertyData?.images?.length || 0}
-              </p>
-
-              {hasFloorplan && (
-                <p className="pb-5">
-                  <a
-                    href={propertyData.floorplans[0].url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="leading-5 font-moderat-bold uppercase text-base"
-                  >
-                    Floorplan
-                  </a>
-                </p>
-              )}
-
-              <p className="leading-5 font-moderat-bold uppercase pb-15 text-base">
-                Download Document
-              </p>
-
-              <div className="space-y-2 flex flex-col gap-5 pt-5 lg:pt-15">
-                <button
-                  className="border-1 border-black py-5 px-8 w-full lg:w-64 hover:bg-black hover:text-white group"
-                  onClick={() => setOpen(true)}
+            {hasFloorplan && (
+              <p className="pb-5">
+                <a
+                  href={propertyData.floorplans[0].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="leading-5 font-moderat-bold uppercase text-base"
                 >
-                  <span className="group-hover:text-white">Enquire Now</span>
-                </button>
-                <button
-                  className="border-1 border-black py-5 px-8 w-full lg:w-64 hover:bg-black hover:text-white group"
-                  onClick={() => setOpenShareModal(true)}
-                >
-                  <span className="group-hover:text-white">Share</span>
-                </button>
-              </div>
+                  Floorplan
+                </a>
+              </p>
+            )}
+
+            <p className="leading-5 font-moderat-bold uppercase pb-15 text-base">
+              Download Document
+            </p>
+
+            <div className="space-y-2 flex flex-col gap-5 pt-5 lg:pt-15">
+              <button
+                className="border-1 border-black py-5 px-8 w-full lg:w-64 hover:bg-black hover:text-white group cursor-pointer"
+                onClick={() => setOpen(true)}
+              >
+                <span className="group-hover:text-white">Enquire Now</span>
+              </button>
+              <button
+                className="border-1 border-black py-5 px-8 w-full lg:w-64 hover:bg-black hover:text-white group cursor-pointer"
+                onClick={() => setOpenShareModal(true)}
+              >
+                <span className="group-hover:text-white">Share</span>
+              </button>
             </div>
+          </div>
 
-            {/* Right Column */}
-            <div className="w-full md:w-[70%]">
-              <div className="flex flex-col 2xl:flex-row  gap-10 items-stretch">
-                <div className="w-full 2xl:w-[60%] !z-10">
-                  {sortedImages.length > 0 ? (
-                    <Swiper
-                      modules={[Navigation, Pagination, Autoplay]}
-                      spaceBetween={16}
-                      slidesPerView={1}
-                      navigation
-                      pagination={{ clickable: true }}
-                      autoplay={{ delay: 8000, disableOnInteraction: false }}
-                      loop={true}
-                      lazy={true}
-                      a11y={{ enabled: true }}
-                    >
-                      {sortedImages.map((item) => (
-                        <SwiperSlide key={item.id}>
-                          <img
-                            src={item.url || dummyImage}
-                            alt="Property"
-                            className="lg:h-[612px] lg:w-[812px] object-cover"
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  ) : (
-                    <PropertiesNotFound description="No images Found" />
-                  )}
-                </div>
-
-                <div className="w-full 2xl:w-[40%] flex flex-col justify-between gap-10">
-                  {hasAgents ? (
-                    propertyData.agents.map((agent) => (
-                      <AgentCard
-                        key={agent.id}
-                        name={agent.name}
-                        email={agent.email}
-                        phone={agent.mobile}
-                        image={agent.avatarUrl}
-                      />
-                    ))
-                  ) : (
-                    <p className="text-gray-500">
-                      No agent information available.
-                    </p>
-                  )}
-                </div>
+          {/* Right Column */}
+          <div className="w-full md:w-[70%]">
+            <div className="flex flex-col 2xl:flex-row  gap-10 items-stretch">
+              <div className="w-full 2xl:w-[60%] !z-10">
+                {sortedImages && sortedImages.length > 0 ? (
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    spaceBetween={16}
+                    slidesPerView={1}
+                    navigation
+                    pagination={{ clickable: true }}
+                    autoplay={{ delay: 8000, disableOnInteraction: false }}
+                    loop
+                    preloadImages={false}
+                    lazy={{ loadPrevNext: true }}
+                    a11y={{ enabled: true }}
+                    className="property-swiper"
+                  >
+                    {sortedImages.map((item, index) => (
+                      <SwiperSlide key={item.id || index}>
+                        <img
+                          src={item.url || dummyImage}
+                          alt={`Property image ${index + 1}`}
+                          loading="lazy"
+                          className="lg:h-[612px] lg:w-[812px] w-full object-cover"
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                ) : (
+                  <PropertiesNotFound description="No images found" />
+                )}
               </div>
 
-              <div className="py-10">
-                {propertyData?.latitude && propertyData?.longitude ? (
-                  <div style={{ width: "" }}>
-                    <MapCanvas
-                      latitude={propertyData.latitude}
-                      longitude={propertyData.longitude}
+              <div className="w-full 2xl:w-[40%] flex flex-col justify-between gap-10">
+                {hasAgents ? (
+                  propertyData.agents.map((agent) => (
+                    <AgentCard
+                      key={agent.id}
+                      name={agent.name}
+                      email={agent.email}
+                      phone={agent.mobile}
+                      image={agent.avatarUrl}
                     />
-                  </div>
+                  ))
                 ) : (
-                  <p className="text-gray-500 text-sm">
-                    Map coordinates not available.
+                  <p className="text-gray-500">
+                    No agent information available.
                   </p>
                 )}
               </div>
             </div>
-          </section>
-        </div>
+
+            <div className="py-10">
+              {propertyData?.latitude && propertyData?.longitude ? (
+                <div style={{ width: "" }}>
+                  <MapCanvas
+                    latitude={propertyData.latitude}
+                    longitude={propertyData.longitude}
+                  />
+                </div>
+              ) : (
+                <p className="text-gray-500 text-sm">
+                  Map coordinates not available.
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
+        {/* </div> */}
         <div className="container">
           {/* 🏡 Related Listings Section */}
           <RelatedProperties />

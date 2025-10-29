@@ -143,7 +143,7 @@ const SellWithStalwart = () => {
             <RequestAnAppraisal lightMode={true} />
           </section>
           <section className="py-34 px-12.5 lg:px-0">
-            <CurrentProperties title="SEE OUR SOLD PROPERTIES" />
+            <CurrentProperties title="SEE OUR SOLD PROPERTIES" status="SOLD" />
           </section>
         </>
       )}

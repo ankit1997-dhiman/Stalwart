@@ -32,14 +32,12 @@ export default function CareerForm() {
 
         <hr className="mb-0 md:mb-20 border-gray-300 " />
 
-        {/* Ant Design Form */}
         <Form
           form={form}
           layout="vertical"
           onFinish={onFinish}
           className="space-t-7.5 md:space-t-10"
         >
-          {/* Type of Role */}
           <div className="pt-18 pb-11">
             <Form.Item
               name="roles"
@@ -81,7 +79,6 @@ export default function CareerForm() {
             </Form.Item>
           </div>
 
-          {/* Name and Email */}
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 ">
             <Form.Item
               name="fullName"
@@ -111,7 +108,6 @@ export default function CareerForm() {
             </Form.Item>
           </div>
 
-          {/* Contact Number and City */}
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 ">
             <Form.Item
               name="contactNumber"
@@ -144,56 +140,58 @@ export default function CareerForm() {
             </Form.Item>
           </div>
 
-          {/* Resume, LinkedIn, License */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <Form.Item
-              name="resume"
-              label={
-                <Label
-                  label=" Upload Resume / CV"
-                  className="!font-moderat-bold"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div>
+              <Form.Item
+                name="resume"
+                label={
+                  <Label
+                    label=" Upload Resume / CV"
+                    className="!font-moderat-bold "
+                  />
+                }
+                className="!w-full custom-upload"
+                valuePropName="fileList"
+                getValueFromEvent={(e) => e.fileList}
+              >
+                <Upload beforeUpload={() => false} className="!mt-6 !w-full">
+                  <Button
+                    icon={<UploadOutlined />}
+                    className="!py-2.5 !outline-none !border-black !border !w-full !mt-6 !rounded-none !h-full"
+                  >
+                    Upload File
+                  </Button>
+                </Upload>
+              </Form.Item>
+            </div>
+            <div className="grid grid-col-1 md:grid-cols-2 gap-6">
+              <Form.Item
+                name="linkedin"
+                label={
+                  <div className="font-moderat-bold text-base">LinkedIn</div>
+                }
+              >
+                <Input
+                  placeholder="http://"
+                  className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
                 />
-              }
-              valuePropName="fileList" // tell Form to use fileList as the value
-              getValueFromEvent={(e) => e.fileList} // extract fileList from Upload event
-              // rules={[{ required: true, message: "Please upload a file!" }]}
-            >
-              <Upload beforeUpload={() => false} className="!mt-6">
-                <Button
-                  icon={<UploadOutlined />}
-                  className="!py-2.5 !outline-none !border-black !border"
-                >
-                  Upload File
-                </Button>
-              </Upload>
-            </Form.Item>
+              </Form.Item>
 
-            <Form.Item
-              name="linkedin"
-              label={
-                <div className="font-moderat-bold text-base">LinkedIn</div>
-              }
-            >
-              <Input
-                placeholder="http://"
-                className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
-              />
-            </Form.Item>
-
-            <Form.Item
-              name="licenseNumber"
-              label={
-                <div className="font-moderat-bold text-base">
-                  Real Estate License Number{" "}
-                  <span className="italic">(if applicable)</span>
-                </div>
-              }
-            >
-              <Input
-                placeholder="Enter Number"
-                className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
-              />
-            </Form.Item>
+              <Form.Item
+                name="licenseNumber"
+                label={
+                  <div className="font-moderat-bold text-base">
+                    Real Estate License Number{" "}
+                    <span className="italic">(if applicable)</span>
+                  </div>
+                }
+              >
+                <Input
+                  placeholder="Enter Number"
+                  className="!py-2.5 !outline-none !border-black !border !rounded-none !mt-6"
+                />
+              </Form.Item>
+            </div>
           </div>
 
           {/* Cover Letter */}
@@ -215,13 +213,12 @@ export default function CareerForm() {
 
           {/* Submit Button */}
           <Form.Item>
-            <Button
-              htmlType="submit"
-              type="default"
-              className="!border !border-black !px-8 !py-2 !hover:bg-black !hover:text-white transition !rounded-none"
+            <button
+              type="submit"
+              className="group !border !border-black !px-8 !py-2 hover:bg-black hover:text-white transition !rounded-none "
             >
-              Submit Inquiry
-            </Button>
+              <span className="group-hover:text-white">Submit Inquiry</span>
+            </button>
           </Form.Item>
         </Form>
       </div>
