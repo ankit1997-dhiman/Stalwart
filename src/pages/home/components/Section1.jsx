@@ -1,6 +1,6 @@
 import { Form, Button } from "antd";
 import searchImage from "@/assets/icons/search.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -17,6 +17,7 @@ export const Section1 = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState("SELL");
+  const [currentTime, setCurrentTime] = useState(moment());
 
   const topMargin = useResponsiveMargin(topSpace, 0);
 
@@ -38,6 +39,13 @@ export const Section1 = () => {
     setActiveTab(value);
     setQuery(""); // Reset input when switching tabs
   };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(moment());
+    }, 1000); // update every second
+
+    return () => clearInterval(timer); // cleanup on unmount
+  }, []);
 
   return (
     <section
@@ -102,7 +110,7 @@ export const Section1 = () => {
               <p className="py-4.5 mx-auto">{`${
                 activeTab === "SELL"
                   ? "Get Property Estimate"
-                  : `Properties FOR ${activeTab}`
+                  : `Properties FOR ${activeTab === "BUY" ? "SALE" : activeTab}`
               }`}</p>
             </div>
 
@@ -131,7 +139,7 @@ export const Section1 = () => {
         </Form>
 
         <p className="text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase">
-          {moment().format("DD MMM YYYY | hh:mm:ss A")}
+          {currentTime.format("DD MMM YYYY | hh : mm : ss A")}
         </p>
       </div>
     </section>

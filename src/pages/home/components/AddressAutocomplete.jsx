@@ -66,11 +66,27 @@ export default function AddressAutocomplete({
   const [activeIndex, setActiveIndex] = useState(-1);
   const [finalized, setFinalized] = useState(false);
   const [allSuburbs, setAllSuburbs] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const debounceRef = useRef(null);
+  const containerRef = useRef(null);
+
   const mountedRef = useRef(true);
   const placesServiceRef = useRef(null);
   const suppressFetchRef = useRef(false);
+
+  // Detect clicks outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   /* ----------------------------- Mount Cleanup ----------------------------- */
   useEffect(() => {
@@ -241,7 +257,7 @@ export default function AddressAutocomplete({
 
   /* ----------------------------- Render UI ----------------------------- */
   return (
-    <div style={{ position: "relative", width: "100%" }}>
+    <div style={{ position: "relative", width: "100%" }} ref={containerRef}>
       <Input
         value={input}
         onChange={(e) => {
@@ -250,6 +266,7 @@ export default function AddressAutocomplete({
           setFinalized(false);
           if (onChange) onChange(e.target.value);
         }}
+        onFocus={() => setShowSuggestions(true)}
         onKeyDown={onKeyDown}
         className="!border-none !h-[50px] !text-[14px] !outline-white !w-full !rounded-none !font-moderat-regular placeholder:font-moderat-regular"
         placeholder="Enter address or suburb"
@@ -261,7 +278,7 @@ export default function AddressAutocomplete({
         </div>
       )}
 
-      {suggestions.length > 0 && !finalized && (
+      {showSuggestions && suggestions.length > 0 && !finalized && (
         <ul
           id="address-suggestions"
           role="listbox"
