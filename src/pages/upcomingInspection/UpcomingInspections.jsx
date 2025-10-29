@@ -8,6 +8,7 @@ import { GET_UPCOMING_INSPECTION } from "@/queries/inspectionQueries";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { LoadMoreButton } from "../../components/LoadMoreButton";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
+import { BottomSpace } from "@/components/BottomSpace";
 
 export default function UpcomingInspections() {
   const [upcomingInspectionForm] = Form.useForm();
@@ -25,7 +26,7 @@ export default function UpcomingInspections() {
       res?.data?.properties?.nodes.forEach((property) => {
         const { nodes: inspections } = property.inspections;
         if (inspections.length > 0) {
-          const lastInspection = inspections[inspections.length - 1];
+          const lastInspection = inspections;
           filteredProperties.push({
             ...property,
             lastInspection, // ✅ attach last inspection here
@@ -47,6 +48,7 @@ export default function UpcomingInspections() {
   }, [fetchInspectionProperties]);
 
   const handleSubmit = (values) => {};
+
   return (
     <div className="container">
       <div className="w-full lg:w-[999px] mx-auto">
@@ -86,7 +88,7 @@ export default function UpcomingInspections() {
                 bathrooms={item?.listingDetails?.bathrooms ?? 0}
                 carportSpaces={item?.listingDetails?.carportSpaces ?? 0}
                 inspection={true}
-                time={item?.lastInspection.start}
+                time={item.lastInspection}
               />
             );
           })
@@ -96,7 +98,7 @@ export default function UpcomingInspections() {
       </div>
 
       {upcomingInspecion.length > 4 && <LoadMoreButton />}
-      <div className="pt-10"></div>
+      <BottomSpace />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import HeroSection from "@/common/HeroSection";
 import { Typography } from "@/common/Typography";
 import bgImage from "@/assets/images/contact-bg.png";
+import { BottomSpace } from "@/components/BottomSpace";
 
 export const Term = () => {
   const legalInfo = [
@@ -24,7 +25,7 @@ export const Term = () => {
             text={item}
           />
         ))}
-        <div className="pt-20"></div>
+        <BottomSpace />
       </div>
     </>
   );

@@ -11,7 +11,6 @@ const HeroSection = ({ title, bgImage, bgImageMobile }) => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      console.log(`Device type: ${mobile ? "Mobile" : "Desktop"}`);
     };
 
     window.addEventListener("resize", handleResize);

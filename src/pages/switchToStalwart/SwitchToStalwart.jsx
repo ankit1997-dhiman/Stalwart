@@ -41,8 +41,6 @@ const SwitchToStalwart = () => {
   // ---- Form submission ----
   const onFinish = async (values) => {
     try {
-      console.log("All form data:", values); // ✅ safe to log
-
       const response = await fetch(
         `${import.meta.env.VITE_BASE_URL}/api/send-email`,
         {
@@ -55,37 +53,48 @@ const SwitchToStalwart = () => {
       const result = await response.json();
 
       if (result.success) {
-        message.success("Your inquiry has been sent", 4);
+        message.success("Your inquiry has been sent ", 4);
+
         form.resetFields();
-        navigate(URLS.THANK_YOU);
       } else {
-        message.error("Failed to send inquiry ❌");
+        message.error("Failed to send inquiry ❌", 4);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      message.error("Something went wrong ❌");
+      message.error("Something went wrong ❌", 4);
     }
   };
 
   const steps = [
-    { title: "Landing", content: <SellLandingStep /> },
-    { title: "Confirm your details", content: <ConfirmDetailsStepSwitch /> },
+    { title: "Landing", content: <SellLandingStep form={form} /> },
+    {
+      title: "Confirm your details",
+      content: <ConfirmDetailsStepSwitch form={form} />,
+    },
     {
       title: "Is your property currently tenanted?",
       content: (
-        <CheckboxStep questionYes="tenantedYes" questionNo="tenantedNo" />
+        <CheckboxStep
+          questionYes="tenantedYes"
+          questionNo="tenantedNo"
+          form={form}
+        />
       ),
     },
     {
       title: "Do you currently have a property manager appointed?",
       content: (
-        <CheckboxStep questionYes="appointedYes" questionNo="appointedNo" />
+        <CheckboxStep
+          questionYes="appointedYes"
+          questionNo="appointedNo"
+          form={form}
+        />
       ),
     },
     {
       title:
         "How much rent do you think is achievable for your property in the current market?",
-      content: <LastStep />,
+      content: <LastStep form={form} />,
     },
   ];
 
@@ -194,12 +203,13 @@ const SwitchToStalwart = () => {
             marginTop: `-${topMargin}px`,
           }}
         >
-          <div className="flex container justify-between items-center gap-20 h-screen">
-            <div className="w-full lg:w-[845px] pt-18">
+          <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 md:px-0">
+            {/* Left Side */}
+            <div className="w-full md:w-[65%] py-60 ">
               <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
                 RENTAL APPRAISAL WITH STALWART
               </p>
-              <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 lg:w-[700px] w-full">
+              <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1  w-full">
                 {steps[current].title}
               </p>
               <p className="font-normal font-moderat-regular text-base pb-20">
@@ -253,7 +263,7 @@ const SwitchToStalwart = () => {
               </div>
             </div>
 
-            <div className="w-[40%] h-screen absolute right-0 top-0">
+            <div className="hidden md:block md:w-[35%] h-full absolute right-0 top-0">
               <img
                 src={image}
                 alt="Right side"

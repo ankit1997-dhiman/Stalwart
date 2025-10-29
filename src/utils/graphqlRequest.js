@@ -7,9 +7,8 @@ import api from "./api";
  * @param {string} query - GraphQL query or mutation
  * @param {object} variables - GraphQL variables (optional)
  */
-export const graphqlRequest = async (endpoint,query, variables = {}) => {
+export const graphqlRequest = async (endpoint, query, variables = {}) => {
   try {
-    console.log(endpoint + " <<<<<<<<<<<< endpoint");
     const response = await api.post(endpoint, { query, variables });
     return response.data; // contains { data, errors }
   } catch (error) {
@@ -17,4 +16,3 @@ export const graphqlRequest = async (endpoint,query, variables = {}) => {
     throw error;
   }
 };
-

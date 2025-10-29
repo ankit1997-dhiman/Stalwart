@@ -1,6 +1,6 @@
 import { Form, Input } from "antd";
 
-export const LastStep = () => (
+export const LastStep = ({ form }) => (
   <Form.Item name="expectedRent" rules={[{ required: true }]}>
     <Input
       placeholder="e.g. 500"

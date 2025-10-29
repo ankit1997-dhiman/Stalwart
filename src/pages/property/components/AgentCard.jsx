@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const AgentCard = ({
   name = "AGENT NAME",
@@ -16,20 +17,20 @@ export const AgentCard = ({
         <p className="pb-5 font-moderat-bold text-sm lg:text-base uppercase">
           {name}
         </p>
-        <a
-          href={`tel:${phone}`}
+        <Link
+          to={`tel:${phone}`}
           className="font-moderat-regular text-sm lg:text-base cursor-pointer text-wrap"
         >
           {phone}
-        </a>
+        </Link>
         <br></br>
 
-        <a
-          href={`mailto:${email}`}
+        <Link
+          to={`mailto:${email}`}
           className="font-moderat-regular text-sm lg:text-base cursor-pointer"
         >
           {email}
-        </a>
+        </Link>
       </div>
     </div>
   );

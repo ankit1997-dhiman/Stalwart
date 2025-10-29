@@ -1,6 +1,6 @@
 import { Checkbox, Form } from "antd";
 
-export const CheckboxStep = ({ questionYes, questionNo }) => (
+export const CheckboxStep = ({ questionYes, questionNo, form }) => (
   <>
     <Form.Item name={questionYes} valuePropName="checked">
       <Checkbox>Yes</Checkbox>

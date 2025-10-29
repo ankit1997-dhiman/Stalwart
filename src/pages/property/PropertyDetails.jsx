@@ -5,7 +5,7 @@ import { graphqlRequest } from "@/utils/graphqlRequest";
 import { AgentCard } from "./components/AgentCard";
 import { PropertyInfo } from "./components/PropertyInfo";
 import { PropertySection } from "./components/PropertySection";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { NotFound } from "../NotFound";
 import { RawHtml } from "@/components/RawHtml";
 import { MapCanvas } from "@/components/MapCanvas";
@@ -18,11 +18,14 @@ import EnquiryModal from "@/common/modal/EnquiryModal";
 import { ShareModal } from "@/components/share/ShareModal";
 import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
 import { message, Skeleton } from "antd";
+import { GalleryModal } from "@/components/modals/GalleryModal";
 
 export const PropertyDetails = () => {
   const [propertyData, setPropertyData] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  const [openGalleryModal, setOpenGalleryModal] = useState(false);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
   const { id } = useParams();
 
@@ -132,20 +135,23 @@ export const PropertyDetails = () => {
               />
             )}
 
-            <p className="leading-5 font-moderat-bold uppercase pb-5 text-base">
+            <p
+              className="leading-5 font-moderat-bold uppercase pb-5 text-base cursor-pointer"
+              onClick={() => setOpenGalleryModal(true)}
+            >
               Gallery {propertyData?.images?.length || 0}
             </p>
 
             {hasFloorplan && (
               <p className="pb-5">
-                <a
-                  href={propertyData.floorplans[0].url}
+                <Link
+                  to={propertyData.floorplans[0].url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="leading-5 font-moderat-bold uppercase text-base"
                 >
                   Floorplan
-                </a>
+                </Link>
               </p>
             )}
 
@@ -258,6 +264,11 @@ export const PropertyDetails = () => {
           openShareModal={openShareModal}
           setOpenShareModal={setOpenShareModal}
           handleShareCancel={handleShareCancel}
+        />
+        <GalleryModal
+          openGalleryModal={openGalleryModal}
+          setOpenGalleryModal={setOpenGalleryModal}
+          sortedImages={sortedImages}
         />
       </div>
     </div>

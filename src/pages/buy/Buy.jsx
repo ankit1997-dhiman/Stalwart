@@ -60,7 +60,7 @@ export function Buy() {
             operand: "AND",
           },
         }),
-        status: "ACTIVE", // always fetch sold properties
+        status: ["ACTIVE", "UNDER_OFFER"], // always fetch sold properties
         page: 1,
         order: "UPDATED_AT_NEWEST",
       };
@@ -92,10 +92,7 @@ export function Buy() {
   // HANDLE LIVE FILTER CHANGES
   // =========================
   const handleValuesChange = (allValues) => {
-    console.log(allValues, "allValues");
     const { address, bedrooms, bathrooms, carSpaces } = allValues;
-
-    console.log(address, bedrooms - 1, bathrooms, carSpaces, "asdas");
     const allEmpty = !address && !bedrooms && !bathrooms && !carSpaces;
 
     if (allEmpty) {

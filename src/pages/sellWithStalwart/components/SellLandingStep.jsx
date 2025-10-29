@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import AddressAutocomplete from "@/pages/home/components/AddressAutocomplete";
 
-export const SellLandingStep = () => (
+export const SellLandingStep = ({ form }) => (
   <>
     <Form.Item
       name="address"

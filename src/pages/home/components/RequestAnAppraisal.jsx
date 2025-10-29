@@ -34,7 +34,7 @@ const RequestAnAppraisal = ({ lightMode }) => {
         </p>
 
         <LenisAnimatedLink
-          to={URLS.ABOUT}
+          to={URLS.SELL_WITH_STALWART}
           iconPosition="right"
           icon={lightMode ? <BlackArrow /> : <WhiteArrow />}
           className={`${

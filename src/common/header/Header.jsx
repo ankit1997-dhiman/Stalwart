@@ -10,7 +10,6 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const location = useLocation();
   const { pathname } = location;
-  console.log(isScrolled, "is scrolled");
 
   const showNav1 = nav1Paths.includes(pathname);
 

@@ -18,49 +18,72 @@ import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 
-// --- Main Component ---
 const SellWithStalwart = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-
   const topMargin = useResponsiveMargin(topSpace, 0);
 
   const next = async () => {
-    // const values = await form.validateFields();
-    // setFormValues((prev) => ({ ...prev }));
-    setCurrent((prev) => prev + 1);
+    try {
+      // await form.validateFields();
+      setCurrent((prev) => prev + 1);
+    } catch (err) {
+      console.log("Validation failed:", err);
+    }
   };
 
   const prev = () => setCurrent((prev) => prev - 1);
 
   const onFinish = async (values) => {
     try {
-      const allValues = { ...formValues, ...values };
-      console.log("All form data:", JSON.parse(JSON.stringify(allValues)));
-      message.success("Form submitted successfully!");
-      navigate(URLS.THANK_YOU);
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        message.success("Your inquiry has been sent ", 4);
+
+        form.resetFields();
+      } else {
+        message.error("Failed to send inquiry ❌", 4);
+      }
     } catch (error) {
-      console.error("Form submit error:", error);
+      console.error("Error submitting form:", error);
+      message.error("Something went wrong ❌", 4);
     }
   };
 
   const steps = [
-    { title: "Landing", content: <SellLandingStep /> },
-    { title: "Confirm your details", content: <ConfirmDetailsStep /> },
+    { title: "Landing", content: <SellLandingStep form={form} /> },
+    {
+      title: "Confirm your details",
+      content: <ConfirmDetailsStep form={form} />,
+    },
     {
       title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
-      content: <TenantedStep />,
+      content: <TenantedStep form={form} />,
     },
-    { title: "WHEN ARE YOU THINKING OF SELLING?", content: <AppointedStep /> },
+    {
+      title: "WHEN ARE YOU THINKING OF SELLING?",
+      content: <AppointedStep form={form} />,
+    },
   ];
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish}>
+      {/* First step (Landing) */}
       {current === 0 && (
         <>
           <section
-            className={`relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0 `}
+            className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0"
             style={{
               backgroundImage: `url(${bgImage})`,
               marginTop: `-${topMargin}px`,
@@ -71,10 +94,11 @@ const SellWithStalwart = () => {
             </p>
 
             <div className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between z-20">
-              <SellLandingStep />
+              <SellLandingStep form={form} />
 
               <Button
-                onClick={() => next()}
+                htmlType="button"
+                onClick={next}
                 className="!h-[50px] mt-2 lg:mt-0 lg:ml-2 flex items-center justify-center !bg-[#706C62] !border-none !rounded-none !text-white"
               >
                 <span className="text-[13px] font-monument">
@@ -83,7 +107,6 @@ const SellWithStalwart = () => {
               </Button>
             </div>
           </section>
-
           {/* Experience Section */}
           <section className="px-12.5 lg:px-0">
             <div className="container lg:flex items-stretch gap-7.5 py-32">
@@ -139,6 +162,7 @@ const SellWithStalwart = () => {
               />
             </div>
           </section>
+
           <section className="bg-[#F4F2F0] py-[79px] xl:px-0 px-12.5">
             <RequestAnAppraisal lightMode={true} />
           </section>
@@ -148,15 +172,18 @@ const SellWithStalwart = () => {
         </>
       )}
 
+      {/* Step 2+ */}
       {current !== 0 && (
-        <div className={`relative -mt-[${topMargin}px]`}>
-          <div className="flex container justify-between items-center gap-20 h-screen">
-            {/* Left Side */}
-            <div className="w-full lg:w-[845px] pt-18 ">
+        <div
+          className="relative overflow-hidden"
+          style={{ marginTop: `-${topMargin}px` }}
+        >
+          <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
+            <div className="w-full md:w-[65%] py-60">
               <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
-                RENTAL APPRAISAL
+                Property APPRAISAL
               </p>
-              <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 lg:w-[700px] w-full">
+              <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 w-full">
                 {steps[current].title}
               </p>
               <p className="font-normal font-moderat-regular text-base pb-20">
@@ -165,11 +192,10 @@ const SellWithStalwart = () => {
                   : "Help us to provide you with the very best service by telling us a bit more about your property."}
               </p>
 
-              {/* Keep all steps mounted but only show active one */}
               {steps.map((step, index) => (
                 <div
                   key={index}
-                  style={{ display: current === index ? "block" : "none" }}
+                  style={{ display: current === index ? "" : "none" }}
                 >
                   {step.content}
                 </div>
@@ -198,9 +224,8 @@ const SellWithStalwart = () => {
                 )}
                 {current === steps.length - 1 && (
                   <Button
+                    htmlType="submit"
                     className="!rounded-none !px-3 bg-white !border !border-black !py-3"
-                    onClick={onFinish}
-                    // htmlType="submit"
                   >
                     <span className="font-moderat-regular text-base">
                       Submit
@@ -210,7 +235,7 @@ const SellWithStalwart = () => {
               </div>
             </div>
 
-            <div className="w-[40%] h-screen absolute right-0 top-0">
+            <div className="hidden md:block md:w-[35%] h-full absolute right-0 top-0">
               <img
                 src={image}
                 alt="Right side"

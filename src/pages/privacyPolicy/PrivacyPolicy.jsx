@@ -3,6 +3,7 @@ import { Typography } from "@/common/Typography";
 import TypographyList from "@/common/TypographyList";
 import React from "react";
 import bgImage from "@/assets/images/home-hero.png";
+import { BottomSpace } from "@/components/BottomSpace";
 
 export const PrivacyPolicy = () => {
   const personalInfoList = [
@@ -347,7 +348,7 @@ export const PrivacyPolicy = () => {
           text="We may update this Privacy Policy from time to time to reflect changes in legislation, technology, or our business operations.The most recent version will always be available on our website."
         />
 
-        <div className="pt-20"></div>
+        <BottomSpace />
       </div>
     </>
   );

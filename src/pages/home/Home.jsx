@@ -22,7 +22,12 @@ export const Home = () => {
         <PropertiesTab />
       </div>
       <section className="pt-9.5 pb-28 bg-white">
-        <CurrentProperties title="OUR CURRENT PROPERTIES" />
+        <CurrentProperties
+          title="OUR CURRENT PROPERTIES"
+          desc={
+            "As Queensland’s dedicated seller-exclusive agency, we represent only property owners and landlords — protecting their interests with precision, discipline, and intent across residential, lifestyle, acreage, commercial, and development projects, including pre-sales and strategic marketing."
+          }
+        />
       </section>
       <OurStory />
       <Section8 />

@@ -35,6 +35,15 @@ export const drawerMenuitems = [
         key: "sub-4",
         label: <DrawerSubmenuLabel label="Suburb Insights" link={"#"} />,
       },
+      {
+        key: "sub-5",
+        label: (
+          <DrawerSubmenuLabel
+            label="Expression of Interest Form"
+            link={URLS.LETTER_OF_OFFER}
+          />
+        ),
+      },
     ],
   },
   {

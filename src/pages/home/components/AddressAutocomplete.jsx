@@ -268,7 +268,7 @@ export default function AddressAutocomplete({
         }}
         onFocus={() => setShowSuggestions(true)}
         onKeyDown={onKeyDown}
-        className="!border-none !h-[50px] !text-[14px] !outline-white !w-full !rounded-none !font-moderat-regular placeholder:font-moderat-regular"
+        className="!border-none !h-[50px] !text-[14px] !outline-white !w-full !rounded-none !font-moderat-regular placeholder:font-moderat-regular !bg-white pl-6"
         placeholder="Enter address or suburb"
       />
 
@@ -294,7 +294,7 @@ export default function AddressAutocomplete({
             borderRadius: 8,
             listStyle: "none",
             padding: 0,
-            maxHeight: 300,
+            maxHeight: 250,
             overflowY: "auto",
           }}
         >

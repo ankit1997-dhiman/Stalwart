@@ -7,7 +7,7 @@ const FooterDesktop = ({ socials, contactLinks }) => (
         STALWART 2025
       </p>
       <p className="text-white font-moderat text-xs font-medium">
-        <a href="https://corelands.com.au/">Design by Studio Corelands</a>
+        <Link to="https://corelands.com.au/">Design by Studio Corelands</Link>
       </p>
     </div>
 
@@ -17,7 +17,8 @@ const FooterDesktop = ({ socials, contactLinks }) => (
           <a
             href={url}
             className="text-white font-moderat text-xs font-medium"
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
           >
             {label}
           </a>

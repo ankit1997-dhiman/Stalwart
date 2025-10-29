@@ -1,6 +1,6 @@
 import { Checkbox, Form } from "antd";
 
-export const AppointedStep = () => (
+export const AppointedStep = ({ form }) => (
   <>
     <Form.Item
       name="appointed_status"
@@ -8,12 +8,12 @@ export const AppointedStep = () => (
       rules={[{ required: true, message: "Please select an option" }]}
     >
       <Checkbox.Group className="flex flex-col gap-7.5">
-        <Checkbox value="yes">Now</Checkbox>
-        <Checkbox value="no">Within the next month</Checkbox>
-        <Checkbox value="no">2-6 Months</Checkbox>
-        <Checkbox value="no">6+ Months</Checkbox>
-        <Checkbox value="no">Already on the market</Checkbox>
-        <Checkbox value="no">Not sure</Checkbox>
+        <Checkbox value="now">Now</Checkbox>
+        <Checkbox value="next-month">Within the next month</Checkbox>
+        <Checkbox value="two-to-six-month">2-6 Months</Checkbox>
+        <Checkbox value="six-plus-month">6+ Months</Checkbox>
+        <Checkbox value="on-market">Already on the market</Checkbox>
+        <Checkbox value="not-sure">Not sure</Checkbox>
       </Checkbox.Group>
     </Form.Item>
   </>

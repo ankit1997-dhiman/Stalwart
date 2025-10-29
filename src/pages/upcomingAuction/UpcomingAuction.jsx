@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import dummyImage from "@/assets/images/dummy-image.jpg";
 import { LoadMoreButton } from "../../components/LoadMoreButton";
+import { BottomSpace } from "@/components/BottomSpace";
 
 export default function UpcomingAuction() {
   const [upcomingInspectionForm] = Form.useForm();
@@ -128,7 +129,7 @@ export default function UpcomingAuction() {
       )}
       {upcomingAuction.length > 4 && <LoadMoreButton />}
 
-      <div className="pt-20"></div>
+      <BottomSpace />
     </div>
   );
 }

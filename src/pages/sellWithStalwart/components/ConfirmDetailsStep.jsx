@@ -2,9 +2,9 @@ import { ChexboxText } from "@/components/form/ChexboxText";
 import Label from "@/components/form/Label";
 import { Checkbox, Form, Input } from "antd";
 
-export const ConfirmDetailsStep = () => (
+export const ConfirmDetailsStep = ({ form }) => (
   <>
-    <div className="grid grid-cols-2 gap-x-7.5">
+    <div className="grid grid-col-1 xl:grid-cols-2 gap-x-7.5">
       <Form.Item
         name="confirm_firstName"
         label={<Label label="First Name" className="pb-4" />}

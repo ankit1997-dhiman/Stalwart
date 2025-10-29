@@ -7,7 +7,7 @@ export const footerLinks = [
       { label: "Properties for Sale", to: URLS.BUY, external: false },
       { label: "Upcoming Inspections", to: URLS.UPCOMING_INSPECTIONS },
       { label: "Upcoming Auctions", to: URLS.UPCOMING_AUCTIONS },
-      { label: "Get A Property Estimate" },
+      { label: "Expression of Interest Form", to: URLS.LETTER_OF_OFFER },
       { label: "Suburb Insight" },
       { label: "Our Team", to: URLS.ABOUT },
     ],
@@ -20,6 +20,7 @@ export const footerLinks = [
       { label: "Book a Property Appraisal", to: "#" },
       { label: "Suburb Insight", to: "#" },
       { label: "Our Team", to: URLS.ABOUT },
+      { label: "Get A Property Estimate" },
     ],
   },
   {
@@ -59,7 +60,7 @@ export const footerLinks = [
 ];
 
 export const contactInfo = [
-  { text: "(07) 311 280 88", to: "tel:+ 07 311280088" },
+  { text: "(07) 3112 8088", to: "tel:+ 07 311280088" },
   {
     text: "info@stalwartrealstate.com.au",
     to: "mailto:info@stalwartrealstate.com.au",

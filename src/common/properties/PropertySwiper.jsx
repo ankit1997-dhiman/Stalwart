@@ -18,7 +18,6 @@ const PropertySwiper = ({
   buttonText = "View More",
   onClick = (item) => message.info(`Clicked: ${item.id}`),
 }) => {
-  console.log(tabdata, "tabdata");
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}

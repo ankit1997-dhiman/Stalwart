@@ -1,6 +1,6 @@
 import { Checkbox, Form } from "antd";
 
-export const TenantedStep = () => (
+export const TenantedStep = ({ form }) => (
   <>
     <Form.Item
       name="tenancy_status"
@@ -9,7 +9,7 @@ export const TenantedStep = () => (
     >
       <Checkbox.Group className="flex flex-col gap-7.5">
         <Checkbox value="yes">Owner Occupier</Checkbox>
-        <Checkbox value="no">Owner Investor</Checkbox>
+        <Checkbox value="no"> Investment Property</Checkbox>
       </Checkbox.Group>
     </Form.Item>
   </>

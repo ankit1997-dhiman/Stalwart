@@ -7,7 +7,8 @@ import { bedrooms } from "@/constants/constants";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { GET_FILTERED_PROPOERTIES } from "@/queries/filterProperties";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
-import { Link } from "react-router-dom";
+import { Preloader } from "@/common/preloader/Preloader";
+import { BottomSpace } from "@/components/BottomSpace";
 
 export function SoldProperties() {
   const [soldFilterForm] = Form.useForm();
@@ -68,7 +69,11 @@ export function SoldProperties() {
         order: "UPDATED_AT_NEWEST",
       };
 
-      const res = await graphqlRequest("/api/graphql",GET_FILTERED_PROPOERTIES, variables);
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_FILTERED_PROPOERTIES,
+        variables
+      );
       let properties = res?.data?.properties?.nodes || [];
 
       setSoldProperties(properties);
@@ -124,26 +129,25 @@ export function SoldProperties() {
       <div className="border-t border-b-black/30 my-16" />
 
       {loading ? (
-        <p className="text-center">Loading...</p>
+        <Preloader />
       ) : soldProperties.length > 0 ? (
         <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
           {soldProperties.map((property) => {
             const { id, formattedAddress, images, price, listingDetails } =
               property;
             return (
-              <Link to={`/property/${id}`} key={id}>
-                <Property
-                  address={formattedAddress}
-                  image={images}
-                  price={price}
-                  bed={listingDetails?.bedrooms ?? 0}
-                  bathrooms={listingDetails?.bathrooms ?? 0}
-                  carportSpaces={listingDetails?.carportSpaces ?? 0}
-                  property={property}
-                  leaseTag={false}
-                  soldTag={true}
-                />
-              </Link>
+              <Property
+                id={id}
+                address={formattedAddress}
+                image={images}
+                price={price}
+                bed={listingDetails?.bedrooms ?? 0}
+                bathrooms={listingDetails?.bathrooms ?? 0}
+                carportSpaces={listingDetails?.carportSpaces ?? 0}
+                property={property}
+                leaseTag={false}
+                soldTag={true}
+              />
             );
           })}
         </div>
@@ -151,7 +155,7 @@ export function SoldProperties() {
         <PropertiesNotFound />
       )}
 
-      <div className="mt-16" />
+      <BottomSpace />
     </div>
   );
 }

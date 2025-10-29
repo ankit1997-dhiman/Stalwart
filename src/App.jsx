@@ -1,17 +1,15 @@
 import { useState } from "react";
-import { FooterIcon } from "./assets/icons/FooterIcon.jsx";
 import HeroIntro from "./components/HeroIntro.jsx";
 import AppRouter from "./routes/AppRouter.jsx";
 import { IntroLogo } from "./assets/icons/IntroLogo.jsx";
-// import { ReactLenis, useLenis } from "lenis/react";
+import "antd/dist/reset.css"; // ✅ Always load this first
+import "./index.css"; // Tailwind / custom styles
 
 const App = () => {
   const [introDone, setIntroDone] = useState(false);
 
   return (
     <>
-      {/* <ReactLenis root> */}
-      {/* <SmoothScroll /> */}
       {/* {!introDone && (
         <HeroIntro
           logo={<IntroLogo />}
@@ -21,8 +19,6 @@ const App = () => {
         />
       )} */}
       <AppRouter />
-      {/* </SmoothScroll> */}
-      {/* </ReactLenis> */}
     </>
   );
 };

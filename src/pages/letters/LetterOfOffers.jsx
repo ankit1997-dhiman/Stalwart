@@ -6,9 +6,7 @@ import { Button, Checkbox, Col, DatePicker, Form, Input, Row } from "antd";
 export const LetterOfOffers = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
-    console.log("Form Values: ", values);
-  };
+  const onFinish = (values) => {};
   return (
     <>
       <HeroSection title={"Expression of Interest Form"} bgImage={bgImage} />
