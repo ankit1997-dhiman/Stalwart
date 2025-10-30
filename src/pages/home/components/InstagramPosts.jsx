@@ -33,27 +33,7 @@ const InstagramPosts = ({ backGroundWhite }) => {
 
             {/* Mobile Carousel */}
             <div className="block xl:hidden">
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={10}
-                slidesPerView={3}
-                loop={true}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: true,
-                }}
-                className="mySwiper h-full"
-              >
-                {images.map((src, idx) => (
-                  <SwiperSlide key={idx} className="w-full">
-                    <img
-                      src={src}
-                      alt={`Insta ${idx}`}
-                      className="w-full object-cover"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              <InstagramReelsGrid />
             </div>
 
             {/* Form */}

@@ -285,7 +285,7 @@ body {
 .instareels .HoverCard,
 .instareels .Feedback,
 .instareels .SocialProof,
-.instareels .Footer {
+.Footer {
   display: none !important;
 }
 

@@ -7,7 +7,6 @@ import OurStory from "./components/OurStory.jsx";
 import Section8 from "./components/Section8.jsx";
 import InstagramPosts from "./components/InstagramPosts.jsx";
 import { CurrentProperties } from "./components/CurrentProperties";
-import InstagramReelsGrid from "@/components/InstagramReels.jsx";
 export const Home = () => {
   return (
     <div className="relative z-20 bg-white">
@@ -32,7 +31,7 @@ export const Home = () => {
       </section>
       <OurStory />
       <Section8 />
-      <div className="relative z-20 bg-white instareels">
+      <div className="relative z-20 bg-white ">
         <InstagramPosts />
       </div>
     </div>
