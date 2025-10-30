@@ -1,4 +1,5 @@
 import { AnimatedButton } from "@/common/Button/AnimatedButton";
+import { magicText } from "@/constants/constants";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -45,7 +46,7 @@ const PropertyCard = ({ id, image, address, subtitle, soldTag, leaseTag }) => {
 
           <AnimatedButton
             to={`/property/${id}`}
-            buttonText="View More"
+            buttonText={magicText.view_more_text}
             className="lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center !text-black"
           />
         </div>

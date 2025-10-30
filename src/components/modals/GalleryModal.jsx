@@ -3,15 +3,20 @@ import { Modal } from "antd";
 import React from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import dummyImage from "@/assets/images/dummy-image.jpg";
 
-export const GalleryModal = ({ openGalleryModal, sortedImages }) => {
+export const GalleryModal = ({
+  openGalleryModal,
+  sortedImages,
+  handleGalleryCancel,
+}) => {
   return (
     <Modal
       open={openGalleryModal}
       footer={false}
       className="custom-modal"
-      width={800}
-      //   onCancel={handleShareCancel}
+      width={{ sm: 400, md: 500, lg: 600, xl: 700 }}
+      onCancel={handleGalleryCancel}
     >
       {sortedImages && sortedImages.length > 0 ? (
         <Swiper

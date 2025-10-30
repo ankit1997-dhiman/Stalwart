@@ -9,13 +9,14 @@ import PropertiesNotFound from "@/common/properties/PropertiesNotFound.jsx";
 import dummyImage from "@/assets/images/dummy-image.jpg";
 import { useTruncateText } from "@/hooks/useTruncateText";
 import { Property } from "./Property";
+import { magicText } from "@/constants/constants";
 
 const PropertySwiper = ({
   soldButtonTag,
   tabdata = [],
   slidesPerView = 1,
   delay = 10000,
-  buttonText = "View More",
+  buttonText = magicText.view_more_text,
   onClick = (item) => message.info(`Clicked: ${item.id}`),
 }) => {
   return (

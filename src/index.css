@@ -277,6 +277,18 @@ body {
 .custom-upload .ant-upload-select {
   width: 100%;
 }
+
+.instareels .Header {
+  display: none;
+}
+.instareels .HeaderText,
+.instareels .HoverCard,
+.instareels .Feedback,
+.instareels .SocialProof,
+.instareels .Footer {
+  display: none !important;
+}
+
 /* -------------------------------------------------------------------------------------------------------------- */
 /* HeroIntro.css - drop into same folder and import */
 .hero-intro {

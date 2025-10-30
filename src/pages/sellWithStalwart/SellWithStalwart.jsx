@@ -21,7 +21,6 @@ import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 const SellWithStalwart = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
-  const navigate = useNavigate();
   const topMargin = useResponsiveMargin(topSpace, 0);
 
   const next = async () => {
@@ -109,7 +108,7 @@ const SellWithStalwart = () => {
           </section>
           {/* Experience Section */}
           <section className="px-12.5 lg:px-0">
-            <div className="container lg:flex items-stretch gap-7.5 py-32">
+            <div className="container lg:flex items-stretch gap-7.5 py-20 lg:py-32">
               <div className="w-full lg:w-[553px]">
                 <p className="font-monument text-sm lg:text-xl uppercase leading-6 lg:leading-10">
                   Experience the stalwart difference
@@ -131,12 +130,12 @@ const SellWithStalwart = () => {
                   items={collapseItems.map((item) => ({
                     key: item.key,
                     label: (
-                      <div className="font-moderat-medium text-sm lg:text-lg uppercase">
+                      <div className="font-moderat-medium text-xs lg:text-lg uppercase">
                         {item.label}
                       </div>
                     ),
                     children: (
-                      <div className="font-moderat-regular text-base !px-0">
+                      <div className="font-moderat-regular text-xs lg:text-base !px-0">
                         {item.content}
                       </div>
                     ),
@@ -157,7 +156,7 @@ const SellWithStalwart = () => {
               </div>
 
               <div
-                className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[1136px] h-[300px] lg:h-[764px] mt-3 lg:mt-0"
+                className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[1136px] h-[300px] lg:h-[764px] mt-9 lg:mt-0"
                 style={{ backgroundImage: `url(${sectionBgImage})` }}
               />
             </div>
@@ -166,7 +165,7 @@ const SellWithStalwart = () => {
           <section className="bg-[#F4F2F0] py-[79px] xl:px-0 px-12.5">
             <RequestAnAppraisal lightMode={true} />
           </section>
-          <section className="py-34 px-12.5 lg:px-0">
+          <section className="py-16 lg:py-34">
             <CurrentProperties title="SEE OUR SOLD PROPERTIES" status="SOLD" />
           </section>
         </>

@@ -64,7 +64,12 @@ export const PropertyDetails = () => {
       minimumFractionDigits: 0,
     }).format(propertyData.advertisedPrice || 0);
 
-  const handleShareCancel = () => setOpenShareModal(false);
+  const handleShareCancel = () => {
+    setOpenShareModal(false);
+  };
+  const handleGalleryCancel = () => {
+    setOpenGalleryModal(false);
+  };
   const handleEnquiryCancel = () => setOpen(false);
 
   const hasInspections =
@@ -269,6 +274,7 @@ export const PropertyDetails = () => {
           openGalleryModal={openGalleryModal}
           setOpenGalleryModal={setOpenGalleryModal}
           sortedImages={sortedImages}
+          handleGalleryCancel={handleGalleryCancel}
         />
       </div>
     </div>

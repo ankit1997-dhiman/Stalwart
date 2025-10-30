@@ -1,4 +1,5 @@
 import React from "react";
+import DummyImage from "@/assets/images/dummy-image.jpg";
 
 export const PropertySection = ({
   image,

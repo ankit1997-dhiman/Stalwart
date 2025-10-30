@@ -13,6 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import Label from "@/components/form/Label";
 import { AnimatedButton } from "@/common/Button/AnimatedButton";
+import InstagramReelsGrid from "@/components/InstagramReels";
 
 const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];
 
@@ -115,29 +116,7 @@ const InstagramPosts = ({ backGroundWhite }) => {
 
         {/* Desktop Carousel */}
         <div className="hidden xl:block md:py-20">
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={5}
-            loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: true,
-            }}
-            // pagination={{ clickable: true }}
-            // navigation
-            className="mySwiper h-full"
-          >
-            {images.map((src, idx) => (
-              <SwiperSlide key={idx} className="w-full">
-                <img
-                  src={src}
-                  alt={`Insta ${idx}`}
-                  className="w-full object-cover"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <InstagramReelsGrid />
         </div>
       </div>
     </div>

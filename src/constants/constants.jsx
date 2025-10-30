@@ -128,3 +128,7 @@ export const switchCollapseItems = [
   },
 ];
 export const topSpace = 139;
+
+export const magicText = {
+  view_more_text: "View More",
+};

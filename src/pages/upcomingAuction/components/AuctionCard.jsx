@@ -3,6 +3,7 @@ import { FaRegCalendar } from "react-icons/fa";
 import DummyImage from "@/assets/images/dummy-image.jpg";
 import { Link } from "react-router-dom";
 import moment from "moment-timezone";
+import { magicText } from "@/constants/constants";
 
 export default function AuctionCard({
   images,
@@ -113,10 +114,9 @@ export default function AuctionCard({
                 ))}
           </div>
 
-          {/* View More Button */}
           <Link to={`/property/${id}`}>
             <p className="border border-black px-8 py-3 text-sm font-moderat-regular group-hover:text-black group-hover:bg-white group-hover:border-white">
-              View More
+              {magicText.view_more_text}
             </p>
           </Link>
         </div>

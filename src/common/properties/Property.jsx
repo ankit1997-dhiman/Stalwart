@@ -3,6 +3,7 @@ import DummyImage from "@/assets/images/dummy-image.jpg";
 import { Link } from "react-router-dom";
 import { AnimatedButton } from "../Button/AnimatedButton";
 import { SoldTag } from "@/assets/icons/SoldTag";
+import { magicText } from "@/constants/constants";
 
 export function Property({
   id,
@@ -67,7 +68,7 @@ export function Property({
             <div>
               <AnimatedButton
                 to={`/property/${id}`}
-                buttonText="View More"
+                buttonText={magicText.view_more_text}
                 className="!text-black px-6 py-3"
               />
             </div>

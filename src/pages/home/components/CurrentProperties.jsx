@@ -11,6 +11,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { useTruncateText } from "@/hooks/useTruncateText";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
+import { magicText } from "@/constants/constants";
 
 export const CurrentProperties = ({ title, desc, status }) => {
   const [propertiesData, setPropertiesData] = useState([]);
@@ -82,7 +83,6 @@ export const CurrentProperties = ({ title, desc, status }) => {
           spaceBetween={16}
           slidesPerView={1}
           navigation
-          pagination={{ clickable: true }}
           autoplay={{ delay: 8000, disableOnInteraction: false }}
           loop={true}
           lazy={true}
@@ -107,7 +107,8 @@ export const CurrentProperties = ({ title, desc, status }) => {
                   image={item?.images?.length > 0 ? item.images : dummyImage}
                   address={item.formattedAddress}
                   subtitle={useTruncateText(item.description, 35)}
-                  buttonText={"View More"}
+                  buttonText={magicText.view_more_text}
+                  soldTag={true}
                   onClick={() => onClick(item)}
                 />
               </SwiperSlide>
