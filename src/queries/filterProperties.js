@@ -1,6 +1,10 @@
 export const GET_FILTERED_PROPOERTIES = `query GetFilteredProperties($first: Int, $filterSet: FilterSetAttributes, $status: [PropertyStatusEnum!] , $orderBy:PropertyOrderEnum) {
   properties(first: $first, filterSet: $filterSet, status: $status , orderBy: $orderBy) {
     totalCount
+    pageInfo{
+      hasNextPage
+      endCursor
+    }
     nodes {
       id
       formattedAddress

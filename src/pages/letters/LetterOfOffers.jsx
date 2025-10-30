@@ -17,7 +17,7 @@ export const LetterOfOffers = () => {
               START THE CONVERSATION
             </div>
             <div className="text-3xl font-moderat-medium !mt-5">
-              LETTER OF OFFER FORM
+              Expression of Interest Form
             </div>
             <div className="font-moderat-regular text-base !mt-8">
               This form allows you to put forward your offer in writing,
@@ -268,9 +268,8 @@ export const LetterOfOffers = () => {
               {/* Submit */}
               <Form.Item>
                 <Button
-                  type="primary"
                   htmlType="submit"
-                  className="!rounded-none !bg-white !text-black px-6 py-2 uppercase w-[268px] !border-black !border"
+                  className="!rounded-none bg-white !text-black px-6 py-2 uppercase w-[268px] !border-black !border hover:!bg-black hover:!text-white"
                 >
                   Submit Your Offer
                 </Button>

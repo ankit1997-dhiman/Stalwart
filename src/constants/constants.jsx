@@ -135,4 +135,11 @@ export const magicText = {
   slide_per_view_tab: 2,
   property_slide_per_view_desktop: 3,
   reel_slide_per_view_desktop: 3,
+  PROPERTIES_PER_PAGE: 4,
+  HOMEPAGE: {
+    FEATURED_TAB: "FEATURED",
+    BUY_TAB: "BUY",
+    SOLD_TAB: "SOLD",
+    LEASE_TAB: "LEASE",
+  },
 };

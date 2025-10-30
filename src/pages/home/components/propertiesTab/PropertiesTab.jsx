@@ -7,6 +7,7 @@ import { graphqlRequest } from "@/utils/graphqlRequest.js";
 import SellTab from "./components/SellTab.jsx";
 import LeaseTab from "./components/LeaseTab.jsx";
 import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries.js";
+import { magicText } from "@/constants/constants.jsx";
 
 // Map tab key → status
 const tabListingTypes = {
@@ -52,7 +53,9 @@ const PropertiesTab = () => {
     {
       key: "1",
       label: (
-        <p className="font-moderat-medium text-[10px] lg:text-base">FEATURED</p>
+        <p className="font-moderat-medium text-[10px] lg:text-base">
+          {magicText.HOMEPAGE.FEATURED_TAB}
+        </p>
       ),
       children: <Tab1 tabdata={data} />,
     },
@@ -60,7 +63,7 @@ const PropertiesTab = () => {
       key: "2",
       label: (
         <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">
-          BUY
+          {magicText.HOMEPAGE.BUY_TAB}
         </p>
       ),
       children: <Tab2 tabdata={data} activeTab={activeTab} />,
@@ -69,7 +72,7 @@ const PropertiesTab = () => {
       key: "3",
       label: (
         <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">
-          SOLD
+          {magicText.HOMEPAGE.SOLD_TAB}
         </p>
       ),
       children: <SellTab tabdata={data} activeTab={activeTab} />,
@@ -78,7 +81,7 @@ const PropertiesTab = () => {
       key: "4",
       label: (
         <p className="font-moderat-medium text-[10px] lg:text-base hover:text-black active:text-black">
-          LEASE
+          {magicText.HOMEPAGE.LEASE_TAB}
         </p>
       ),
       children: <LeaseTab tabdata={data} activeTab={activeTab} />,

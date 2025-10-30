@@ -32,13 +32,13 @@ const InstagramPosts = ({ backGroundWhite }) => {
             </p>
 
             {/* Mobile Carousel */}
-            <div className="block xl:hidden">
+            <div className="block xl:hidden mb-6 lg:mb-0">
               <InstagramReelsGrid />
             </div>
 
             {/* Form */}
             <div className="lg:w-1/2">
-              <p className="pt-26 md:pt-0 font-moderat-regular leading-[20px] text-[#4F4C45] text-sm w-full md:w-[553px]">
+              <p className="pt-26 md:pt-0 font-moderat-regular leading-[20px] text-[#4F4C45] text-sm w-full md:w-[553px] ">
                 Subscribe to get the latest insider tips, market updates and
                 access to the hottest deals as they come on the market.
               </p>

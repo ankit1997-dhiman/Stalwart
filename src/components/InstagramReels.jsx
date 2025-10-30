@@ -34,8 +34,8 @@ export default function InstagramReelsGrid() {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
-        // slidesPerView={1}
         loop={true}
+        autoplay={true}
         navigation
         preventClicks={false}
         preventClicksPropagation={false}
@@ -43,26 +43,27 @@ export default function InstagramReelsGrid() {
         touchStartPreventDefault={false}
         allowTouchMove={true}
         breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 1 },
+          0: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
           1024: { slidesPerView: 6 },
         }}
       >
         {reels.map((reel) => (
           <SwiperSlide key={reel.id}>
-            <div className="relative overflow-hidden   shadow-lg group my-6">
-              {reel.type === "v" ? (
-                <video
-                  src={reel.src}
-                  ref={videoRef}
-                  controls
-                  playsInline
-                  className="w-full h-[330px] object-cover  group-hover:scale-105 transition-transform duration-300 z-50"
-                />
-              ) : (
-                <img src={reel.src} className="h-[330px]" />
-              )}
-            </div>
+            {reel.type === "v" ? (
+              <video
+                src={reel.src}
+                ref={videoRef}
+                controls
+                playsInline
+                className="w-full h-[160px] md:h-[330px] object-cover  group-hover:scale-105 transition-transform duration-300 z-50"
+              />
+            ) : (
+              <img
+                src={reel.src}
+                className="h-[160px] md:h-[330px] object-cover"
+              />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
