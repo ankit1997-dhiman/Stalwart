@@ -13,15 +13,9 @@ export default function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBottom, setIsBottom] = useState(false);
 
-  const matchProperty = useMatch("/property/:id");
-  const showButton = matchProperty;
-
   const onFinish = (values) => {};
 
   // Config for top links
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -256,11 +250,6 @@ export default function Footer() {
           />
         </div>
       </footer>
-      {showButton && (
-        <div className="flex items-center justify-center z-50">
-          <StickyButton handleClick={showModal} />
-        </div>
-      )}
     </>
   );
 }

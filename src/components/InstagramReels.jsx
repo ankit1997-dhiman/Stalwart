@@ -45,7 +45,7 @@ export default function InstagramReelsGrid() {
         breakpoints={{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 1 },
-          1024: { slidesPerView: 4 },
+          1024: { slidesPerView: 6 },
         }}
       >
         {reels.map((reel) => (
@@ -57,10 +57,10 @@ export default function InstagramReelsGrid() {
                   ref={videoRef}
                   controls
                   playsInline
-                  className="w-full h-[600px] object-cover  group-hover:scale-105 transition-transform duration-300 z-50"
+                  className="w-full h-[330px] object-cover  group-hover:scale-105 transition-transform duration-300 z-50"
                 />
               ) : (
-                <img src={reel.src} className="h-[600px]" />
+                <img src={reel.src} className="h-[330px]" />
               )}
             </div>
           </SwiperSlide>

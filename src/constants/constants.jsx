@@ -131,4 +131,8 @@ export const topSpace = 139;
 
 export const magicText = {
   view_more_text: "View More",
+  slide_per_view_mobile: 1,
+  slide_per_view_tab: 2,
+  property_slide_per_view_desktop: 3,
+  reel_slide_per_view_desktop: 3,
 };

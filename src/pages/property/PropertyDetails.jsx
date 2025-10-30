@@ -5,7 +5,7 @@ import { graphqlRequest } from "@/utils/graphqlRequest";
 import { AgentCard } from "./components/AgentCard";
 import { PropertyInfo } from "./components/PropertyInfo";
 import { PropertySection } from "./components/PropertySection";
-import { Link, useParams } from "react-router-dom";
+import { Link, useMatch, useParams } from "react-router-dom";
 import { NotFound } from "../NotFound";
 import { RawHtml } from "@/components/RawHtml";
 import { MapCanvas } from "@/components/MapCanvas";
@@ -19,6 +19,9 @@ import { ShareModal } from "@/components/share/ShareModal";
 import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
 import { message, Skeleton } from "antd";
 import { GalleryModal } from "@/components/modals/GalleryModal";
+import StickyButton from "@/common/Button/StickyButton";
+import CustomModal from "@/components/modals/CustomModal";
+import EnquiryFrom from "@/components/modals/EnquiryFrom";
 
 export const PropertyDetails = () => {
   const [propertyData, setPropertyData] = useState(null);
@@ -28,6 +31,9 @@ export const PropertyDetails = () => {
   const [loading, setLoading] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
   const { id } = useParams();
+
+  const matchProperty = useMatch("/property/:id");
+  const showButton = matchProperty;
 
   const fetchProperties = async () => {
     try {
@@ -255,7 +261,7 @@ export const PropertyDetails = () => {
           <RelatedProperties />
         </div>
 
-        <EnquiryModal
+        {/* <EnquiryModal
           setIsModalOpen={setOpen}
           isModalOpen={open}
           propertyTitle={propertyData?.formattedAddress}
@@ -263,7 +269,7 @@ export const PropertyDetails = () => {
           street={propertyData?.street}
           headline={propertyData?.headline}
           handleCancel={handleEnquiryCancel}
-        />
+        /> */}
 
         <ShareModal
           openShareModal={openShareModal}
@@ -276,7 +282,25 @@ export const PropertyDetails = () => {
           sortedImages={sortedImages}
           handleGalleryCancel={handleGalleryCancel}
         />
+
+        <CustomModal isOpen={open} onClose={handleEnquiryCancel}>
+          <EnquiryFrom
+            propertyTitle={propertyData?.formattedAddress}
+            listingDetails={propertyData?.listingDetails}
+            street={propertyData?.street}
+            headline={propertyData?.headline}
+          />
+        </CustomModal>
       </div>
+      {showButton && (
+        <div className="flex items-center justify-center z-50">
+          <StickyButton
+            handleClick={() => setOpen(true)}
+            isModalOpen={open}
+            setIsModalOpen={setOpen}
+          />
+        </div>
+      )}
     </div>
   );
 };
