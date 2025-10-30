@@ -4,14 +4,21 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Label from "../form/Label";
 import { RawHtml } from "../RawHtml";
-import { graphqlRequest } from "@/utils/graphqlRequest";
-import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
+// import { graphqlRequest } from "@/utils/graphqlRequest";
+// import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
 import Image from "@/assets/images/enquire-image.png";
 
-const EnquiryFrom = ({ propertyTitle, listingDetails, street, headline }) => {
+const EnquiryFrom = ({
+  listingDetails,
+  street,
+  headline,
+  description,
+  address,
+}) => {
+  console.log(listingDetails, street, headline, description, "headline");
   const [form] = Form.useForm();
   const { id } = useParams();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const handleSubmit = async (values) => {
     try {
       const response = await fetch(
@@ -34,27 +41,8 @@ const EnquiryFrom = ({ propertyTitle, listingDetails, street, headline }) => {
       message.error("Something went wrong ❌");
     }
   };
-  useEffect(() => {
-    if (id) {
-      const fetchProperties = async () => {
-        const variables = { ids: [id] };
-        try {
-          const res = await graphqlRequest(
-            "/api/graphql",
-            GET_PROPERTY_BY_ID,
-            variables
-          );
-          const property = res?.data?.properties?.nodes?.[0];
-          setData(property || null);
-        } catch (error) {
-          message.error(error.message);
-        }
-      };
-      fetchProperties();
-    }
-  }, [id]);
 
-  const desc = useTruncateText(data?.description, 80);
+  const desc = useTruncateText(description, 30);
   return (
     <div className="bg-[#F4F2F0] lg:pl-10 relative h-full">
       <div className="flex bg-[#dad7d4] w-[160px] lg:w-[282px] h-[180px] lg:h-[304px] rounded-b-full items-end justify-center lg:absolute left-[60px]">
@@ -68,7 +56,7 @@ const EnquiryFrom = ({ propertyTitle, listingDetails, street, headline }) => {
       <div className="flex gap-x-8 px-5">
         <div className="w-full xl:w-[720px]">
           <Form form={form} layout="vertical" onFinish={handleSubmit}>
-            <div className="lg:pl-[300px] pt-10 lg:pt-[150px] grid lg:grid-cols-2 grid-cols-1 lg:gap-x-8">
+            <div className="lg:pl-[300px] pt-10 lg:pt-[130px] grid lg:grid-cols-2 grid-cols-1 lg:gap-x-8">
               <div>
                 <Form.Item
                   label={
@@ -150,7 +138,7 @@ const EnquiryFrom = ({ propertyTitle, listingDetails, street, headline }) => {
               />
             </Form.Item>
 
-            <div className="flex justify-end">
+            <div className="flex justify-end mb-8">
               <Button
                 className="!rounded-none !px-3.5 !border !border-black !py-2 w-[209px] !h-[47px] !bg-transparent"
                 htmlType="submit"
@@ -180,12 +168,12 @@ const EnquiryFrom = ({ propertyTitle, listingDetails, street, headline }) => {
           </div>
           <div className="p-10 bg-[#dad7d4] relative z-40">
             <p className="text-xl font-moderat-regular text-gray-800">
-              {data?.formattedAddress || null}
+              {address ? address : null}
             </p>
             <p className="font-moderat-medium text-sm pt-5">
-              {`${data?.bedrooms || 0} BED | ${data?.bathrooms || 0} BATH | ${
-                data?.carportSpaces || 0
-              } CAR`}
+              {`${listingDetails?.bedrooms || 0} BED | ${
+                listingDetails?.bathrooms || 0
+              } BATH | ${listingDetails?.carportSpaces || 0} CAR`}
             </p>
             <p className="text-sm text-gray-500 pt-10 leading-relaxed">
               <RawHtml html={desc} />
@@ -210,15 +198,15 @@ const EnquiryFrom = ({ propertyTitle, listingDetails, street, headline }) => {
           </div>
           <div className="p-10 bg-[#dad7d4] relative z-40">
             <p className="text-sm font-moderat-regular text-gray-800 uppercase">
-              {data?.formattedAddress || null}
+              {address ? address : null}
             </p>
             <p className="font-moderat-medium text-sm pt-5">
-              {`${data?.bedrooms || 0} BED | ${data?.bathrooms || 0} BATH | ${
-                data?.carportSpaces || 0
-              } CAR`}
+              {`${listingDetails?.bedrooms || 0} BED | ${
+                listingDetails?.bathrooms || 0
+              } BATH | ${listingDetails?.carportSpaces || 0} CAR`}
             </p>
             <p className="text-xs text-gray-500 pt-10 leading-relaxed">
-              {desc}
+              <RawHtml html={desc} />
             </p>
           </div>
         </div>

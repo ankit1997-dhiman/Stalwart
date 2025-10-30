@@ -1,4 +1,5 @@
 // src/components/common/CustomModal.jsx
+import { CloseBlackCross } from "@/assets/icons/CloseBlackCross";
 import { useEffect } from "react";
 
 const CustomModal = ({ isOpen, onClose, children, className = "" }) => {
@@ -23,15 +24,15 @@ const CustomModal = ({ isOpen, onClose, children, className = "" }) => {
 
       {/* ✅ Modal Content */}
       <div
-        className={`relative bg-[#F4F2F0] w-full max-w-[1400px] h-full   overflow-y-auto shadow-xl transform transition-all duration-300 scale-100 ${className} mt-20`}
+        className={`relative bg-[#F4F2F0] w-full max-w-[1400px] h-full md:h- xl:h-[690px] overflow-y-auto shadow-xl transform transition-all duration-300 scale-100 ${className} mt-20`}
         onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside
       >
         {/* Close Button */}
         <button
-          className="absolute top-4 right-4 text-black text-4xl z-50"
+          className="absolute top-4 right-4 text-black text-4xl z-50 cursor-pointer hover:bg-gray-200/70"
           onClick={onClose}
         >
-          ×
+          <CloseBlackCross />
         </button>
 
         {children}

@@ -4,6 +4,7 @@ import React from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import dummyImage from "@/assets/images/dummy-image.jpg";
+import { CloseWhiteCross } from "@/assets/icons/CloseWhiteCross";
 
 export const GalleryModal = ({
   openGalleryModal,
@@ -17,6 +18,7 @@ export const GalleryModal = ({
       className="custom-modal"
       width={{ sm: 400, md: 500, lg: 600, xl: 700 }}
       onCancel={handleGalleryCancel}
+      closeIcon={<CloseWhiteCross />}
     >
       {sortedImages && sortedImages.length > 0 ? (
         <Swiper

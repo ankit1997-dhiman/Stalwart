@@ -58,7 +58,7 @@ export const PropertyDetails = () => {
     if (id) fetchProperties();
   }, [id]);
 
-  if (!id) return <NotFound />;
+  if (!id) return null;
 
   if (!propertyData) return <NotFound />;
 
@@ -107,7 +107,6 @@ export const PropertyDetails = () => {
       />
 
       <div className="px-12.5 md:px-0">
-        {/* 📝 Description Section */}
         <section className="container flex flex-col md:flex-row justify-between gap-10 lg:gap-10 py-10 lg:py-25">
           <div className="w-full lg:w-[300px]">
             <p className="leading-5 font-moderat-bold text-base uppercase">
@@ -126,8 +125,6 @@ export const PropertyDetails = () => {
           </div>
         </section>
 
-        {/* 🏘️ Property Info Section */}
-        {/* <div className="container"> */}
         <section className="container flex flex-col md:flex-row justify-between gap-10 lg:gap-10 pb-10 lg:pb-25">
           {/* Left Column */}
           <div className="w-full md:w-[300px] space-y-5">
@@ -166,9 +163,34 @@ export const PropertyDetails = () => {
               </p>
             )}
 
-            <p className="leading-5 font-moderat-bold uppercase pb-15 text-base">
-              Download Document
-            </p>
+            {propertyData?.documents?.length > 0 && (
+              <>
+                <button
+                  className="leading-5 font-moderat-bold uppercase text-base cursor-pointer"
+                  onClick={() => {
+                    propertyData.documents.forEach((item, idx) => {
+                      if (item?.url) {
+                        // Delay each download slightly so browser doesn’t block them
+                        setTimeout(() => {
+                          const link = document.createElement("a");
+                          link.href = item.url;
+                          link.download =
+                            item.filename || `document-${idx + 1}`;
+                          link.target = "_blank";
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }, idx * 800); // 0.8 second delay between downloads
+                      }
+                    });
+                  }}
+                >
+                  <span className="leading-5 font-moderat-bold uppercase text-base">
+                    Download Documents
+                  </span>
+                </button>
+              </>
+            )}
 
             <div className="space-y-2 flex flex-col gap-5 pt-5 lg:pt-15">
               <button
@@ -196,7 +218,6 @@ export const PropertyDetails = () => {
                     spaceBetween={16}
                     slidesPerView={1}
                     navigation
-                    pagination={{ clickable: true }}
                     autoplay={{ delay: 8000, disableOnInteraction: false }}
                     loop
                     preloadImages={false}
@@ -261,16 +282,6 @@ export const PropertyDetails = () => {
           <RelatedProperties />
         </div>
 
-        {/* <EnquiryModal
-          setIsModalOpen={setOpen}
-          isModalOpen={open}
-          propertyTitle={propertyData?.formattedAddress}
-          listingDetails={propertyData?.listingDetails}
-          street={propertyData?.street}
-          headline={propertyData?.headline}
-          handleCancel={handleEnquiryCancel}
-        /> */}
-
         <ShareModal
           openShareModal={openShareModal}
           setOpenShareModal={setOpenShareModal}
@@ -285,10 +296,11 @@ export const PropertyDetails = () => {
 
         <CustomModal isOpen={open} onClose={handleEnquiryCancel}>
           <EnquiryFrom
-            propertyTitle={propertyData?.formattedAddress}
+            address={propertyData?.formattedAddress}
             listingDetails={propertyData?.listingDetails}
             street={propertyData?.street}
             headline={propertyData?.headline}
+            description={propertyData.description}
           />
         </CustomModal>
       </div>

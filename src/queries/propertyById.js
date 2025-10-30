@@ -13,6 +13,11 @@ export const GET_PROPERTY_BY_ID = `query GetSaleProperties($ids: [ID!], $first: 
       street
       headline
       description
+      documents {
+        id
+        filename
+        url
+      }
       featured
       createdAt
       updatedAt

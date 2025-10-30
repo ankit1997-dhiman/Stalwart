@@ -50,7 +50,7 @@ export default function InstagramReelsGrid() {
       >
         {reels.map((reel) => (
           <SwiperSlide key={reel.id}>
-            <div className="relative overflow-hidden rounded-2xl shadow-lg group my-6">
+            <div className="relative overflow-hidden   shadow-lg group my-6">
               {reel.type === "v" ? (
                 <video
                   src={reel.src}

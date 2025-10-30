@@ -108,7 +108,6 @@ export const CurrentProperties = ({ title, desc, status }) => {
                   address={item.formattedAddress}
                   subtitle={useTruncateText(item.description, 35)}
                   buttonText={magicText.view_more_text}
-                  soldTag={true}
                   onClick={() => onClick(item)}
                 />
               </SwiperSlide>

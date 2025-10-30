@@ -9,6 +9,7 @@ import { GET_FILTERED_PROPOERTIES } from "@/queries/filterProperties";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { Preloader } from "@/common/preloader/Preloader";
 import { BottomSpace } from "@/components/BottomSpace";
+import { LoadMoreButton } from "@/components/LoadMoreButton";
 
 export function SoldProperties() {
   const [soldFilterForm] = Form.useForm();
@@ -66,7 +67,8 @@ export function SoldProperties() {
         }),
         status: "SOLD", // always fetch sold properties
         page: 1,
-        order: "UPDATED_AT_NEWEST",
+        orderBy: "SOLD_DATE_DESC",
+        // totalCount,
       };
 
       const res = await graphqlRequest(
@@ -154,7 +156,7 @@ export function SoldProperties() {
       ) : (
         <PropertiesNotFound />
       )}
-
+      {soldProperties.length < 4 && <LoadMoreButton />}
       <BottomSpace />
     </div>
   );
