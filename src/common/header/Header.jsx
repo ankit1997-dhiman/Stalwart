@@ -40,7 +40,7 @@ const Header = () => {
   }, [isMobile]);
 
   return (
-    <div className="relative z-50">
+    <div className="relative z-30">
       {/* Desktop Sticky Navbar */}
       <div
         className={`fixed top-0 left-0 w-full transform transition-transform duration-500 ease-in-out will-change-transform ${

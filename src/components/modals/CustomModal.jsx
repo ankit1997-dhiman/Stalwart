@@ -12,7 +12,7 @@ const CustomModal = ({ isOpen, onClose, children, className = "" }) => {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center px-12.5 lg:px-0 my-12"
+      className="fixed inset-0 z-[999] flex items-center justify-center px-12.5 lg:px-0 "
       onClick={onClose}
     >
       {/* ✅ Background Overlay */}
@@ -23,7 +23,7 @@ const CustomModal = ({ isOpen, onClose, children, className = "" }) => {
 
       {/* ✅ Modal Content */}
       <div
-        className={`relative bg-[#F4F2F0] w-full max-w-[1400px] h-full xl:h-[775px] overflow-y-auto shadow-xl transform transition-all duration-300 scale-100 ${className}`}
+        className={`relative bg-[#F4F2F0] w-full max-w-[1400px] h-full   overflow-y-auto shadow-xl transform transition-all duration-300 scale-100 ${className} mt-20`}
         onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside
       >
         {/* Close Button */}

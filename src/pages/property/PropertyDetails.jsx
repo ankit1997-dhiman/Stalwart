@@ -293,7 +293,7 @@ export const PropertyDetails = () => {
         </CustomModal>
       </div>
       {showButton && (
-        <div className="flex items-center justify-center z-50">
+        <div className="flex items-center justify-center z-30">
           <StickyButton
             handleClick={() => setOpen(true)}
             isModalOpen={open}
