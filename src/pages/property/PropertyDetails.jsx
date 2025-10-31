@@ -6,7 +6,6 @@ import { AgentCard } from "./components/AgentCard";
 import { PropertyInfo } from "./components/PropertyInfo";
 import { PropertySection } from "./components/PropertySection";
 import { Link, useMatch, useParams } from "react-router-dom";
-import { NotFound } from "../NotFound";
 import { RawHtml } from "@/components/RawHtml";
 import { MapCanvas } from "@/components/MapCanvas";
 import { RelatedProperties } from "./components/RelatedProperties";
@@ -14,14 +13,16 @@ import moment from "moment";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
-import EnquiryModal from "@/common/modal/EnquiryModal";
 import { ShareModal } from "@/components/share/ShareModal";
 import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
-import { message, Skeleton } from "antd";
+import { message } from "antd";
 import { GalleryModal } from "@/components/modals/GalleryModal";
 import StickyButton from "@/common/Button/StickyButton";
 import CustomModal from "@/components/modals/CustomModal";
 import EnquiryFrom from "@/components/modals/EnquiryFrom";
+import { Preloader } from "@/common/preloader/Preloader";
+import { FaRegCalendar } from "react-icons/fa";
+import { addToGoogleCalendar } from "@/utils/addToCalendar";
 
 export const PropertyDetails = () => {
   const [propertyData, setPropertyData] = useState(null);
@@ -60,7 +61,7 @@ export const PropertyDetails = () => {
 
   if (!id) return null;
 
-  if (!propertyData) return <NotFound />;
+  if (!propertyData) return null;
 
   const formattedPrice =
     propertyData?.advertisedPrice ||
@@ -78,9 +79,8 @@ export const PropertyDetails = () => {
   };
   const handleEnquiryCancel = () => setOpen(false);
 
-  const hasInspections =
-    propertyData?.inspections?.nodes &&
-    propertyData.inspections.nodes.length > 0;
+  const hasInspections = propertyData?.inspections;
+  console.log(hasInspections);
 
   const hasFloorplan =
     propertyData?.floorplans &&
@@ -91,9 +91,10 @@ export const PropertyDetails = () => {
   const sortedImages = images.sort((a, b) => a.position - b.position);
   const hasAgents = propertyData?.agents && propertyData.agents.length > 0;
 
-  return (
+  return loading ? (
+    <Preloader />
+  ) : (
     <div className="pt-10">
-      {/* 🏠 Property Banner Section */}
       <PropertySection
         image={propertyData?.images}
         address={propertyData?.formattedAddress}
@@ -115,7 +116,7 @@ export const PropertyDetails = () => {
           </div>
 
           <div className="w-full lg:w-[70%] space-y-4">
-            <div className="leading-5 pb-2.5 md:pb-5 font-moderat-regular text-sm">
+            <div className="leading-5 pb-2.5 md:pb-5 font-moderat-regular text-sm text-justify">
               {propertyData?.description ? (
                 <RawHtml html={propertyData.description} />
               ) : (
@@ -126,22 +127,52 @@ export const PropertyDetails = () => {
         </section>
 
         <section className="container flex flex-col md:flex-row justify-between gap-10 lg:gap-10 pb-10 lg:pb-25">
-          {/* Left Column */}
-          <div className="w-full md:w-[300px] space-y-5">
+          <div className="w-full md:w-[300px] space-y-10">
             <PropertyInfo
               label={`For ${propertyData?.saleOrLease || "Sale"}`}
               value={formattedPrice}
             />
 
-            {hasInspections && (
-              <PropertyInfo
-                label="Next Inspection/Auction"
-                value={moment(propertyData.inspections.nodes[0].start).format(
-                  "DD MMM YYYY, h:mm A"
-                )}
-                Icon={CalendarOutlined}
-              />
-            )}
+            <>
+              {hasInspections.nodes.length ? (
+                <>
+                  <p className="leading-5 font-bold font-moderat-bold uppercase text-sm lg:text-base pb-2 lg:pb-4 ">
+                    Next Inspection/Auction
+                  </p>
+                  {hasInspections?.nodes
+                    .filter((item) => {
+                      const eventTime = moment.tz(
+                        item.start,
+                        "Australia/Brisbane"
+                      );
+                      const now = moment.tz("Australia/Brisbane");
+                      return eventTime.isSameOrAfter(now); // ✅ show only future or current
+                    })
+                    .map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-start gap-2 font-moderat-medium text-sm lg:text-base  group-hover:text-white text-left"
+                      >
+                        <p>
+                          {" "}
+                          {moment
+                            .tz(item.start, "Australia/Brisbane")
+                            .format("DD MMM YYYY, h:mm A")}
+                        </p>
+
+                        <FaRegCalendar
+                          className="cursor-pointer transition"
+                          onClick={() =>
+                            addToGoogleCalendar(item.start, item.finish)
+                          }
+                        />
+                      </div>
+                    ))}
+                </>
+              ) : null}
+
+              {}
+            </>
 
             <p
               className="leading-5 font-moderat-bold uppercase pb-5 text-base cursor-pointer"
@@ -170,7 +201,6 @@ export const PropertyDetails = () => {
                   onClick={() => {
                     propertyData.documents.forEach((item, idx) => {
                       if (item?.url) {
-                        // Delay each download slightly so browser doesn’t block them
                         setTimeout(() => {
                           const link = document.createElement("a");
                           link.href = item.url;
@@ -180,7 +210,7 @@ export const PropertyDetails = () => {
                           document.body.appendChild(link);
                           link.click();
                           document.body.removeChild(link);
-                        }, idx * 800); // 0.8 second delay between downloads
+                        }, idx * 800);
                       }
                     });
                   }}
@@ -228,7 +258,7 @@ export const PropertyDetails = () => {
                     {sortedImages.map((item, index) => (
                       <SwiperSlide key={item.id || index}>
                         <img
-                          src={item.url || dummyImage}
+                          src={item?.url ? item?.url : dummyImage}
                           alt={`Property image ${index + 1}`}
                           loading="lazy"
                           className="lg:h-[612px] lg:w-[812px] w-full object-cover"
@@ -243,13 +273,13 @@ export const PropertyDetails = () => {
 
               <div className="w-full 2xl:w-[40%] flex flex-col justify-between gap-10">
                 {hasAgents ? (
-                  propertyData.agents.map((agent) => (
+                  propertyData?.agents.map((agent) => (
                     <AgentCard
-                      key={agent.id}
-                      name={agent.name}
-                      email={agent.email}
-                      phone={agent.mobile}
-                      image={agent.avatarUrl}
+                      key={agent?.id}
+                      name={agent?.name}
+                      email={agent?.email}
+                      phone={agent?.mobile}
+                      image={agent?.avatarUrl}
                     />
                   ))
                 ) : (
@@ -276,9 +306,7 @@ export const PropertyDetails = () => {
             </div>
           </div>
         </section>
-        {/* </div> */}
         <div className="container">
-          {/* 🏡 Related Listings Section */}
           <RelatedProperties />
         </div>
 

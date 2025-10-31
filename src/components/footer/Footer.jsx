@@ -54,7 +54,11 @@ export default function Footer() {
                 </p>
                 <ul className="space-y-1 flex flex-col">
                   {section.links.map((link, i) => (
-                    <Link key={i} to={link.to} target={link.external}>
+                    <Link
+                      key={i}
+                      to={link?.to}
+                      target={link?.external ? link?.external : false}
+                    >
                       {link.label}
                     </Link>
                   ))}

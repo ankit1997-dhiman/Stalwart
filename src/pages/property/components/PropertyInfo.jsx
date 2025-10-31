@@ -1,7 +1,7 @@
 export const PropertyInfo = ({ label, value, Icon }) => (
   <div className="pb-15">
     {label && (
-      <p className="leading-5 font-bold font-moderat-bold uppercase text-sm lg:text-base pb-2 lg:pb-5 ">
+      <p className="leading-5 font-bold font-moderat-bold uppercase text-sm lg:text-base pb-2 lg:pb-4">
         {label}
       </p>
     )}

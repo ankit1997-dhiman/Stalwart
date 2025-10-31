@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AnimatedButton } from "../Button/AnimatedButton";
 import { SoldTag } from "@/assets/icons/SoldTag";
 import { magicText } from "@/constants/constants";
+import { ViewMoreButton } from "@/components/ViewMoreButton";
 
 export function Property({
   id,
@@ -65,13 +66,7 @@ export function Property({
                 } CAR `}
               </div>
             </div>
-            <div>
-              <AnimatedButton
-                to={`/property/${id}`}
-                buttonText={magicText.view_more_text}
-                className="!text-black px-6 py-3"
-              />
-            </div>
+            <ViewMoreButton className="text-black px-6 py-3" />
           </div>
 
           {price && (

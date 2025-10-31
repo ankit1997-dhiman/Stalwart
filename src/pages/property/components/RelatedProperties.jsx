@@ -11,11 +11,19 @@ export const RelatedProperties = () => {
   const fetchProperties = async () => {
     const variables = { first: 3, status: ["ACTIVE"] };
     try {
-      const res = await graphqlRequest("/api/graphql",GET_FILTERED_PROPOERTIES, variables);
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_FILTERED_PROPOERTIES,
+        variables
+      );
 
       if (res.data) {
         const variables = { status: ["ACTIVE"] };
-        const res = await graphqlRequest("/api/graphql",GET_SALE_PROPERTIES, variables);
+        const res = await graphqlRequest(
+          "/api/graphql",
+          GET_SALE_PROPERTIES,
+          variables
+        );
 
         if (res.data) {
           const allProperties = res?.data?.properties?.nodes;
@@ -39,18 +47,16 @@ export const RelatedProperties = () => {
       <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* You can map related properties here later */}
         {propertiesData.map((property, idx) => (
-          <Link to={`/property/${property.id}`}>
-            <Property
-              key={idx}
-              id={property.id}
-              address={property?.formattedAddress}
-              image={property?.images}
-              price={property?.advertisedPrice}
-              bed={property?.listingDetails?.bedrooms}
-              bathrooms={property?.listingDetails?.bathrooms}
-              carportSpaces={property?.listingDetails?.carportSpaces}
-            />
-          </Link>
+          <Property
+            key={idx}
+            id={property?.id}
+            address={property?.formattedAddress}
+            image={property?.images}
+            price={property?.advertisedPrice}
+            bed={property?.listingDetails?.bedrooms}
+            bathrooms={property?.listingDetails?.bathrooms}
+            carportSpaces={property?.listingDetails?.carportSpaces}
+          />
         ))}
       </div>
     </section>

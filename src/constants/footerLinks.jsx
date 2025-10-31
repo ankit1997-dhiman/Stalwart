@@ -5,9 +5,21 @@ export const footerLinks = [
     title: "BUY",
     links: [
       { label: "Properties for Sale", to: URLS.BUY, external: false },
-      { label: "Upcoming Inspections", to: URLS.UPCOMING_INSPECTIONS },
-      { label: "Upcoming Auctions", to: URLS.UPCOMING_AUCTIONS },
-      { label: "Expression of Interest Form", to: URLS.LETTER_OF_OFFER },
+      {
+        label: "Upcoming Inspections",
+        to: URLS.UPCOMING_INSPECTIONS,
+        external: false,
+      },
+      {
+        label: "Upcoming Auctions",
+        to: URLS.UPCOMING_AUCTIONS,
+        external: false,
+      },
+      {
+        label: "Expression of Interest Form",
+        to: URLS.LETTER_OF_OFFER,
+        external: false,
+      },
       { label: "Suburb Insight" },
       { label: "Our Team", to: URLS.ABOUT },
     ],
@@ -15,30 +27,46 @@ export const footerLinks = [
   {
     title: "SELL",
     links: [
-      { label: "Sell with Stalwart", to: URLS.SELL_WITH_STALWART },
-      { label: "Sold Properties", to: URLS.SOLD_PROPERTIES },
-      { label: "Book a Property Appraisal", to: "#" },
-      { label: "Suburb Insight", to: "#" },
-      { label: "Our Team", to: URLS.ABOUT },
+      {
+        label: "Sell with Stalwart",
+        to: URLS.SELL_WITH_STALWART,
+        external: false,
+      },
+      { label: "Sold Properties", to: URLS.SOLD_PROPERTIES, external: false },
+      { label: "Book a Property Appraisal", to: "#", external: false },
+      { label: "Suburb Insight", to: "#", external: false },
+      { label: "Our Team", to: URLS.ABOUT, external: false },
       { label: "Get A Property Estimate" },
     ],
   },
   {
     title: "LEASE",
     links: [
-      { label: "Leasing with Stalwart", to: URLS.SWITCH_TO_STALWART },
-      { label: "Properties for Lease", to: URLS.LEASE_PROPERTIES },
-      { label: "Upcoming Inspection", to: URLS.UPCOMING_INSPECTIONS },
+      {
+        label: "Leasing with Stalwart",
+        to: URLS.SWITCH_TO_STALWART,
+        external: false,
+      },
+      {
+        label: "Properties for Lease",
+        to: URLS.LEASE_PROPERTIES,
+        external: false,
+      },
+      {
+        label: "Upcoming Inspection",
+        to: URLS.UPCOMING_INSPECTIONS,
+        external: false,
+      },
       { label: "Owners Portal" },
       { label: "Tenant Portal" },
-      { label: "Our Team", to: URLS.ABOUT },
+      { label: "Our Team", to: URLS.ABOUT, external: false },
     ],
   },
   {
     title: "ABOUT",
     links: [
-      { label: "Our Team", to: URLS.ABOUT },
-      { label: "Careers", to: URLS.CAREERS },
+      { label: "Our Team", to: URLS.ABOUT, external: false },
+      { label: "Careers", to: URLS.CAREERS, external: false },
       { label: "News/Blogs" },
     ],
   },
@@ -54,7 +82,7 @@ export const footerLinks = [
     title: "CONTACT",
     links: [
       { label: "Request an Appraisal" },
-      { label: "Contact", to: URLS.CONTACT_US },
+      { label: "Contact", to: URLS.CONTACT_US, external: false },
     ],
   },
 ];

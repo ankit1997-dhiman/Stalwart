@@ -8,11 +8,6 @@ import Insta3 from "../../../assets/images/image-3.png";
 import Insta4 from "../../../assets/images/image-4.png";
 import Insta5 from "../../../assets/images/image-5.png";
 import Insta6 from "../../../assets/images/image-6.png";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import Label from "@/components/form/Label";
-import { AnimatedButton } from "@/common/Button/AnimatedButton";
 import InstagramReelsGrid from "@/components/InstagramReels";
 
 const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];

@@ -27,7 +27,7 @@ const Header = () => {
 
       // Only desktop sticky logic
       if (!isMobile) {
-        setIsSticky(currentScroll > 176);
+        setIsSticky(currentScroll > 139);
       }
     };
 
@@ -41,7 +41,6 @@ const Header = () => {
 
   return (
     <div className="relative z-30">
-      {/* Desktop Sticky Navbar */}
       <div
         className={`fixed top-0 left-0 w-full transform transition-transform duration-500 ease-in-out will-change-transform ${
           !isMobile
@@ -54,7 +53,6 @@ const Header = () => {
         <StickyNavbar />
       </div>
 
-      {/* Mobile or Default Navbar */}
       <div
         className={`transition-opacity duration-300 ${
           !isMobile && isSticky

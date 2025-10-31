@@ -14,9 +14,13 @@ export const FilterSelectDropdown = ({
     }
   };
   return (
-    <Form.Item name={name} label={false} className="!mb-0 !w-full !h-[50px]">
+    <Form.Item
+      name={name}
+      label={false}
+      className="!mb-0 !w-full !h-[50px] !outline-0 "
+    >
       <Select
-        className=" !text-black !h-[50px] !text-[10px] font-normal font-monument w-full !z-10 !placeholder:text-[10px] border-1 lg:border-0"
+        className=" !text-black !h-[50px] !text-[10px] font-normal font-monument w-full !z-10 !placeholder:text-[10px] border-1 lg:border-0 !outline-0 hover:!outline-0 focus:!outline-0"
         placeholder={placeholder}
         allowClear
         onChange={onChange} // 👈 triggers on select

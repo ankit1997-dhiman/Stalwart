@@ -17,6 +17,7 @@ import { URLS } from "@/constants/Urls";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { HeaderLogo } from "@/assets/icons/HeaderLogo";
 
 const SellWithStalwart = () => {
   const [form] = Form.useForm();
@@ -177,6 +178,9 @@ const SellWithStalwart = () => {
           className="relative overflow-hidden"
           style={{ marginTop: `-${topMargin}px` }}
         >
+          {/* <div className="container pt-17 ">
+            <HeaderLogo className="" />
+          </div> */}
           <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
             <div className="w-full md:w-[65%] py-60">
               <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">

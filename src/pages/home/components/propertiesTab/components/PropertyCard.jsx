@@ -1,4 +1,5 @@
 import { AnimatedButton } from "@/common/Button/AnimatedButton";
+import { ViewMoreButton } from "@/components/ViewMoreButton";
 import { magicText } from "@/constants/constants";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -43,11 +44,10 @@ const PropertyCard = ({ id, image, address, subtitle, soldTag, leaseTag }) => {
               </p>
             )}
           </div>
-
           <AnimatedButton
             to={`/property/${id}`}
             buttonText={magicText.view_more_text}
-            className="lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center !text-black"
+            className=" lg:w-[262px] lg:py-3 border font-moderat-regular text-base px-6 py-3 lg:px-0 text-center !text-black"
           />
         </div>
       </div>

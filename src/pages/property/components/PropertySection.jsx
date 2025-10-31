@@ -23,7 +23,7 @@ export const PropertySection = ({
         <div className="flex items-start justify-between px-12.5 lg:px-0 w-full ">
           <div className="w-full xl:w-4/5">
             {address && (
-              <p className="text-base md:text-2xl font-medium font-moderat-medium uppercase">
+              <p className="text-base md:text-2xl font-medium font-moderat-medium uppercase ">
                 {address}
               </p>
             )}
