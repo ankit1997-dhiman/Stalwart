@@ -8,6 +8,7 @@ import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { useLocation, useNavigate } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
 import { AppointedStep } from "../sellWithStalwart/components/AppointedStep";
+import { useTheme } from "@/context/ThemeContext";
 
 const PropertyEstimate = () => {
   const [form] = Form.useForm();
@@ -17,7 +18,8 @@ const PropertyEstimate = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const enquiry = location.state?.query;
-  console.log(enquiry);
+
+  const { setDark } = useTheme();
 
   const steps = [
     {
@@ -39,11 +41,30 @@ const PropertyEstimate = () => {
     1: ["tenancy_status"], // fields for step 2
     3: ["appointed_status"], // fields for step 3
   };
+
   const next = async () => {
     try {
+      // Validate current step fields
       await form.validateFields(stepFields[current]);
 
-      setCurrent((prev) => prev + 1);
+      // Move to next step
+      setCurrent((prev) => {
+        const nextStep = prev + 1;
+        console.log(current, "current", nextStep, "nextStep", steps.length);
+
+        // Set dark for first step, white for other steps
+        if (nextStep === 0) {
+          setDark(true);
+        } else if (nextStep <= steps.length + 1) {
+          console.log("laset step ");
+          setDark(true);
+        } else {
+          // If nextStep exceeds steps, reset to first step
+          setDark(false);
+        }
+
+        return nextStep;
+      });
     } catch (err) {
       console.log("Validation failed:", err);
     }
@@ -66,7 +87,6 @@ const PropertyEstimate = () => {
       const result = await response.json();
 
       if (result.success) {
-        message.success("Your inquiry has been sent", 4);
         form.resetFields();
         navigate(URLS.THANK_YOU);
       } else {
@@ -105,7 +125,7 @@ const PropertyEstimate = () => {
             <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
               Property APPRAISAL
             </p>
-            <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 w-full">
+            <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 w-full ">
               {steps[current].title}
             </p>
             <p className="font-normal font-moderat-regular text-base pb-20">

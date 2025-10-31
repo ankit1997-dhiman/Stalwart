@@ -9,6 +9,7 @@ import bgImage from "@/assets/images/contact-bg.png";
 import image from "@/assets/images/right.png";
 import { URLS } from "@/constants/Urls";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@/context/ThemeContext";
 
 const SuburbInsight = () => {
   const [form] = Form.useForm();
@@ -17,14 +18,36 @@ const SuburbInsight = () => {
   const topMargin = useResponsiveMargin(topSpace, 0);
   const navigate = useNavigate();
 
+  const { setDark } = useTheme();
+
   const next = async () => {
     try {
+      // Validate current step fields
       await form.validateFields(stepFields[current]);
-      setCurrent((prev) => prev + 1);
+
+      // Move to next step
+      setCurrent((prev) => {
+        const nextStep = prev + 1;
+        console.log(current, "current", nextStep, "nextStep", steps.length);
+
+        // Set dark for first step, white for other steps
+        if (nextStep === 0) {
+          setDark(false);
+        } else if (nextStep <= steps.length) {
+          console.log("laset step ");
+          setDark(true);
+        } else {
+          // If nextStep exceeds steps, reset to first step
+          setDark(false);
+        }
+
+        return nextStep;
+      });
     } catch (err) {
       console.log("Validation failed:", err);
     }
   };
+
   const stepFields = {
     1: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
     2: ["tenancy_status"], // fields for step 2

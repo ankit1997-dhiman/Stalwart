@@ -9,6 +9,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { topSpace } from "@/constants/constants";
+import { useTheme } from "@/context/ThemeContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +20,8 @@ export const Section1 = () => {
   const [activeTab, setActiveTab] = useState("SELL");
   const [currentTime, setCurrentTime] = useState(moment());
 
+  const { setDark } = useTheme();
+
   const topMargin = useResponsiveMargin(topSpace, 0);
 
   // Handle form submission
@@ -27,6 +30,7 @@ export const Section1 = () => {
 
     if (activeTab === "SELL") {
       navigate("/get-property-estimate", { state: { activeTab, query } });
+      setDark(true);
     } else {
       navigate("/search-results", { state: { activeTab, query } });
     }

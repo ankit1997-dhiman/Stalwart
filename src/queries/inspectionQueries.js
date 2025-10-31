@@ -35,6 +35,7 @@ export const GET_UPCOMING_INSPECTION = `query GetSaleProperties($ids: [ID!], $fi
       }
       images {
         url
+        position
       }
     }
   }

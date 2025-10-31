@@ -22,6 +22,7 @@ export const URLS = {
   INSTAGRAM: "https://www.instagram.com/stalwart_re/",
   FACEBOOK: "https://www.facebook.com/StalwartRE",
   CORELANDS: "https://corelands.com.au/",
+  OWNERS_PORTAL: "https://client.propertytree.com/login",
   LINKED_IN:
     "https://www.linkedin.com/company/stalwart-real-estate/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BiDG%2BiyktQd%2BxMqCptTgCiA%3D%3D",
 };

@@ -33,10 +33,18 @@ export const footerLinks = [
         external: false,
       },
       { label: "Sold Properties", to: URLS.SOLD_PROPERTIES, external: false },
-      { label: "Book a Property Appraisal", to: "#", external: false },
+      {
+        label: "Book a Property Appraisal",
+        to: URLS.SELL_WITH_STALWART,
+        external: false,
+      },
       { label: "Suburb Insight", to: URLS.SUBURB_INSIGHT, external: false },
       { label: "Our Team", to: URLS.ABOUT, external: false },
-      { label: "Get A Property Estimate" },
+      {
+        label: "Get A Property Estimate",
+        to: URLS.SELL_WITH_STALWART,
+        external: false,
+      },
     ],
   },
   {
@@ -57,8 +65,8 @@ export const footerLinks = [
         to: URLS.UPCOMING_INSPECTIONS,
         external: false,
       },
-      { label: "Owners Portal" },
-      { label: "Tenant Portal" },
+      { label: "Owners Portal", to: URLS.OWNERS_PORTAL },
+      { label: "Tenant Portal", to: URLS.OWNERS_PORTAL },
       { label: "Our Team", to: URLS.ABOUT, external: false },
     ],
   },
@@ -81,8 +89,8 @@ export const footerLinks = [
   {
     title: "CONTACT",
     links: [
-      { label: "Request an Appraisal" },
-      { label: "Contact", to: URLS.CONTACT_US, external: false },
+      { label: "Request an Appraisal", to: URLS.GET_PROPERTY_ESTIMATE },
+      { label: "Contact Us", to: URLS.CONTACT_US, external: false },
     ],
   },
 ];

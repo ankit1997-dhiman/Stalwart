@@ -33,7 +33,12 @@ export const drawerMenuitems = [
       },
       {
         key: "sub-4",
-        label: <DrawerSubmenuLabel label="Suburb Insights" link={"#"} />,
+        label: (
+          <DrawerSubmenuLabel
+            label="Suburb Insights"
+            link={URLS.SUBURB_INSIGHT}
+          />
+        ),
       },
       {
         key: "sub-5",
@@ -41,15 +46,6 @@ export const drawerMenuitems = [
           <DrawerSubmenuLabel
             label="Expression of Interest Form"
             link={URLS.LETTER_OF_OFFER}
-          />
-        ),
-      },
-      {
-        key: "sub-6",
-        label: (
-          <DrawerSubmenuLabel
-            label="Suburb Insight"
-            link={URLS.SUBURB_INSIGHT}
           />
         ),
       },
@@ -81,12 +77,20 @@ export const drawerMenuitems = [
       {
         key: "g3",
         label: (
-          <DrawerSubmenuLabel label="Book a Property Appraisal" link={"#"} />
+          <DrawerSubmenuLabel
+            label="Book a Property Appraisal"
+            link={URLS.GET_PROPERTY_ESTIMATE}
+          />
         ),
       },
       {
         key: "g4",
-        label: <DrawerSubmenuLabel label="Suburb Insight" link={"#"} />,
+        label: (
+          <DrawerSubmenuLabel
+            label="Suburb Insight"
+            link={URLS.SUBURB_INSIGHT}
+          />
+        ),
       },
     ],
   },
@@ -97,7 +101,12 @@ export const drawerMenuitems = [
     children: [
       {
         key: "g11",
-        label: <DrawerSubmenuLabel label="Leasing with Stalwart" link={"#"} />,
+        label: (
+          <DrawerSubmenuLabel
+            label="Leasing with Stalwart"
+            link={URLS.SWITCH_TO_STALWART}
+          />
+        ),
       },
       {
         key: "g12",
@@ -116,11 +125,15 @@ export const drawerMenuitems = [
       },
       {
         key: "g14",
-        label: <DrawerSubmenuLabel label="Owner Portal" />,
+        label: (
+          <DrawerSubmenuLabel label="Owner Portal" link={URLS.OWNERS_PORTAL} />
+        ),
       },
       {
         key: "g15",
-        label: <DrawerSubmenuLabel label="Tenant Portal" />,
+        label: (
+          <DrawerSubmenuLabel label="Tenant Portal" link={URLS.OWNERS_PORTAL} />
+        ),
       },
     ],
   },

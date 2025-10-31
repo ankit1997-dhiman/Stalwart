@@ -9,17 +9,18 @@ import { nav1Paths } from "@/constants/menuLinks";
 import { DropdownMenu } from "../dropdown/DropdownMenu.jsx";
 import { HeaderLogo } from "@/assets/icons/HeaderLogo.jsx";
 import { HeaderWhiteLogo } from "@/assets/icons/HeaderWhiteLogo.jsx";
+import { useTheme } from "@/context/ThemeContext.jsx";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
   const location = useLocation();
   const { pathname } = location;
   const matchProperty = useMatch("/property/:id");
+  const { isDark } = useTheme();
 
-  // Define the paths where Nav1 should be shown
+  const showNav1 = Boolean(nav1Paths.includes(pathname) || matchProperty);
 
-  const showNav1 = nav1Paths.includes(pathname) || matchProperty;
+  console.log(showNav1, "showNav1", isDark, "is Dark");
 
   const showDrawer = () => setOpen(true);
   const onClose = () => setOpen(false);
@@ -53,12 +54,12 @@ export default function Navbar() {
           }  flex justify-between items-center py-8 lg:py-14 container`}
         >
           <Link to={URLS.HOME}>
-            {showNav1 ? <HeaderLogo /> : <HeaderWhiteLogo />}
+            {isDark && !showNav1 ? <HeaderLogo /> : <HeaderWhiteLogo />}
           </Link>
 
           <RxHamburgerMenu
             className={`${
-              showNav1 ? "text-black " : "text-white "
+              isDark && !showNav1 ? "text-black " : "text-white "
             }  text-xl cursor-pointer`}
             onClick={showDrawer}
           />

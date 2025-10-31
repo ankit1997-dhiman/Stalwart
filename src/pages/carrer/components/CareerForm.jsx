@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Checkbox, Button, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import Label from "@/components/form/Label";
@@ -256,7 +256,7 @@ export default function CareerForm() {
               htmlType="submit"
               loading={loading}
               disabled={loading}
-              className="group !border !border-black !px-8 !py-2 hover:bg-black hover:text-white transition !rounded-none "
+              className="group !border !border-black !px-8 !py-2 hover:!bg-black hover:text-white transition !rounded-none "
             >
               <span className="group-hover:text-white">Submit Inquiry</span>
             </Button>

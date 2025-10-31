@@ -16,7 +16,7 @@ export default function UpcomingInspections() {
 
   const fetchInspectionProperties = useCallback(async () => {
     try {
-      const variables = { status: ["ACTIVE"] };
+      const variables = { status: ["ACTIVE", "UNDER_OFFER"] };
       const res = await graphqlRequest(
         "/api/graphql",
         GET_UPCOMING_INSPECTION,

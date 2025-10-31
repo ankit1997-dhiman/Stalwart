@@ -17,21 +17,60 @@ import { URLS } from "@/constants/Urls";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { useTheme } from "@/context/ThemeContext";
 
 const SellWithStalwart = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(false);
   const topMargin = useResponsiveMargin(topSpace, 0);
   const navigate = useNavigate();
+  const { setDark } = useTheme();
+
+  const steps = [
+    { title: "Landing", content: <SellLandingStep form={form} /> },
+    {
+      title: "Confirm your details",
+      content: <ConfirmDetailsStep form={form} />,
+    },
+    {
+      title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
+      content: <TenantedStep form={form} />,
+    },
+    {
+      title: "WHEN ARE YOU THINKING OF SELLING?",
+      content: <AppointedStep form={form} />,
+    },
+  ];
 
   const next = async () => {
     try {
+      // Validate current step fields
       await form.validateFields(stepFields[current]);
-      setCurrent((prev) => prev + 1);
+
+      // Move to next step
+      setCurrent((prev) => {
+        const nextStep = prev + 1;
+        console.log(current, "current", nextStep, "nextStep", steps.length);
+
+        // Set dark for first step, white for other steps
+        if (nextStep === 0) {
+          setDark(false);
+        } else if (nextStep <= steps.length + 1) {
+          console.log("laset step ");
+          setDark(true);
+        } else {
+          // If nextStep exceeds steps, reset to first step
+          setDark(false);
+        }
+
+        return nextStep;
+      });
     } catch (err) {
       console.log("Validation failed:", err);
     }
   };
+
   const stepFields = {
     0: ["address"], // fields for step 1
     1: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
@@ -75,21 +114,6 @@ const SellWithStalwart = () => {
     }
   };
 
-  const steps = [
-    { title: "Landing", content: <SellLandingStep form={form} /> },
-    {
-      title: "Confirm your details",
-      content: <ConfirmDetailsStep form={form} />,
-    },
-    {
-      title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
-      content: <TenantedStep form={form} />,
-    },
-    {
-      title: "WHEN ARE YOU THINKING OF SELLING?",
-      content: <AppointedStep form={form} />,
-    },
-  ];
   const onFinishFailed = (errorInfo) => {
     message.error("Please fill all required fields");
     console.warn("Validation Failed:", errorInfo);
@@ -254,6 +278,8 @@ const SellWithStalwart = () => {
                 {current === steps.length - 1 && (
                   <Button
                     htmlType="submit"
+                    loading={loading}
+                    disabled={loading}
                     className="!rounded-none !px-3 bg-white !border !border-black !py-3"
                   >
                     <span className="font-moderat-regular text-base">
