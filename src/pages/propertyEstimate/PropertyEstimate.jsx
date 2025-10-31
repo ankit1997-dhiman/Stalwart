@@ -88,7 +88,9 @@ const PropertyEstimate = () => {
       form={form}
       layout="vertical"
       onFinish={onFinish}
-      initialValues={{ enquiry_for: enquiry }}
+      initialValues={{
+        enquiry_for: `Property Evaluation Request For ${enquiry}`,
+      }}
       onFinishFailed={onFinishFailed}
     >
       <Form.Item name="enquiry_for" hidden>

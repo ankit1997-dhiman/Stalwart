@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Collapse, message } from "antd";
+import { Form, Button, Collapse, message, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import Plus from "@/assets/icons/plus-icon.svg";
 import Minus from "@/assets/icons/minus.svg";
@@ -22,6 +22,7 @@ const SellWithStalwart = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
   const topMargin = useResponsiveMargin(topSpace, 0);
+  const navigate = useNavigate();
 
   const next = async () => {
     try {
@@ -32,36 +33,45 @@ const SellWithStalwart = () => {
     }
   };
   const stepFields = {
-    0: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
-    1: ["tenancy_status"], // fields for step 2
-    2: ["appointed_status"], // fields for step 3
+    0: ["address"], // fields for step 1
+    1: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
+    2: ["tenancy_status"], // fields for step 2
+    3: ["appointed_status"], // fields for step 3
   };
 
   const prev = () => setCurrent((prev) => prev - 1);
 
   const onFinish = async (values) => {
+    setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `Sell With Stalwart Inquiry Received For ${values.address}`,
+    };
+
+    console.log(updatedValues, "form values being sent");
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BASE_URL}/api/send-email`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(values),
+          body: JSON.stringify(updatedValues),
         }
       );
 
       const result = await response.json();
 
       if (result.success) {
-        message.success("Your inquiry has been sent ", 4);
-
         form.resetFields();
+        navigate(URLS.THANK_YOU);
       } else {
-        message.error("Failed to send inquiry ❌", 4);
+        message.error("Failed to send inquiry ❌");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      message.error("Something went wrong ❌", 4);
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,9 +90,21 @@ const SellWithStalwart = () => {
       content: <AppointedStep form={form} />,
     },
   ];
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+    console.warn("Validation Failed:", errorInfo);
+  };
 
   return (
-    <Form form={form} layout="vertical" onFinish={onFinish}>
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+    >
+      <Form.Item name="enquiry_for" hidden>
+        <Input />
+      </Form.Item>
       {/* First step (Landing) */}
       {current === 0 && (
         <>

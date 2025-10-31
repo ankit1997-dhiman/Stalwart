@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Form, Button, Collapse, message } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import { HiArrowLongRight } from "react-icons/hi2";
+import { Form, Button, Collapse, message, Input } from "antd";
+import { useNavigate } from "react-router-dom";
 import Plus from "@/assets/icons/plus-icon.svg";
 import Minus from "@/assets/icons/minus.svg";
 import image from "@/assets/images/right.png";
@@ -22,49 +21,10 @@ import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 const SwitchToStalwart = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const topMargin = useResponsiveMargin(topSpace, 0);
-
-  // ---- Step navigation ----
-  const next = async () => {
-    try {
-      // await form.validateFields();
-      setCurrent((prev) => prev + 1);
-    } catch {
-      // AntD will handle showing validation errors
-    }
-  };
-
-  const prev = () => setCurrent((prev) => prev - 1);
-
-  // ---- Form submission ----
-  const onFinish = async (values) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(values),
-        }
-      );
-
-      const result = await response.json();
-
-      if (result.success) {
-        message.success("Your inquiry has been sent ", 4);
-
-        form.resetFields();
-      } else {
-        message.error("Failed to send inquiry ❌", 4);
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      message.error("Something went wrong ❌", 4);
-    }
-  };
-
   const steps = [
     { title: "Landing", content: <SellLandingStep form={form} /> },
     {
@@ -73,23 +33,11 @@ const SwitchToStalwart = () => {
     },
     {
       title: "Is your property currently tenanted?",
-      content: (
-        <CheckboxStep
-          questionYes="tenantedYes"
-          questionNo="tenantedNo"
-          form={form}
-        />
-      ),
+      content: <CheckboxStep questionYes="tenanted_status" form={form} />,
     },
     {
       title: "Do you currently have a property manager appointed?",
-      content: (
-        <CheckboxStep
-          questionYes="appointedYes"
-          questionNo="appointedNo"
-          form={form}
-        />
-      ),
+      content: <CheckboxStep questionYes="appointed_status" form={form} />,
     },
     {
       title:
@@ -98,8 +46,73 @@ const SwitchToStalwart = () => {
     },
   ];
 
+  const next = async () => {
+    try {
+      await form.validateFields(stepFields[current]);
+      setCurrent((prev) => prev + 1);
+    } catch (err) {
+      console.log("Validation failed:", err);
+    }
+  };
+  const stepFields = {
+    0: ["address"], // fields for step 1
+    1: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
+    2: ["tenanted_status"], // fields for step 2
+    3: ["appointed_status"], // fields for step 3
+  };
+
+  const prev = () => setCurrent((prev) => prev - 1);
+
+  // ---- Form submission ----
+  const onFinish = async (values) => {
+    setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `Lease With Stalwart Inquiry Received For ${values.address}`,
+    };
+
+    console.log(updatedValues, "form values being sent");
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedValues),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        form.resetFields();
+        navigate(URLS.THANK_YOU);
+      } else {
+        message.error("Failed to send inquiry ❌");
+      }
+    } catch (error) {
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+    console.warn("Validation Failed:", errorInfo);
+  };
+
   return (
-    <Form form={form} layout="vertical" onFinish={onFinish}>
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+    >
+      <Form.Item name="enquiry_for" hidden>
+        <Input />
+      </Form.Item>
       {current === 0 ? (
         <>
           {/* Landing Step */}
@@ -252,6 +265,8 @@ const SwitchToStalwart = () => {
 
                 {current === steps.length - 1 && (
                   <Button
+                    loading={loading}
+                    disabled={loading}
                     htmlType="submit" // ✅ triggers Form submission correctly
                     className="!rounded-none !px-3 bg-white !border !border-black !py-3"
                   >

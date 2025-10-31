@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { SellLandingStep } from "../sellWithStalwart/components/SellLandingStep";
-import { Button, Form, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { topSpace } from "@/constants/constants";
 import { ConfirmDetailsStep } from "../sellWithStalwart/components/ConfirmDetailsStep";
 import { TenantedStep } from "../sellWithStalwart/components/TenantedStep";
-import { AppointedStep } from "../sellWithStalwart/components/AppointedStep";
 import bgImage from "@/assets/images/contact-bg.png";
 import image from "@/assets/images/right.png";
+import { URLS } from "@/constants/Urls";
+import { useNavigate } from "react-router-dom";
 
 const SuburbInsight = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(false);
   const topMargin = useResponsiveMargin(topSpace, 0);
+  const navigate = useNavigate();
 
   const next = async () => {
     try {
@@ -30,28 +33,34 @@ const SuburbInsight = () => {
   const prev = () => setCurrent((prev) => prev - 1);
 
   const onFinish = async (values) => {
+    setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `Suburb Market Insight Request For ${values.address}`,
+    };
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BASE_URL}/api/send-email`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(values),
+          body: JSON.stringify(updatedValues),
         }
       );
 
       const result = await response.json();
 
       if (result.success) {
-        message.success("Your inquiry has been sent ", 4);
-
         form.resetFields();
+        navigate(URLS.THANK_YOU);
       } else {
-        message.error("Failed to send inquiry ❌", 4);
+        message.error("Failed to send inquiry ❌");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      message.error("Something went wrong ❌", 4);
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,8 +75,21 @@ const SuburbInsight = () => {
       content: <TenantedStep form={form} />,
     },
   ];
+
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+    console.warn("Validation Failed:", errorInfo);
+  };
   return (
-    <Form form={form} layout="vertical" onFinish={onFinish}>
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+    >
+      <Form.Item name="enquiry_for" hidden>
+        <Input />
+      </Form.Item>
       {current === 0 && (
         <>
           <section
@@ -154,6 +176,8 @@ const SuburbInsight = () => {
                 {current === steps.length - 1 && (
                   <Button
                     htmlType="submit"
+                    loading={loading}
+                    disabled={loading}
                     className="!rounded-none !px-3 bg-white !border !border-black !py-3"
                   >
                     <span className="font-moderat-regular text-base">

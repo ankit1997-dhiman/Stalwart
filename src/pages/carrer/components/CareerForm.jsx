@@ -1,12 +1,50 @@
 import React from "react";
-import { Form, Input, Checkbox, Button, Upload } from "antd";
+import { Form, Input, Checkbox, Button, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import Label from "@/components/form/Label";
+import { useNavigate } from "react-router-dom";
+import { URLS } from "@/constants/Urls";
 
 export default function CareerForm() {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {};
+  const onFinish = async (values) => {
+    setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `New Candidate Application`,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedValues),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        contactForm.resetFields();
+        navigate(URLS.THANK_YOU);
+      } else {
+        message.error("Failed to send inquiry ❌");
+      }
+    } catch (error) {
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+    console.warn("Validation Failed:", errorInfo);
+  };
 
   return (
     <section className="py-12 px-12.5 xl:px-0">
@@ -36,6 +74,7 @@ export default function CareerForm() {
           form={form}
           layout="vertical"
           onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
           className="space-t-7.5 md:space-t-10"
         >
           <div className="pt-18 pb-11">
@@ -213,12 +252,14 @@ export default function CareerForm() {
 
           {/* Submit Button */}
           <Form.Item>
-            <button
-              type="submit"
+            <Button
+              htmlType="submit"
+              loading={loading}
+              disabled={loading}
               className="group !border !border-black !px-8 !py-2 hover:bg-black hover:text-white transition !rounded-none "
             >
               <span className="group-hover:text-white">Submit Inquiry</span>
-            </button>
+            </Button>
           </Form.Item>
         </Form>
       </div>

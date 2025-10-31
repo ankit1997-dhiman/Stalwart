@@ -1,12 +1,55 @@
 import React from "react";
 import HeroSection from "@/common/HeroSection";
 import bgImage from "@/assets/images/contact-bg.png";
-import { Button, Checkbox, Col, DatePicker, Form, Input, Row } from "antd";
+import {
+  Button,
+  Checkbox,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  message,
+  Row,
+} from "antd";
+import { useNavigate } from "react-router-dom";
+import { URLS } from "@/constants/Urls";
 
 export const LetterOfOffers = () => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {};
+  const onFinish = async (values) => {
+    setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `EOI Submission Received `,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedValues),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        form.resetFields();
+        navigate(URLS.THANK_YOU);
+      } else {
+        message.error("Failed to send inquiry ❌");
+      }
+    } catch (error) {
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
       <HeroSection title={"Expression of Interest Form"} bgImage={bgImage} />
@@ -269,6 +312,8 @@ export const LetterOfOffers = () => {
               <Form.Item>
                 <Button
                   htmlType="submit"
+                  loading={loading}
+                  disabled={loading}
                   className="!rounded-none bg-white !text-black px-6 py-2 uppercase w-[268px] !border-black !border hover:!bg-black hover:!text-white"
                 >
                   Submit Your Offer

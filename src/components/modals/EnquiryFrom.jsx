@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { RawHtml } from "../RawHtml";
 import Image from "@/assets/images/enquire-image.png";
 import Label from "../form/Label";
-import { FaL } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { URLS } from "@/constants/Urls";
 
 const EnquiryFrom = ({
   listingDetails,
@@ -16,9 +17,11 @@ const EnquiryFrom = ({
 }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (values) => {
-    setLoading(true); // start loading
+  const onFinish = async (values) => {
+    setLoading(true);
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BASE_URL}/api/send-email`,
@@ -30,17 +33,17 @@ const EnquiryFrom = ({
       );
 
       const result = await response.json();
+
       if (result.success) {
-        message.success("Your inquiry has been sent", 4);
         form.resetFields();
-        setOpen(false);
+        navigate(URLS.THANK_YOU);
       } else {
         message.error("Failed to send inquiry ❌");
       }
     } catch (error) {
       message.error("Something went wrong ❌");
     } finally {
-      setLoading(false); // stop loading
+      setLoading(false);
     }
   };
 
@@ -60,8 +63,10 @@ const EnquiryFrom = ({
           <Form
             form={form}
             layout="vertical"
-            onFinish={handleSubmit}
-            initialValues={{ enquiry_for: address }}
+            onFinish={onFinish}
+            initialValues={{
+              enquiry_for: `Property Information Request Received For ${address}`,
+            }}
           >
             <div className="lg:pl-[300px] pt-10 lg:pt-[130px] grid lg:grid-cols-2 grid-cols-1 lg:gap-x-8">
               <div>

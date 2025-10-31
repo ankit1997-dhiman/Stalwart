@@ -36,7 +36,6 @@ export default function InstagramReelsGrid() {
         spaceBetween={30}
         loop={true}
         autoplay={true}
-        navigation
         preventClicks={false}
         preventClicksPropagation={false}
         simulateTouch={true}
@@ -50,20 +49,19 @@ export default function InstagramReelsGrid() {
       >
         {reels.map((reel) => (
           <SwiperSlide key={reel.id}>
-            {reel.type === "v" ? (
-              <video
-                src={reel.src}
-                ref={videoRef}
-                controls
-                playsInline
-                className="w-full h-[160px] md:h-[330px] object-cover  group-hover:scale-105 transition-transform duration-300 z-50"
-              />
-            ) : (
-              <img
-                src={reel.src}
-                className="h-[160px] md:h-[330px] object-cover"
-              />
-            )}
+            <div className="h-[300px] md:h-[330px] object-contain ">
+              {reel.type === "v" ? (
+                <video
+                  src={reel.src}
+                  ref={videoRef}
+                  controls
+                  playsInline
+                  className="group-hover:scale-105 transition-transform duration-300 z-50"
+                />
+              ) : (
+                <img src={reel.src} className="   object-cover" />
+              )}
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

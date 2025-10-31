@@ -2,31 +2,48 @@ import { Button, Checkbox, Form, Input, message, Spin } from "antd";
 import React, { useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import Label from "@/components/form/Label";
+import { useNavigate } from "react-router-dom";
+import { URLS } from "@/constants/Urls";
 
 export default function ContactForm() {
   const [contactForm] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `New Contact Form Submission`,
+    };
+
     try {
-      const response = await fetch("http://localhost:3001/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedValues),
+        }
+      );
 
       const result = await response.json();
+
       if (result.success) {
-        setLoading(false);
-        message.success("Your inquiry has been sent");
         contactForm.resetFields();
+        navigate(URLS.THANK_YOU);
       } else {
         message.error("Failed to send inquiry ❌");
       }
     } catch (error) {
       message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
     }
+  };
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+    console.warn("Validation Failed:", errorInfo);
   };
 
   return (
@@ -53,8 +70,12 @@ export default function ContactForm() {
           form={contactForm}
           layout="vertical"
           onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
           className="!my-16 !md:my-0"
         >
+          <Form.Item name="enquiry_for" hidden>
+            <Input />
+          </Form.Item>
           {/* Type of Inquiry */}
           <div className="py-18 hidden xl:block">
             <Form.Item
@@ -184,6 +205,8 @@ export default function ContactForm() {
             <Button
               htmlType="submit"
               type="default"
+              loading={loading}
+              disabled={loading}
               className="!border !border-black !px-10 !py-4 !hover:bg-black !hover:text-white transition !rounded-none mt-4 hover:!bg-black hover:!text-white"
             >
               Submit Inquiry
