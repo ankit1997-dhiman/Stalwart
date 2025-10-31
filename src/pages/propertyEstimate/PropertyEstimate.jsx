@@ -1,0 +1,171 @@
+import React, { useState } from "react";
+import { Button, Form, Input, message } from "antd";
+import { ConfirmDetailsStep } from "../sellWithStalwart/components/ConfirmDetailsStep";
+import { TenantedStep } from "../sellWithStalwart/components/TenantedStep";
+import image from "@/assets/images/right.png";
+import { topSpace } from "@/constants/constants";
+import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { useLocation, useNavigate } from "react-router-dom";
+import { URLS } from "@/constants/Urls";
+import { AppointedStep } from "../sellWithStalwart/components/AppointedStep";
+
+const PropertyEstimate = () => {
+  const [form] = Form.useForm();
+  const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const topMargin = useResponsiveMargin(topSpace, 0);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const enquiry = location.state?.query;
+  console.log(enquiry);
+
+  const steps = [
+    {
+      title: "Confirm your details",
+      content: <ConfirmDetailsStep form={form} />,
+    },
+    {
+      title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
+      content: <TenantedStep form={form} />,
+    },
+    {
+      title: "WHEN ARE YOU THINKING OF SELLING?",
+      content: <AppointedStep form={form} />,
+    },
+  ];
+
+  const stepFields = {
+    0: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
+    1: ["tenancy_status"], // fields for step 2
+    3: ["appointed_status"], // fields for step 3
+  };
+  const next = async () => {
+    try {
+      await form.validateFields(stepFields[current]);
+
+      setCurrent((prev) => prev + 1);
+    } catch (err) {
+      console.log("Validation failed:", err);
+    }
+  };
+
+  const prev = () => setCurrent((prev) => prev - 1);
+
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        message.success("Your inquiry has been sent", 4);
+        form.resetFields();
+        navigate(URLS.THANK_YOU);
+      } else {
+        message.error("Failed to send inquiry ❌");
+      }
+    } catch (error) {
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+    console.warn("Validation Failed:", errorInfo);
+  };
+  return (
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={onFinish}
+      initialValues={{ enquiry_for: enquiry }}
+      onFinishFailed={onFinishFailed}
+    >
+      <Form.Item name="enquiry_for" hidden>
+        <Input />
+      </Form.Item>
+      <div
+        className="relative overflow-hidden lg:h-screen"
+        style={{ marginTop: `-${topMargin}px` }}
+      >
+        <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
+          <div className="w-full md:w-[65%] py-60 flex flex-col">
+            <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
+              Property APPRAISAL
+            </p>
+            <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 w-full">
+              {steps[current].title}
+            </p>
+            <p className="font-normal font-moderat-regular text-base pb-20">
+              {current === 1
+                ? "Almost there, we just need to get a few details from you."
+                : "Help us to provide you with the very best service by telling us a bit more about your property."}
+            </p>
+
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                style={{ display: current === index ? "" : "none" }}
+              >
+                {step.content}
+              </div>
+            ))}
+
+            <div className="flex gap-4 mt-10">
+              {current > 0 && (
+                <Button
+                  className="!rounded-none !px-3 bg-white !border !border-black !py-3"
+                  onClick={prev}
+                >
+                  <span className="font-moderat-regular text-base">
+                    Go Back
+                  </span>
+                </Button>
+              )}
+              {current < steps.length - 1 && (
+                <Button
+                  className="!rounded-none !px-3.5 bg-white !border !border-black !py-2 w-[127px] h-[41px]"
+                  onClick={next}
+                >
+                  <span className="font-moderat-regular text-base">
+                    Next Step
+                  </span>
+                </Button>
+              )}
+              {current === steps.length - 1 && (
+                <Button
+                  htmlType="submit"
+                  loading={loading}
+                  disabled={loading}
+                  className="!rounded-none !px-3 bg-white !border !border-black !py-3"
+                >
+                  <span className="font-moderat-regular text-base">Submit</span>
+                </Button>
+              )}
+            </div>
+          </div>
+
+          <div className="hidden md:block md:w-[35%] h-screen absolute right-0 top-0">
+            <img
+              src={image}
+              alt="Right side"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </Form>
+  );
+};
+
+export default PropertyEstimate;

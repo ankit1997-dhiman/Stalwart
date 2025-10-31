@@ -6,7 +6,7 @@ export const ConfirmDetailsStep = ({ form }) => (
   <>
     <div className="grid grid-col-1 xl:grid-cols-2 gap-x-7.5">
       <Form.Item
-        name="confirm_firstName"
+        name="first_name"
         label={<Label label="First Name" className="pb-4" />}
         rules={[{ required: true, message: "First name is required" }]}
       >
@@ -16,7 +16,7 @@ export const ConfirmDetailsStep = ({ form }) => (
         />
       </Form.Item>
       <Form.Item
-        name="confirm_lastName"
+        name="last_name"
         label={<Label label="Last Name" className="pb-4" />}
         rules={[{ required: true, message: "Last name is required" }]}
       >
@@ -26,7 +26,7 @@ export const ConfirmDetailsStep = ({ form }) => (
         />
       </Form.Item>
       <Form.Item
-        name="confirm_email"
+        name="email"
         label={<Label label="Contact Email" className="pb-4" />}
         rules={[
           { required: true, message: "Email is required" },
@@ -39,7 +39,7 @@ export const ConfirmDetailsStep = ({ form }) => (
         />
       </Form.Item>
       <Form.Item
-        name="confirm_number"
+        name="number"
         label={<Label label="Contact Number" className="pb-4" />}
         rules={[{ required: true, message: "Contact number is required" }]}
       >
@@ -51,7 +51,7 @@ export const ConfirmDetailsStep = ({ form }) => (
     </div>
 
     <Form.Item
-      name="confirm_privacy"
+      name="privacy"
       valuePropName="checked"
       rules={[
         {
@@ -62,7 +62,7 @@ export const ConfirmDetailsStep = ({ form }) => (
         },
       ]}
     >
-      <Checkbox>
+      <Checkbox className="pt-3">
         <ChexboxText
           text="Don’t worry, we never pass your details onto any third parties. By
         continuing you agree to our Privacy Policy."

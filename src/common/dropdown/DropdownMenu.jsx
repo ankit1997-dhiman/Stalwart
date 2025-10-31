@@ -1,3 +1,4 @@
+import { WhiteArrow } from "@/assets/icons/WhiteArrow";
 import { drawerMenuitems } from "@/constants/DrawerMenu";
 import { Menu } from "antd";
 import React, { useState } from "react";
@@ -37,7 +38,6 @@ export const DropdownMenu = ({ onSelect }) => {
           .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey])
       );
     } else {
-      // close
       setStateOpenKeys(openKeys);
     }
   };
@@ -47,6 +47,10 @@ export const DropdownMenu = ({ onSelect }) => {
       onClick={onClick}
       className="     
         !bg-transparent 
+      [&_.ant-menu-submenu-title:hover_.ant-menu-title-content]:text-black
+      [&_.ant-menu-submenu-title:hover_.ant-menu-submenu-arrow]:text-black
+        [&_.ant-menu-title-content]:text-white
+        [&_.ant-menu-title-content:hover]:text-black
         [&_.ant-menu-item]:!my-2 
         [&_.ant-menu-submenu-title]:!my-2 
         [&_.ant-menu-submenu-title]:!rounded-none 

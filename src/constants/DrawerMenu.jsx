@@ -44,6 +44,15 @@ export const drawerMenuitems = [
           />
         ),
       },
+      {
+        key: "sub-6",
+        label: (
+          <DrawerSubmenuLabel
+            label="Suburb Insight"
+            link={URLS.SUBURB_INSIGHT}
+          />
+        ),
+      },
     ],
   },
   {

@@ -130,7 +130,7 @@ export const Section1 = () => {
 
               <Button
                 htmlType="submit"
-                className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px] !rounded-none"
+                className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px] !rounded-none cursor-pointer"
               >
                 <img src={searchImage} alt="Search" className="my-auto" />
               </Button>

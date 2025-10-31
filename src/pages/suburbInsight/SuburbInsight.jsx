@@ -1,24 +1,15 @@
 import React, { useState } from "react";
-import { Form, Button, Collapse, message } from "antd";
-import { useNavigate } from "react-router-dom";
-import Plus from "@/assets/icons/plus-icon.svg";
-import Minus from "@/assets/icons/minus.svg";
-import image from "@/assets/images/right.png";
-import bgImage from "@/assets/images/contact-bg.png";
-import sectionBgImage from "@/assets/images/tab-image.png";
-import { CurrentProperties } from "../home/components/CurrentProperties";
-import { collapseItems, topSpace } from "@/constants/constants";
-import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
-import { SellLandingStep } from "./components/SellLandingStep";
-import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
-import { AppointedStep } from "./components/AppointedStep";
-import { TenantedStep } from "./components/TenantedStep";
-import { URLS } from "@/constants/Urls";
-import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
-import { BlackArrow } from "@/assets/icons/BlackArrow";
+import { SellLandingStep } from "../sellWithStalwart/components/SellLandingStep";
+import { Button, Form, message } from "antd";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { topSpace } from "@/constants/constants";
+import { ConfirmDetailsStep } from "../sellWithStalwart/components/ConfirmDetailsStep";
+import { TenantedStep } from "../sellWithStalwart/components/TenantedStep";
+import { AppointedStep } from "../sellWithStalwart/components/AppointedStep";
+import bgImage from "@/assets/images/contact-bg.png";
+import image from "@/assets/images/right.png";
 
-const SellWithStalwart = () => {
+const SuburbInsight = () => {
   const [form] = Form.useForm();
   const [current, setCurrent] = useState(0);
   const topMargin = useResponsiveMargin(topSpace, 0);
@@ -32,9 +23,8 @@ const SellWithStalwart = () => {
     }
   };
   const stepFields = {
-    0: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
-    1: ["tenancy_status"], // fields for step 2
-    2: ["appointed_status"], // fields for step 3
+    1: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
+    2: ["tenancy_status"], // fields for step 2
   };
 
   const prev = () => setCurrent((prev) => prev - 1);
@@ -75,15 +65,9 @@ const SellWithStalwart = () => {
       title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
       content: <TenantedStep form={form} />,
     },
-    {
-      title: "WHEN ARE YOU THINKING OF SELLING?",
-      content: <AppointedStep form={form} />,
-    },
   ];
-
   return (
     <Form form={form} layout="vertical" onFinish={onFinish}>
-      {/* First step (Landing) */}
       {current === 0 && (
         <>
           <section
@@ -94,7 +78,7 @@ const SellWithStalwart = () => {
             }}
           >
             <p className="font-monument text-[15px] lg:text-xl font-medium text-white text-center pb-6 lg:pb-10 uppercase">
-              SELL WITH STALWART
+              Search Suburb
             </p>
 
             <div className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between z-20">
@@ -105,73 +89,11 @@ const SellWithStalwart = () => {
                 onClick={next}
                 className="!h-[50px] mt-2 lg:mt-0 lg:ml-2 flex items-center justify-center !bg-[#706C62] !border-none !rounded-none !text-white"
               >
-                <span className="text-[13px] font-monument">
-                  GET AGENT APPRAISAL
+                <span className="text-[13px] font-monument uppercase">
+                  GET Suburb Insight
                 </span>
               </Button>
             </div>
-          </section>
-          {/* Experience Section */}
-          <section className="px-12.5 lg:px-0">
-            <div className="container lg:flex items-stretch gap-7.5 py-20 lg:py-32">
-              <div className="w-full lg:w-[553px]">
-                <p className="font-monument text-sm lg:text-xl uppercase leading-6 lg:leading-10">
-                  Experience the stalwart difference
-                </p>
-                <p className="text-xs lg:text-base font-moderat-regular pt-10">
-                  At Stalwart Real Estate, we bring unrivalled expertise, deep
-                  local understanding and a disciplined strategy to every
-                  property we represent — delivering results that consistently
-                  exceed expectations.
-                </p>
-
-                <Collapse
-                  defaultActiveKey={["1"]}
-                  expandIconPosition="right"
-                  accordion
-                  expandIcon={({ isActive }) =>
-                    !isActive ? <img src={Plus} /> : <img src={Minus} />
-                  }
-                  items={collapseItems.map((item) => ({
-                    key: item.key,
-                    label: (
-                      <div className="font-moderat-medium text-xs lg:text-lg uppercase">
-                        {item.label}
-                      </div>
-                    ),
-                    children: (
-                      <div className="font-moderat-regular text-xs lg:text-base !px-0">
-                        {item.content}
-                      </div>
-                    ),
-                  }))}
-                  className="!border-none !bg-transparent pl-0 !pt-16 custom-accordion"
-                />
-
-                <p className="pt-10">
-                  <LenisAnimatedLink
-                    to={URLS.SOLD_PROPERTIES}
-                    iconPosition="right"
-                    icon={<BlackArrow />}
-                    className="text-sm font-moderat-bold flex items-center !text-black"
-                  >
-                    SEE ALL SOLD PROPERTIES
-                  </LenisAnimatedLink>
-                </p>
-              </div>
-
-              <div
-                className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[1136px] h-[300px] lg:h-[764px] mt-9 lg:mt-0"
-                style={{ backgroundImage: `url(${sectionBgImage})` }}
-              />
-            </div>
-          </section>
-
-          <section className="bg-[#F4F2F0] py-[79px] xl:px-0 px-12.5">
-            <RequestAnAppraisal lightMode={true} />
-          </section>
-          <section className="py-16 lg:py-34">
-            <CurrentProperties title="SEE OUR SOLD PROPERTIES" status="SOLD" />
           </section>
         </>
       )}
@@ -256,4 +178,4 @@ const SellWithStalwart = () => {
   );
 };
 
-export default SellWithStalwart;
+export default SuburbInsight;

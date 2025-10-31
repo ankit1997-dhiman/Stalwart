@@ -324,6 +324,8 @@ export const PropertyDetails = () => {
 
         <CustomModal isOpen={open} onClose={handleEnquiryCancel}>
           <EnquiryFrom
+            open={open}
+            setOpen={setOpen}
             address={propertyData?.formattedAddress}
             listingDetails={propertyData?.listingDetails}
             street={propertyData?.street}

@@ -1,6 +1,8 @@
 export const URLS = {
   HOME: "/",
   CONTACT_US: "/contact-us",
+  GET_PROPERTY_ESTIMATE: "/get-property-estimate",
+  SUBURB_INSIGHT: "/suburb-insight",
   CAREERS: "/careers",
   ABOUT: "/about",
   BUY: "/buy",

@@ -17,4 +17,5 @@ export const nav1Paths = [
   URLS.SOLD_PROPERTIES,
   URLS.PROPERTY,
   URLS.SEARCH_RESULT,
+  URLS.THANK_YOU,
 ];

@@ -1,12 +1,10 @@
 import { useTruncateText } from "@/hooks/useTruncateText";
 import { Button, Form, Input, message } from "antd";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Label from "../form/Label";
+import React, { useState } from "react";
 import { RawHtml } from "../RawHtml";
-// import { graphqlRequest } from "@/utils/graphqlRequest";
-// import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
 import Image from "@/assets/images/enquire-image.png";
+import Label from "../form/Label";
+import { FaL } from "react-icons/fa6";
 
 const EnquiryFrom = ({
   listingDetails,
@@ -14,12 +12,13 @@ const EnquiryFrom = ({
   headline,
   description,
   address,
+  setOpen,
 }) => {
-  console.log(listingDetails, street, headline, description, "headline");
   const [form] = Form.useForm();
-  const { id } = useParams();
-  // const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (values) => {
+    setLoading(true); // start loading
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BASE_URL}/api/send-email`,
@@ -29,16 +28,19 @@ const EnquiryFrom = ({
           body: JSON.stringify(values),
         }
       );
+
       const result = await response.json();
       if (result.success) {
-        message.success("Your inquiry has been sent", 4000);
-        setIsModalOpen(false);
+        message.success("Your inquiry has been sent", 4);
         form.resetFields();
+        setOpen(false);
       } else {
         message.error("Failed to send inquiry ❌");
       }
     } catch (error) {
       message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false); // stop loading
     }
   };
 
@@ -55,9 +57,17 @@ const EnquiryFrom = ({
 
       <div className="flex gap-x-8 px-5">
         <div className="w-full xl:w-[720px]">
-          <Form form={form} layout="vertical" onFinish={handleSubmit}>
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={handleSubmit}
+            initialValues={{ enquiry_for: address }}
+          >
             <div className="lg:pl-[300px] pt-10 lg:pt-[130px] grid lg:grid-cols-2 grid-cols-1 lg:gap-x-8">
               <div>
+                <Form.Item name="enquiry_for" hidden>
+                  <Input />
+                </Form.Item>
                 <Form.Item
                   label={
                     <Label className="uppercase text-xs" label="First Name" />
@@ -142,9 +152,11 @@ const EnquiryFrom = ({
               <Button
                 className="!rounded-none !px-3.5 !border !border-black !py-2 w-[209px] !h-[47px] !bg-transparent"
                 htmlType="submit"
+                loading={loading} // ✅ built-in AntD spinner
+                disabled={loading} // optional
               >
                 <span className="font-moderat-regular text-xs lg:text-base">
-                  Submit Inquiry
+                  {loading ? "Submitting..." : "Submit Inquiry"}
                 </span>
               </Button>
             </div>

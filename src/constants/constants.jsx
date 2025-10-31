@@ -127,7 +127,7 @@ export const switchCollapseItems = [
       "Our technology platform gives you 24/7 visibility of rent, maintenance, and inspection reports — all from your phone. With automated workflows, real-time alerts, and secure documentation, you stay informed while we handle every detail with precision.",
   },
 ];
-export const topSpace = 139;
+export const topSpace = 132;
 
 export const magicText = {
   view_more_text: "View More",
@@ -142,4 +142,5 @@ export const magicText = {
     SOLD_TAB: "SOLD",
     LEASE_TAB: "LEASE",
   },
+  IS_REQUIRED: " is required",
 };

@@ -15,9 +15,11 @@ import { LetterOfOffers } from "@/pages/letters/LetterOfOffers";
 import { NotFound } from "@/pages/NotFound.jsx";
 import { PrivacyPolicy } from "@/pages/privacyPolicy/PrivacyPolicy";
 import { PropertyDetails } from "@/pages/property/PropertyDetails";
+import PropertyEstimate from "@/pages/propertyEstimate/PropertyEstimate";
 import { SearchResult } from "@/pages/search/SearchResult";
 import SellWithStalwart from "@/pages/sellWithStalwart/SellWithStalwart";
 import { SoldProperties } from "@/pages/soldProperties/SoldProperties";
+import SuburbInsight from "@/pages/suburbInsight/SuburbInsight";
 import SwitchToStalwart from "@/pages/switchToStalwart/SwitchToStalwart";
 import { Term } from "@/pages/terms/Term";
 import UpcomingAuction from "@/pages/upcomingAuction/UpcomingAuction";
@@ -59,6 +61,11 @@ export default function AppRouter() {
                   path={URLS.SOLD_PROPERTIES}
                   element={<SoldProperties />}
                 />
+                <Route
+                  path={URLS.GET_PROPERTY_ESTIMATE}
+                  element={<PropertyEstimate />}
+                />
+                <Route path={URLS.SUBURB_INSIGHT} element={<SuburbInsight />} />
                 <Route
                   path={URLS.UPCOMING_AUCTIONS}
                   element={<UpcomingAuction />}
