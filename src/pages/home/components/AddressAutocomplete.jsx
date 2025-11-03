@@ -316,14 +316,6 @@ export default function AddressAutocomplete({
               }}
             >
               <div className="font-moderat-medium text-sm">{s.displayName}</div>
-              {s.address && (
-                <div
-                  className="font-moderat-light text-xs"
-                  style={{ fontSize: 12, color: "#666" }}
-                >
-                  {s.address}
-                </div>
-              )}
             </li>
           ))}
         </ul>

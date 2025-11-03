@@ -16,16 +16,21 @@ export const Term = () => {
 
   return (
     <>
-      <HeroSection title={"Term & Condition"} bgImage={bgImage} />
-      <div className="container pt-10">
-        <Typography className="font-moderat-bold text-2xl py-10" text="Legal" />
-        {legalInfo.map((item) => (
+      <HeroSection title={"Term & Conditions"} bgImage={bgImage} />
+      <div className="px-12.5 xl:px-0">
+        <div className="container pt-10">
           <Typography
-            className="text-base pb-2 font-moderat-medium"
-            text={item}
+            className="font-moderat-bold text-2xl py-10"
+            text="Legal"
           />
-        ))}
-        <BottomSpace />
+          {legalInfo.map((item) => (
+            <Typography
+              className="text-base pb-2 font-moderat-medium"
+              text={item}
+            />
+          ))}
+          <BottomSpace />
+        </div>
       </div>
     </>
   );

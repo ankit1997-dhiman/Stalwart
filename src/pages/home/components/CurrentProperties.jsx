@@ -13,15 +13,19 @@ import { useTruncateText } from "@/hooks/useTruncateText";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 import { magicText } from "@/constants/constants";
 
-export const CurrentProperties = ({ title, desc, status }) => {
+export const CurrentProperties = ({ title, desc, status, order }) => {
   const [propertiesData, setPropertiesData] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(order);
 
   useEffect(() => {
     const fetchProperties = async () => {
       try {
         setLoading(true);
-        const variables = { status: [status ? status : "ACTIVE"] };
+        const variables = {
+          status: [status ? status : "ACTIVE"],
+          orderBy: order == "SOLD_DATE_DESC" ? "SOLD_DATE_DESC" : null,
+        };
         const res = await graphqlRequest(
           "/api/graphql",
           GET_SALE_PROPERTIES,

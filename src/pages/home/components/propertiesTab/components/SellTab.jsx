@@ -21,6 +21,7 @@ function SellTab() {
       const variables = {
         first: 50,
         status: ["SOLD"],
+        orderBy: "SOLD_DATE_DESC",
       };
       const res = await graphqlRequest(
         "/api/graphql",

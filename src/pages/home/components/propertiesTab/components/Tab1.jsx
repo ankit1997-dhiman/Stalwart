@@ -66,7 +66,6 @@ export const Tab1 = () => {
         slidesPerView={1}
         navigation
         autoplay={{ delay: 8000, disableOnInteraction: false }}
-        loop={true}
         lazy={true}
         a11y={{ enabled: true }}
         breakpoints={{

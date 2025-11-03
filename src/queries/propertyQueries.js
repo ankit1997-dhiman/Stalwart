@@ -1,7 +1,8 @@
 export const GET_SALE_PROPERTIES = `
-  query GetSaleProperties($status: [PropertyStatusEnum!]) {
+  query GetSaleProperties($status: [PropertyStatusEnum!], $orderBy:PropertyOrderEnum) {
     properties(
-      status: $status
+      status: $status,
+      orderBy: $orderBy
     ) {
       nodes {
         id

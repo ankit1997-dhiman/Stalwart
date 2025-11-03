@@ -7,7 +7,7 @@ export const FooterIcon = ({ width }) => {
         xmlns="http://www.w3.org/2000/svg"
         id="a"
         data-name="Layer 1"
-        width={width ? width : "262"}
+        width={width ? width : "190"}
         height="37.178"
         viewBox="0 0 453.245 37.178"
       >

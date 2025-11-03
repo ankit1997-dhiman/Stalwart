@@ -27,10 +27,13 @@ export const Home = () => {
           desc={
             "As Queensland’s dedicated seller-exclusive agency, we represent only property owners and landlords — protecting their interests with precision, discipline, and intent across residential, lifestyle, acreage, commercial, and development projects, including pre-sales and strategic marketing."
           }
+          status="ACTIVE"
         />
       </section>
       <OurStory />
-      <Section8 />
+      <div className=" bg-[#F4F2F0]">
+        <Section8 />
+      </div>
       <div className="relative z-20 bg-white ">
         <InstagramPosts />
       </div>

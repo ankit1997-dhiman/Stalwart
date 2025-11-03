@@ -1,4 +1,3 @@
-
 import image from "../../../assets/images/section-2-image.png";
 import mobileImage from "../../../assets/images/mobile-philosophy.png";
 import blackLogo from "@/assets/images/black-logo.png";
@@ -40,11 +39,10 @@ const OurPhilosophy = () => {
             </p>
             <LenisAnimatedLink
               to={URLS.ABOUT}
-              className="font-moderat-medium md:text-base md:font-medium text-black origin-left hover:scale-x-[103%] duration-500 text-xs"
+              className="font-moderat-medium md:text-base md:font-medium text-black origin-left scale-x-[100.5%] hover:scale-x-[103%] duration-500 text-xs will-change-transform [transform:translateZ(0)] [backface-visibility:hidden] [--webkit-font-smoothing:antialiased]"
             >
               LEARN MORE ABOUT US
             </LenisAnimatedLink>
-           
           </div>
         </div>
       </div>

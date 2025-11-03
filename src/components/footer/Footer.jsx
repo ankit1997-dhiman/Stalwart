@@ -43,10 +43,10 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="lg:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 lg:px-0 z-10 ">
+      <footer className="xl:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 xl:px-0 z-10 ">
         <div className="container">
           {/* Top Links */}
-          <div className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
+          <div className="hidden xl:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
             {footerLinks.map((section) => (
               <div key={section.title}>
                 <p className="font-semibold pb-8 text-[11px] font-monument">
@@ -66,7 +66,7 @@ export default function Footer() {
               </div>
             ))}
           </div>
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <FooterCollapse />
           </div>
 

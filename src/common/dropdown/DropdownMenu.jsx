@@ -49,6 +49,7 @@ export const DropdownMenu = ({ onSelect }) => {
         !bg-transparent 
       [&_.ant-menu-submenu-title:hover_.ant-menu-title-content]:text-black
       [&_.ant-menu-submenu-title:hover_.ant-menu-submenu-arrow]:text-black
+      [&_.ant-menu-item-selected_.ant-menu-title-content]:text-black
         [&_.ant-menu-title-content]:text-white
         [&_.ant-menu-title-content:hover]:text-black
         [&_.ant-menu-item]:!my-2 
@@ -59,7 +60,6 @@ export const DropdownMenu = ({ onSelect }) => {
         [&_.ant-menu-submenu-title:hover]:!bg-[#fff] 
         [&_.ant-menu-submenu:hover]:!text-[#000] 
         [&_.ant-menu-item-selected]:!bg-[#fff] 
-        [&_.ant-menu-item-selected]:!text-[#000]
         [&_.ant-menu-submenu-arrow]:!text-white 
         [&_.ant-menu-submenu-expand-icon]:!text-white 
         [&_.ant-menu-title-content a]:!text-[#fff]
