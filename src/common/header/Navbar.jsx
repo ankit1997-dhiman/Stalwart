@@ -54,12 +54,12 @@ export default function Navbar() {
           }  flex justify-between items-center py-8 lg:py-14 container`}
         >
           <Link to={URLS.HOME}>
-            {isDark && !showNav1 ? <HeaderLogo /> : <HeaderWhiteLogo />}
+            {isDark || showNav1 ? <HeaderLogo /> : <HeaderWhiteLogo />}
           </Link>
 
           <RxHamburgerMenu
             className={`${
-              isDark && !showNav1 ? "text-black " : "text-white "
+              isDark && showNav1 ? "text-black " : "text-white "
             }  text-xl cursor-pointer`}
             onClick={showDrawer}
           />
