@@ -14,16 +14,22 @@ export const GET_AUCTION_PROPERTY = `
             }
             }
         }
-        listingDetails {
-            ... on ResidentialSale {
-            bedrooms
-            bathrooms
-            }
-            ... on ResidentialRental {
-            bedrooms
-            bathrooms
-            }
+       listingDetails {
+        ... on ResidentialSale {
+          bedrooms
+          bathrooms
+          carportSpaces
+          garageSpaces
+          openCarSpaces
         }
+        ... on ResidentialRental {
+          bedrooms
+          bathrooms
+          carportSpaces
+          garageSpaces
+          openCarSpaces
+        }
+      }
         vendors {
             contact {
             firstName
@@ -32,6 +38,7 @@ export const GET_AUCTION_PROPERTY = `
         }
         images {
             url
+            position
         }
         }
     }

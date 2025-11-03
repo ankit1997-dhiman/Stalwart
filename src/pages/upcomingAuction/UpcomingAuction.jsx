@@ -97,27 +97,17 @@ export default function UpcomingAuction() {
           {upcomingAuction.length > 0 ? (
             <div className="grid grid-cols-1  gap-6">
               {upcomingAuction.map((item) => {
-                const {
-                  id,
-                  formattedAddress,
-                  images,
-                  price,
-                  listingDetails,
-                  auctionDatetime,
-                } = item;
                 return (
                   <AuctionCard
-                    key={id}
-                    id={id}
-                    images={images}
-                    price={price}
-                    hoverAddress={formattedAddress}
-                    address={formattedAddress}
-                    bed={listingDetails?.bedrooms ?? 0}
-                    bathrooms={listingDetails?.bathrooms ?? 0}
-                    carportSpaces={listingDetails?.carportSpaces ?? 0}
+                    key={item.id}
+                    id={item?.id}
+                    images={item?.images}
+                    price={item?.advertisedPrice}
+                    hoverAddress={item?.formattedAddress}
+                    address={item?.formattedAddress}
+                    listingDetails={item?.listingDetails}
                     inspection={false}
-                    time={auctionDatetime ? auctionDatetime : null}
+                    time={item.inspections}
                   />
                 );
               })}
