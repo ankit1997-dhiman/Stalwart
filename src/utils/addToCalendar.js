@@ -1,5 +1,4 @@
 export const addToGoogleCalendar = (startTime, finishTime) => {
-  console.log(startTime);
   const title = "Upcoming Inspection";
   const details = "Discuss project timeline.";
   const start = new Date(startTime).toISOString().replace(/-|:|\.\d+/g, "");

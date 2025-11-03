@@ -8,71 +8,53 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import dummyImage from "@/assets/images/dummy-image.jpg";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { useTruncateText } from "@/hooks/useTruncateText";
-import { Skeleton } from "antd";
+import { message, Skeleton } from "antd";
+import { graphqlRequest } from "@/utils/graphqlRequest";
+import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 
-export const Tab1 = ({ tabdata = [] }) => {
+export const Tab1 = () => {
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-  // ⏱️ Simulate image loading or wait for them to load
-  useEffect(() => {
-    if (!tabdata?.length) {
+  const fetchProperties = async () => {
+    setLoading(true);
+    try {
+      const variables = {
+        first: 50,
+        status: ["ACTIVE", "UNDER_OFFER"],
+      };
+      const res = await graphqlRequest(
+        "/api/graphql",
+        GET_SALE_PROPERTIES,
+        variables
+      );
+      let nodes = res?.data?.properties?.nodes || [];
+      nodes = nodes.filter((p) => p.featured === true);
+
+      setData(nodes);
       setLoading(false);
-      return;
+    } catch (error) {
+      message.error(error.message || "Something went wrong");
+      setLoading(false);
     }
+  };
 
-    let isMounted = true;
-    const imagePromises = tabdata.map((item) => {
-      const img = new Image();
-      img.src =
-        item?.images?.[0]?.url ||
-        (typeof item.images === "string" ? item.images : dummyImage);
-      return new Promise((resolve) => {
-        img.onload = resolve;
-        img.onerror = resolve; // still resolve on error
-      });
-    });
-
-    // Add a maximum timeout (3s fallback)
-    Promise.allSettled([
-      ...imagePromises,
-      new Promise((resolve) => setTimeout(resolve, 3000)),
-    ]).then(() => {
-      if (isMounted) setLoading(false);
-    });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [tabdata]);
-
-  // 🦴 Skeleton placeholder while loading
-  const renderSkeleton = () => (
-    <div className="relative border border-gray-300 rounded overflow-hidden h-[400px] lg:h-[480px] p-6 bg-white">
-      <Skeleton.Image active className="!w-full !h-[240px] !rounded-lg" />
-      <div className="pt-6">
-        <Skeleton active paragraph={{ rows: 2 }} title={false} />
-      </div>
-      <div className="pt-4 flex justify-end">
-        <Skeleton.Button active size="large" shape="default" />
-      </div>
-    </div>
-  );
+  useEffect(() => {
+    fetchProperties();
+  }, []);
 
   if (loading) {
     // 🦴 Show skeleton swiper (maintains layout)
     return (
-      <Swiper
-        modules={[Navigation, Pagination]}
-        spaceBetween={16}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        loop={true}
-      >
-        {Array.from({ length: 3 }).map((_, i) => (
-          <SwiperSlide key={i}>{renderSkeleton()}</SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="relative border border-gray-300 rounded overflow-hidden h-[400px] lg:h-[480px] p-6 bg-white">
+        <Skeleton.Image active className="!w-full !h-[240px] !rounded-lg" />
+        <div className="pt-6">
+          <Skeleton active paragraph={{ rows: 2 }} title={false} />
+        </div>
+        <div className="pt-4 flex justify-end">
+          <Skeleton.Button active size="large" shape="default" />
+        </div>
+      </div>
     );
   }
 
@@ -83,7 +65,6 @@ export const Tab1 = ({ tabdata = [] }) => {
         spaceBetween={16}
         slidesPerView={1}
         navigation
-        pagination={{ clickable: true }}
         autoplay={{ delay: 8000, disableOnInteraction: false }}
         loop={true}
         lazy={true}
@@ -94,8 +75,8 @@ export const Tab1 = ({ tabdata = [] }) => {
           1024: 1,
         }}
       >
-        {tabdata?.length > 0 ? (
-          tabdata.map((item) => (
+        {data?.length > 0 ? (
+          data.map((item) => (
             <SwiperSlide key={item.id}>
               <PropertyCard
                 id={item.id}

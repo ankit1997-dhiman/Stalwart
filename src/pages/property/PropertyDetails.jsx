@@ -80,7 +80,6 @@ export const PropertyDetails = () => {
   const handleEnquiryCancel = () => setOpen(false);
 
   const hasInspections = propertyData?.inspections;
-  console.log(hasInspections);
 
   const hasFloorplan =
     propertyData?.floorplans &&

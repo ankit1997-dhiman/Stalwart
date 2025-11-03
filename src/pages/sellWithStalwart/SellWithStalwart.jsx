@@ -51,13 +51,11 @@ const SellWithStalwart = () => {
       // Move to next step
       setCurrent((prev) => {
         const nextStep = prev + 1;
-        console.log(current, "current", nextStep, "nextStep", steps.length);
 
         // Set dark for first step, white for other steps
         if (nextStep === 0) {
           setDark(false);
         } else if (nextStep <= steps.length + 1) {
-          console.log("laset step ");
           setDark(true);
         } else {
           // If nextStep exceeds steps, reset to first step
@@ -87,8 +85,6 @@ const SellWithStalwart = () => {
       enquiry_for: `Sell With Stalwart Inquiry Received For ${values.address}`,
     };
 
-    console.log(updatedValues, "form values being sent");
-
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BASE_URL}/api/send-email`,
@@ -116,7 +112,6 @@ const SellWithStalwart = () => {
 
   const onFinishFailed = (errorInfo) => {
     message.error("Please fill all required fields");
-    console.warn("Validation Failed:", errorInfo);
   };
 
   return (

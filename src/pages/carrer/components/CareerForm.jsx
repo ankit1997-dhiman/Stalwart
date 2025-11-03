@@ -43,7 +43,6 @@ export default function CareerForm() {
   };
   const onFinishFailed = (errorInfo) => {
     message.error("Please fill all required fields");
-    console.warn("Validation Failed:", errorInfo);
   };
 
   return (

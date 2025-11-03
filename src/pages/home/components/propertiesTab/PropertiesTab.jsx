@@ -5,9 +5,9 @@ import image from "@/assets/images/black-logo.png";
 import Tab2 from "./components/Tab2.jsx";
 import { graphqlRequest } from "@/utils/graphqlRequest.js";
 import SellTab from "./components/SellTab.jsx";
-import LeaseTab from "./components/LeaseTab.jsx";
 import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries.js";
 import { magicText } from "@/constants/constants.jsx";
+import LeaseTab from "./components/LeaseTab.jsx";
 
 // Map tab key → status
 const tabListingTypes = {

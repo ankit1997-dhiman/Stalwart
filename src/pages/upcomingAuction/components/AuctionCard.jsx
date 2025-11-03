@@ -12,16 +12,13 @@ export default function AuctionCard({
   address,
   price,
   inspection,
-  bed,
-  bathrooms,
-  carportSpaces,
+  listingDetails,
   id,
 }) {
   const sortedImages =
     Array.isArray(images) && images.length
       ? [...images].sort((a, b) => (a.position || 0) - (b.position || 0))
       : [];
-  console.log(time);
 
   const firstImage = sortedImages?.[0]?.url || DummyImage;
 
@@ -36,9 +33,13 @@ export default function AuctionCard({
               {address}
             </div>
             <div className="font-moderat-medium text-xs group-hover:text-white pt-2">
-              {`${bed || 0} BED | ${bathrooms || 0} BATH | ${
-                carportSpaces || 0
-              } CAR`}
+              {`${listingDetails.bedrooms || 0} BED | ${
+                listingDetails.bathrooms || 0
+              } BATH | ${
+                (listingDetails.carportSpaces || 0) +
+                (listingDetails.garageSpaces || 0) +
+                (listingDetails.openCarSpaces || 0)
+              } CAR `}
             </div>
           </div>
 
@@ -62,9 +63,13 @@ export default function AuctionCard({
               </div>
             </div>
             <div className="font-moderat-medium text-xs group-hover:text-white pt-2">
-              {`${bed || 0} BED | ${bathrooms || 0} BATH | ${
-                carportSpaces || 0
-              } CAR`}
+              {`${listingDetails.bedrooms || 0} BED | ${
+                listingDetails.bathrooms || 0
+              } BATH | ${
+                (listingDetails.carportSpaces || 0) +
+                (listingDetails.garageSpaces || 0) +
+                (listingDetails.openCarSpaces || 0)
+              } CAR `}
             </div>
           </div>
         </div>

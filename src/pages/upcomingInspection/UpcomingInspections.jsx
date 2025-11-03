@@ -84,11 +84,9 @@ export default function UpcomingInspections() {
                 price={item?.advertisedPrice}
                 hoverAddress={item?.formattedAddress}
                 address={item?.formattedAddress}
-                bed={item?.listingDetails?.bedrooms ?? 0}
-                bathrooms={item?.listingDetails?.bathrooms ?? 0}
-                carportSpaces={item?.listingDetails?.carportSpaces ?? 0}
+                listingDetails={item?.listingDetails}
                 inspection={true}
-                time={item.lastInspection}
+                time={item.inspections}
               />
             );
           })

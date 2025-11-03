@@ -50,13 +50,11 @@ const PropertyEstimate = () => {
       // Move to next step
       setCurrent((prev) => {
         const nextStep = prev + 1;
-        console.log(current, "current", nextStep, "nextStep", steps.length);
 
         // Set dark for first step, white for other steps
         if (nextStep === 0) {
           setDark(true);
         } else if (nextStep <= steps.length + 1) {
-          console.log("laset step ");
           setDark(true);
         } else {
           // If nextStep exceeds steps, reset to first step
@@ -101,7 +99,6 @@ const PropertyEstimate = () => {
 
   const onFinishFailed = (errorInfo) => {
     message.error("Please fill all required fields");
-    console.warn("Validation Failed:", errorInfo);
   };
   return (
     <Form

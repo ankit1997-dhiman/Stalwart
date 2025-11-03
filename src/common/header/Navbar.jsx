@@ -16,11 +16,9 @@ export default function Navbar() {
   const location = useLocation();
   const { pathname } = location;
   const matchProperty = useMatch("/property/:id");
-  const { isDark } = useTheme();
+  const { isDark, setDark } = useTheme();
 
   const showNav1 = Boolean(nav1Paths.includes(pathname) || matchProperty);
-
-  console.log(showNav1, "showNav1", isDark, "is Dark");
 
   const showDrawer = () => setOpen(true);
   const onClose = () => setOpen(false);
@@ -47,7 +45,10 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <div className={`${showNav1 ? "bg-white " : ""} lg:px-0 px-12.5`}>
+      <div
+        className={`${showNav1 ? "bg-white " : ""} lg:px-0 px-12.5`}
+        onClick={() => setDark(false)}
+      >
         <div
           className={`${
             showNav1 ? "bg-white" : ""
@@ -59,7 +60,7 @@ export default function Navbar() {
 
           <RxHamburgerMenu
             className={`${
-              isDark && showNav1 ? "text-black " : "text-white "
+              isDark || showNav1 ? "text-black " : "text-white "
             }  text-xl cursor-pointer`}
             onClick={showDrawer}
           />
