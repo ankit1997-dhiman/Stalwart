@@ -57,7 +57,7 @@ export const footerLinks = [
       },
       {
         label: "Properties for Lease",
-        to: URLS.LEASE_PROPERTIES,
+        to: URLS.LEASE,
         external: false,
       },
       {

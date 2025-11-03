@@ -114,7 +114,7 @@ export function Buy() {
       <div className="container lg:px-0 px-12.5">
         <div className="w-full lg:w-[999px] mx-auto">
           <WithSectionLayout
-            title="PROPERTIES FOR SELL"
+            title="PROPERTIES FOR SALE"
             leftText="Buy"
             midText="|"
             rightText="Auction"

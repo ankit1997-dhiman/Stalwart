@@ -224,25 +224,6 @@ p {
   background-color: white;
 }
 
-/* .custom-menu .ant-menu-title-content {
-  color: white !important;
-}
-.custom-menu .ant-menu-item-selected .ant-menu-title-content {
-  color: #000 !important;
-}
-.custom-menu .ant-menu-item-active .ant-menu-title-content {
-  color: #000 !important;
-}
-.custom-menu .ant-menu-submenu-active .menu-label {
-  color: black !important;
-}
-.custom-menu .ant-menu-submenu-active {
-  color: #fff !important;
-} */
-
-.ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before {
-  /* background-color: black; */
-}
 .custom-menu .ant-menu-item-active .menu-label {
   color: black !important;
 }
@@ -275,4 +256,12 @@ body {
 
 .custom-upload .ant-upload-select {
   width: 100%;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #4a443e;
+  border-color: #4a443e; /* Optional: to match the border color */
+}
+.ant-form-item-explain-error {
+  color: #4a443e;
 }
