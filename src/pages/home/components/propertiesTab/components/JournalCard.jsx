@@ -1,8 +1,7 @@
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import React from "react";
-import { Link } from "react-router-dom";
 
-const JournalCard = ({ image, title, description }) => {
+const JournalCard = ({ image, title, description, link }) => {
   return (
     <div className="bg-white border flex ">
       <div className="w-[45%]">
@@ -17,7 +16,7 @@ const JournalCard = ({ image, title, description }) => {
         </p>
         <div className="mt-2.5">
           <LenisAnimatedLink
-            to={"#"}
+            to={link}
             className="font-moderat-bold text-xs origin-left hover:scale-x-[104%] duration-500"
           >
             SEE MORE

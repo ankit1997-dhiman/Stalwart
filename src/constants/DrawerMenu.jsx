@@ -145,4 +145,8 @@ export const drawerMenuitems = [
     key: "sub5",
     label: <DrawerMenuLabel label="CONTACT" link={URLS.CONTACT_US} />,
   },
+  {
+    key: "sub6",
+    label: <DrawerMenuLabel label="NEWS & BLOGS" link={URLS.BLOGS} />,
+  },
 ];

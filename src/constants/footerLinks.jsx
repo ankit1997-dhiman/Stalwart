@@ -75,7 +75,7 @@ export const footerLinks = [
     links: [
       { label: "Our Team", to: URLS.ABOUT, external: false },
       { label: "Careers", to: URLS.CAREERS, external: false },
-      { label: "News/Blogs" },
+      { label: "News & Blogs", to: URLS.BLOGS },
     ],
   },
   {
