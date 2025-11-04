@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Input } from "antd";
-import { Link, useMatch } from "react-router-dom";
+import { Button, Form, Input, message } from "antd";
+import { Link } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
 import { contactInfo, footerLinks, legalLinks } from "@/constants/footerLinks";
-import StickyButton from "@/common/Button/StickyButton";
 import EnquiryModal from "@/common/modal/EnquiryModal";
 import { FooterCollapse } from "./FooterCollapse";
 import { FooterIcon } from "@/assets/icons/FooterIcon";
@@ -11,9 +10,42 @@ import { FooterIcon } from "@/assets/icons/FooterIcon";
 export default function Footer() {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isBottom, setIsBottom] = useState(false);
 
-  const onFinish = (values) => {};
+  const onFinish = async (values) => {
+    setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `Sign Up For Latest Property Results`,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedValues),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        form.resetFields();
+      } else {
+        message.error("Failed to send inquiry ❌");
+      }
+    } catch (error) {
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+  };
 
   // Config for top links
 
@@ -75,7 +107,15 @@ export default function Footer() {
             <p className="text-[25px] font-medium font-miller-light leading-10 pt-12.5">
               Sign Up For Latest Property Results
             </p>
-            <Form form={form} onFinish={onFinish} layout="vertical">
+            <Form
+              form={form}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              layout="vertical"
+            >
+              <Form.Item name="enquiry_for" hidden>
+                <Input />
+              </Form.Item>
               <div className="flex flex-col md:flex-row justify-between lg:gap-7.5">
                 <Form.Item
                   name="firstName"
@@ -137,6 +177,8 @@ export default function Footer() {
 
                 <Button
                   htmlType="submit"
+                  loading={loading}
+                  disabled={loading}
                   className="!bg-transparent !text-white !px-10 !rounded-none hover:!bg-white hover:!text-black transition duration-500 font-medium !border !border-white !w-full lg:!w-[262px] !h-[45px] lg:!h-[48px] !mt-7 !lg:mt-0 "
                 >
                   Subscribe

@@ -1,18 +1,45 @@
-import React from "react";
-import { Carousel, Form, Input } from "antd";
+import React, { useState } from "react";
+import { Button, Form, Input, message } from "antd";
 
-// Import all images
-import Insta1 from "../../../assets/images/insta-1.png";
-import Insta2 from "../../../assets/images/image-2.png";
-import Insta3 from "../../../assets/images/image-3.png";
-import Insta4 from "../../../assets/images/image-4.png";
-import Insta5 from "../../../assets/images/image-5.png";
-import Insta6 from "../../../assets/images/image-6.png";
 import InstagramReelsGrid from "@/components/InstagramReels";
 
-const images = [Insta1, Insta2, Insta3, Insta4, Insta5, Insta6];
+const InstagramPosts = () => {
+  const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
 
-const InstagramPosts = ({ backGroundWhite }) => {
+  const onFinish = async (values) => {
+    setLoading(true);
+    const updatedValues = {
+      ...values,
+      enquiry_for: `Subscribe Form`,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/send-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedValues),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        form.resetFields();
+      } else {
+        message.error("Failed to send inquiry ❌");
+      }
+    } catch (error) {
+      message.error("Something went wrong ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const onFinishFailed = (errorInfo) => {
+    message.error("Please fill all required fields");
+  };
   return (
     <div className={` bg-white  py-16.5 px-12.5 xl:px-0 `}>
       <div className="container">
@@ -33,11 +60,18 @@ const InstagramPosts = ({ backGroundWhite }) => {
                 Subscribe to get the latest insider tips, market updates and
                 access to the hottest deals as they come on the market.
               </p>
-              <Form className="justify-baseline pt-7.5 lg:pt-7.5">
+              <Form
+                className="justify-baseline pt-7.5 lg:pt-7.5"
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+              >
+                <Form.Item name="enquiry_for" hidden>
+                  <Input />
+                </Form.Item>
                 <div className=" flex justify-between item-center flex-col md:flex-row gap-1 lg:gap-6 mt-4">
                   <div className="flex flex-row  justify-start items-center gap-5 md:gap-6 w-full">
                     <Form.Item
-                      name="email"
+                      name="fullName"
                       label={false}
                       rules={[
                         { required: true, message: "Please enter your email" },
@@ -72,12 +106,16 @@ const InstagramPosts = ({ backGroundWhite }) => {
                     </Form.Item>
                   </div>
                   <div className="flex justify-end lg:pt-0 pt-5">
-                    <button
-                      type="submit"
-                      className="text-sm font-medium text-left lg:text-right text-black w-full  origin-left hover:scale-x-[104%] duration-500 cursor-pointer"
+                    <Button
+                      htmlType="submit"
+                      loading={loading}
+                      disabled={loading}
+                      className="text-sm font-medium text-left lg:text-right !text-black w-full  origin-left hover:scale-x-[104%] duration-500 cursor-pointer !bg-transparent !border-0"
                     >
-                      <span className="text-black">Submit</span>
-                    </button>
+                      <span className="!text-black">
+                        {loading ? "loading..." : "Submit"}
+                      </span>
+                    </Button>
                   </div>
                 </div>
               </Form>

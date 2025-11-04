@@ -70,11 +70,18 @@ export const Section1 = () => {
       </video>
 
       {/* Dark overlay (optional, for readability) */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Foreground content */}
       <div className="container relative z-10 w-[999px]">
-        <p className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-20 md:pb-20">
+        <p
+          className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-20 md:pb-20 animate-slide-up"
+          style={{
+            animationDelay: "1s",
+            animationDuration: "2s",
+            animationTimingFunction: "ease-out",
+          }}
+        >
           PORTA AD DOMUM
         </p>
 

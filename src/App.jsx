@@ -1,10 +1,9 @@
 import { useState } from "react";
-import HeroIntro from "./components/HeroIntro.jsx";
 import AppRouter from "./routes/AppRouter.jsx";
-import { IntroLogo } from "./assets/icons/IntroLogo.jsx";
 import "antd/dist/reset.css"; // ✅ Always load this first
 import "./index.css"; // Tailwind / custom styles
 import { ThemeProvider } from "./context/ThemeContext.jsx";
+import { HeaderLogo } from "./assets/icons/HeaderLogo.jsx";
 
 const App = () => {
   const [introDone, setIntroDone] = useState(false);
@@ -13,10 +12,10 @@ const App = () => {
     <>
       {/* {!introDone && (
         <HeroIntro
-          logo={<IntroLogo />}
+          logo={<HeaderLogo />}
           title="PORTA AD DOMUM" // change to your brand
           // subtitle="Architecture & Interiors" // change as you need
-          // onDone={() => setIntroDone(false)}
+          onDone={() => setIntroDone(false)}
         />
       )} */}
       <ThemeProvider>
