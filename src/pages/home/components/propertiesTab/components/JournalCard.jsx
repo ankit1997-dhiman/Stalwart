@@ -3,11 +3,15 @@ import React from "react";
 
 const JournalCard = ({ image, title, description, link }) => {
   return (
-    <div className="bg-white border flex ">
-      <div className="w-[45%]">
-        <img src={image} alt={title} className="h-full object-cover" />
+    <div className="bg-white border flex flex-col lg:flex-row ">
+      <div className="lg:w-[45%] w-full">
+        <img
+          src={image}
+          alt={title}
+          className="h-full object-cover lg:w-full  "
+        />
       </div>
-      <div className="p-4 w-[55%]">
+      <div className="p-4 lg:w-[55%]">
         <p className="text-base font-medium md:text-lg font-moderat-medium">
           {title}
         </p>

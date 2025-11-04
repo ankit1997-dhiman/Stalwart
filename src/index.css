@@ -265,3 +265,7 @@ body {
 .ant-form-item-explain-error {
   color: #4a443e;
 }
+.ant-radio-checked .ant-radio-inner {
+  background-color: #4a443e;
+  border-color: #4a443e;
+}

@@ -3,16 +3,17 @@ import HeroSection from "@/common/HeroSection";
 import bgImage from "@/assets/images/contact-bg.png";
 import {
   Button,
-  Checkbox,
   Col,
   DatePicker,
   Form,
   Input,
   message,
+  Radio,
   Row,
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
+// import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 
 export const LetterOfOffers = () => {
   const [form] = Form.useForm();
@@ -50,6 +51,55 @@ export const LetterOfOffers = () => {
       setLoading(false);
     }
   };
+
+  // const onFinish = async (values) => {
+  //   // const res = await fetch("/EOI_Forms.pdf");
+  //   // console.log("Response:", res);
+  //   // return;
+  //   // Load the existing EOI PDF
+  //   const existingPdfBytes = await fetch("/EOI_Forms.pdf").then((res) =>
+  //     res.arrayBuffer()
+  //   );
+  //   console.log(existingPdfBytes, "");
+
+  //   const pdfDoc = await PDFDocument.load(existingPdfBytes);
+  //   const page = pdfDoc.getPages()[0];
+  //   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+  //   // Example: draw user data onto specific coordinates (x, y)
+  //   // You will adjust the coordinates to match where each field appears on your EOI PDF.
+  //   const draw = (text, x, y) => {
+  //     page.drawText(String(text || ""), {
+  //       x,
+  //       y,
+  //       size: 8,
+  //       font,
+  //       color: rgb(0, 0, 0),
+  //     });
+  //   };
+
+  //   // Fill property details
+  //   draw(values.propertyAddress, 70, 580);
+  //   draw(values.realPropertyDesc, 120, 635);
+  //   draw(values.price, 480, 610);
+  //   draw(values.deposit, 480, 595);
+  //   draw(values.settlementDate?.format("DD/MM/YYYY"), 480, 580);
+
+  //   // Fill buyer details
+  //   draw(values.fullName, 120, 510);
+  //   draw(values.currentAddress, 120, 495);
+  //   draw(values.mobile, 120, 480);
+  //   draw(values.email, 120, 465);
+
+  //   // Save the updated PDF
+  //   const pdfBytes = await pdfDoc.save();
+  //   console.log(pdfBytes, "pdfbuyes");
+  //   const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = "Filled_EOI_Form.pdf";
+  //   link.click();
+  // };
   return (
     <>
       <HeroSection title={"Expression of Interest Form"} bgImage={bgImage} />
@@ -130,7 +180,7 @@ export const LetterOfOffers = () => {
               </Row>
 
               <Form.Item
-                name="buyerAddress"
+                name="toBePurchased"
                 label="Entity Property To Be Purchased In (If Different to Buyer Name)"
                 rules={[
                   { required: true, message: "Please enter buyer address" },
@@ -230,18 +280,18 @@ export const LetterOfOffers = () => {
               <Row gutter={16} className="">
                 <Col lg={12}>
                   <Form.Item label="Subject to finance approval">
-                    <Checkbox.Group>
+                    <Radio.Group>
                       <Row>
                         <Col span={24}>
-                          <Checkbox value="subjectToFinance">yes</Checkbox>
+                          <Radio value="subjectToFinance">yes</Radio>
                         </Col>
                         <Col span={24}>
-                          <Checkbox value="subjectToBuildingInspection">
+                          <Radio value="subjectToBuildingInspection">
                             No (indicates cash contract)
-                          </Checkbox>
+                          </Radio>
                         </Col>
                       </Row>
-                    </Checkbox.Group>
+                    </Radio.Group>
                   </Form.Item>
                 </Col>
                 <Col lg={12}>
@@ -256,25 +306,23 @@ export const LetterOfOffers = () => {
                       },
                     ]}
                   >
-                    <Input placeholder="e.g. 30 days" />
+                    <Input placeholder="e.g. 7 days" />
                   </Form.Item>
                 </Col>
               </Row>
               <Row gutter={16} className="mt-10">
                 <Col lg={12}>
                   <Form.Item label="Subject to a satisfactory building inspection and pest inspection report">
-                    <Checkbox.Group>
+                    <Radio.Group>
                       <Row>
                         <Col span={24}>
-                          <Checkbox value="subjectToFinance">Yes</Checkbox>
+                          <Radio value="subjectToFinance">Yes</Radio>
                         </Col>
                         <Col span={24}>
-                          <Checkbox value="subjectToBuildingInspection">
-                            No
-                          </Checkbox>
+                          <Radio value="subjectToBuildingInspection">No</Radio>
                         </Col>
                       </Row>
-                    </Checkbox.Group>
+                    </Radio.Group>
                   </Form.Item>
                 </Col>
                 <Col lg={12}>
@@ -289,7 +337,7 @@ export const LetterOfOffers = () => {
                       },
                     ]}
                   >
-                    <Input placeholder="e.g. 30 days" />
+                    <Input placeholder="e.g. 7 days" />
                   </Form.Item>
                 </Col>
               </Row>
