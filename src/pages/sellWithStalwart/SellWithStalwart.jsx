@@ -216,6 +216,7 @@ const SellWithStalwart = () => {
               title="SEE OUR SOLD PROPERTIES"
               status="SOLD"
               order="SOLD_DATE_DESC"
+              showButton={true}
             />
           </section>
         </>

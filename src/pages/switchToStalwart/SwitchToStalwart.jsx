@@ -198,12 +198,12 @@ const SwitchToStalwart = () => {
 
                 <p className="pt-10">
                   <LenisAnimatedLink
-                    to={URLS.SOLD_PROPERTIES}
+                    to={URLS.LEASE_PROPERTIES}
                     iconPosition="right"
                     icon={<BlackArrow />}
                     className="text-sm font-moderat-bold flex items-center !text-black"
                   >
-                    SEE ALL SOLD PROPERTIES
+                    SEE ALL LEASED PROPERTIES
                   </LenisAnimatedLink>
                 </p>
               </div>
@@ -221,9 +221,10 @@ const SwitchToStalwart = () => {
 
           <section className="py-34 px-12.5 lg:px-0">
             <CurrentProperties
-              title="HEAR FROM OUR CLIENTS"
+              title="OUR LEASED PROPERTIES"
               desc="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
               status="LEASED"
+              showButton={false}
             />
           </section>
         </>

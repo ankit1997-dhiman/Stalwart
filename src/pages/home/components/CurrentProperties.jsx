@@ -13,7 +13,13 @@ import { useTruncateText } from "@/hooks/useTruncateText";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 import { magicText } from "@/constants/constants";
 
-export const CurrentProperties = ({ title, desc, status, order }) => {
+export const CurrentProperties = ({
+  title,
+  desc,
+  status,
+  order,
+  showButton,
+}) => {
   const [propertiesData, setPropertiesData] = useState([]);
   const [loading, setLoading] = useState(true);
   console.log(order);
@@ -71,14 +77,16 @@ export const CurrentProperties = ({ title, desc, status, order }) => {
             "We specialise in Real Estate for Brisbane, Gold Coast, Logan, Ipswich, Redland City and Toowoomba."}
         </p>
 
-        <LenisAnimatedLink
-          to={URLS.BUY}
-          iconPosition="right"
-          icon={<BlackArrow />}
-          className="mt-6 lg:mt-16 inline-flex items-center text-xs lg:text-sm border-none font-moderat-bold uppercase !text-black"
-        >
-          See All
-        </LenisAnimatedLink>
+        {showButton && (
+          <LenisAnimatedLink
+            to={URLS.BUY}
+            iconPosition="right"
+            icon={<BlackArrow />}
+            className="mt-6 lg:mt-16 inline-flex items-center text-xs lg:text-sm border-none font-moderat-bold uppercase !text-black"
+          >
+            See All
+          </LenisAnimatedLink>
+        )}
       </div>
 
       <div className="md:hidden">

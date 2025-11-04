@@ -28,6 +28,7 @@ export const Home = () => {
             "As Queensland’s dedicated seller-exclusive agency, we represent only property owners and landlords — protecting their interests with precision, discipline, and intent across residential, lifestyle, acreage, commercial, and development projects, including pre-sales and strategic marketing."
           }
           status="ACTIVE"
+          showButton={true}
         />
       </section>
       <OurStory />
