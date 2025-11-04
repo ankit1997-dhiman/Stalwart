@@ -77,15 +77,14 @@ const SwitchToStalwart = () => {
   };
 
   const stepFields = {
-    0: ["address"], // fields for step 1
-    1: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
-    2: ["tenanted_status"], // fields for step 2
-    3: ["appointed_status"], // fields for step 3
+    0: ["address"],
+    1: ["first_name", "last_name", "email", "number", "privacy"],
+    2: ["tenanted_status"],
+    3: ["appointed_status"],
   };
 
   const prev = () => setCurrent((prev) => prev - 1);
 
-  // ---- Form submission ----
   const onFinish = async (values) => {
     setLoading(true);
     const updatedValues = {
@@ -134,7 +133,6 @@ const SwitchToStalwart = () => {
       </Form.Item>
       {current === 0 ? (
         <>
-          {/* Landing Step */}
           <section
             className={`relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0  `}
             style={{
@@ -225,6 +223,7 @@ const SwitchToStalwart = () => {
             <CurrentProperties
               title="HEAR FROM OUR CLIENTS"
               desc="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+              status="LEASED"
             />
           </section>
         </>
@@ -286,7 +285,7 @@ const SwitchToStalwart = () => {
                   <Button
                     loading={loading}
                     disabled={loading}
-                    htmlType="submit" // ✅ triggers Form submission correctly
+                    htmlType="submit"
                     className="!rounded-none !px-3 bg-white !border !border-black !py-3"
                   >
                     <span className="font-moderat-regular text-base">
