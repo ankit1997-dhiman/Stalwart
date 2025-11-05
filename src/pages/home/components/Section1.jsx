@@ -70,7 +70,7 @@ export const Section1 = () => {
       </video>
 
       {/* Dark overlay (optional, for readability) */}
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Foreground content */}
       <div className="container relative z-10 w-[999px]">
@@ -96,18 +96,8 @@ export const Section1 = () => {
         >
           PORTA AD DOMUM
         </p>
-
-        <Form
-          form={form}
-          onFinish={handleSubmit}
-          layout="vertical"
-          initialValues={{
-            status: "BUY",
-            bedrooms: "BED",
-            bathrooms: "BATH",
-            car: "CAR",
-          }}
-          className="placeholder-white animate-slide-up"
+        <div
+          className="  animate-slide-up"
           style={{
             animationDelay: "3s", // Starts after the text animation (2s delay + 2s duration)
             animationDuration: "1s",
@@ -116,70 +106,75 @@ export const Section1 = () => {
             transform: "translateY(70px)",
           }}
         >
-          {/* Top Row */}
-          <div className="flex items-end justify-end">
-            <div className="flex bg-[#4F4C45] h-[50px]">
-              {["SELL", "BUY", "LEASE"].map((tab) => (
-                <div
-                  key={tab}
-                  onClick={() => handleClick(tab)}
-                  className={`px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto py-5 transition-colors duration-200 ${
-                    activeTab === tab
-                      ? "text-black bg-white"
-                      : "text-white bg-[#4F4C45]"
-                  }`}
+          <Form
+            form={form}
+            onFinish={handleSubmit}
+            layout="vertical"
+            initialValues={{
+              status: "BUY",
+              bedrooms: "BED",
+              bathrooms: "BATH",
+              car: "CAR",
+            }}
+            className="placeholder-white  "
+          >
+            {/* Top Row */}
+            <div className="flex items-end justify-end">
+              <div className="flex bg-[#4F4C45] h-[50px]">
+                {["SELL", "BUY", "LEASE"].map((tab) => (
+                  <div
+                    key={tab}
+                    onClick={() => handleClick(tab)}
+                    className={`px-5 lg:px-10 cursor-pointer font-normal font-monument text-[10px] my-auto py-5 transition-colors duration-200 ${
+                      activeTab === tab
+                        ? "text-black bg-white"
+                        : "text-white bg-[#4F4C45]"
+                    }`}
+                  >
+                    {tab}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col-reverse lg:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
+              <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase flex item-center justify-center">
+                <p className="py-4.5 mx-auto">{`${
+                  activeTab === "SELL"
+                    ? "Get Property Estimate"
+                    : `Properties FOR ${
+                        activeTab === "BUY" ? "SALE" : activeTab
+                      }`
+                }`}</p>
+              </div>
+
+              {/* Search Box */}
+              <div className="w-full flex flex-row">
+                <Form.Item
+                  name="address"
+                  label={false}
+                  className="!mb-0 !w-full !my-auto "
                 >
-                  {tab}
-                </div>
-              ))}
+                  <AddressAutocomplete
+                    activeTab={activeTab}
+                    value={query}
+                    onChange={(val) => setQuery(val)}
+                  />
+                </Form.Item>
+
+                <Button
+                  htmlType="submit"
+                  className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px] !rounded-none cursor-pointer"
+                >
+                  <img src={searchImage} alt="Search" className="my-auto" />
+                </Button>
+              </div>
             </div>
-          </div>
-
-          <div className="flex flex-col-reverse lg:flex-row items-stretch justify-between pb-16 md:pb-4 w-full">
-            <div className="bg-[#4F4C45] text-white rounded-none h-[50px] font-monument text-[10px] w-full lg:w-[300px] px-3 uppercase flex item-center justify-center">
-              <p className="py-4.5 mx-auto">{`${
-                activeTab === "SELL"
-                  ? "Get Property Estimate"
-                  : `Properties FOR ${activeTab === "BUY" ? "SALE" : activeTab}`
-              }`}</p>
-            </div>
-
-            {/* Search Box */}
-            <div className="w-full flex flex-row">
-              <Form.Item
-                name="address"
-                label={false}
-                className="!mb-0 !w-full !my-auto "
-              >
-                <AddressAutocomplete
-                  activeTab={activeTab}
-                  value={query}
-                  onChange={(val) => setQuery(val)}
-                />
-              </Form.Item>
-
-              <Button
-                htmlType="submit"
-                className="ml-2 flex items-center justify-center bg-white !border-none !h-[50px] !rounded-none cursor-pointer"
-              >
-                <img src={searchImage} alt="Search" className="my-auto" />
-              </Button>
-            </div>
-          </div>
-        </Form>
-
-        <p
-          className="text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase  animate-slide-up"
-          style={{
-            animationDelay: "4s", // Starts after the text animation (2s delay + 2s duration)
-            animationDuration: "1s",
-            animationTimingFunction: "ease-out",
-            opacity: 0,
-            transform: "translateY(100px)",
-          }}
-        >
-          {currentTime.format("DD MMM YYYY | hh : mm : ss A")}
-        </p>
+          </Form>
+          <p className="text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase  ">
+            {currentTime.format("DD MMM YYYY | hh : mm : ss A")}
+          </p>
+        </div>
       </div>
     </section>
   );
