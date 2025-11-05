@@ -9,6 +9,9 @@ body {
   height: auto;
   min-height: 100%;
   overflow: visible;
+  margin: 0px;
+  box-sizing: border-box;
+  padding: 0px;
 }
 
 @font-face {
