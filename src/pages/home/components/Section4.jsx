@@ -1,8 +1,8 @@
-import video1 from "@/assets/videos/sequence1.mp4";
-import video2 from "@/assets/videos/sequence2.mp4";
+import video1 from "@/assets/videos/Sequence1.mp4";
+import video2 from "@/assets/videos/Sequence2.mp4";
 import image1 from "@/assets/images/Image1.png";
 import mobileImage1 from "@/assets/images/mobile-image-house.png";
-import { HoverSection } from "./HoverSection";
+import { HoverSection } from "./HoverSection.jsx";
 
 export const Section4 = () => {
   return (
