@@ -272,7 +272,7 @@ body {
 
 @keyframes slideUp {
   0% {
-    transform: translateY(50px);
+    transform: translateY(60px);
     opacity: 0;
   }
   100% {

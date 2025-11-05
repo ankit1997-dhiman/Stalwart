@@ -74,12 +74,24 @@ export const Section1 = () => {
 
       {/* Foreground content */}
       <div className="container relative z-10 w-[999px]">
+        {/* <p
+          className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-20 md:pb-20 animate-slide-up"
+          style={{
+            animationDelay: "2s",
+            animationDuration: "2s",
+            animationTimingFunction: "ease-out",
+          }}
+        >
+          PORTA AD DOMUM
+        </p> */}
         <p
           className="uppercase text-white text-sm md:text-xl font-monument font-normal leading-10 text-center pb-20 md:pb-20 animate-slide-up"
           style={{
             animationDelay: "1s",
             animationDuration: "2s",
             animationTimingFunction: "ease-out",
+            opacity: 0, // Add this - starts invisible
+            transform: "translateY(60px)", // Add this - starts at bottom position
           }}
         >
           PORTA AD DOMUM
@@ -95,7 +107,14 @@ export const Section1 = () => {
             bathrooms: "BATH",
             car: "CAR",
           }}
-          className="placeholder-white"
+          className="placeholder-white animate-slide-up"
+          style={{
+            animationDelay: "3s", // Starts after the text animation (2s delay + 2s duration)
+            animationDuration: "1s",
+            animationTimingFunction: "ease-out",
+            opacity: 0,
+            transform: "translateY(70px)",
+          }}
         >
           {/* Top Row */}
           <div className="flex items-end justify-end">
@@ -149,7 +168,16 @@ export const Section1 = () => {
           </div>
         </Form>
 
-        <p className="text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase">
+        <p
+          className="text-white text-center text-[11px] pt-0 pb-20 lg:pt-20 lg:pb-40 font-monument font-light uppercase  animate-slide-up"
+          style={{
+            animationDelay: "4s", // Starts after the text animation (2s delay + 2s duration)
+            animationDuration: "1s",
+            animationTimingFunction: "ease-out",
+            opacity: 0,
+            transform: "translateY(100px)",
+          }}
+        >
           {currentTime.format("DD MMM YYYY | hh : mm : ss A")}
         </p>
       </div>
