@@ -1,10 +1,8 @@
-import hover1 from "@/assets/images/HoverImage1.png";
-import hover2 from "@/assets/images/HoverImage2.png";
-import hover3 from "@/assets/images/HoverImage3.png";
+import video1 from "@/assets/videos/sequence1.mp4";
+import video2 from "@/assets/videos/sequence2.mp4";
 import image1 from "@/assets/images/Image1.png";
-import image2 from "@/assets/images/Image2.png";
-import image3 from "@/assets/images/Image3.png";
 import mobileImage1 from "@/assets/images/mobile-image-house.png";
+import { HoverSection } from "./HoverSection";
 
 export const Section4 = () => {
   return (
@@ -13,39 +11,39 @@ export const Section4 = () => {
         className="xl:hidden block flex-1 bg-cover bg-center transition-all duration-700"
         style={{ backgroundImage: `url(${mobileImage1})` }}
       ></div>
-      {/* Left Image */}
+
       <div
         className="xl:block hidden w-[30%] relative group overflow-hidden h-full bg-cover bg-center transition-opacity duration-700"
         style={{ backgroundImage: `url(${image1})` }}
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-          style={{ backgroundImage: `url(${hover1})` }}
-        />
+        <HoverSection />
       </div>
 
-      {/* Right Side */}
       <div className=" xl:flex hidden w-[70%]  flex-col gap-y-9 h-full">
-        {/* Top Right */}
-        <div
-          className="flex-1 relative group overflow-hidden bg-cover bg-center transition-all duration-700"
-          style={{ backgroundImage: `url(${image2})` }}
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-            style={{ backgroundImage: `url(${hover2})` }}
+        <div className="flex-1 relative group overflow-hidden bg-black transition-all duration-700">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src={video1}
+            autoPlay
+            muted
+            loop
+            playsInline
           />
+
+          <HoverSection />
         </div>
 
-        {/* Bottom Right */}
-        <div
-          className="flex-1 relative group overflow-hidden bg-cover bg-center transition-all duration-700"
-          style={{ backgroundImage: `url(${image3})` }}
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-            style={{ backgroundImage: `url(${hover3})` }}
+        <div className="flex-1 relative group overflow-hidden bg-black transition-all duration-700">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src={video2}
+            autoPlay
+            muted
+            loop
+            playsInline
           />
+
+          <HoverSection />
         </div>
       </div>
     </section>
