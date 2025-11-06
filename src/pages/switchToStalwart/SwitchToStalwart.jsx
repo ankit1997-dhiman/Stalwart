@@ -24,12 +24,18 @@ const SwitchToStalwart = () => {
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [query, setQuery] = useState("");
 
   const { setDark } = useTheme();
 
   const topMargin = useResponsiveMargin(topSpace, 0);
   const steps = [
-    { title: "Landing", content: <SellLandingStep form={form} /> },
+    {
+      title: "Landing",
+      content: (
+        <SellLandingStep form={form} query={query} setQuery={setQuery} />
+      ),
+    },
     {
       title: "Confirm your details",
       content: <ConfirmDetailsStepSwitch form={form} />,
@@ -62,7 +68,6 @@ const SwitchToStalwart = () => {
         if (nextStep === 0) {
           setDark(false);
         } else if (nextStep <= steps.length + 1) {
-          co;
           setDark(true);
         } else {
           // If nextStep exceeds steps, reset to first step

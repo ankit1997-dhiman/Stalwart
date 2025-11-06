@@ -1,7 +1,7 @@
 import { Form } from "antd";
 import AddressAutocomplete from "@/pages/home/components/AddressAutocomplete";
 
-export const SellLandingStep = ({ form }) => (
+export const SellLandingStep = ({ form, query, setQuery }) => (
   <>
     <Form.Item
       name="address"
@@ -9,7 +9,11 @@ export const SellLandingStep = ({ form }) => (
       className="!mb-0 !w-full !rounded-xl "
       rules={[{ required: true, message: "Please enter your address" }]}
     >
-      <AddressAutocomplete />
+      <AddressAutocomplete
+        activeTab={"SELL"}
+        value={query}
+        onChange={(val) => setQuery(val)}
+      />
     </Form.Item>
   </>
 );

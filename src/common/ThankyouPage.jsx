@@ -20,7 +20,7 @@ const ThankyouPage = () => {
             Back to Home Page
           </button>
         </Link>
-        <Link to={"#"} className="cursor-pointer">
+        <Link to={URLS.BLOGS} className="cursor-pointer">
           <button className="mt-4 px-6 py-2 border-black border text-black font-semibold uppercase">
             Read Our Latest Article
           </button>
