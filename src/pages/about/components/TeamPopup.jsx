@@ -48,7 +48,7 @@ export default function TeamPopup({ member }) {
             icon={<BlackArrow />}
             className="!mt-3 inline-flex items-center text-xs lg:text-sm border-none font-moderat-regular   !text-black"
           >
-            {id !== 4 ? "Request an Appraisal" : "Leasing With Stalwart"}
+            Request an Appraisal
           </LenisAnimatedLink>
         </div>
         <div className="space-y-4">
