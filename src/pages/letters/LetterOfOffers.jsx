@@ -103,9 +103,9 @@ export const LetterOfOffers = () => {
   return (
     <>
       <HeroSection title={"Expression of Interest Form"} bgImage={bgImage} />
-      <div className="container mx-auto max-w-4xl py-10">
-        <div className="flex gap-x-26">
-          <div className="w-[30%]">
+      <div className="container mx-auto max-w-4xl py-10 px-12.5 lg:px-0">
+        <div className="flex xl:flex-row flex-col gap-x-26">
+          <div className="w-ull xl:w-[30%]">
             <div className="text-base font-moderat-medium">
               START THE CONVERSATION
             </div>
@@ -119,7 +119,7 @@ export const LetterOfOffers = () => {
               and answer any questions you may have.
             </div>
           </div>
-          <div className="w-[70%]">
+          <div className="w-ull xl:w-[70%]">
             <Form
               form={form}
               layout="vertical"
@@ -343,7 +343,7 @@ export const LetterOfOffers = () => {
               </Row>
 
               {/* Settlement */}
-              <Form.Item name="specialConditions" label={false} className="">
+              <Form.Item name="settlementDays" label={false} className="">
                 <Input placeholder="Settlement Date (Days)" />
               </Form.Item>
 

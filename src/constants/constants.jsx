@@ -106,7 +106,7 @@ export const switchCollapseItems = [
     key: "2",
     label: "Tailored Leasing Campaigns",
     content:
-      "Our team combines experience with empathy — ensuring your investment is handled with professionalism and intent. From tenant selection to lease renewals and inspections, we stay proactive, compliant, and accountable, keeping you informed every step of the way.",
+      "Leasing with Stalwart means precision, innovation, and care. Our fully trained team combines advanced technology with strategic marketing to attract quality tenants, reduce vacancy, and protect your investment. Every step from marketing to management is handled with integrity and intent.",
   },
   {
     key: "3",

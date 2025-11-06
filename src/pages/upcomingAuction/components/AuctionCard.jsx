@@ -90,7 +90,7 @@ export default function AuctionCard({
                 .map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-end gap-2 font-moderat-medium text-xs pt-1 group-hover:text-white text-right"
+                    className="flex items-end justify-center gap-2 font-moderat-medium text-xs pt-1 group-hover:text-white text-right"
                   >
                     {moment
                       .tz(item.start, "Australia/Brisbane")

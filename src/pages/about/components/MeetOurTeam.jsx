@@ -32,6 +32,7 @@ export default function MeetOurTeam() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   return (
     <section className="bg-[#706C62] py-30 px-12.5 xl:px-0">
       <div className="container flex flex-col xl:flex-row gap-12 items-start custom-modal">
@@ -40,8 +41,11 @@ export default function MeetOurTeam() {
           <p className="text-xl lg:text-2xl font-semibold uppercase text-white font-moderat-medium">
             {aboutPageContent.MEET_OUR_TEAM_TITLE}
           </p>
-          {aboutPageContent.MEET_OUR_TEAM_PARA.map((text) => (
-            <p className="text-white font-moderat-regular pt-10 lg:text-base">
+          {aboutPageContent.MEET_OUR_TEAM_PARA.map((text, i) => (
+            <p
+              className="text-white font-moderat-regular pt-10 lg:text-base"
+              key={i}
+            >
               {text}
             </p>
           ))}
@@ -83,14 +87,7 @@ export default function MeetOurTeam() {
         }}
         style={{ padding: 0 }}
       >
-        <TeamPopup
-          image={member.image}
-          name={member.name}
-          desc={member.desc}
-          inTitle={member.in}
-          outTitle={member.out}
-          position={member.position}
-        />
+        <TeamPopup member={member} />
       </Modal>
     </section>
   );

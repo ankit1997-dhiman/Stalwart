@@ -29,7 +29,7 @@ export default function UpcomingInspections() {
           const lastInspection = inspections;
           filteredProperties.push({
             ...property,
-            lastInspection, // ✅ attach last inspection here
+            inspections, // ✅ attach last inspection here
           });
         }
       });
@@ -48,6 +48,7 @@ export default function UpcomingInspections() {
   }, [fetchInspectionProperties]);
 
   const handleSubmit = (values) => {};
+  console.log();
 
   return (
     <div className="container">

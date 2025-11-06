@@ -71,15 +71,15 @@ export const PrivacyPolicy = () => {
             text="Privacy Policy"
           />
           <Typography
-            className="text-base pb-2 font-moderat-medium"
+            className="text-base pb-2 font-moderat-regular"
             text="Stalwart Real Estate (“we”, “our”, “us”) understands that privacy and trust are the foundation of every relationship we build."
           />
           <Typography
-            className="text-base pb-2 font-moderat-medium"
+            className="text-base pb-2 font-moderat-regular"
             text="We are committed to protecting the personal information of our clients, tenants, landlords, and visitors in accordance with the Privacy Act 1988 (Cth), the Australian Privacy Principles (APPs), and applicable Queensland tenancy legislation."
           />
           <Typography
-            className="text-base pb-2 font-moderat-medium"
+            className="text-base pb-2 font-moderat-regular"
             text="This Privacy Policy explains how we collect, use, store, and protect your personal information, and how you can contact us if you have any questions or concerns."
           />
           {/* Section */}
@@ -88,15 +88,15 @@ export const PrivacyPolicy = () => {
             text="What is personal information?"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="“Personal information” means any information or opinion about an identified individual, or an individual who is reasonably identifiable, whether the information is true or not and whether it is recorded in a material form or not."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="This may include your name, address, email address, phone number, occupation, or any other details that can reasonably identify you."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="If the information we collect can identify you (either on its own or when combined with other information we hold), it is treated as personal information."
           />
           {/* Personal Info List */}
@@ -105,7 +105,7 @@ export const PrivacyPolicy = () => {
             text="What personal information do we collect and hold? We only collect information that is reasonably necessary for our business functions or required by law."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="The types of personal information we may collect include:"
           />
           <ul className="list-disc list-inside space-y-2 text-black">
@@ -114,7 +114,7 @@ export const PrivacyPolicy = () => {
             ))}
           </ul>
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We may also collect non-identifiable information, such as aggregated website analytics or anonymous survey data, which cannot be linked back to an individual."
           />
           {/* How we Collect */}
@@ -123,7 +123,7 @@ export const PrivacyPolicy = () => {
             text="How we collect personal information"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We collect personal information directly from you whenever practical for example:"
           />
           <ul className="list-disc list-inside space-y-2 text-black">
@@ -132,7 +132,7 @@ export const PrivacyPolicy = () => {
             ))}
           </ul>
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We may also receive information from third parties such as:"
           />
           <ul className="list-disc list-inside space-y-2 text-black">
@@ -141,7 +141,7 @@ export const PrivacyPolicy = () => {
             ))}
           </ul>
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="If we receive personal information we did not request, we will determine whether it is relevant and lawful to retain it. If not, we will securely destroy or de-identify it."
           />
           {/* Cookies Section */}
@@ -150,19 +150,19 @@ export const PrivacyPolicy = () => {
             text="Cookies"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="When you visit our website, we may use small data files known as cookies to recognise your device and improve your browsing experience."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="Cookies help us analyse website usage, measure traffic patterns, and tailor content or functionality to better serve our visitors. Cookies do not collect personal information."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="You can configure your browser to refuse cookies; however, some features of our website may not operate as intended if cookies are disabled."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We may also log IP addresses and basic device information to help monitor website performance, security, and usage trends."
           />
           {/* If not provide Info */}
@@ -171,7 +171,7 @@ export const PrivacyPolicy = () => {
             text="What happens if we can’t collect your personal information?"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="If you choose not to provide the personal information we request:"
           />
           <ul className="list-disc list-inside space-y-2 text-black">
@@ -180,7 +180,7 @@ export const PrivacyPolicy = () => {
             ))}
           </ul>
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="Providing accurate information helps us maintain a high standard of service and ensure compliance with our legal obligations under the Privacy Act 1988 (Cth) and Residential Tenancies and Rooming Accommodation Act 2008 (Qld)."
           />
           <Typography
@@ -188,12 +188,12 @@ export const PrivacyPolicy = () => {
             text="Why we collect, hold, use and disclose personal information"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We collect personal information so we can operate effectively and provide
       exceptional real estate and property management services. "
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="Specifically, we may use your personal information for purposes including:"
           />
           <ul className="list-disc list-inside space-y-2 text-black">
@@ -202,7 +202,7 @@ export const PrivacyPolicy = () => {
             ))}
           </ul>
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text=" We will not use or disclose your personal information for any purpose
       other than the purpose for which it was collected, unless authorised by
       you or required by law."
@@ -212,12 +212,12 @@ export const PrivacyPolicy = () => {
             text="To whom we may disclose your personal information"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We collect personal information so we can operate effectively and provide
       exceptional real estate and property management services. "
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We may disclose your personal information to:"
           />
           <ul className="list-disc list-inside space-y-2 text-black">
@@ -226,7 +226,7 @@ export const PrivacyPolicy = () => {
             ))}
           </ul>
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We take reasonable steps to ensure all third parties handle your information securely and only for authorised purposes."
           />
           <Typography
@@ -234,15 +234,15 @@ export const PrivacyPolicy = () => {
             text="Direct marketing"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We may send you marketing updates, property alerts, or information about our services that we believe may be of genuine interest to you."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="These communications may be sent by email, SMS, or post. You can opt out at any time by using the unsubscribe link provided in our messages or by contacting us directly via info@stalwartrealestate.com.au"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We will never use or disclose sensitive information for marketing without your explicit consent."
           />
           <Typography
@@ -250,23 +250,23 @@ export const PrivacyPolicy = () => {
             text=" How you can access and correct your personal information"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="You may request access to the personal information we hold about you at any time by contacting us using the details provided on our website."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="If access is granted, we will provide the information in a suitable format."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We do not charge for correcting your personal information."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="In some cases, we may refuse access where disclosure would breach another person’s privacy or a confidentiality obligation. If we refuse access, we will provide written reasons and inform you of your right to make a complaint."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="If you believe the information we hold about you is inaccurate, incomplete or outdated, you can request an amendment at any time."
           />
           <Typography
@@ -274,7 +274,7 @@ export const PrivacyPolicy = () => {
             text="How to make a privacy complaint"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="If you believe that your privacy has been breached, please contact us with full details of your concern so that we can investigate the matter promptly."
           />
           <Typography
@@ -282,11 +282,11 @@ export const PrivacyPolicy = () => {
             text="Do we disclose your personal information outside Australia?"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="Some of our technology partners or cloud service providers may store or process data in other countries such as Singapore or the United States."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We take reasonable steps to ensure that any overseas recipients comply with Australian privacy laws and apply the same standards of protection required under the Privacy Act 1988 (Cth) and Australian Privacy Principles (APPs)."
           />
           <Typography
@@ -294,16 +294,16 @@ export const PrivacyPolicy = () => {
             text="Security"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We take every reasonable precaution to protect your personal information from misuse, loss, unauthorised access, or disclosure."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="Our systems use encryption, secure servers, multi-factor authentication,
       and restricted access for staff and contractors."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="While we maintain high security standards, please note that data transmitted over the internet may not always be fully secure, and any information sent online is done so at your own risk."
           />
           <Typography
@@ -311,15 +311,15 @@ export const PrivacyPolicy = () => {
             text="Links to other websites"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="Our website may include links to external or third-party websites."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We are not responsible for the privacy practices, content, or security of those websites."
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="You should review their individual privacy policies when visiting other sites."
           />
           <Typography
@@ -327,19 +327,19 @@ export const PrivacyPolicy = () => {
             text="Contacting us"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="If you have any questions, feedback, or concerns about this Privacy Policy or the way we handle your personal information, please contact our Privacy Officer:"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="Stalwart Real Estate"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="PO Box 1114 Park Ridge QLD 4125"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="P: (07) 3112 8088 | E:  info@stalwartrealestate.com.au"
           />
           <Typography
@@ -347,7 +347,7 @@ export const PrivacyPolicy = () => {
             text="Changes to this policy"
           />
           <Typography
-            className="text-base pb-3 font-moderat-medium"
+            className="text-base pb-3 font-moderat-regular"
             text="We may update this Privacy Policy from time to time to reflect changes in legislation, technology, or our business operations.The most recent version will always be available on our website."
           />
 

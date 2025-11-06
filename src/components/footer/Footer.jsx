@@ -126,7 +126,7 @@ export default function Footer() {
                 >
                   <Input
                     placeholder="First Name*"
-                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
+                    className="!shadow-none w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                   />
                 </Form.Item>
 
@@ -139,7 +139,7 @@ export default function Footer() {
                 >
                   <Input
                     placeholder="Last Name*"
-                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
+                    className="!shadow-none w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                   />
                 </Form.Item>
               </div>
@@ -154,7 +154,7 @@ export default function Footer() {
               >
                 <Input
                   placeholder="Email*"
-                  className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
+                  className="!shadow-none w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                 />
               </Form.Item>
 
@@ -171,7 +171,7 @@ export default function Footer() {
                 >
                   <Input
                     placeholder="Phone*"
-                    className="w-full !bg-transparent !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
+                    className="!shadow-none w-full !bg-[#4a443e] !text-white !placeholder-white !text-sm !placeholder:font-moderat-regular !font-moderat-regular !pb-3 !border-0 !px-0 !mt-8 lg:!mt-8"
                   />
                 </Form.Item>
 

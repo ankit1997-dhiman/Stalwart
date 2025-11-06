@@ -46,8 +46,8 @@ export default function InstagramReelsGrid() {
           1024: { slidesPerView: 6 },
         }}
       >
-        {reels.map((reel) => (
-          <SwiperSlide key={reel.id}>
+        {reels.map((reel, i) => (
+          <SwiperSlide key={i}>
             <div className="w-full aspect-[9/16] sm:aspect-[4/5] md:aspect-[3/4] lg:aspect-[8/9] overflow-hidden ">
               {reel.type === "v" ? (
                 <video

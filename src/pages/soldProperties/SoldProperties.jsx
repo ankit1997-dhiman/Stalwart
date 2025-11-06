@@ -141,14 +141,20 @@ export function SoldProperties() {
         <>
           <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {soldProperties.map((property) => {
-              const { id, formattedAddress, images, price, listingDetails } =
-                property;
+              const {
+                id,
+                formattedAddress,
+                images,
+                price,
+                listingDetails,
+                advertisedPrice,
+              } = property;
               return (
                 <Property
                   id={id}
                   address={formattedAddress}
                   image={images}
-                  price={price}
+                  price={advertisedPrice}
                   bed={listingDetails?.bedrooms ?? 0}
                   bathrooms={listingDetails?.bathrooms ?? 0}
                   carportSpaces={listingDetails?.carportSpaces ?? 0}

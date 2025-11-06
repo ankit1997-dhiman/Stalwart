@@ -92,7 +92,7 @@ const SuburbInsight = () => {
       content: <ConfirmDetailsStep form={form} />,
     },
     {
-      title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
+      title: "WHAT IS YOUR RELATIONSHIP WITH THAT SUBURB?",
       content: <TenantedStep form={form} />,
     },
   ];
@@ -152,7 +152,7 @@ const SuburbInsight = () => {
           <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
             <div className="w-full md:w-[65%] py-60">
               <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
-                Property APPRAISAL
+                Suburb Report
               </p>
               <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 w-full">
                 {steps[current].title}
@@ -160,7 +160,7 @@ const SuburbInsight = () => {
               <p className="font-normal font-moderat-regular text-base pb-20">
                 {current === 1
                   ? "Almost there, we just need to get a few details from you."
-                  : "Help us to provide you with the very best service by telling us a bit more about your property."}
+                  : "Help us to provide you with the very best service by telling us a bit more about your research."}
               </p>
 
               {steps.map((step, index) => (

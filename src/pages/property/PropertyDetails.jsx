@@ -134,7 +134,7 @@ export const PropertyDetails = () => {
 
             <>
               {hasInspections.nodes.length ? (
-                <>
+                <div>
                   <p className="leading-5 font-bold font-moderat-bold uppercase text-sm lg:text-base pb-2 lg:pb-4 ">
                     Next Inspection/Auction
                   </p>
@@ -150,7 +150,7 @@ export const PropertyDetails = () => {
                     .map((item, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-start gap-2 font-moderat-medium text-sm lg:text-base  group-hover:text-white text-left"
+                        className="flex items-center justify-start gap-2 font-moderat-medium text-sm lg:text-base  group-hover:text-white text-left mb-1"
                       >
                         <p>
                           {" "}
@@ -167,10 +167,8 @@ export const PropertyDetails = () => {
                         />
                       </div>
                     ))}
-                </>
+                </div>
               ) : null}
-
-              {}
             </>
 
             <p

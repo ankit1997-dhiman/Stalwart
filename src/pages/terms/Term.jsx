@@ -25,7 +25,7 @@ export const Term = () => {
           />
           {legalInfo.map((item) => (
             <Typography
-              className="text-base pb-2 font-moderat-medium"
+              className="text-base pb-2 font-moderat-regular"
               text={item}
             />
           ))}
