@@ -86,7 +86,10 @@ const SuburbInsight = () => {
   };
 
   const steps = [
-    { title: "Landing", content: <SellLandingStep form={form} /> },
+    {
+      title: "Landing",
+      content: <SellLandingStep form={form} active={"buy"} />,
+    },
     {
       title: "Confirm your details",
       content: <ConfirmDetailsStep form={form} />,

@@ -24,11 +24,22 @@ const SellWithStalwart = () => {
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
   const topMargin = useResponsiveMargin(topSpace, 0);
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const { setDark } = useTheme();
 
   const steps = [
-    { title: "Landing", content: <SellLandingStep form={form} /> },
+    {
+      title: "Landing",
+      content: (
+        <SellLandingStep
+          form={form}
+          query={query}
+          setQuery={setQuery}
+          active={true}
+        />
+      ),
+    },
     {
       title: "Confirm your details",
       content: <ConfirmDetailsStep form={form} />,
@@ -139,7 +150,7 @@ const SellWithStalwart = () => {
             </p>
 
             <div className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between z-20">
-              <SellLandingStep form={form} />
+              {steps[0].content}
 
               <Button
                 htmlType="button"

@@ -33,7 +33,12 @@ const SwitchToStalwart = () => {
     {
       title: "Landing",
       content: (
-        <SellLandingStep form={form} query={query} setQuery={setQuery} />
+        <SellLandingStep
+          form={form}
+          query={query}
+          setQuery={setQuery}
+          active={true}
+        />
       ),
     },
     {
@@ -150,7 +155,7 @@ const SwitchToStalwart = () => {
             </p>
 
             <div className="w-full lg:w-[1000px] flex flex-col lg:flex-row justify-between z-20">
-              <SellLandingStep />
+              {steps[0].content}
               <Button
                 onClick={next}
                 className="!h-[50px] mt-2 lg:mt-0 lg:ml-2 flex items-center justify-center !bg-[#706C62] !border-none !rounded-none !text-white"
