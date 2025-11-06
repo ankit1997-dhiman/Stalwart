@@ -276,12 +276,12 @@ export default function Footer() {
 
             {/* Acknowledgement */}
             <div className="flex md:flex-row flex-col justify-between item-start md:items-center gap-7 pt-8">
-              <p className="font-moderat text-sm text-white/60">
+              <p className="font-moderat-light text-sm text-white/60">
                 We respectfully acknowledge the Traditional Owners of the land
                 on which we work and learn, and pay respect to the First Nations
                 Peoples and their elders, past, present and future.
               </p>
-              <p className="font-moderat text-sm text-white/60">
+              <p className="font-moderat text-sm text-white">
                 <Link key="Corelands" to={URLS.CORELANDS} target="_blank">
                   Design By Studio Corelands
                 </Link>
