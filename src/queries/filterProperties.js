@@ -1,7 +1,13 @@
-export const GET_FILTERED_PROPOERTIES = `query GetFilteredProperties($first: Int, $filterSet: FilterSetAttributes, $status: [PropertyStatusEnum!] , $orderBy:PropertyOrderEnum) {
-  properties(first: $first, filterSet: $filterSet, status: $status , orderBy: $orderBy) {
+export const GET_FILTERED_PROPERTIES = `query GetFilteredProperties($first: Int, $filterSet: FilterSetAttributes, $status: [PropertyStatusEnum!], $orderBy: PropertyOrderEnum, $listingType: [ListingTypeEnum!]) {
+  properties(
+    first: $first
+    filterSet: $filterSet
+    status: $status
+    orderBy: $orderBy
+    listingType: $listingType
+  ) {
     totalCount
-    pageInfo{
+    pageInfo {
       hasNextPage
       endCursor
     }
@@ -19,24 +25,24 @@ export const GET_FILTERED_PROPOERTIES = `query GetFilteredProperties($first: Int
         ... on ResidentialSale {
           bedrooms
           bathrooms
-           carportSpaces
-            garageSpaces
-            openCarSpaces
+          carportSpaces
+          garageSpaces
+          openCarSpaces
         }
         ... on ResidentialRental {
           bedrooms
           bathrooms
-           carportSpaces
-            garageSpaces
-            openCarSpaces
+          carportSpaces
+          garageSpaces
+          openCarSpaces
         }
       }
       price
-      status
-       images {
+      images {
         url
         position
       }
     }
   }
-}`;
+}
+`;

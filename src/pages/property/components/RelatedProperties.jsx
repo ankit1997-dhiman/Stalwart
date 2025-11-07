@@ -1,5 +1,5 @@
 import { Property } from "@/common/properties/Property";
-import { GET_FILTERED_PROPOERTIES } from "@/queries/filterProperties";
+import { GET_FILTERED_PROPERTIES } from "@/queries/filterProperties";
 import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message } from "antd";
@@ -13,7 +13,7 @@ export const RelatedProperties = () => {
     try {
       const res = await graphqlRequest(
         "/api/graphql",
-        GET_FILTERED_PROPOERTIES,
+        GET_FILTERED_PROPERTIES,
         variables
       );
 

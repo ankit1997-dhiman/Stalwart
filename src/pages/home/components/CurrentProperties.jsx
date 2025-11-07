@@ -22,7 +22,7 @@ export const CurrentProperties = ({
 }) => {
   const [propertiesData, setPropertiesData] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(order);
+  console.log(propertiesData);
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -146,16 +146,7 @@ export const CurrentProperties = ({
               className="w-full"
             >
               <Property
-                id={property.id}
-                address={property.formattedAddress}
-                image={property.images?.length ? property.images : []}
-                price={property.advertisedPrice}
-                bed={property?.listingDetails?.bedrooms}
-                bathrooms={property?.listingDetails?.bathrooms}
-                carportSpaces={property?.listingDetails?.carportSpaces}
-                garageSpaces={property?.listingDetails?.garageSpaces}
-                openCarSpaces={property?.listingDetails?.openCarSpaces}
-                soldTag={property.status === "SOLD"}
+                property={property}
                 leaseTag={property.status === "LEASED"}
               />
             </Link>

@@ -1,6 +1,5 @@
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { Property } from "@/common/properties/Property";
-import { GET_FILTERED_PROPOERTIES } from "@/queries/filterProperties";
 import { FILTER_SUBURB_AND_STATUS } from "@/queries/filterSuburbs";
 import { graphqlRequest } from "@/utils/graphqlRequest";
 import { message } from "antd";

@@ -245,7 +245,7 @@ const SwitchToStalwart = () => {
           <section className="py-34 px-12.5 lg:px-0">
             <CurrentProperties
               title="OUR LEASED PROPERTIES"
-              desc="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+              desc="Our leasing results reflect a commitment to detail, discipline and genuine care. Each property is thoughtfully presented, carefully marketed and professionally managed to ensure owners achieve strong results and secure reliable tenancies."
               status="LEASED"
               showButton={false}
             />

@@ -1,36 +1,112 @@
-import { Form, message } from "antd";
+import { Form, message, Skeleton } from "antd";
 import React, { useEffect, useState, useCallback } from "react";
-import { bedrooms } from "@/constants/constants";
+import { magicText } from "@/constants/constants";
 import { Property } from "@/common/properties/Property";
 import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 import { graphqlRequest } from "@/utils/graphqlRequest.js";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
 import { InquiryForm } from "@/components/form/InquiryForm";
-import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries";
+import { BottomSpace } from "@/components/BottomSpace";
+import { LoadMoreBtn } from "@/components/LoadMoreBtn";
+import { GET_FILTERED_PROPERTIES } from "@/queries/filterProperties";
 
 export function Lease() {
-  const [data, setData] = useState([]);
   const [filterForm] = Form.useForm();
+  const [pageInfo, setPageInfo] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [properties, setProperties] = useState([]);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(
+    magicText.PROPERTIES_PER_PAGE
+  );
 
-  const fetchProperties = useCallback(async () => {
-    try {
-      const variables = { status: ["ACTIVE"] };
-      const res = await graphqlRequest("/api/graphql",GET_SALE_PROPERTIES, variables);
-      const filterProperty = res?.data?.properties?.nodes.filter(
-        (item) => item.saleOrLease == "LEASE"
-      );
-      setData(filterProperty || []);
-    } catch (error) {
-      message.error("Failed to fetch properties");
-    }
-  }, []);
+  const fetchProperties = useCallback(
+    async (filtersFromForm = {}) => {
+      try {
+        setLoading(true);
+        const { bedrooms, bathrooms, carSpaces, address } = filtersFromForm;
+        const dynamicFilters = [];
+
+        if (address) {
+          dynamicFilters.push({
+            type: "STREET",
+            strategy: "CONTAINS",
+            value: address,
+          });
+        }
+        if (bedrooms) {
+          dynamicFilters.push({
+            type: "BEDROOM",
+            strategy: "IS_GREATER_THAN",
+            value: String(bedrooms),
+          });
+        }
+        if (bathrooms) {
+          dynamicFilters.push({
+            type: "BATHROOM",
+            strategy: "IS_GREATER_THAN",
+            value: String(bathrooms),
+          });
+        }
+        if (carSpaces) {
+          dynamicFilters.push({
+            type: "CAR_SPACES",
+            strategy: "IS_GREATER_THAN",
+            value: String(carSpaces),
+          });
+        }
+
+        const variables = {
+          first: visibleCount,
+          listingType: ["RESIDENTIAL_RENTAL"],
+          orderBy: "CREATED_AT_DESC",
+          status: [],
+          ...(dynamicFilters.length && {
+            filterSet: {
+              filterGroups: [{ operand: "AND", filters: dynamicFilters }],
+              operand: "AND",
+            },
+          }),
+        };
+
+        const res = await graphqlRequest(
+          "/api/graphql",
+          GET_FILTERED_PROPERTIES,
+          variables
+        );
+        const properties = res?.data?.properties?.nodes || [];
+        const info = res?.data?.properties?.pageInfo || {};
+
+        setProperties(properties);
+        setPageInfo(info);
+      } catch (error) {
+        message.error("Failed to fetch properties");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [visibleCount]
+  );
 
   useEffect(() => {
-    fetchProperties();
+    const currentFilters = filterForm.getFieldsValue();
     filterForm.setFieldsValue({ status: "LEASE" });
-  }, [fetchProperties]);
+    fetchProperties(currentFilters);
+  }, [fetchProperties, visibleCount]);
 
-  const handleSubmit = (values) => {};
+  const handleValuesChange = (allValues) => {
+    const { address, bedrooms, bathrooms, carSpaces } = allValues;
+    const allEmpty = !address && !bedrooms && !bathrooms && !carSpaces;
+
+    if (allEmpty) {
+      fetchProperties();
+    } else {
+      fetchProperties(allValues);
+    }
+  };
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 4);
+  };
 
   return (
     <div className="container lg:px-0 px-12.5">
@@ -44,42 +120,77 @@ export function Lease() {
 
         <InquiryForm
           form={filterForm}
-          onFinish={handleSubmit}
+          onFinish={handleValuesChange}
           status="LEASE"
-          bedroomOptions={bedrooms}
-          bathroomOptions={bedrooms}
-          carOptions={bedrooms}
         />
       </div>
       <div className="border-t border-b-black/30 my-16 "></div>
-      <div className="">
-        {data.length > 0 ? (
-          <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {data.map((property) => {
-              const { id, formattedAddress, images, price, listingDetails } =
-                property;
-              return (
-                <Link to={`/property/${id}`}>
-                  <Property
-                    key={id}
-                    address={formattedAddress}
-                    image={images?.[0]?.url}
-                    price={price}
-                    bed={listingDetails?.bedrooms ?? 0}
-                    bathrooms={listingDetails?.bathrooms ?? 0}
-                    carportSpaces={listingDetails?.carportSpaces ?? 0}
-                    property={property}
-                    leaseTag={false}
-                  />
-                </Link>
-              );
-            })}
-          </div>
-        ) : (
-          <PropertiesNotFound />
-        )}
-      </div>
-      <div className="mt-16"></div>
+      {loading ? (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {Array.from({ length: properties.length }).map((_, i) => (
+            <div className="relative border border-gray-300 rounded overflow-hidden h-[300px] lg:h-[450px] p-5">
+              <Skeleton.Image active className="!w-full !h-[200px]" />
+              <div className="pt-5">
+                <Skeleton active paragraph={{ rows: 2 }} title={false} />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="">
+          {properties.length > 0 ? (
+            <>
+              <div className="lg:grid-cols-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {properties.map((property) => {
+                  if (!property || !property.id) return null; // skip invalid entries
+
+                  const {
+                    id,
+                    formattedAddress = "No address available",
+                    images = [],
+                    advertisedPrice = 0,
+                    listingDetails = {},
+                  } = property;
+
+                  const {
+                    bedrooms = 0,
+                    bathrooms = 0,
+                    carportSpaces = 0,
+                    garageSpaces = 0,
+                    openCarSpaces = 0,
+                  } = listingDetails || {};
+
+                  return (
+                    <Property
+                      id={id}
+                      address={formattedAddress}
+                      image={
+                        Array.isArray(images) && images.length > 0 ? images : []
+                      }
+                      price={advertisedPrice}
+                      bed={bedrooms}
+                      bathrooms={bathrooms}
+                      carportSpaces={carportSpaces}
+                      garageSpaces={garageSpaces}
+                      openCarSpaces={openCarSpaces}
+                      property={property}
+                      leaseTag={false}
+                    />
+                  );
+                })}
+              </div>
+              {pageInfo?.hasNextPage && (
+                <div className=" flex justify-center">
+                  <LoadMoreBtn onClick={handleLoadMore} loading={loadingMore} />
+                </div>
+              )}
+            </>
+          ) : (
+            <PropertiesNotFound />
+          )}
+        </div>
+      )}
+      <BottomSpace />
     </div>
   );
 }
