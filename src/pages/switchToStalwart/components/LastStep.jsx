@@ -10,7 +10,11 @@ export const LastStep = ({ form }) => {
   };
   return (
     <>
-      <Form.Item name="rentStatus" label={false} rules={[{ required: true }]}>
+      <Form.Item
+        name="rentStatus"
+        label={false}
+        rules={[{ required: true, message: "Please fill this Field" }]}
+      >
         <Checkbox.Group
           onChange={handleCheckboxChange}
           className="flex flex-col gap-3"

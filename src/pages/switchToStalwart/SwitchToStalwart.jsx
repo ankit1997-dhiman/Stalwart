@@ -219,7 +219,7 @@ const SwitchToStalwart = () => {
                   className="!border-none !bg-transparent pl-0 !pt-16 custom-accordion"
                 />
 
-                <p className="pt-10">
+                <p className="pt-10 pb-10 lg:pb-0">
                   <LenisAnimatedLink
                     to={URLS.LEASE_PROPERTIES}
                     iconPosition="right"
