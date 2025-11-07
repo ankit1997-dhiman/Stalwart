@@ -6,7 +6,7 @@ import React from "react";
 const ConfirmDetailsStepSwitch = ({ form }) => {
   return (
     <>
-      <div className="grid grid-cols-2 gap-x-7.5">
+      <div className="grid lg:grid-cols-2 grid-col-1 gap-x-7.5">
         <Form.Item
           name="first_name"
           label={<Label label="First Name" className="pb-4" />}

@@ -18,6 +18,7 @@ import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { useTheme } from "@/context/ThemeContext";
+import CheckboxStep3 from "./components/CheckboxStep3";
 
 const SwitchToStalwart = () => {
   const [form] = Form.useForm();
@@ -43,19 +44,24 @@ const SwitchToStalwart = () => {
     },
     {
       title: "Confirm your details",
+      sub_title: "Almost there, we just need to get a few details from you.",
       content: <ConfirmDetailsStepSwitch form={form} />,
     },
     {
-      title: "Is your property currently tenanted?",
+      title: "Who’s currently living in the property?",
+      sub_title:
+        "A quick detail that helps us understand timing, access and the right leasing strategy.",
       content: <CheckboxStep questionYes="tenanted_status" form={form} />,
     },
     {
-      title: "Do you currently have a property manager appointed?",
-      content: <CheckboxStep questionYes="appointed_status" form={form} />,
+      title: "Is another agency currently managing your property?",
+      sub_title: "A quick detail so we know how best to support you.",
+      content: <CheckboxStep3 form={form} />,
     },
     {
-      title:
-        "How much rent do you think is achievable for your property in the current market?",
+      title: "What weekly rent would you like to achieve?",
+      sub_title:
+        "Your goals guide our advice. We’ll confirm market demand so you’re positioned for the best result.",
       content: <LastStep form={form} />,
     },
   ];
@@ -90,7 +96,14 @@ const SwitchToStalwart = () => {
     0: ["address"],
     1: ["first_name", "last_name", "email", "number", "privacy"],
     2: ["tenanted_status"],
-    3: ["appointed_status"],
+    3: [
+      "leaseStatus",
+      "agencyName",
+      "leaseExpiry",
+      "currentRent",
+      "reasonSwitching",
+    ],
+    4: ["rentStatus", "expectedRent"],
   };
 
   const prev = () => setCurrent((prev) => prev - 1);
@@ -255,9 +268,7 @@ const SwitchToStalwart = () => {
                 {steps[current].title}
               </p>
               <p className="font-normal font-moderat-regular text-base pb-20">
-                {current === 1
-                  ? "Almost there, we just need to get a few details from you."
-                  : "Help us to provide you with the very best service by telling us a bit more about your property."}
+                {steps[current].sub_title}
               </p>
 
               {steps.map((step, index) => (

@@ -42,14 +42,17 @@ const SellWithStalwart = () => {
     },
     {
       title: "Confirm your details",
+      sub_title: "Almost there, we just need to get a few details from you.",
       content: <ConfirmDetailsStep form={form} />,
     },
     {
-      title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
+      title: "What are you exploring today?",
+      sub_title: "A quick detail so we guide you the right way.",
       content: <TenantedStep form={form} />,
     },
     {
-      title: "WHEN ARE YOU THINKING OF SELLING?",
+      title: "When are you thinking of selling ?",
+      sub_title: "Timing shapes your strategy. We’ll guide you from here.",
       content: <AppointedStep form={form} />,
     },
   ];
@@ -135,7 +138,7 @@ const SellWithStalwart = () => {
       <Form.Item name="enquiry_for" hidden>
         <Input />
       </Form.Item>
-      {/* First step (Landing) */}
+
       {current === 0 && (
         <>
           <section
@@ -251,9 +254,7 @@ const SellWithStalwart = () => {
                 {steps[current].title}
               </p>
               <p className="font-normal font-moderat-regular text-base pb-20">
-                {current === 1
-                  ? "Almost there, we just need to get a few details from you."
-                  : "Help us to provide you with the very best service by telling us a bit more about your property."}
+                {steps[current].sub_title}
               </p>
 
               {steps.map((step, index) => (
