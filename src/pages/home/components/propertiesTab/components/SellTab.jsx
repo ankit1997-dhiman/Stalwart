@@ -63,21 +63,7 @@ function SellTab() {
       {data?.length > 0 ? (
         data.map((item) => (
           <SwiperSlide key={item.id}>
-            <Property
-              price={item.advertisedPrice}
-              bed={item.listingDetails.bedrooms}
-              bathrooms={item.listingDetails.bathrooms}
-              carportSpaces={item.listingDetails.carportSpaces}
-              garageSpaces={item.listingDetails.garageSpaces}
-              openCarSpaces={item.listingDetails.openCarSpaces}
-              id={item.id}
-              image={item?.images}
-              address={item.formattedAddress}
-              subtitle={useTruncateText(item.description, 35)}
-              buttonText={magicText.view_more_text}
-              onClick={() => onClick(item)}
-              soldTag={true}
-            />
+            <Property property={item} soldTag={true} />
           </SwiperSlide>
         ))
       ) : (

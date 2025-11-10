@@ -1,8 +1,8 @@
 import React from "react";
 import DummyImage from "@/assets/images/dummy-image.jpg";
 import { Link } from "react-router-dom";
-import { SoldTag } from "@/assets/icons/SoldTag";
 import { ViewMoreButton } from "@/components/ViewMoreButton";
+import { Badge } from "antd";
 
 export function Property({ property, soldTag = false, leaseTag = false }) {
   if (!property) return null;
@@ -35,7 +35,7 @@ export function Property({ property, soldTag = false, leaseTag = false }) {
         {(soldTag || leaseTag) && (
           <div className="absolute left-0 top-6 z-10 uppercase text-white text-xs font-moderat-bold flex items-center">
             {soldTag ? (
-              <SoldTag />
+              <span className="bg-black px-3 py-1">Sold</span>
             ) : (
               <span className="bg-black px-3 py-1">Leased</span>
             )}

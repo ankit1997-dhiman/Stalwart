@@ -161,7 +161,7 @@ const SellWithStalwart = () => {
                 className="!h-[50px] mt-2 lg:mt-0 lg:ml-2 flex items-center justify-center !bg-[#706C62] !border-none !rounded-none !text-white"
               >
                 <span className="text-[13px] font-monument">
-                  GET AGENT APPRAISAL
+                  GET AN AGENT APPRAISAL
                 </span>
               </Button>
             </div>
@@ -229,6 +229,7 @@ const SellWithStalwart = () => {
             <CurrentProperties
               title="SEE OUR SOLD PROPERTIES"
               status="SOLD"
+              desc="As a seller-exclusive agency, we are experts in South-East Queensland real estate, specialising in residential sales, acreage homes, investment properties and development projects across the Brisbane–Ipswich–Gold Coast corridor."
               order="SOLD_DATE_DESC"
               showButton={true}
             />

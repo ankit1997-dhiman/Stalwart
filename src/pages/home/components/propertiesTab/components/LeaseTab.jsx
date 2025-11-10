@@ -61,21 +61,7 @@ export default function LeaseTab() {
       {data?.length > 0 ? (
         data.map((item) => (
           <SwiperSlide key={item.id}>
-            <Property
-              price={item.advertisedPrice}
-              bed={item.listingDetails.bedrooms}
-              bathrooms={item.listingDetails.bathrooms}
-              carportSpaces={item.listingDetails.carportSpaces}
-              garageSpaces={item.listingDetails.garageSpaces}
-              openCarSpaces={item.listingDetails.openCarSpaces}
-              id={item.id}
-              image={item?.images?.length > 0 ? item.images : dummyImage}
-              address={item.formattedAddress}
-              subtitle={useTruncateText(item.description, 35)}
-              buttonText={magicText.view_more_text}
-              onClick={() => onClick(item)}
-              soldTag={false}
-            />
+            <Property property={item} soldTag={false} />
           </SwiperSlide>
         ))
       ) : (

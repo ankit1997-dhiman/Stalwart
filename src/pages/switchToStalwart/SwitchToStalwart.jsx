@@ -174,7 +174,7 @@ const SwitchToStalwart = () => {
                 className="!h-[50px] mt-2 lg:mt-0 lg:ml-2 flex items-center justify-center !bg-[#706C62] !border-none !rounded-none !text-white"
               >
                 <span className="text-[13px] font-monument">
-                  GET AGENT APPRAISAL
+                  GET AN AGENT APPRAISAL
                 </span>
               </Button>
             </div>

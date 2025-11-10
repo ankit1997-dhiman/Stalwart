@@ -108,20 +108,7 @@ export const CurrentProperties = ({
           {propertiesData?.length > 0 ? (
             propertiesData.map((item) => (
               <SwiperSlide key={item.id}>
-                <Property
-                  price={item.advertisedPrice}
-                  bed={item.listingDetails.bedrooms}
-                  bathrooms={item.listingDetails.bathrooms}
-                  carportSpaces={item.listingDetails.carportSpaces}
-                  garageSpaces={item.listingDetails.garageSpaces}
-                  openCarSpaces={item.listingDetails.openCarSpaces}
-                  id={item.id}
-                  image={item?.images?.length > 0 ? item.images : dummyImage}
-                  address={item.formattedAddress}
-                  subtitle={useTruncateText(item.description, 35)}
-                  buttonText={magicText.view_more_text}
-                  onClick={() => onClick(item)}
-                />
+                <Property property={item} leaseTag={false} soldTag={true} />
               </SwiperSlide>
             ))
           ) : (
@@ -145,10 +132,7 @@ export const CurrentProperties = ({
               to={`/property/${property.id}`}
               className="w-full"
             >
-              <Property
-                property={property}
-                leaseTag={property.status === "LEASED"}
-              />
+              <Property property={property} leaseTag={false} soldTag={true} />
             </Link>
           ))
         ) : (

@@ -24,14 +24,17 @@ const PropertyEstimate = () => {
   const steps = [
     {
       title: "Confirm your details",
+      sub: "Almost there, we just need to get a few details from you.",
       content: <ConfirmDetailsStep form={form} />,
     },
     {
-      title: "WHAT IS YOUR RELATIONSHIP WITH THIS PROPERTY?",
+      title: "What are you exploring today?",
+      sub: "A quick detail so we guide you the right way.",
       content: <TenantedStep form={form} />,
     },
     {
       title: "WHEN ARE YOU THINKING OF SELLING?",
+      sub: "Help us to provide you with the very best service by telling us a bit more about your property.",
       content: <AppointedStep form={form} />,
     },
   ];
@@ -126,9 +129,7 @@ const PropertyEstimate = () => {
               {steps[current].title}
             </p>
             <p className="font-normal font-moderat-regular text-base pb-20">
-              {current === 1
-                ? "Almost there, we just need to get a few details from you."
-                : "Help us to provide you with the very best service by telling us a bit more about your property."}
+              {steps[current].sub}
             </p>
 
             {steps.map((step, index) => (
