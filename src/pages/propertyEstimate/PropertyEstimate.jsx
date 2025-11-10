@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
 import { AppointedStep } from "../sellWithStalwart/components/AppointedStep";
 import { useTheme } from "@/context/ThemeContext";
+import { FormWrapper } from "@/components/FormWrapper";
 
 const PropertyEstimate = () => {
   const [form] = Form.useForm();
@@ -103,25 +104,23 @@ const PropertyEstimate = () => {
   const onFinishFailed = (errorInfo) => {
     message.error("Please fill all required fields");
   };
+
   return (
-    <Form
-      form={form}
-      layout="vertical"
-      onFinish={onFinish}
-      initialValues={{
-        enquiry_for: `Property Evaluation Request For ${enquiry}`,
-      }}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item name="enquiry_for" hidden>
-        <Input />
-      </Form.Item>
-      <div
-        className="relative overflow-hidden lg:h-screen"
-        style={{ marginTop: `-${topMargin}px` }}
+    <FormWrapper>
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        initialValues={{
+          enquiry_for: `Property Evaluation Request For ${enquiry}`,
+        }}
+        onFinishFailed={onFinishFailed}
       >
-        <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
-          <div className="w-full md:w-[65%] py-60 flex flex-col">
+        <Form.Item name="enquiry_for" hidden>
+          <Input />
+        </Form.Item>
+        <div className="overflow-hidden h-full">
+          <div className="w-full  flex flex-col">
             <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
               Property APPRAISAL
             </p>
@@ -174,17 +173,9 @@ const PropertyEstimate = () => {
               )}
             </div>
           </div>
-
-          <div className="hidden md:block md:w-[35%] h-screen absolute right-0 top-0">
-            <img
-              src={image}
-              alt="Right side"
-              className="w-full h-full object-cover"
-            />
-          </div>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </FormWrapper>
   );
 };
 

@@ -10,6 +10,7 @@ import image from "@/assets/images/right.png";
 import { URLS } from "@/constants/Urls";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/context/ThemeContext";
+import { FormWrapper } from "@/components/FormWrapper";
 
 const SuburbInsight = () => {
   const [form] = Form.useForm();
@@ -145,81 +146,72 @@ const SuburbInsight = () => {
 
       {/* Step 2+ */}
       {current !== 0 && (
-        <div
-          className="relative overflow-hidden"
-          style={{ marginTop: `-${topMargin}px` }}
-        >
-          {/* <div className="container pt-17 ">
-            <HeaderLogo className="" />
-          </div> */}
-          <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
-            <div className="w-full md:w-[65%] py-60">
-              <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
-                Suburb Report
-              </p>
-              <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 w-full">
-                {steps[current].title}
-              </p>
-              <p className="font-normal font-moderat-regular text-base pb-20">
-                {current === 1
-                  ? "Almost there, we just need to get a few details from you."
-                  : "Help us to provide you with the very best service by telling us a bit more about your research."}
-              </p>
+        <FormWrapper>
+          <div
+            className="relative overflow-hidden"
+            style={{ marginTop: `-${topMargin}px` }}
+          >
+            <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
+              <div className="w-full">
+                <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
+                  Suburb Report
+                </p>
+                <p className="text-2xl mb-2 font-moderat-medium uppercase pb-1 w-full">
+                  {steps[current].title}
+                </p>
+                <p className="font-normal font-moderat-regular text-base pb-20">
+                  {current === 1
+                    ? "Almost there, we just need to get a few details from you."
+                    : "Help us to provide you with the very best service by telling us a bit more about your research."}
+                </p>
 
-              {steps.map((step, index) => (
-                <div
-                  key={index}
-                  style={{ display: current === index ? "" : "none" }}
-                >
-                  {step.content}
+                {steps.map((step, index) => (
+                  <div
+                    key={index}
+                    style={{ display: current === index ? "" : "none" }}
+                  >
+                    {step.content}
+                  </div>
+                ))}
+
+                <div className="flex gap-4 mt-10">
+                  {current > 1 && (
+                    <Button
+                      className="!rounded-none !px-3 bg-white !border !border-black !py-3"
+                      onClick={prev}
+                    >
+                      <span className="font-moderat-regular text-base">
+                        Go Back
+                      </span>
+                    </Button>
+                  )}
+                  {current < steps.length - 1 && (
+                    <Button
+                      className="!rounded-none !px-3.5 bg-white !border !border-black !py-2 w-[127px] h-[41px]"
+                      onClick={next}
+                    >
+                      <span className="font-moderat-regular text-base">
+                        Next Step
+                      </span>
+                    </Button>
+                  )}
+                  {current === steps.length - 1 && (
+                    <Button
+                      htmlType="submit"
+                      loading={loading}
+                      disabled={loading}
+                      className="!rounded-none !px-3 bg-white !border !border-black !py-3"
+                    >
+                      <span className="font-moderat-regular text-base">
+                        Submit
+                      </span>
+                    </Button>
+                  )}
                 </div>
-              ))}
-
-              <div className="flex gap-4 mt-10">
-                {current > 1 && (
-                  <Button
-                    className="!rounded-none !px-3 bg-white !border !border-black !py-3"
-                    onClick={prev}
-                  >
-                    <span className="font-moderat-regular text-base">
-                      Go Back
-                    </span>
-                  </Button>
-                )}
-                {current < steps.length - 1 && (
-                  <Button
-                    className="!rounded-none !px-3.5 bg-white !border !border-black !py-2 w-[127px] h-[41px]"
-                    onClick={next}
-                  >
-                    <span className="font-moderat-regular text-base">
-                      Next Step
-                    </span>
-                  </Button>
-                )}
-                {current === steps.length - 1 && (
-                  <Button
-                    htmlType="submit"
-                    loading={loading}
-                    disabled={loading}
-                    className="!rounded-none !px-3 bg-white !border !border-black !py-3"
-                  >
-                    <span className="font-moderat-regular text-base">
-                      Submit
-                    </span>
-                  </Button>
-                )}
               </div>
             </div>
-
-            <div className="hidden md:block md:w-[35%] h-full absolute right-0 top-0">
-              <img
-                src={image}
-                alt="Right side"
-                className="w-full h-full object-cover"
-              />
-            </div>
           </div>
-        </div>
+        </FormWrapper>
       )}
     </Form>
   );

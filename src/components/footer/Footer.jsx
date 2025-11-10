@@ -75,7 +75,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="xl:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 xl:px-0 z-10 ">
+      <footer className="2xl:sticky bottom-0 bg-[#4A443E] text-white pt-16 pb-10 px-12.5 xl:px-0 z-10 ">
         <div className="container">
           {/* Top Links */}
           <div className="hidden xl:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-20 text-sm z-50">
@@ -229,7 +229,7 @@ export default function Footer() {
                 key="Corelands"
                 to={URLS.CORELANDS}
                 target="_blank"
-                className="text-xs"
+                className="text-xs !text-right"
               >
                 Design By Studio Corelands
               </Link>
@@ -281,7 +281,7 @@ export default function Footer() {
                 on which we work and learn, and pay respect to the First Nations
                 Peoples and their elders, past, present and future.
               </p>
-              <p className="font-moderat text-sm text-white">
+              <p className="font-moderat text-sm text-white text-right">
                 <Link key="Corelands" to={URLS.CORELANDS} target="_blank">
                   Design By Studio Corelands
                 </Link>
