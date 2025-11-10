@@ -2,7 +2,6 @@ import React from "react";
 import DummyImage from "@/assets/images/dummy-image.jpg";
 import { Link } from "react-router-dom";
 import { ViewMoreButton } from "@/components/ViewMoreButton";
-import { Badge } from "antd";
 
 export function Property({ property, soldTag = false, leaseTag = false }) {
   if (!property) return null;

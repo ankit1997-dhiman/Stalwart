@@ -108,7 +108,11 @@ export const CurrentProperties = ({
           {propertiesData?.length > 0 ? (
             propertiesData.map((item) => (
               <SwiperSlide key={item.id}>
-                <Property property={item} leaseTag={false} soldTag={true} />
+                <Property
+                  property={item}
+                  // leaseTag={item.status === "SOLD"}
+                  soldTag={item.status === "SOLD" ? true : false}
+                />
               </SwiperSlide>
             ))
           ) : (
@@ -132,7 +136,11 @@ export const CurrentProperties = ({
               to={`/property/${property.id}`}
               className="w-full"
             >
-              <Property property={property} leaseTag={false} soldTag={true} />
+              <Property
+                property={property}
+                leaseTag={property.status === "LEASED" ? true : false}
+                soldTag={property.status === "SOLD" ? true : false}
+              />
             </Link>
           ))
         ) : (
