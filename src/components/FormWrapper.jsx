@@ -1,5 +1,5 @@
 import React from "react";
-import image from "@/assets/images/right.png";
+import { S3_BASE_URL } from "@/config";
 
 export const FormWrapper = ({ children }) => {
   return (
@@ -11,7 +11,7 @@ export const FormWrapper = ({ children }) => {
         <div
           className="absolute lg:w-[35%] h-full top-0 right-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${S3_BASE_URL}/right.png)`,
           }}
         ></div>
       </div>

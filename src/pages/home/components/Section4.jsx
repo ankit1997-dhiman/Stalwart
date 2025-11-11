@@ -1,7 +1,4 @@
-import video1 from "@/assets/videos/Sequence1.mp4";
-import video2 from "@/assets/videos/Sequence2.mp4";
-import image1 from "@/assets/images/Image1.png";
-import mobileImage1 from "@/assets/images/mobile-image-house.png";
+import { S3_BASE_URL } from "@/config.js";
 import { HoverSection } from "./HoverSection.jsx";
 
 export const Section4 = () => {
@@ -9,7 +6,7 @@ export const Section4 = () => {
     <section className="w-full flex lg:flex-row flex-col items-stretch justify-between lg:gap-7.5 h-full lg:h-[1080px] md:py-9">
       <div
         className="lg:block hidden w-full lg:w-[30%] relative group overflow-hidden lg:h-full bg-cover bg-center transition-opacity duration-700 "
-        style={{ backgroundImage: `url(${image1})` }}
+        style={{ backgroundImage: `url(${S3_BASE_URL}/Image1.png)` }}
       >
         <HoverSection />
       </div>
@@ -17,7 +14,7 @@ export const Section4 = () => {
       <div className=" lg:flex w-full  lg:w-[70%]  flex-col gap-y-9 h-full">
         <div className="flex-1 relative group overflow-hidden bg-black transition-all duration-700">
           <video
-            src={video1}
+            src={`${S3_BASE_URL}/Sequence1.mp4`}
             className=" lg:absolute inset-0 w-full lg:h-full object-cover "
             autoPlay
             muted
@@ -34,7 +31,7 @@ export const Section4 = () => {
         <div className="flex-1 relative group overflow-hidden bg-black transition-all duration-700">
           <video
             className="absolute inset-0 w-full h-full object-cover"
-            src={video2}
+            src={`${S3_BASE_URL}/Sequence2.mp4`}
             autoPlay
             muted
             loop

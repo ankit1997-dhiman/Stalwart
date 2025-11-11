@@ -65,9 +65,9 @@ export const footerLinks = [
         to: URLS.UPCOMING_INSPECTIONS,
         external: false,
       },
+      { label: "Leased Properties", to: URLS.LEASE_PROPERTIES },
       { label: "Owners Portal", to: URLS.OWNERS_PORTAL },
       { label: "Tenant Portal", to: URLS.OWNERS_PORTAL },
-      { label: "Our Team", to: URLS.ABOUT, external: false },
     ],
   },
   {

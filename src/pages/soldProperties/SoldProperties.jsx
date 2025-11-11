@@ -1,18 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Form, message } from "antd";
-import { Property } from "@/common/properties/Property";
-import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
-import { InquiryForm } from "@/components/form/InquiryForm";
-import { bedrooms, magicText } from "@/constants/constants";
-import { graphqlRequest } from "@/utils/graphqlRequest";
 import PropertiesNotFound from "@/common/properties/PropertiesNotFound";
-import { Preloader } from "@/common/preloader/Preloader";
+import { WithSectionLayout } from "@/common/properties/WithSectionLayout";
 import { BottomSpace } from "@/components/BottomSpace";
-import { LoadMoreBtn } from "@/components/LoadMoreBtn";
-import { GET_FILTERED_PROPERTIES } from "@/queries/filterProperties";
-import { usePropertiesFetcher } from "@/hooks/usePropertiesFetcher";
-import RenderProperties from "@/components/RenderProperties";
+import { InquiryForm } from "@/components/form/InquiryForm";
 import PropertiesSkeleton from "@/components/PropertiesSkeleton";
+import RenderProperties from "@/components/RenderProperties";
+import { bedrooms, magicText } from "@/constants/constants";
+import { usePropertiesFetcher } from "@/hooks/usePropertiesFetcher";
+import { Form } from "antd";
+import { useCallback, useEffect, useState } from "react";
 
 export function SoldProperties() {
   const [soldFilterForm] = Form.useForm();

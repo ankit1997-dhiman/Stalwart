@@ -1,23 +1,21 @@
-import React, { useState } from "react";
-import { Form, Button, Collapse, message, Input } from "antd";
-import { useNavigate } from "react-router-dom";
-import Plus from "@/assets/icons/plus-icon.svg";
-import Minus from "@/assets/icons/minus.svg";
-import image from "@/assets/images/right.png";
-import bgImage from "@/assets/images/contact-bg.png";
-import sectionBgImage from "@/assets/images/tab-image.png";
-import { CurrentProperties } from "../home/components/CurrentProperties";
-import { collapseItems, topSpace } from "@/constants/constants";
-import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
-import { SellLandingStep } from "./components/SellLandingStep";
-import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
-import { AppointedStep } from "./components/AppointedStep";
-import { TenantedStep } from "./components/TenantedStep";
-import { URLS } from "@/constants/Urls";
-import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
-import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import Minus from "@/assets/icons/minus.svg";
+import Plus from "@/assets/icons/plus-icon.svg";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { S3_BASE_URL } from "@/config";
+import { collapseItems, topSpace } from "@/constants/constants";
+import { URLS } from "@/constants/Urls";
 import { useTheme } from "@/context/ThemeContext";
+import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { Button, Collapse, Form, Input, message } from "antd";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { CurrentProperties } from "../home/components/CurrentProperties";
+import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
+import { AppointedStep } from "./components/AppointedStep";
+import { ConfirmDetailsStep } from "./components/ConfirmDetailsStep";
+import { SellLandingStep } from "./components/SellLandingStep";
+import { TenantedStep } from "./components/TenantedStep";
 
 const SellWithStalwart = () => {
   const [form] = Form.useForm();
@@ -59,20 +57,16 @@ const SellWithStalwart = () => {
 
   const next = async () => {
     try {
-      // Validate current step fields
       await form.validateFields(stepFields[current]);
 
-      // Move to next step
       setCurrent((prev) => {
         const nextStep = prev + 1;
 
-        // Set dark for first step, white for other steps
         if (nextStep === 0) {
           setDark(false);
         } else if (nextStep <= steps.length + 1) {
           setDark(true);
         } else {
-          // If nextStep exceeds steps, reset to first step
           setDark(false);
         }
 
@@ -84,10 +78,10 @@ const SellWithStalwart = () => {
   };
 
   const stepFields = {
-    0: ["address"], // fields for step 1
-    1: ["first_name", "last_name", "email", "number", "privacy"], // fields for step 1
-    2: ["tenancy_status"], // fields for step 2
-    3: ["appointed_status"], // fields for step 3
+    0: ["address"],
+    1: ["first_name", "last_name", "email", "number", "privacy"],
+    2: ["tenancy_status"],
+    3: ["appointed_status"],
   };
 
   const prev = () => setCurrent((prev) => prev - 1);
@@ -144,7 +138,7 @@ const SellWithStalwart = () => {
           <section
             className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0"
             style={{
-              backgroundImage: `url(${bgImage})`,
+              backgroundImage: `url(${S3_BASE_URL + "/contact-bg.png"})`,
               marginTop: `-${topMargin}px`,
             }}
           >
@@ -166,7 +160,7 @@ const SellWithStalwart = () => {
               </Button>
             </div>
           </section>
-          {/* Experience Section */}
+
           <section className="px-12.5 lg:px-0">
             <div className="container lg:flex items-stretch gap-7.5 py-20 lg:py-32">
               <div className="w-full lg:w-[553px]">
@@ -217,7 +211,9 @@ const SellWithStalwart = () => {
 
               <div
                 className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[1136px] h-[300px] lg:h-[764px] mt-9 lg:mt-0"
-                style={{ backgroundImage: `url(${sectionBgImage})` }}
+                style={{
+                  backgroundImage: `url(${S3_BASE_URL}/tab-image.png)`,
+                }}
               />
             </div>
           </section>
@@ -237,15 +233,11 @@ const SellWithStalwart = () => {
         </>
       )}
 
-      {/* Step 2+ */}
       {current !== 0 && (
         <div
           className="relative overflow-hidden"
           style={{ marginTop: `-${topMargin}px` }}
         >
-          {/* <div className="container pt-17 ">
-            <HeaderLogo className="" />
-          </div> */}
           <div className="flex md:flex-row flex-col container justify-between items-center gap-20 px-12.5 lg:px-0">
             <div className="w-full md:w-[65%] py-60">
               <p className="uppercase text-sm tracking-wide mb-5 font-moderat-regular pb-5">
@@ -305,7 +297,7 @@ const SellWithStalwart = () => {
 
             <div className="hidden md:block md:w-[35%] h-full absolute right-0 top-0">
               <img
-                src={image}
+                src={`${S3_BASE_URL}/right.png`}
                 alt="Right side"
                 className="w-full h-full object-cover"
               />

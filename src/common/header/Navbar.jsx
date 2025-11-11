@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Link, useLocation, useMatch } from "react-router-dom";
-import { Drawer } from "antd";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdClose } from "react-icons/io";
-import whiteLogo from "@/assets/images/white-logo.png";
-import { URLS } from "@/constants/Urls";
-import { nav1Paths } from "@/constants/menuLinks";
-import { DropdownMenu } from "../dropdown/DropdownMenu.jsx";
 import { HeaderLogo } from "@/assets/icons/HeaderLogo.jsx";
 import { HeaderWhiteLogo } from "@/assets/icons/HeaderWhiteLogo.jsx";
+import { S3_BASE_URL } from "@/config.js";
+import { URLS } from "@/constants/Urls";
+import { nav1Paths } from "@/constants/menuLinks";
 import { useTheme } from "@/context/ThemeContext.jsx";
+import { Drawer } from "antd";
+import { useState } from "react";
+import { IoMdClose } from "react-icons/io";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { Link, useLocation, useMatch } from "react-router-dom";
+import { DropdownMenu } from "../dropdown/DropdownMenu.jsx";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -77,7 +77,7 @@ export default function Navbar() {
             <div className="flex justify-between gap-10 items-center px-6 py-4 lg:py-10">
               <Link to={URLS.HOME}>
                 <img
-                  src={whiteLogo}
+                  src={`${S3_BASE_URL}/white-logo.png`}
                   alt="logo"
                   className="w-[143px]"
                   onClick={() => setOpen(false)}

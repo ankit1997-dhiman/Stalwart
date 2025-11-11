@@ -2,10 +2,10 @@ import { useTruncateText } from "@/hooks/useTruncateText";
 import { Button, Form, Input, message } from "antd";
 import React, { useState } from "react";
 import { RawHtml } from "../RawHtml";
-import Image from "@/assets/images/enquire-image.png";
 import Label from "../form/Label";
 import { useNavigate } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
+import { S3_BASE_URL } from "@/config";
 
 const EnquiryFrom = ({
   listingDetails,
@@ -52,7 +52,7 @@ const EnquiryFrom = ({
     <div className="bg-[#F4F2F0] lg:pl-10 relative h-full">
       <div className="flex bg-[#dad7d4] w-[160px] lg:w-[282px] h-[180px] lg:h-[304px] rounded-b-full items-end justify-center lg:absolute left-[60px]">
         <img
-          src={Image}
+          src={S3_BASE_URL + "/enquire-image.png"}
           className="p-4 lg:p-8 w-[140px] h-[140px] lg:w-full lg:h-[280px]"
           alt="Enquiry"
         />
@@ -157,8 +157,8 @@ const EnquiryFrom = ({
               <Button
                 className="!rounded-none !px-3.5 !border !border-black !py-2 w-[209px] !h-[47px] !bg-transparent"
                 htmlType="submit"
-                loading={loading} // ✅ built-in AntD spinner
-                disabled={loading} // optional
+                loading={loading}
+                disabled={loading}
               >
                 <span className="font-moderat-regular text-xs lg:text-base">
                   {loading ? "Submitting..." : "Submit Inquiry"}

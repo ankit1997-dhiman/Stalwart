@@ -2,8 +2,8 @@ import HeroSection from "@/common/HeroSection";
 import { Typography } from "@/common/Typography";
 import TypographyList from "@/common/TypographyList";
 import React from "react";
-import bgImage from "@/assets/images/home-hero.png";
 import { BottomSpace } from "@/components/BottomSpace";
+import { S3_BASE_URL } from "@/config";
 
 export const PrivacyPolicy = () => {
   const personalInfoList = [
@@ -63,7 +63,10 @@ export const PrivacyPolicy = () => {
 
   return (
     <>
-      <HeroSection title={"Privacy Policy"} bgImage={bgImage} />
+      <HeroSection
+        title={"Privacy Policy"}
+        bgImage={`${S3_BASE_URL}/home-hero.png`}
+      />
       <div className="px-12.5 xl:px-0">
         <div className="container pt-10 ">
           <Typography

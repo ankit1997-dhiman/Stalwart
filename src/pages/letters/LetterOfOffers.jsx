@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import HeroSection from "@/common/HeroSection";
-import bgImage from "@/assets/images/contact-bg.png";
 import {
   Button,
   Col,
@@ -13,6 +12,7 @@ import {
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import { URLS } from "@/constants/Urls";
+import { S3_BASE_URL } from "@/config";
 // import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 
 export const LetterOfOffers = () => {
@@ -102,7 +102,10 @@ export const LetterOfOffers = () => {
   // };
   return (
     <>
-      <HeroSection title={"Expression of Interest Form"} bgImage={bgImage} />
+      <HeroSection
+        title={"Expression of Interest Form"}
+        bgImage={S3_BASE_URL + "/contact-bg.png"}
+      />
       <div className="container mx-auto max-w-4xl py-10 px-12.5 lg:px-0">
         <div className="flex xl:flex-row flex-col gap-x-26">
           <div className="w-ull xl:w-[30%]">

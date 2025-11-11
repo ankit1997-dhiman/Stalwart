@@ -1,8 +1,3 @@
-import image from "@/assets/images/tab-image.png";
-
-// "@/assets/images/right.png";
-
-import { Form, Input, Checkbox } from "antd";
 // Top row options
 export const topStatusOptions = ["BUY", "SELL", "LEASE"];
 
@@ -29,37 +24,6 @@ export const keysOrder = [
   "bedrooms",
   "bathrooms",
   "car",
-];
-
-export const properties = [
-  {
-    id: 1,
-    image: image,
-    address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
-    hoverAddress: "4 BED | 3 BATH | 2 CAR | xxx M",
-    price: "$000,000 - 000,000",
-  },
-  {
-    id: 2,
-    image: image,
-    address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
-    hoverAddress: "4 BED | 3 BATH | 2 CAR | xxx M",
-    price: "$000,000 - 000,000",
-  },
-  {
-    id: 3,
-    image: image,
-    address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
-    hoverAddress: "4 BED | 3 BATH | 2 CAR | xxx M",
-    price: "$000,000 - 000,000",
-  },
-  {
-    id: 4,
-    image: image,
-    address: "3 WAITARA STREET, LOGAN CENTRAL | QLD 4114",
-    hoverAddress: "4 BED | 3 BATH | 2 CAR | xxx M",
-    price: "$000,000 - 000,000",
-  },
 ];
 
 export const collapseItems = [

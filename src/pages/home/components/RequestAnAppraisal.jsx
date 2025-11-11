@@ -1,8 +1,8 @@
-import image from "@/assets/images/request.png";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { URLS } from "@/constants/Urls";
 import { WhiteArrow } from "@/assets/icons/WhiteArrow";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
+import { S3_BASE_URL } from "@/config";
 
 const RequestAnAppraisal = ({ lightMode }) => {
   return (
@@ -48,7 +48,7 @@ const RequestAnAppraisal = ({ lightMode }) => {
         className={`${lightMode ? "w-full lg:w-[553px]" : "w-full xl:w-1/2"} `}
       >
         <img
-          src={lightMode ? image : image}
+          src={`${S3_BASE_URL}/request.png`}
           alt="Section 3 Image"
           className="w-full lg:w-[845px] h-[109px] lg:h-full object-cover"
         />

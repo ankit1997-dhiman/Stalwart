@@ -1,24 +1,22 @@
-import React, { useState } from "react";
-import { Form, Button, Collapse, message, Input } from "antd";
-import { useNavigate } from "react-router-dom";
-import Plus from "@/assets/icons/plus-icon.svg";
+import { BlackArrow } from "@/assets/icons/BlackArrow";
 import Minus from "@/assets/icons/minus.svg";
-import image from "@/assets/images/right.png";
-import bgImage from "@/assets/images/contact-bg.png";
-import sectionBgImage from "@/assets/images/tab-image.png";
-import { CurrentProperties } from "../home/components/CurrentProperties";
+import Plus from "@/assets/icons/plus-icon.svg";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { S3_BASE_URL } from "@/config";
 import { switchCollapseItems, topSpace } from "@/constants/constants";
+import { URLS } from "@/constants/Urls";
+import { useTheme } from "@/context/ThemeContext";
+import useResponsiveMargin from "@/hooks/useResponsiveMargin";
+import { Button, Collapse, Form, Input, message } from "antd";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { CurrentProperties } from "../home/components/CurrentProperties";
 import RequestAnAppraisal from "../home/components/RequestAnAppraisal";
 import { SellLandingStep } from "../sellWithStalwart/components/SellLandingStep";
-import ConfirmDetailsStepSwitch from "./components/ConfirmDetailsStepSwitch";
 import { CheckboxStep } from "./components/CheckboxStep";
-import { LastStep } from "./components/LastStep";
-import { URLS } from "@/constants/Urls";
-import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
-import { BlackArrow } from "@/assets/icons/BlackArrow";
-import useResponsiveMargin from "@/hooks/useResponsiveMargin";
-import { useTheme } from "@/context/ThemeContext";
 import CheckboxStep3 from "./components/CheckboxStep3";
+import ConfirmDetailsStepSwitch from "./components/ConfirmDetailsStepSwitch";
+import { LastStep } from "./components/LastStep";
 
 const SwitchToStalwart = () => {
   const [form] = Form.useForm();
@@ -159,7 +157,7 @@ const SwitchToStalwart = () => {
           <section
             className={`relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0  `}
             style={{
-              backgroundImage: `url(${bgImage})`,
+              backgroundImage: `url(${S3_BASE_URL}/contact-bg.png)`,
               marginTop: `-${topMargin}px`,
             }}
           >
@@ -233,7 +231,9 @@ const SwitchToStalwart = () => {
 
               <div
                 className="flex items-end justify-center bg-cover bg-center px-12.5 xl:px-0 w-full lg:w-[1136px] h-[300px] lg:h-[764px] mt-3 lg:mt-0"
-                style={{ backgroundImage: `url(${sectionBgImage})` }}
+                style={{
+                  backgroundImage: `url(${S3_BASE_URL}/tab-image.png)`,
+                }}
               />
             </div>
           </section>
@@ -320,7 +320,7 @@ const SwitchToStalwart = () => {
 
             <div className="hidden md:block md:w-[35%] h-full absolute right-0 top-0">
               <img
-                src={image}
+                src={`${S3_BASE_URL}/right.png`}
                 alt="Right side"
                 className="w-full h-full object-cover"
               />

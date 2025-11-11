@@ -1,7 +1,5 @@
-import React from "react";
-import logo from "../../../assets/images/Stalwart_Logo.png";
-import bgImage from "../../../assets/images/our-story-bg-image.png";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { S3_BASE_URL } from "@/config";
 import { URLS } from "@/constants/Urls";
 
 const Section7 = () => {
@@ -9,7 +7,7 @@ const Section7 = () => {
     <section
       className="relative w-full h-[364px] bg-cover bg-center flex items-center justify-center"
       style={{
-        backgroundImage: `url(${bgImage})`,
+        backgroundImage: `url(${S3_BASE_URL}/our-story-bg-image.png)`,
       }}
     >
       {/* Overlay (optional, for darker text visibility) */}
@@ -19,7 +17,7 @@ const Section7 = () => {
       <div className="relative z-10 text-center text-white">
         {/* Icon (replace with your svg/image if needed) */}
         <div className="flex justify-center">
-          <img src={logo} alt="logo" />
+          <img src={`${S3_BASE_URL}/Stalwart_Logo.png`} alt="logo" />
         </div>
 
         {/* Title */}

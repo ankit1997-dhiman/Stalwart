@@ -1,7 +1,4 @@
-import nehaImage from "@/assets/images/neha.jpg";
-import jagroopImage from "@/assets/images/jagroop.jpg";
-import sandeepImage from "@/assets/images/sandeep.jpg";
-import dineshImage from "@/assets/images/dinesh.jpg";
+import { S3_BASE_URL } from "@/config";
 
 export const aboutPageContent = {
   PAGE_TITTLE: "About Us",
@@ -23,7 +20,7 @@ export const aboutPageContent = {
     {
       id: 1,
       name: "DINESH SANGROHA",
-      image: dineshImage,
+      image: S3_BASE_URL + "/dinesh.jpg",
       inTitle: "Step In",
       outTitle: "Step Out — with results.",
       email: "ds@stalwartrealestate.com.au",
@@ -34,7 +31,7 @@ export const aboutPageContent = {
     {
       id: 2,
       name: "SANDEEP KUMAR",
-      image: sandeepImage,
+      image: S3_BASE_URL + "/sandeep.jpg",
       inTitle: "Step In",
       outTitle: "Step Out — with confidence.",
       email: "sk@stalwartrealestate.com.au",
@@ -45,7 +42,7 @@ export const aboutPageContent = {
     {
       id: 3,
       name: "JAGROOP SINGH",
-      image: jagroopImage,
+      image: S3_BASE_URL + "/jagroop.jpg",
       inTitle: "Step In",
       outTitle: "Step Out — with results.",
       email: "js@stalwartrealestate.com.au",
@@ -57,7 +54,7 @@ export const aboutPageContent = {
     {
       id: 4,
       name: "NEHA SANGWAN",
-      image: nehaImage,
+      image: S3_BASE_URL + "/neha.jpg",
       inTitle: "Step In",
       outTitle: "Step Out — with peace of mind.",
       email: "rentals@stalwartrealestate.com.au",

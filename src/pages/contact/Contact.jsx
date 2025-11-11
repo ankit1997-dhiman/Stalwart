@@ -1,15 +1,14 @@
 import React from "react";
-import deskImage from "@/assets/images/contact-bg.png";
-import mobileImage from "@/assets/images/contact-mobile.png";
 import ContactForm from "./components/ContactForm";
 import HeroSection from "@/common/HeroSection";
+import { S3_BASE_URL } from "@/config";
 export function Contact() {
   return (
     <>
       <HeroSection
         title={"CONTACT US"}
-        bgImage={deskImage}
-        bgImageMobile={mobileImage}
+        bgImage={S3_BASE_URL + "/contact-bg.png"}
+        bgImageMobile={S3_BASE_URL + "/contact-mobile.png"}
       />
       <ContactForm />
       <div className="pt-10"></div>

@@ -1,12 +1,11 @@
-import { Button, Form, Input, message } from "antd";
-import Image from "@/assets/images/enquire-image.png";
 import Label from "@/components/form/Label";
-import { useEffect, useState } from "react";
-import { graphqlRequest } from "@/utils/graphqlRequest";
-import { useParams } from "react-router-dom";
-import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
 import { RawHtml } from "@/components/RawHtml";
 import { useTruncateText } from "@/hooks/useTruncateText";
+import { GET_PROPERTY_BY_ID } from "@/queries/propertyById";
+import { graphqlRequest } from "@/utils/graphqlRequest";
+import { Button, Form, Input, message } from "antd";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const EnquiryModal = ({
   isModalOpen,
@@ -100,7 +99,7 @@ const EnquiryModal = ({
         <div className="bg-[#F4F2F0] lg:pl-10 relative h-full">
           <div className="flex bg-[#dad7d4] w-[160px] lg:w-[282px] h-[180px] lg:h-[304px] rounded-b-full items-end justify-center lg:absolute left-[60px]">
             <img
-              src={Image}
+              src={`${S3_BASE_URL}/enquire-image.png`}
               className="p-4 lg:p-8 w-[140px] h-[140px] lg:w-full lg:h-[280px]"
               alt="Enquiry"
             />

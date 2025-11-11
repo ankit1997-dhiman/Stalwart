@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import bgVideo from "@/assets/images/bg.mp4";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { topSpace } from "@/constants/constants";
 import { useTheme } from "@/context/ThemeContext";
+import { S3_BASE_URL } from "@/config";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,7 +66,7 @@ export const Section1 = () => {
         loop
         playsInline
       >
-        <source src={bgVideo} type="video/mp4" />
+        <source src={`${S3_BASE_URL}/bg.mp4`} type="video/mp4" />
       </video>
 
       {/* Dark overlay (optional, for readability) */}

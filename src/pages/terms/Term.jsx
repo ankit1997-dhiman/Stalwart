@@ -1,8 +1,8 @@
 import React from "react";
 import HeroSection from "@/common/HeroSection";
 import { Typography } from "@/common/Typography";
-import bgImage from "@/assets/images/contact-bg.png";
 import { BottomSpace } from "@/components/BottomSpace";
+import { S3_BASE_URL } from "@/config";
 
 export const Term = () => {
   const legalInfo = [
@@ -16,7 +16,10 @@ export const Term = () => {
 
   return (
     <>
-      <HeroSection title={"Term & Conditions"} bgImage={bgImage} />
+      <HeroSection
+        title={"Term & Conditions"}
+        bgImage={`${S3_BASE_URL}/contact-bg.png`}
+      />
       <div className="px-12.5 xl:px-0">
         <div className="container pt-10">
           <Typography

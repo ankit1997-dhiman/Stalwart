@@ -1,8 +1,6 @@
-import React from "react";
-import image from "@/assets/images/image-9.png";
-import logo from "@/assets/images/black-logo.png";
-import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { S3_BASE_URL } from "@/config";
 import { URLS } from "@/constants/Urls";
 const FeaturedSection = () => {
   return (
@@ -10,18 +8,18 @@ const FeaturedSection = () => {
       {/* Left: Image */}
       <div className="hidden lg:block">
         <img
-          src={image}
+          src={`${S3_BASE_URL}/image-9.png`}
           alt="Featured"
           className="w-full h-full object-cover"
         />
       </div>
 
       {/* Right: Content */}
-      <div className="flex flex-col gap-0 lg:w-[583px] justify-between border p-12.5 md:p-0 xl:border-l-0 space-y-7">
+      <div className="flex flex-col gap-0 lg:w-[583px] justify-between border p-12.5 lg:p-0 xl:border-l-0 space-y-7">
         <div className="lg:m-9">
-          <img src={logo} className="w-5" />
+          <img src={`${S3_BASE_URL}/black-logo.png`} className="w-5" />
         </div>
-        <div className="md:p-9">
+        <div className="lg:p-9">
           <p className="text-base md:text-2xl font-medium mb-4 font-moderat-medium">
             NEWS & BLOGS
           </p>
@@ -39,7 +37,7 @@ const FeaturedSection = () => {
           </LenisAnimatedLink>
 
           <img
-            src={image}
+            src={`${S3_BASE_URL}/image-9.png`}
             alt="Featured"
             className="block lg:hidden w-full h-[203px] lg:h-full object-cover mt-7"
           />

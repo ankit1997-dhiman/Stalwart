@@ -1,14 +1,11 @@
-import React from "react";
-import JournalCard from "./JournalCard";
-import image1 from "@/assets/images/blog-image2.jpg";
-import image2 from "@/assets/images/blog-image3.jpg";
-import image3 from "@/assets/images/blog-image4.jpg";
-import { useTruncateText } from "@/hooks/useTruncateText";
+import { S3_BASE_URL } from "@/config";
 import { URLS } from "@/constants/Urls";
+import { useTruncateText } from "@/hooks/useTruncateText";
+import JournalCard from "./JournalCard";
 
 const cards = [
   {
-    image: image3,
+    image: `${S3_BASE_URL}/blog-image4.jpg`,
     title:
       "The Hidden Risks of Being a Landlord: What Most Property Owners Don’t Realise",
     description: useTruncateText(
@@ -18,7 +15,7 @@ const cards = [
     link: URLS.BLOGS1,
   },
   {
-    image: image2,
+    image: `${S3_BASE_URL}/blog-image3.jpg`,
     title:
       "Brisbane & Southeast Queensland Growth: Why Supply Shortage Means Opportunity for Sellers",
     description: useTruncateText(
@@ -28,7 +25,7 @@ const cards = [
     link: URLS.BLOGS2,
   },
   {
-    image: image1,
+    image: `${S3_BASE_URL}/blog-image2.jpg`,
     title:
       "What Modern Buyers See Online: Why Your First Impression Is Now Digital",
     description: useTruncateText(

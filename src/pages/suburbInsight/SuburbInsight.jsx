@@ -5,12 +5,11 @@ import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { topSpace } from "@/constants/constants";
 import { ConfirmDetailsStep } from "../sellWithStalwart/components/ConfirmDetailsStep";
 import { TenantedStep } from "../sellWithStalwart/components/TenantedStep";
-import bgImage from "@/assets/images/contact-bg.png";
-import image from "@/assets/images/right.png";
 import { URLS } from "@/constants/Urls";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/context/ThemeContext";
 import { FormWrapper } from "@/components/FormWrapper";
+import { S3_BASE_URL } from "@/config";
 
 const SuburbInsight = () => {
   const [form] = Form.useForm();
@@ -119,7 +118,7 @@ const SuburbInsight = () => {
           <section
             className="relative z-[10] h-screen flex flex-col items-center justify-center bg-cover bg-center bg-fixed px-6 xl:px-0"
             style={{
-              backgroundImage: `url(${bgImage})`,
+              backgroundImage: `url(${S3_BASE_URL + "/contact-bg.png"})`,
               marginTop: `-${topMargin}px`,
             }}
           >

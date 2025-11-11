@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import logo from "@/assets/images/Stalwart_Logo.png";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { topSpace } from "@/constants/constants";
+import { S3_BASE_URL } from "@/config";
 
 const HeroSection = ({ title, bgImage, bgImageMobile }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -36,7 +36,11 @@ const HeroSection = ({ title, bgImage, bgImageMobile }) => {
       <div className="container">
         <div className="flex items-center justify-between">
           <div>
-            <img src={logo} alt="logo" className="w-5 lg:w-10" />
+            <img
+              src={`${S3_BASE_URL}/Stalwart_Logo.png`}
+              alt="logo"
+              className="w-5 lg:w-10"
+            />
           </div>
           <div className="text-white uppercase font-monument text-sm lg:text-xl">
             {title || ""}

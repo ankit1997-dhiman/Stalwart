@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Input, message } from "antd";
 import { ConfirmDetailsStep } from "../sellWithStalwart/components/ConfirmDetailsStep";
 import { TenantedStep } from "../sellWithStalwart/components/TenantedStep";
-import image from "@/assets/images/right.png";
 import { topSpace } from "@/constants/constants";
 import useResponsiveMargin from "@/hooks/useResponsiveMargin";
 import { useLocation, useNavigate } from "react-router-dom";

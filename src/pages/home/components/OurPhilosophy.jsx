@@ -1,16 +1,13 @@
-import image from "../../../assets/images/section-2-image.png";
-import mobileImage from "../../../assets/images/mobile-philosophy.png";
-import blackLogo from "@/assets/images/black-logo.png";
-import { Link } from "react-router-dom";
-import { URLS } from "@/constants/Urls";
 import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { S3_BASE_URL } from "@/config";
+import { URLS } from "@/constants/Urls";
 
 const OurPhilosophy = () => {
   return (
     <section className="bg-white py-20 md:py-32 px-12.5 xl:px-0">
       <div className="container mx-auto">
         {/* <MyIcon className="w-6 h-6 text-blue-500" /> */}
-        <img src={blackLogo} className="w-6 h-3 mb-15" />
+        <img src={`${S3_BASE_URL}/black-logo.png`} className="w-6 h-3 mb-15" />
         {/* <BiLogOut className="w-6 h-6 text-black  block" /> */}
         <p className="text-xs md:text-base text-black mt-15 font-moderat-medium pb-5">
           OUR PHILOSOPHY
@@ -21,12 +18,14 @@ const OurPhilosophy = () => {
         </h4>
         <div
           className="bg-cover h-[189px] my-12.5 lg:my-18 bg-no-repeat bg-center sm:hidden"
-          style={{ backgroundImage: `url(${mobileImage})` }}
+          style={{
+            backgroundImage: `url(${S3_BASE_URL}/mobile-philosophy.png)`,
+          }}
         ></div>
 
         <div
           className="hidden sm:block bg-cover h-[338px] my-18 bg-no-repeat bg-center"
-          style={{ backgroundImage: `url(${image})` }}
+          style={{ backgroundImage: `url(${S3_BASE_URL}/section-2-image.png)` }}
         ></div>
 
         <div className="flex items-end justify-end gap-4">

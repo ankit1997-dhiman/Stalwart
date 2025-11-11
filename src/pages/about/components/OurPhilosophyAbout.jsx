@@ -1,7 +1,6 @@
 import React from "react";
-import image from "../../../assets/images/about-us.png";
-import bgImage from "../../../assets/images/about-us.png"; // import background
 import { aboutPageContent } from "@/constants/about/aboutPageContent";
+import { S3_BASE_URL } from "@/config";
 
 const OurPhilosophyAbout = () => {
   return (
@@ -19,7 +18,7 @@ const OurPhilosophyAbout = () => {
           </div>
           <div className="block xl:hidden">
             <img
-              src={image}
+              src={`${S3_BASE_URL}/about-us.png`}
               alt="Scenic Property"
               className="w-full  object-cover py-12.5 h-[400px] md:h-[500px] lg:[600px]"
             />
@@ -27,10 +26,6 @@ const OurPhilosophyAbout = () => {
           <div className="xl:pt-42.5">
             <p className="text-gray-700 mb-6 font-moderat-regular pb-5">
               {aboutPageContent.OUR_PHILOSOPY_PARA_1}
-              {/* At Stalwart Real Estate, we help clients maximise the value of
-              their property assets with minimal stress, delivering exceptional
-              results through expert negotiation and thoughtful, strategic
-              marketing. */}
             </p>
 
             <p className="text-gray-600 mb-4 font-moderat-regular pb-5">
@@ -47,7 +42,7 @@ const OurPhilosophyAbout = () => {
         <div
           className="hidden xl:block bg-no-repeat bg-cover w-full lg:w-[600px] h-full lg:h-[600px]"
           style={{
-            backgroundImage: `url(${bgImage})`, // use imported image
+            backgroundImage: `url(${S3_BASE_URL}/about-us.png)`, // use imported image
           }}
         ></div>
       </div>

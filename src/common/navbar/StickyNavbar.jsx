@@ -1,16 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { URLS } from "@/constants/Urls.js";
-import logoBlack from "@/assets/images/black-logo.png";
+import { S3_BASE_URL } from "@/config";
 import { menuItems } from "@/constants/menuLinks";
+import { URLS } from "@/constants/Urls.js";
 import GoogleTranslate from "@/pages/GoogleTranslate";
+import { Link } from "react-router-dom";
 
 export const StickyNavbar = () => {
   return (
     <div className="container justify-between items-center xl:flex hidden">
       <div>
         <Link to={URLS.HOME}>
-          <img src={logoBlack} alt="logo" className="w-6 h-3" />
+          <img
+            src={`${S3_BASE_URL}/black-logo.png`}
+            alt="logo"
+            className="w-6 h-3"
+          />
         </Link>
       </div>
       <div>

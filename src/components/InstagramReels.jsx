@@ -1,29 +1,20 @@
-import { useEffect, useRef, useState } from "react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import video1 from "@/assets/videos/video_a.mp4";
-import video2 from "@/assets/videos/video_b.mp4";
-import video3 from "@/assets/videos/video_c.mp4";
-import Image1 from "@/assets/videos/image_a.jpg";
-import Image2 from "@/assets/videos/image_b.jpg";
-import Image3 from "@/assets/videos/image_c.jpg";
-import Image4 from "@/assets/videos/image_d.jpg";
-import Image5 from "@/assets/videos/image_e.jpg";
-import Image6 from "@/assets/videos/image_f.jpg";
-import "swiper/css";
+import { S3_BASE_URL } from "@/config";
+import { useRef } from "react";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const reels = [
-  { type: "v", src: video1 },
-  { type: "i", src: Image1 },
-  { type: "i", src: Image2 },
-  { type: "i", src: Image3 },
-  { type: "i", src: Image4 },
-  { type: "v", src: video2 },
-  { type: "i", src: Image5 },
-  { type: "i", src: Image6 },
-  { type: "v", src: video3 },
+  { type: "v", src: S3_BASE_URL + "/video_a.mp4" },
+  { type: "i", src: S3_BASE_URL + "/image_a.jpg" },
+  { type: "i", src: S3_BASE_URL + "/image_b.jpg" },
+  { type: "i", src: S3_BASE_URL + "/image_c.jpg" },
+  { type: "i", src: S3_BASE_URL + "/image_d.jpg" },
+  { type: "v", src: S3_BASE_URL + "/video_b.mp4" },
+  { type: "i", src: S3_BASE_URL + "/image_e.jpg" },
+  { type: "i", src: S3_BASE_URL + "/image_f.jpg" },
+  { type: "v", src: S3_BASE_URL + "/video_c.mp4" },
 ];
 
 export default function InstagramReelsGrid() {

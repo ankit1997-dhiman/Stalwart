@@ -1,8 +1,7 @@
-import React from "react";
-import image from "../../../assets/images/work.png";
-import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
-import { URLS } from "@/constants/Urls";
 import { BlackArrow } from "@/assets/icons/BlackArrow";
+import { LenisAnimatedLink } from "@/components/LenisAnimatedLink";
+import { S3_BASE_URL } from "@/config";
+import { URLS } from "@/constants/Urls";
 
 export default function WorkWithUs() {
   return (
@@ -20,7 +19,7 @@ export default function WorkWithUs() {
           </div>
           <div className="block xl:hidden py-8">
             <img
-              src={image}
+              src={`${S3_BASE_URL}/work.png`}
               alt="Work With Us"
               className="w-full object-cover h-[300px] md:h-[350px] lg:[350px] "
             />
@@ -54,7 +53,7 @@ export default function WorkWithUs() {
         {/* Right Image */}
         <div className="hidden xl:block md:w-4/12">
           <img
-            src={image}
+            src={`${S3_BASE_URL}/work.png`}
             alt="Work With Us"
             className="w-full object-cover rounded"
           />

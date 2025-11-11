@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { message, Tabs } from "antd";
-import { Tab1 } from "./components/Tab1.jsx";
-import image from "@/assets/images/black-logo.png";
-import Tab2 from "./components/Tab2.jsx";
-import { graphqlRequest } from "@/utils/graphqlRequest.js";
-import SellTab from "./components/SellTab.jsx";
-import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries.js";
+import { S3_BASE_URL } from "@/config.js";
 import { magicText } from "@/constants/constants.jsx";
+import { GET_SALE_PROPERTIES } from "@/queries/propertyQueries.js";
+import { graphqlRequest } from "@/utils/graphqlRequest.js";
+import { message, Tabs } from "antd";
+import { useEffect, useState } from "react";
 import LeaseTab from "./components/LeaseTab.jsx";
+import SellTab from "./components/SellTab.jsx";
+import { Tab1 } from "./components/Tab1.jsx";
+import Tab2 from "./components/Tab2.jsx";
 
-// Map tab key → status
 const tabListingTypes = {
-  1: ["ACTIVE", "UNDER_OFFER"], // FEATURED (no filter)
-  2: ["ACTIVE"], // BUY
-  3: ["SOLD"], // SELL (adjust if needed)
-  4: ["LEASED"], // LEASE
+  1: ["ACTIVE", "UNDER_OFFER"],
+  2: ["ACTIVE"],
+  3: ["SOLD"],
+  4: ["LEASED"],
 };
 
 const PropertiesTab = () => {
@@ -90,7 +89,10 @@ const PropertiesTab = () => {
 
   return (
     <section className="container py-22 xl:px-0">
-      <img src={image} className="h-4 w-7.5 mx-auto" />
+      <img
+        src={S3_BASE_URL + "/black-logo.png "}
+        className="h-4 w-7.5 mx-auto"
+      />
       <p className="text-center text-black font-normal text-[13px] md:text-[32px] py-[64px] font-monument uppercase">
         A Door To Home
       </p>

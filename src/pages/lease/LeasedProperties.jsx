@@ -13,7 +13,6 @@ export function LeasedProperties() {
 
   const { properties, pageInfo, loading, fetchProperties, loadMore } =
     usePropertiesFetcher({
-      listingType: ["RESIDENTIAL_RENTAL"],
       status: ["LEASED"],
       orderBy: "CREATED_AT_DESC",
       initialCount: 6,
